@@ -1,5 +1,7 @@
 # Quatt Ecosystem Release Notes — dashboard
 
+**Repo:** `Quattio/dashboard-ecosystem-release-notes` · **Live:** https://dashboard-ecosystem-release-notes.pages.dev (Google OAuth, quatt.io only)
+
 Static, manifest-driven dashboard for Quatt ecosystem release notes (CiC + Cloud + App + Wireless Platform). One self-contained page per release wave, three audience tiers (Customer EN/NL, Internal, Engineering), styled per the `quatt-visual-branding` design tokens.
 
 ## Structure
