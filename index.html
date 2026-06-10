@@ -1,31 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quatt Internal Tool</title>
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
-    <link href="/src/index.css" rel="stylesheet" />
-    <script>
-      (function () {
-        const theme = localStorage.getItem("theme") || "system";
-        const root = document.documentElement;
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quatt — Release notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
 
-        if (
-          theme === "dark" ||
-          (theme === "system" &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches)
-        ) {
-          root.classList.add("dark");
-        } else {
-          root.classList.add("light");
-        }
-      })();
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="logo"><span class="mark">Q</span> Quatt <span class="sys">Release notes</span></span>
+    <nav>
+      <a href="index.html" class="active">Releases</a>
+      <a href="#" id="nav-latest">Latest</a>
+      <button class="theme-toggle" onclick="toggleTheme()">Dark mode</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="page-head">
+    <div class="kicker">Release engineering &middot; GitHub tags &rarr; Jira &rarr; three tiers</div>
+    <h1>Ecosystem releases <span class="dim">2026</span></h1>
+    <div class="sub">One entry per release wave — customer notes, internal ops notes, and the full engineering ticket index. GitHub tags are the source of truth.</div>
+  </div>
+
+  <div class="stat-strip" id="stats"></div>
+
+  <div class="release-grid" id="grid"></div>
+
+  <p class="footer-note">
+    This index renders <code>releases.js</code> — the manifest written by the <code>/release-notes</code> pipeline
+    (GitHub tags &rarr; commit walk &rarr; Jira cross-reference) each release. Per-release pages are self-contained
+    under <code>releases/</code>; deploying a new release means copying one page plus the updated manifest.
+  </p>
+</main>
+
+<script src="releases.js"></script>
+<script>
+function toggleTheme() {
+  const r = document.documentElement;
+  const cur = r.getAttribute('data-theme') || 'light';   // Quatt is light by default
+  const next = cur === 'light' ? 'dark' : 'light';
+  r.setAttribute('data-theme', next);
+  localStorage.setItem('qrn-theme', next);
+}
+const saved = localStorage.getItem('qrn-theme');
+if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+/* ---- render stat strip ---- */
+document.getElementById('stats').innerHTML = (window.SUMMARY || []).map(s =>
+  '<div class="stat"><div class="n">' + s.n + '</div><div class="l">' + s.l + '</div></div>'
+).join('');
+
+/* ---- render release cards from the manifest ---- */
+const grid = document.getElementById('grid');
+grid.innerHTML = (window.RELEASES || []).map(r => {
+  const chips = r.chips.map(c => '<span class="chip ' + c.cls + '">' + c.label + '</span>').join('');
+  const stats = r.stats.map(s => '<span>' + (s.b ? '<b>' + s.b + '</b> ' : '') + s.t + '</span>').join('');
+  const note = r.note ? '<span class="demo-note">' + r.note + '</span>' : '';
+  const inner =
+    '<div class="row1"><h2>' + r.title + '</h2>' +
+    '<span class="badge ' + r.badge.cls + '">' + r.badge.label + '</span>' +
+    '<span class="date">' + r.date + '</span></div>' +
+    '<div class="versions">' + chips + '</div>' +
+    '<div class="stats">' + stats + note + '</div>';
+  return r.page
+    ? '<a class="release-card" href="' + r.page + '">' + inner + '</a>'
+    : '<div class="release-card muted">' + inner + '</div>';
+}).join('');
+
+/* "Latest" nav link → newest release that has a page */
+const latest = (window.RELEASES || []).find(r => r.page);
+if (latest) document.getElementById('nav-latest').href = latest.page;
+</script>
+
+</body>
 </html>
