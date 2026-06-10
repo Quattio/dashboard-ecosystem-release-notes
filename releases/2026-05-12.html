@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quatt Ecosystem Release 12.05.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css?v=2">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="logo"><span class="mark">Q</span> Quatt <span class="sys">Release notes</span></span>
+    <nav>
+      <a href="../index.html">Releases</a>
+      <a href="2026-06-04.html">Latest</a>
+      <button class="theme-toggle" onclick="toggleTheme()">Dark mode</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="crumb"><a href="../index.html">Releases</a> / 12.05.2026</div>
+  <div class="page-head">
+    <div class="kicker">CiC diffed 4.5.0 &rarr; 4.6.0-alpha.0 &middot; treated as general release &middot; historical backfill</div>
+    <h1>Quatt Ecosystem Release <span class="dim">12.05.2026</span></h1>
+    <div class="sub">
+      <span class="chip cic">CiC 4.6.0-alpha.0</span>
+      <span class="chip cloud">Cloud v2.35.1–v2.37.2</span>
+      <span class="chip app">App v1.55.0–v1.56.1</span>
+      <span class="chip fw">Thread FW 2.9.0</span>
+      <span class="chip fw">Controller 6.7.2</span>
+      <span class="chip fw">ODU FW 2.0</span>
+    </div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-panel="customer">Customer</button>
+    <button class="tab" data-panel="internal">Internal (ops / CS)</button>
+    <button class="tab" data-panel="engineering">Engineering</button>
+  </div>
+
+  <!-- ============ TIER 1 ============ -->
+  <section class="tab-panel tier1 active" id="panel-customer">
+
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button class="fbtn lang-btn on" data-lang="en">English</button>
+      <button class="fbtn lang-btn" data-lang="nl">Nederlands</button>
+    </div>
+
+    <div class="lang-pane" id="tier1-en">
+      <div class="theme-card">
+        <h3>What's new</h3>
+        <ul>
+          <li>HomeBattery: a new Dynamic Prices screen lets you see upcoming electricity prices directly in the app.</li>
+          <li>The earnings overview now opens on yesterday by default, so it always shows a complete day.</li>
+          <li>Improved Dutch texts throughout the app, with clearer wording and consistent product names.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Heating performance and reliability</h3>
+        <ul>
+          <li>Fixed an issue where the boiler could briefly receive power demand spikes.</li>
+          <li>The central-heating water temperature is now always kept within a safe maximum range.</li>
+          <li>Fixed an issue where Chill could suddenly lose its connection to the system.</li>
+          <li>Smoother temperature control thanks to improved filtering of temperature measurements.</li>
+          <li>The outdoor unit no longer starts cooling when no rooms are actively asking for cooling.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Bug fixes and maintenance</h3>
+        <ul>
+          <li>This update also includes general bug fixes, security updates, and improvements to system reliability and connectivity.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lang-pane" id="tier1-nl" hidden>
+      <div class="theme-card">
+        <h3>Wat is er nieuw</h3>
+        <ul>
+          <li>HomeBattery: op het nieuwe scherm Dynamische prijzen zie je de komende stroomprijzen direct in de app.</li>
+          <li>Het opbrengstenoverzicht opent nu standaard op gisteren, zodat je altijd een volledige dag ziet.</li>
+          <li>Verbeterde Nederlandse teksten in de hele app, met duidelijkere formuleringen en consistente productnamen.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Verwarmingsprestaties en betrouwbaarheid</h3>
+        <ul>
+          <li>Een probleem opgelost waarbij de ketel kortstondig vermogenspieken kon ontvangen.</li>
+          <li>De aanvoertemperatuur van de centrale verwarming blijft nu altijd binnen een veilig maximum.</li>
+          <li>Een probleem opgelost waarbij de Chill plotseling de verbinding met het systeem kon verliezen.</li>
+          <li>Soepelere temperatuurregeling dankzij verbeterde filtering van temperatuurmetingen.</li>
+          <li>De buitenunit start niet langer met koelen wanneer geen enkele ruimte actief om koeling vraagt.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Foutoplossingen en onderhoud</h3>
+        <ul>
+          <li>Deze update bevat daarnaast algemene foutoplossingen, beveiligingsupdates en verbeteringen aan de betrouwbaarheid en connectiviteit van het systeem.</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ TIER 2 ============ -->
+  <section class="tab-panel" id="panel-internal">
+
+    <div class="callout-warn">
+      <b>Scope:</b> Historical backfill. CiC diffed 4.5.0 → 4.6.0-alpha.0 (treated as general release per release captain);
+      Cloud window v2.35.0 → v2.37.2 and App v1.54.1 → v1.56.1, hand-off to the 04.06.2026 notes is gap-free.
+      The version-gating work (QPD-13559/13905/14021) and ZipStats CIC publish (QPD-13788) were <b>reverted before the alpha</b>
+      and shipped later in the 4.6.x betas — they appear here as no-ops.
+    </div>
+
+    <div class="theme-card">
+      <h3>1 · ODUv2 (AMH6-2) launch &amp; OTA foundation <span class="epic">ODUv2 | Heatpump OTA Update</span></h3>
+      <ul>
+        <li>ODU firmware <b>2.0</b> + EEPROM artifacts bundled; new ODU EEPROM update module on the CiC <span class="tkey">(QPD-1340)</span></li>
+        <li>AMH6-2 (3-blade outdoor unit) revision mapping added across App + Cloud <span class="tkey">(QPD-13677)</span></li>
+        <li>ODU OTA flow validated end-to-end and update gating hardened <span class="tkey">(QPD-12078)</span>; recovery from CiC power-cycle mid-update <span class="tkey">(QPD-13627)</span></li>
+        <li>Commissioning prerequisites re-checked after identification for required firmware updates <span class="tkey">(QPD-13719, QPD-13720, QPD-13884)</span>; pre-identification gating only blocks on the CiC update <span class="tkey">(QPD-14044)</span></li>
+        <li>New firmware-update screen after identification, EEPROM update step kept visible, CiC download progress shown <span class="tkey">(QPD-13713, QPD-13712, QPD-13906, QPD-13932)</span></li>
+        <li>EEPROM binary visualization tool for support/engineering <span class="tkey">(QPD-13626)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for ops:</b> this wave introduces ODUv2 hardware support and the full OTA scaffolding behind gating — the gate itself opens at 4.7.0. AMH6-2 units are recognised end-to-end; app builds below v1.55 are force-updated for compatibility.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3>2 · Hybrid commissioning GA <span class="epic">Migrate hybrid commissioning to new architecture</span></h3>
+      <ul>
+        <li><b>HYBRID_BETA commissioning flow graduated to GA in production</b> <span class="tkey">(QPD-13900)</span></li>
+        <li>Legacy hybrid flow marked "Legacy", BETA label removed <span class="tkey">(QPD-13929)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for installers:</b> the new hybrid commissioning flow is now the default for all hybrid installations; the legacy flow remains available but is explicitly labeled Legacy.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3>3 · Chill control-board OTA &amp; commissioning UX wave <span class="epic">CHILL | Control Board OTA Update + SW Improvements</span></h3>
+      <ul>
+        <li>Control-board OTA over Modbus integrated into cic-chill <span class="tkey">(QPD-10346)</span></li>
+        <li>WARNING_IN_MAINTENANCE emitted during all firmware updates, with dedicated app banner copy <span class="tkey">(QPD-13991, QPD-13990)</span></li>
+        <li>Split interface-board / control-board firmware updates with 1/2 &amp; 2/2 step indicators <span class="tkey">(QPD-13992, QPD-13996)</span>; update state aggregated across IB + CB + EEPROM <span class="tkey">(QPD-13993)</span></li>
+        <li>Chill firmware-update percentage exposed during commissioning; cancelling during an update is now possible <span class="tkey">(QPD-13741, QPD-13740)</span></li>
+        <li>Flow-switch status shown on the Chill cooling test <span class="tkey">(QPD-13739, QPD-13742)</span>; Quatt Network reachable from any commissioning screen <span class="tkey">(QPD-13687)</span></li>
+        <li>WARNING_NOT_COMMISSIONED status for uncommissioned Chills + LED behaviour <span class="tkey">(QPD-13704, QPD-13695)</span></li>
+        <li>Copy fixes: ball-valve outlet, deaeration solenoid, max-water-temperature screen <span class="tkey">(QPD-13688, QPD-13714)</span>; deaeration navigation fix <span class="tkey">(QPD-13680)</span>; alert-card overflow <span class="tkey">(QPD-13696)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for commissioning/CS:</b> Chill firmware updates become visible and controllable during commissioning (percentages, split steps, cancel), and Chill maintenance states are no longer reported as hard errors.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3>Field reliability and customer-impacting fixes</h3>
+      <ul>
+        <li><b>Lab/field Chills suddenly disconnecting</b> — consolidated zombie-session fix (libcoap ping_failed + app-level sweep) <span class="tkey">(QPD-13625, urgent)</span></li>
+        <li>Dongle connection-quality monitor: path-cost based quality + simplified binary connection LED <span class="tkey">(QPD-12301)</span></li>
+        <li>cic-thread-network-manager not started on boot (udev SYSTEMD_WANTS race) — auto-enabled <span class="tkey">(QPD-13760)</span></li>
+        <li>Boiler demand power-spike fix and CH water temperature clamped to acceptable range (controller 6.7.2) <span class="tkey">(QPD-13930)</span></li>
+        <li>Chill NCR-3083: circulating pump PWM to 5.0% <span class="tkey">(QPD-13981)</span>; supply-temperature filter tuning <span class="tkey">(QPD-13583)</span>; no cooling while no Chills actively cooling <span class="tkey">(QPD-13698)</span></li>
+        <li>Insights pipeline dropped rows on cicState startAt ties — tiebreaker added <span class="tkey">(QPD-13734, urgent)</span></li>
+        <li>Flow-rate test on ALL_ELECTRIC_SINGLE installs unblocked (hp2 relay requirement removed) <span class="tkey">(QPD-14079, urgent, Cloud v2.36.1 hotfix)</span></li>
+        <li>Commissioning stuck in DEVICES_IDENTIFICATION after installation deletion <span class="tkey">(QPD-14127, urgent)</span></li>
+        <li>Rev7 LED state machine restored for CiC <span class="tkey">(QPD-13758)</span>; watchdog can be stopped gracefully without HW reset <span class="tkey">(QPD-13855)</span></li>
+      </ul>
+    </div>
+
+    <div class="theme-card">
+      <h3>Resilience / ADR0041 flowmeter mitigation <span class="epic">ADR0041: Broken Flowmeter Mitigation in Duo Installations</span></h3>
+      <ul>
+        <li>Flow-sensor override flags mapped into MQTT config <span class="tkey">(QPD-13447)</span> with admin PATCH endpoint <span class="tkey">(QPD-13448)</span> and override columns on the installation model <span class="tkey">(QPD-13466)</span></li>
+        <li>Lower minimum flow rate for single-pump tests in Duo commissioning <span class="tkey">(QPD-13679)</span></li>
+      </ul>
+    </div>
+
+    <div class="theme-card">
+      <h3>App: translations overhaul &amp; maintenance</h3>
+      <ul>
+        <li><b>i18nexus replaced with AI-assisted translations</b> (epic QPD-13721): flattened locale files, translations skill with brand-voice &amp; product-name rules, tooling removed, docs updated <span class="tkey">(QPD-13722–13725, QPD-14000)</span></li>
+        <li>"boiler" → "ketel" through all Dutch translations <span class="tkey">(QPD-13977)</span>; copy audited against new brand guidelines <span class="tkey">(QPD-14002)</span></li>
+        <li>HomeBattery Dynamic Prices screen <span class="tkey">(QPD-13934)</span>; earnings calendar defaults to yesterday <span class="tkey">(QPD-13531)</span></li>
+        <li>Boost-E renamed to "HeatBattery Backup Heater" in All-Electric commissioning <span class="tkey">(QPD-14014)</span></li>
+        <li>React Native 0.84 <span class="tkey">(QPD-13796)</span>, Sentry v8 + native app-start error capture <span class="tkey">(QPD-12901)</span>, i18next v26 <span class="tkey">(QPD-13936)</span>, Sentry noise reduction <span class="tkey">(QPD-14078, 14106, 14107)</span></li>
+        <li>v1.56.1 hotfix: restore iPhone-only device family (iOS packaging, no ticket)</li>
+      </ul>
+    </div>
+
+    <div class="theme-card">
+      <h3>All-Electric Boost Mode groundwork <span class="epic">All-E | Boost Mode Feature</span></h3>
+      <ul>
+        <li>Controller-side boost mode prototype for the innovation team <span class="tkey">(QPD-12918)</span></li>
+        <li>Backend Boost Mode implementation per ADR0047 <span class="tkey">(commit carries a placeholder QPD-XXXXX key — needs Jira resolution)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for CS/marketing:</b> groundwork only — nothing customer-visible; the Boost screen lands behind a flag in App v1.57.0.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3>Cloud platform, admin &amp; fleet operations</h3>
+      <ul>
+        <li>ECS migration: staging + production workloads moving Heroku → AWS ECS, env/secrets sync, dev-tooling parity <span class="tkey">(QPD-13296, large unticketed infra wave)</span></li>
+        <li>ZipIt telemetry pipeline: gzipped CIC stats IoT rule + Lambda, SQS gunzip worker, size metrics, MQTT-debug decoding, 8-shard Firehose disabled <span class="tkey">(QPD-13786, 13787, 13862, 13882, 13883, 13891; CIC-side QPD-13788 reverted this wave)</span></li>
+        <li>Admin APIs: commissioning history + GET by uuid <span class="tkey">(QPD-13682, QPD-13674)</span>, unused endpoints cleanup <span class="tkey">(QPD-13683)</span>, installation deletion with re-pairable factory state <span class="tkey">(QPD-13931)</span>, remote device pairing endpoints, isAdmin hardening with verified-email domain check <span class="tkey">(QPD-7347)</span></li>
+        <li>MQTT debug stream for CICs without an installation <span class="tkey">(QPD-13863)</span>; Chill flow config flags in MQTT config/admin API <span class="tkey">(QPD-13647, QPD-13762, in progress)</span></li>
+        <li>cic-network-monitoring 1.3.1: route-metric handling via NetworkManager + ss -K, no service toggling on ambiguous connectivity, ppp0 ESTAB polling <span class="tkey">(QPD-13524, QPD-13027, QPD-14018)</span></li>
+        <li>libcoap upgraded to 4.3.5b for CVE fixes on CiC; dongle pinned to working registry revision <span class="tkey">(QPD-13745, QPD-13748)</span></li>
+        <li>Mender: nightly auto-upload of CIC builds <span class="tkey">(QPD-11874)</span>, update transfer progress to Redis <span class="tkey">(QPD-13906)</span>; cic-cloud-webserver redesign <span class="tkey">(QPD-13928)</span></li>
+        <li>Test infra: redis-cli hang fix via Unix socket <span class="tkey">(QPD-13841)</span>, fixture/journal robustness <span class="tkey">(QPD-13848, 13886, 13887, 13927)</span>, stale uv cache fix <span class="tkey">(QPD-13976)</span>, devcontainer self-hosting + coverage reporting <span class="tkey">(QPD-13746, QPD-13747)</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ TIER 3 ============ -->
+  <section class="tab-panel" id="panel-engineering">
+    <div class="filters">
+      <span class="fgroup" id="f-product">
+        <span class="flabel">Product</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="CiC">CiC</button>
+        <button class="fbtn" data-v="Wireless">Wireless</button>
+        <button class="fbtn" data-v="Cloud">Cloud</button>
+        <button class="fbtn" data-v="App">App</button>
+      </span>
+      <span class="fgroup" id="f-type">
+        <span class="flabel">Type</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="Task">Tasks</button>
+        <button class="fbtn" data-v="Bug">Bugs</button>
+      </span>
+      <span class="fgroup" id="f-pr">
+        <span class="flabel">Priority</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="Urgent">Urgent</button>
+        <button class="fbtn" data-v="High">High+</button>
+      </span>
+      <input class="search" id="f-q" type="search" placeholder="Search summary or QPD key…">
+    </div>
+    <div class="count" id="count"></div>
+    <table class="tickets">
+      <thead><tr>
+        <th class="sortable" data-col="key">Key</th>
+        <th class="sortable" data-col="product">Product</th>
+        <th class="sortable" data-col="type">Type</th>
+        <th class="sortable" data-col="priority">Priority</th>
+        <th class="sortable" data-col="summary">Summary</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p class="footer-note">
+      Built from GitHub tag diffs (source of truth), cross-referenced with Jira. Cross-product duplicates listed once per
+      product on purpose. Status flags shown for tickets whose Jira state lags the shipped commit. Reverted-in-window
+      work (QPD-13559, 13905, 14021, 13788) shipped as no-ops in the alpha and relanded in the 4.6.x betas.
+      Controller fixes QPD-13930 / QPD-13981 were cherry-picked to both the 6.7.x and 6.8.x lineages and also appear
+      in the 04.06.2026 notes.
+    </p>
+  </section>
+
+</main>
+
+<script>
+/* ---------- theme ---------- */
+function toggleTheme() {
+  const r = document.documentElement;
+  const cur = r.getAttribute('data-theme') || 'light';
+  const next = cur === 'light' ? 'dark' : 'light';
+  r.setAttribute('data-theme', next);
+  localStorage.setItem('qrn-theme', next);
+}
+const saved = localStorage.getItem('qrn-theme');
+if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+/* ---------- Tier 1 language toggle (EN/NL) ---------- */
+function setLang(lang) {
+  document.getElementById('tier1-en').hidden = lang !== 'en';
+  document.getElementById('tier1-nl').hidden = lang !== 'nl';
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('on', b.dataset.lang === lang));
+  localStorage.setItem('qrn-tier1-lang', lang);
+}
+document.querySelectorAll('.lang-btn').forEach(b =>
+  b.addEventListener('click', () => setLang(b.dataset.lang)));
+setLang(localStorage.getItem('qrn-tier1-lang') || 'en');
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === t));
+  document.querySelectorAll('.tab-panel').forEach(p =>
+    p.classList.toggle('active', p.id === 'panel-' + t.dataset.panel));
+}));
+
+/* ---------- ticket data (generated by the /release-notes pipeline) ---------- */
+const T = [
+ // product, key, type, priority, status (if not Done), summary
+ ["CiC",1340,"Task","High","","ODU EEPROM update module + v2.0 FW/EEPROM artifacts"],
+ ["CiC",10346,"Task","Medium","","Integrate Chill control-board OTA over Modbus into cic-chill"],
+ ["CiC",11874,"Task","Medium","","Auto-upload nightly CIC builds to Mender Dev"],
+ ["CiC",12078,"Task","High","","Validate ODU OTA flow + harden update gating"],
+ ["CiC",12301,"Task","High","","Connection quality from min link quality along routing path (+ dashboard topology)"],
+ ["CiC",12918,"Task","Medium","","All-E boost mode prototype (controller)"],
+ ["CiC",13579,"Task","Medium","","Smoke tests for (multi-)Chill"],
+ ["CiC",13583,"Task","Medium","","Tune SupplyTemperatureFiltered weights"],
+ ["CiC",13611,"Task","Medium","","Fused + filtered outdoor ambient temperature in Redis (spec; controller impl ships 4.7.0)"],
+ ["CiC",13626,"Task","Medium","","Tool to visualize ODU EEPROM binary content"],
+ ["CiC",13627,"Task","Medium","","Recover ODU firmware update from CIC power cycle"],
+ ["CiC",13685,"Task","Medium","","Controller handles Redis null values at startup (qinterface_get_optional)"],
+ ["CiC",13695,"Task","Low","","Improve uncommissioned Chill LED behavior"],
+ ["CiC",13698,"Task","Low","","No cooling support while no Chills actively cooling"],
+ ["CiC",13745,"Task","Medium","","Upgrade libcoap to 4.3.5b for CVE fixes"],
+ ["CiC",13746,"Task","Medium","","Self-host devcontainer images; archive quatt-embedded-containers"],
+ ["CiC",13747,"Task","Medium","","Add lcov unit-test coverage reporting to CI"],
+ ["CiC",13758,"Task","Medium","","Rev7 LED state machine + Thread topology schema alignment"],
+ ["CiC",13788,"Task","Medium","Reverted","ZipStats: gzip stats publish on /cicZipStats (reverted; relands in 4.6.x betas)"],
+ ["CiC",13906,"Task","Medium","","Expose CIC update transfer progress (Mender download → Redis)"],
+ ["CiC",13920,"Task","Medium","","CIC | Create Release V4.6.0"],
+ ["CiC",13928,"Task","Medium","","Redesign cic-cloud-webserver + sync local feed data"],
+ ["CiC",13027,"Bug","Medium","","netmon: don't toggle services on ambiguous initial connectivity"],
+ ["CiC",13524,"Bug","Medium","","netmon: NetworkManager route metrics + ss -K connection kill"],
+ ["CiC",13544,"Bug","Medium","","cic-cloud-proxy: skip dynamic topic subscriptions with register credentials"],
+ ["CiC",13559,"Bug","High","Reverted","Version-gate CoAP features for older dongle FW (reverted; relands in 4.6.x betas)"],
+ ["CiC",13625,"Bug","Urgent","","Lab Chills suddenly disconnected — consolidated zombie-session fix"],
+ ["CiC",13744,"Bug","Medium","","Stabilize flaky TicketGate FIFO test"],
+ ["CiC",13760,"Bug","High","","cic-thread-network-manager not started on boot (udev SYSTEMD_WANTS race)"],
+ ["CiC",13841,"Bug","High","","redis-cli intermittently hangs 30–131 s — move to Redis Unix socket"],
+ ["CiC",13848,"Bug","Medium","","cic fixture: at least one reboot before first test"],
+ ["CiC",13855,"Bug","Medium","","CiC watchdog unstoppable — allow graceful stop without HW reset"],
+ ["CiC",13886,"Bug","Medium","","Workaround for cic-provisioning hang on unavailable modem"],
+ ["CiC",13887,"Bug","Medium","","Fix journal capturing when cic fixture fails early"],
+ ["CiC",13927,"Bug","Medium","","journalctl_wait_for_quiet: stop polling when success impossible"],
+ ["CiC",13930,"Bug","Medium","","Boiler demand power spike (controller 6.7.2; also cherry-picked to 6.8.x)"],
+ ["CiC",13976,"Bug","Medium","","Integration tests: stale uv pylibs cache → conflicting messagespec URLs"],
+ ["CiC",13981,"Bug","High","","Chill NCR-3083: circulating pump PWM to 5.0% (also cherry-picked to 6.8.x)"],
+ ["CiC",13986,"Bug","Medium","","Detect hiredis read-buffer desync in Redis::get and reconnect"],
+ ["CiC",14018,"Bug","Medium","","netmon: poll for ppp0 ESTAB instead of fixed sleep"],
+ ["CiC",14021,"Bug","Medium","Reverted","Chill Thread firmware version reported empty (reverted; relands in 4.6.x betas)"],
+ ["Wireless",12301,"Task","High","","Path-cost connection quality module + binary connection LED"],
+ ["Wireless",13746,"Task","Medium","","Use reusable docker-build workflow"],
+ ["Wireless",13748,"Bug","Medium","","FTD build broken by espressif/coap registry revision — pin 4.3.5~5"],
+ ["Cloud",7347,"Task","Medium","Backlog","Harden isAdmin with verified-email domain check"],
+ ["Cloud",12034,"Task","Medium","","Revert house power and stoke limit fix scripts (HubSpot export follow-up)"],
+ ["Cloud",12440,"Task","Medium","","Backend planning documents for max system temperature"],
+ ["Cloud",13296,"Task","Medium","In Review","ECS/Heroku dev-tooling parity (AWS migration wave)"],
+ ["Cloud",13447,"Task","Medium","","ADR0041: map flow sensor override flags to MQTT config"],
+ ["Cloud",13448,"Task","Medium","","ADR0041: admin PATCH endpoint for flow sensor override"],
+ ["Cloud",13647,"Task","Medium","In Progress","Chill flow config flags in MQTT config and admin API"],
+ ["Cloud",13674,"Task","Medium","","GET /admin/commissionings/{uuid} endpoint"],
+ ["Cloud",13677,"Task","High","","ODU revision mapping for AMH6-2 (3-blade ODU)"],
+ ["Cloud",13679,"Task","Medium","Backlog","Lower min flow rate for single-pump tests in duo commissioning"],
+ ["Cloud",13682,"Task","High","","Admin commissioning history endpoints"],
+ ["Cloud",13683,"Task","Low","","Clean up unused admin API endpoints"],
+ ["Cloud",13704,"Task","Low","","WARNING_NOT_COMMISSIONED status for uncommissioned Chills"],
+ ["Cloud",13719,"Task","Medium","","Support EEPROM update state for commissioning prerequisites"],
+ ["Cloud",13720,"Task","Medium","","Commissioning prerequisites after identification (firmware updates)"],
+ ["Cloud",13741,"Task","Urgent","","Expose Chill firmware update percentage"],
+ ["Cloud",13742,"Task","Urgent","","Expose flow switch status on Chill cooling test"],
+ ["Cloud",13753,"Task","Medium","Backlog","Diagnostic logging for Mender registration flow"],
+ ["Cloud",13762,"Task","Medium","In Progress","Admin API for chill maxActiveByFlow per-installation settings"],
+ ["Cloud",13786,"Task","Medium","In Review","ZipStats: cicZipStats IoT rule + Lambda gunzip branch"],
+ ["Cloud",13787,"Task","Medium","In Review","ZipStats: SQS worker gunzip for /dt/zipstats"],
+ ["Cloud",13862,"Task","Medium","In Review","ZipStats: decompressed payload size as Sentry metric"],
+ ["Cloud",13863,"Task","Medium","In validation","Allow MQTT debug stream for CICs without an installation"],
+ ["Cloud",13882,"Task","Medium","In validation","ZipStats: compressed/decompressed sizes in MQTT debug stream"],
+ ["Cloud",13883,"Task","Medium","Backlog","ZipIt: disable old 8-shard Firehose ingestion"],
+ ["Cloud",13884,"Task","Medium","","Harden post-identification firmware update flow"],
+ ["Cloud",13891,"Task","Medium","In Review","ZipIt: zip vs plain EMF metrics from telemetry-transform Lambda"],
+ ["Cloud",13900,"Task","High","","Graduate HYBRID_BETA commissioning flow to GA in production"],
+ ["Cloud",13931,"Task","Medium","","Installation Deletion Admin API (+ re-pairable factory cicState)"],
+ ["Cloud",13991,"Task","Urgent","","Chill: WARNING_IN_MAINTENANCE during firmware updates, ERROR fallback"],
+ ["Cloud",13993,"Task","Urgent","","Aggregate ThreadDevice.updateState across IB, CB and EEPROM (Chill)"],
+ ["Cloud",13996,"Task","Urgent","","Split ThreadCommissioningPrerequisiteDetails into IB + CB for Chill"],
+ ["Cloud",14044,"Task","Urgent","","Hide device prerequisites pre-identification (only CIC update blocks)"],
+ ["Cloud",14089,"Task","Urgent","","Publish settings at end of successful commissioning"],
+ ["Cloud",13576,"Bug","Medium","In Progress","Flowrate query GROUP BY on exact float — replaced with CTE+COUNTIf"],
+ ["Cloud",13734,"Bug","Urgent","","Insights pipeline drops rows on cicState startAt second-precision ties"],
+ ["Cloud",14013,"Bug","Medium","Backlog","Cloud overwrites user-set wifiSSID from stale CIC stats during pairing"],
+ ["Cloud",14019,"Bug","Medium","","Flaky e2e: get-savings-overview fixed-sleep race after Kafka push"],
+ ["Cloud",14079,"Bug","Urgent","","Flow rate test cannot pass on ALL_ELECTRIC_SINGLE (hp2 relay requirement) — v2.36.1 hotfix"],
+ ["Cloud",14127,"Bug","Urgent","","Commissioning stuck in DEVICES_IDENTIFICATION after installation deletion"],
+ ["App",12901,"Task","Medium","","Sentry v8 + capture native app-start errors"],
+ ["App",13531,"Task","Medium","","Earnings calendar defaults to yesterday (complete data)"],
+ ["App",13677,"Task","High","","ODU V2 detection logic + AMH6-2 heatpump test"],
+ ["App",13687,"Task","High","","Access Quatt Network from any Chill commissioning screen"],
+ ["App",13688,"Task","High","","Ball-valve outlet + deaeration solenoid copy changes"],
+ ["App",13712,"Task","Medium","","Keep installing step visible during ODU EEPROM update"],
+ ["App",13713,"Task","Medium","","Firmware-update screen after identification"],
+ ["App",13714,"Task","Medium","","Update copy on Max water temperature screen"],
+ ["App",13715,"Task","Medium","","Migrate to eslint v10 / fix @tanstack/eslint-plugin-query breakage"],
+ ["App",13721,"Task","Medium","","Epic: replace i18nexus with AI-assisted translations"],
+ ["App",13722,"Task","Medium","","Flatten translation locale file structure"],
+ ["App",13723,"Task","Medium","","Create translations skill (brand + locale context)"],
+ ["App",13724,"Task","Medium","","Remove i18nexus tooling"],
+ ["App",13725,"Task","Medium","","Update developer docs for new translation workflow"],
+ ["App",13739,"Task","Medium","","Show flow-switch status on Chill cooling test"],
+ ["App",13740,"Task","Medium","","Allow cancelling commissioning during a firmware update"],
+ ["App",13750,"Task","Medium","","Fix failing daily-run smoke tests"],
+ ["App",13796,"Task","Medium","","Upgrade React Native to 0.84"],
+ ["App",13890,"Task","Medium","","eslint-plugin-react-hooks 7.1.x compiler-driven violations"],
+ ["App",13929,"Task","Medium","","Mark legacy hybrid as Legacy, remove BETA label"],
+ ["App",13932,"Task","Medium","","Show CIC firmware download progress during commissioning"],
+ ["App",13934,"Task","Medium","","DynamicPrices screen in HomeBattery module"],
+ ["App",13936,"Task","Medium","","Upgrade i18next v25 → v26"],
+ ["App",13977,"Task","Medium","","Replace \"boiler\" with \"ketel\" in Dutch translations"],
+ ["App",13990,"Task","Medium","","Dedicated banner copy for WARNING_IN_MAINTENANCE"],
+ ["App",13992,"Task","Medium","","Split interfaceBoard/controlBoard Chill firmware update (1/2, 2/2 steps)"],
+ ["App",14000,"Task","Medium","","Extend translations skill with brand voice & product names"],
+ ["App",14002,"Task","Medium","","Audit & fix existing copy against new brand guidelines"],
+ ["App",14014,"Task","Medium","","Rename Boost-E to \"HeatBattery Backup Heater\" in All-E commissioning"],
+ ["App",14078,"Task","Medium","","Investigate top 2 Sentry errors for quatt-mobile"],
+ ["App",14106,"Task","Medium","","Filter Intercom Android [HTTP -1] errors from Sentry"],
+ ["App",14108,"Task","Medium","","Align CI Node version with package.json engines"],
+ ["App",13556,"Bug","High","Backlog","Commissioning restart-button revert: only show for IN_PROGRESS"],
+ ["App",13680,"Bug","Medium","","DeaerationChill navigation triggers on VALIDATED instead of SUCCESS"],
+ ["App",13696,"Bug","Medium","","Commissioning alert card text overflows on long messages"],
+ ["App",14009,"Bug","Low","","Don't render \"#null\" when orderNumber is missing"],
+ ["App",14015,"Bug","Medium","","Stale cic cache after linkHubspotHouse causes \"no installation\" error"],
+ ["App",14107,"Bug","Medium","","Fetch user via typed API to silence non-Error Sentry noise"]
+];
+
+/* ---------- filters & sorting ---------- */
+const state = { product: '*', type: '*', pr: '*', q: '', sortCol: null, sortDir: 1 };
+const PRIO_RANK = { 'Urgent': 4, 'High': 3, 'Medium': 2, 'Low': 1 };
+const COL_IDX = { product: 0, key: 1, type: 2, priority: 3, summary: 5 };
+
+document.querySelectorAll('th.sortable').forEach(th => th.addEventListener('click', () => {
+  const col = th.dataset.col;
+  if (state.sortCol === col) {
+    state.sortDir = -state.sortDir;          // second click: reverse
+  } else {
+    state.sortCol = col;
+    state.sortDir = col === 'priority' ? -1 : 1;  // priority defaults to Urgent-first
+  }
+  document.querySelectorAll('th.sortable').forEach(x => {
+    x.classList.toggle('sorted', x === th);
+    x.dataset.arrow = x === th ? (state.sortDir === 1 ? '▲' : '▼') : '';
+  });
+  render();
+}));
+
+function cmp(a, b) {
+  const col = state.sortCol, i = COL_IDX[col];
+  let va = a[i], vb = b[i];
+  if (col === 'priority') { va = PRIO_RANK[va] || 0; vb = PRIO_RANK[vb] || 0; }
+  if (va < vb) return -1 * state.sortDir;
+  if (va > vb) return  1 * state.sortDir;
+  const pa = PRIO_RANK[a[3]] || 0, pb = PRIO_RANK[b[3]] || 0;
+  if (pa !== pb) return pb - pa;
+  return a[1] - b[1];
+}
+
+function bindGroup(id, key) {
+  document.querySelectorAll('#' + id + ' .fbtn').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('#' + id + ' .fbtn').forEach(x => x.classList.toggle('on', x === b));
+    state[key] = b.dataset.v;
+    render();
+  }));
+}
+bindGroup('f-product', 'product');
+bindGroup('f-type', 'type');
+bindGroup('f-pr', 'pr');
+document.getElementById('f-q').addEventListener('input', e => { state.q = e.target.value.toLowerCase(); render(); });
+
+function render() {
+  let rows = T.filter(([p, k, ty, pr, st, d]) =>
+    (state.product === '*' || p === state.product) &&
+    (state.type === '*' || ty === state.type) &&
+    (state.pr === '*' || (state.pr === 'Urgent' ? pr === 'Urgent' : (pr === 'Urgent' || pr === 'High'))) &&
+    (!state.q || d.toLowerCase().includes(state.q) || ('qpd-' + k).includes(state.q))
+  );
+  if (state.sortCol) rows = rows.slice().sort(cmp);
+  document.getElementById('count').textContent =
+    rows.length + ' of ' + T.length + ' ticket entries (cross-product duplicates listed per product)';
+  document.getElementById('rows').innerHTML = rows.map(([p, k, ty, pr, st, d]) => {
+    const prBadge = pr === 'Urgent' ? '<span class="badge urgent">Urgent</span>'
+                  : pr === 'High' ? '<span class="badge high">High</span>'
+                  : '<span style="color:var(--text-muted);font-size:12px">' + pr + '</span>';
+    const stBadge = st ? ' <span class="badge open">' + st + '</span>' : '';
+    const cls = p === 'CiC' ? 'cic' : p === 'Cloud' ? 'cloud' : p === 'App' ? 'app' : 'fw';
+    return '<tr>' +
+      '<td class="key"><a href="https://quatt-team.atlassian.net/browse/QPD-' + k + '" target="_blank">QPD-' + k + '</a></td>' +
+      '<td><span class="chip ' + cls + '">' + p + '</span></td>' +
+      '<td><span class="badge ' + ty.toLowerCase() + '">' + ty + '</span></td>' +
+      '<td>' + prBadge + '</td>' +
+      '<td>' + d + stBadge + '</td></tr>';
+  }).join('');
+}
+render();
+</script>
+
+</body>
+</html>

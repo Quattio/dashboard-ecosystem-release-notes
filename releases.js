@@ -31,48 +31,24 @@ window.RELEASES = [
     ]
   },
   {
-    date: "2026-06-03",
-    title: "Quatt Ecosystem Release 03.06.2026",
-    badge: { cls: "hotfix", label: "hotfix" },
-    page: null,
-    chips: [ { cls: "cic", label: "CiC 4.6.1" } ],
-    stats: [
-      { b: "2", t: "tickets" },
-      { b: "", t: "LED status fixes (QPD-14277, QPD-14384)" }
-    ],
-    note: "covered in the 04.06.2026 notes header"
-  },
-  {
-    date: "2026-05-19",
-    title: "Quatt Ecosystem Release 19.05.2026",
-    badge: { cls: "stable", label: "stable" },
-    page: null,
+    date: "2026-05-12",
+    title: "Quatt Ecosystem Release 12.05.2026",
+    badge: { cls: "alpha", label: "alpha · general release" },
+    page: "releases/2026-05-12.html",
     chips: [
-      { cls: "cic",   label: "CiC 4.6.0" },
-      { cls: "cloud", label: "Cloud v2.37.x" },
-      { cls: "app",   label: "App v1.56.1" },
-      { cls: "fw",    label: "Thread FW 2.9.0" }
+      { cls: "cic",   label: "CiC 4.6.0-alpha.0" },
+      { cls: "cloud", label: "Cloud v2.35.1–v2.37.2" },
+      { cls: "app",   label: "App v1.55.0–v1.56.1" },
+      { cls: "fw",    label: "Thread FW 2.9.0" },
+      { cls: "fw",    label: "Controller 6.7.2" },
+      { cls: "fw",    label: "ODU FW 2.0" }
     ],
     stats: [
-      { b: "~70", t: "tickets" },
-      { b: "Chill", t: "field-test stability wave" }
+      { b: "111", t: "tickets" },
+      { b: "35",  t: "bugs fixed" },
+      { b: "Hybrid commissioning", t: "GA" },
+      { b: "ODUv2", t: "hardware launch" }
     ],
-    note: "predates this dashboard — no detail page"
-  },
-  {
-    date: "2026-04-17",
-    title: "Quatt Ecosystem Release 17.04.2026",
-    badge: { cls: "stable", label: "stable" },
-    page: null,
-    chips: [
-      { cls: "cic",   label: "CiC 4.5.0" },
-      { cls: "cloud", label: "Cloud v2.36.x" },
-      { cls: "app",   label: "App v1.55.0" }
-    ],
-    stats: [
-      { b: "~80", t: "tickets" },
-      { b: "Hybrid commissioning", t: "GA" }
-    ],
-    note: "predates this dashboard — no detail page"
+    note: "historical backfill"
   }
 ];
