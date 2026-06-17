@@ -16,10 +16,11 @@ window.RELEASES = [
     badge: { cls: "alpha", label: "alpha release" },
     page: "releases/2026-06-17.html",
     chips: [
-      { cls: "cic",   label: "CiC 4.8.0-alpha.0" },
+      { cls: "cic",   label: "CiC 4.8.0-alpha.1" },
       { cls: "cloud", label: "Cloud v2.39.2–v2.40.0" },
       { cls: "fw",    label: "Thread FW 2.11.1" },
       { cls: "fw",    label: "Controller 6.9.0" },
+      { cls: "fw",    label: "Chill CB FW 2.0.0" },
       { cls: "fw",    label: "ODU FW 2.1" }
     ],
     stats: [
