@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quatt Ecosystem Release 17.06.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css?v=2">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="logo"><span class="mark">Q</span> Quatt <span class="sys">Release notes</span></span>
+    <nav>
+      <a href="../index.html">Releases</a>
+      <a href="2026-06-17.html" class="active">Latest</a>
+      <button class="theme-toggle" onclick="toggleTheme()">Dark mode</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="crumb"><a href="../index.html">Releases</a> / 17.06.2026</div>
+  <div class="page-head">
+    <div class="kicker">CiC diffed 4.7.1 &rarr; 4.8.0-alpha.0 &middot; treated as a stable release</div>
+    <h1>Quatt Ecosystem Release <span class="dim">17.06.2026</span></h1>
+    <div class="sub">
+      <span class="chip cic">CiC 4.8.0</span>
+      <span class="chip cloud">Cloud v2.39.2–v2.40.0</span>
+      <span class="chip fw">Thread FW 2.11.1</span>
+      <span class="chip fw">Controller 6.9.0</span>
+      <span class="chip fw">ODU FW 2.1</span>
+    </div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-panel="customer">Customer</button>
+    <button class="tab" data-panel="internal">Internal (ops / CS)</button>
+    <button class="tab" data-panel="engineering">Engineering</button>
+  </div>
+
+  <!-- ============ TIER 1 ============ -->
+  <section class="tab-panel tier1 active" id="panel-customer">
+
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button class="fbtn lang-btn on" data-lang="en">English</button>
+      <button class="fbtn lang-btn" data-lang="nl">Nederlands</button>
+    </div>
+
+    <div class="lang-pane" id="tier1-en">
+      <div class="theme-card">
+        <h3>What's new</h3>
+        <ul>
+          <li>For All-Electric systems, cooling is now controlled with a more accurate model of the system, for more even room temperatures.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Heating performance and reliability</h3>
+        <ul>
+          <li>Your system now keeps heating through the boiler if both outdoor units are temporarily disconnected.</li>
+          <li>Short compressor cool-down pauses are no longer treated as a fault, reducing unnecessary interruptions to heating and hot water.</li>
+          <li>Improved connection stability over both Thread and Wi-Fi, reducing momentary dropouts.</li>
+          <li>Connected Chill devices no longer briefly disappear from the app home screen while a background update is running.</li>
+          <li>A device's connectivity light now correctly turns red when the device is actually offline.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Bug fixes and maintenance</h3>
+        <ul>
+          <li>This update also includes general bug fixes, security updates, and improvements to system reliability and connectivity.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lang-pane" id="tier1-nl" hidden>
+      <div class="theme-card">
+        <h3>Wat is er nieuw</h3>
+        <ul>
+          <li>Voor All-Electric-systemen wordt het koelen nu geregeld met een nauwkeuriger model van het systeem, voor gelijkmatigere kamertemperaturen.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Verwarmingsprestaties en betrouwbaarheid</h3>
+        <ul>
+          <li>Je systeem blijft nu via de ketel verwarmen wanneer beide buitenunits tijdelijk niet verbonden zijn.</li>
+          <li>Korte afkoelpauzes van de compressor worden niet langer als een storing gezien, waardoor verwarming en warm water minder vaak onnodig worden onderbroken.</li>
+          <li>Verbeterde verbindingsstabiliteit via zowel Thread als wifi, met minder kortstondige onderbrekingen.</li>
+          <li>Verbonden Chill-apparaten verdwijnen niet langer kortstondig uit het startscherm van de app terwijl er op de achtergrond een update draait.</li>
+          <li>Het verbindingslampje van een apparaat wordt nu correct rood wanneer het apparaat daadwerkelijk offline is.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Foutoplossingen en onderhoud</h3>
+        <ul>
+          <li>Deze update bevat daarnaast algemene foutoplossingen, beveiligingsupdates en verbeteringen aan de betrouwbaarheid en connectiviteit van het systeem.</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ TIER 2 ============ -->
+  <section class="tab-panel" id="panel-internal">
+
+    <div class="callout-warn">
+      <b>Scope:</b> CiC 4.8.0 diffed 4.7.1 &rarr; 4.8.0-alpha.0 (treated as a stable release per release captain). This wave bundles
+      Controller 6.9.0, Thread firmware 2.11.1 and embedded-apps 1.31.0 into the CiC image, and pairs Cloud v2.39.2 + v2.40.0
+      (v2.39.3 hotfix folded in). <b>No App release shipped in this window</b> — the latest App build remains v1.57.0 from the
+      04.06.2026 wave.
+    </div>
+
+    <div class="theme-card">
+      <h3>1 · All-Electric &amp; commissioning enhancements <span class="epic">ALL-E | Commissioning &amp; B2B Enhancements</span></h3>
+      <ul>
+        <li>CH water-temperature preheating ("holdTemperature") during commissioning to cut HeatCharger charging wait time — CiC wiring + backend ingest &amp; Grafana <span class="tkey">(QPD-14216, QPD-14219)</span></li>
+        <li>Commissioning M6: 3-way valve position check <b>replaces the obsolete Boost test</b> <span class="tkey">(QPD-14061)</span></li>
+        <li>Always-surface All-Electric diagnostics per screen — banners decoupled from test pass/fail; diagnostics registry advanced to v9.2 (sensor-failure severities, four-way-valve suppression, title renames) <span class="tkey">(QPD-14372, QPD-14490)</span></li>
+        <li>HeatCharger firmware-update progress indicators (M13) <span class="tkey">(QPD-14093)</span></li>
+        <li>DHW flow-restrictor warning surfaced as a context alert, with exposed flow threshold (S20) <span class="tkey">(QPD-14102)</span></li>
+        <li>Cooling-test tightening: minimum duration raised to 7 min, success criteria + recirculation detection reworked, flow test extended <span class="tkey">(QPD-14261, QPD-14281, QPD-14339)</span></li>
+        <li>Stuck-commissioning fixes: corrected expected power during ODUv2 commissioning; orphaned legacy commissioning no longer 404s the installer's in-progress list <span class="tkey">(QPD-14437, QPD-14509)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for commissioning/installers:</b> All-Electric commissioning is faster (CH preheating), more informative (per-screen diagnostics, firmware progress, flow thresholds) and more robust (cooling-test criteria, fewer stuck states). The Boost test is gone — expect the 3-way-valve check in its place.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3>2 · ODUv2 over-the-air updates — validation &amp; hardening <span class="epic">ODUv2 | Heatpump OTA Update</span></h3>
+      <ul>
+        <li>ODUv2 OTA flow validated end-to-end and update-gating hardened; QA sign-off on the firmware-update feature <span class="tkey">(QPD-12078, QPD-14126)</span></li>
+        <li>New <code>devices_update</code> commissioning mode triggers ODU updates after Identification <span class="tkey">(QPD-14126)</span></li>
+        <li>New watchdog code for ODUs while updating; <code>hp_connected</code> flags held at their previous state during an ODU update (no false disconnect) <span class="tkey">(QPD-14289, QPD-14431)</span></li>
+        <li>Backend OTA capability checks for outdoor units added in Cloud v2.39.2</li>
+      </ul>
+      <div class="impact"><b>Impact for ops:</b> ODUv2 OTA is validated and gated for this build. Watch rollout dashboards during the first 4.8.0 waves; ODU FW stays 2.1.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3>3 · Chill control-board OTA hardening <span class="epic">CHILL | Control Board OTA Update</span></h3>
+      <ul>
+        <li>Amitime OTA-over-Modbus integrated into cic-chill; control-board FW + EEPROM now updated together in one chained flow <span class="tkey">(QPD-10346, QPD-14230)</span></li>
+        <li>'Connected' stays fresh during OTA; no false UPLOADING_IMAGE when a device is cut in line; no spurious WARNING_IN_MAINTENANCE while an update is merely PENDING <span class="tkey">(QPD-14231, QPD-14290, QPD-14275)</span></li>
+        <li>Strict Chill control-board update-state prerequisite enabled at CiC 4.6.0 (blocks on FAILED / in-progress / unreadable for all three boards) <span class="tkey">(QPD-14400)</span></li>
+        <li>Commissioned Chills no longer disappear from the app home screen when CiC stats are momentarily incomplete; Chill reboot logic fixed <span class="tkey">(QPD-14302, QPD-14353)</span></li>
+        <li>HeatCharger no longer remains stuck in download mode on slow flash writes <span class="tkey">(QPD-14233)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for CS:</b> Chill OTA support calls ("disappeared from the app", "stuck updating") should drop. The connectivity-LED fix removes a false "offline" signal customers reported.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3>Networking and connectivity</h3>
+      <ul>
+        <li>WiFi command handling ported Python → C++ libnm; follow-up memory-leak fix (NMClient GMainContext never serviced between WiFi commands) <span class="tkey">(QPD-14148, QPD-14564)</span></li>
+        <li>Thread network-manager hang fixed (session-mutex / watchdog); cic-cloud-proxy MQTT reconnect interval tightened <span class="tkey">(QPD-14099, QPD-14155)</span></li>
+        <li>P1 telegrams exposed over CoAP <code>/p1</code> + <code>/config</code> role byte (v2); CoAP features version-gated for older dongle firmware <span class="tkey">(QPD-13905, QPD-13559)</span></li>
+        <li>Redis robustness: hiredis read-buffer desync detection + reconnect, binary-safe <code>Redis::get</code> <span class="tkey">(QPD-13986, QPD-14315)</span></li>
+        <li>Dongle / Thread FW 2.11.1: detect CoAP client disconnect via inbound-traffic inactivity; default to Extender role to avoid reboot after pairing <span class="tkey">(QPD-14470, QPD-14472)</span></li>
+        <li>Installer LED UX (Rev7): state machine reworked, modem fault shown only when backend unreachable, brightness reduced, no false 'connected to backend' before provisioning <span class="tkey">(QPD-13758, QPD-14384, QPD-14277)</span></li>
+      </ul>
+    </div>
+
+    <div class="theme-card">
+      <h3>Field reliability and customer-impacting fixes <span class="epic">Controller 6.9.0 + CiC</span></h3>
+      <ul>
+        <li>Controller starts with both outdoor units disconnected so the boiler can still heat <span class="tkey">(QPD-14280)</span></li>
+        <li>All-Electric cooling capacity model integrated; Chill + All-Electric support power-demand estimator unified <span class="tkey">(QPD-13343, QPD-14186)</span></li>
+        <li>3-minute compressor cooldown treated as a recoverable lockout; DHW pump runs full speed when inlet is above target <span class="tkey">(QPD-14373, QPD-14374)</span></li>
+        <li>Human-readable pump level corrected; lab Chills suddenly disconnecting fixed (stale-ping sweep) <span class="tkey">(QPD-14116, QPD-13625)</span></li>
+      </ul>
+      <div class="callout-warn"><b>Boost Mode is still a flagged-off prototype.</b> QPD-14373 / QPD-14374 sit under the Boost Mode epic but ship here as general controller fixes (compressor lockout, DHW pump). Do not announce Boost Mode — verify flag state before any comms.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3>Fleet operations, serviceability &amp; tech debt</h3>
+      <ul>
+        <li>Full decommission / factory reset: quatt-factory-reset oneshot + MQTT <code>factory_reset</code> command <span class="tkey">(QPD-13989)</span></li>
+        <li>Mender deployment-group creation optimised for fleet rollouts; admin endpoint to trigger a manual CiC firmware deployment via Mender <span class="tkey">(QPD-14566, QPD-14271)</span></li>
+        <li>Build traceability: AUTOREV in quatt-revisions + per-app version logging at startup <span class="tkey">(QPD-13837)</span></li>
+        <li>cic-cloud-webserver redesigned to track messagespec; live-stats page made mobile-friendly; stats gzipped on <code>/cicZipStats</code>; simulation tools consolidated; liveview kept enabled during commissioning <span class="tkey">(QPD-13928, QPD-14380, QPD-13788, QPD-13911, QPD-14378)</span></li>
+        <li>Cloud platform: ECS monitoring Grafana dashboards (reverted then restored with a CloudWatch filter fix), MemoryDB-over-Heroku proxy migration, office dashboard feed job; flaky recommissioning E2E pollution fixed <span class="tkey">(QPD-14456, QPD-14460, QPD-14493)</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ TIER 3 ============ -->
+  <section class="tab-panel" id="panel-engineering">
+    <div class="filters">
+      <span class="fgroup" id="f-product">
+        <span class="flabel">Product</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="CiC">CiC</button>
+        <button class="fbtn" data-v="Wireless">Wireless</button>
+        <button class="fbtn" data-v="Cloud">Cloud</button>
+        <button class="fbtn" data-v="App">App</button>
+      </span>
+      <span class="fgroup" id="f-type">
+        <span class="flabel">Type</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="Task">Tasks</button>
+        <button class="fbtn" data-v="Bug">Bugs</button>
+      </span>
+      <span class="fgroup" id="f-pr">
+        <span class="flabel">Priority</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="Urgent">Urgent</button>
+        <button class="fbtn" data-v="High">High+</button>
+      </span>
+      <input class="search" id="f-q" type="search" placeholder="Search summary or QPD key…">
+    </div>
+    <div class="count" id="count"></div>
+    <table class="tickets">
+      <thead><tr>
+        <th class="sortable" data-col="key">Key</th>
+        <th class="sortable" data-col="product">Product</th>
+        <th class="sortable" data-col="type">Type</th>
+        <th class="sortable" data-col="priority">Priority</th>
+        <th class="sortable" data-col="summary">Summary</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p class="footer-note">
+      Built from GitHub tag diffs (source of truth: CiC 4.7.1 → 4.8.0-alpha.0 release body + Cloud v2.39.2/v2.40.0 bodies),
+      cross-referenced with Jira for ticket detail. No App release shipped in this window. Status flags shown for tickets
+      whose Jira state lags the shipped commit. Use the <code>release-auditor</code> skill for commit-level traceability.
+    </p>
+  </section>
+
+</main>
+
+<script>
+/* ---------- theme ---------- */
+function toggleTheme() {
+  const r = document.documentElement;
+  const cur = r.getAttribute('data-theme') || 'dark';   // console is dark by default
+  const next = cur === 'dark' ? 'light' : 'dark';
+  r.setAttribute('data-theme', next);
+  localStorage.setItem('qrn-theme', next);
+}
+const saved = localStorage.getItem('qrn-theme');
+if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+/* ---------- Tier 1 language toggle (EN/NL) ---------- */
+function setLang(lang) {
+  document.getElementById('tier1-en').hidden = lang !== 'en';
+  document.getElementById('tier1-nl').hidden = lang !== 'nl';
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('on', b.dataset.lang === lang));
+  localStorage.setItem('qrn-tier1-lang', lang);
+}
+document.querySelectorAll('.lang-btn').forEach(b =>
+  b.addEventListener('click', () => setLang(b.dataset.lang)));
+setLang(localStorage.getItem('qrn-tier1-lang') || 'en');
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === t));
+  document.querySelectorAll('.tab-panel').forEach(p =>
+    p.classList.toggle('active', p.id === 'panel-' + t.dataset.panel));
+}));
+
+/* ---------- ticket data (generated by the /release-notes pipeline) ---------- */
+const T = [
+ // product, key, type, priority, status (if not Done), summary
+ ["CiC",10346,"Task","Medium","","CHILL: integrate Amitime OTA-over-Modbus into cic-chill"],
+ ["CiC",12078,"Task","High","","QA-validate ODU firmware-update (FWUD) feature"],
+ ["CiC",13343,"Task","Medium","","Integrate All-Electric cooling capacity model"],
+ ["CiC",13758,"Task","Medium","","Rev7 LED state machine (installer LED UX)"],
+ ["CiC",13788,"Task","Medium","","ZipStats: gzip stats and publish on /cicZipStats"],
+ ["CiC",13837,"Task","Medium","","Use AUTOREV to skip dev bump commits + log app version"],
+ ["CiC",13905,"Task","High","","Expose P1 telegrams over CoAP /p1 + /config role byte (v2)"],
+ ["CiC",13911,"Task","Medium","","Consolidate simulation tools"],
+ ["CiC",13928,"Task","Medium","","Redesign cic-cloud-webserver to track messagespec"],
+ ["CiC",13989,"Task","Low","","Full decommission / factory reset (quatt-factory-reset + MQTT)"],
+ ["CiC",14061,"Task","High","","Commissioning M6: 3-way valve position check (replaces Boost test)"],
+ ["CiC",14093,"Task","High","","Commissioning M13: HeatCharger FW update progress indicators"],
+ ["CiC",14116,"Task","Medium","","Fix human-readable pump level"],
+ ["CiC",14126,"Task","Medium","","devices_update commissioning mode: ODUv2 OTA after Identification"],
+ ["CiC",14148,"Task","Medium","","Port WiFi command handlers Python → C++ libnm"],
+ ["CiC",14155,"Task","Medium","","cic-cloud-proxy: tighten MQTT reconnect interval"],
+ ["CiC",14186,"Task","Low","","Unify Chill + All-Electric support power-demand estimator"],
+ ["CiC",14216,"Task","High","","Commissioning B6 [EMB]: wire holdTemperature (CH preheating) to Redis"],
+ ["CiC",14289,"Task","Medium","","New watchdog code for ODUs updating"],
+ ["CiC",14315,"Task","Low","","Make Redis::get binary-safe (length-aware reply copy)"],
+ ["CiC",14339,"Task","High","","Commissioning: extend flow test"],
+ ["CiC",14373,"Task","Medium","","Treat 3-min compressor cooldown as recoverable lockout"],
+ ["CiC",14374,"Task","Medium","","Run DHW pump full speed when inlet temperature above target"],
+ ["CiC",14378,"Task","Urgent","","Keep liveview enabled during commissioning"],
+ ["CiC",14380,"Task","Medium","In Progress","Make cic-cloud-webserver live-stats page mobile-friendly"],
+ ["CiC",14384,"Task","Medium","","LED: modem fault only when backend unreachable; reduce brightness"],
+ ["CiC",14566,"Task","Medium","","Optimise Mender deployment-group creation for fleet rollouts"],
+ ["CiC",13559,"Bug","High","","Version-gate CoAP features for older dongle firmware"],
+ ["CiC",13625,"Bug","Urgent","","Lab Chills suddenly disconnected (stale-ping sweep)"],
+ ["CiC",13986,"Bug","Medium","","cic-cloud-metrics: hiredis read-buffer desync corrupts metric reads"],
+ ["CiC",14021,"Bug","Medium","","Chill Thread firmware version reported empty (OTA-only handling)"],
+ ["CiC",14099,"Bug","Urgent","","Thread network-manager hang (session-mutex / watchdog)"],
+ ["CiC",14103,"Bug","Medium","","Thread FTD 'validating image' collides with next update"],
+ ["CiC",14230,"Bug","Urgent","","Chill CB: update FW + EEPROM together (chained flow)"],
+ ["CiC",14231,"Bug","Urgent","","Chill screen vs network-state mismatch during IB/CB disconnect"],
+ ["CiC",14233,"Bug","Medium","","HeatCharger stuck in download mode on slow flash writes"],
+ ["CiC",14277,"Bug","Medium","","LED: don't show 'connected to backend' before provisioning"],
+ ["CiC",14280,"Bug","Medium","","Start controller with both ODUs disconnected so boiler can heat"],
+ ["CiC",14290,"Bug","High","","Don't show UPLOADING_IMAGE when another device cuts in line"],
+ ["CiC",14353,"Bug","Urgent","","Fix Chill reboot logic"],
+ ["CiC",14431,"Bug","Medium","","Keep hp_connected flags unchanged during ODU update"],
+ ["CiC",14437,"Bug","Urgent","","Correct expected power during ODUv2 commissioning"],
+ ["CiC",14507,"Bug","Medium","Backlog","Treat hp_connected not-populated as heatpump disconnected"],
+ ["CiC",14564,"Bug","Urgent","","cic-cloud-command memory leak: NMClient GMainContext unserviced"],
+ ["Wireless",14470,"Bug","Medium","","Dongle LED stays solid white instead of red when disconnected"],
+ ["Wireless",14472,"Task","Medium","","Dongle defaults to Extender role to avoid reboot after pairing"],
+ ["Cloud",14102,"Task","Medium","","Commissioning S20 [BE]: DHW flow-restrictor warning + threshold"],
+ ["Cloud",14219,"Task","High","","Commissioning B6 [BE]: ingest holdTemperature + Grafana"],
+ ["Cloud",14261,"Task","High","","Commissioning: increase minimum cooling-test time to 7 min"],
+ ["Cloud",14271,"Task","Urgent","","Admin endpoint: trigger Mender CiC firmware deployment"],
+ ["Cloud",14275,"Task","Urgent","","Don't emit WARNING_IN_MAINTENANCE for Chill on PENDING update"],
+ ["Cloud",14281,"Task","High","","Commissioning: change cooling-test success criteria (recirculation)"],
+ ["Cloud",14372,"Task","Urgent","","Always-surface All-Electric diagnostics per screen"],
+ ["Cloud",14400,"Task","Urgent","","Strict Chill control-board update-state prerequisite at CiC 4.6.0"],
+ ["Cloud",14490,"Task","High","","Diagnostics registry v9.2 (severities, four-way-valve suppression)"],
+ ["Cloud",14302,"Bug","Urgent","","Commissioned Chills vanish from app home when CiC stats incomplete"],
+ ["Cloud",14456,"Bug","High","Backlog","Develop Pulumi deploy blocked: IAM events:TagResource missing"],
+ ["Cloud",14460,"Bug","Medium","Backlog","Develop Pulumi deploy: CloudWatch LogMetricFilter pattern rejected"],
+ ["Cloud",14493,"Bug","Medium","","Flaky E2E: recommissioning cross-test DB pollution"],
+ ["Cloud",14509,"Bug","Medium","","Orphaned legacy commissioning 404s installer's in-progress list"]
+];
+
+/* ---------- filters & sorting ---------- */
+const state = { product: '*', type: '*', pr: '*', q: '', sortCol: null, sortDir: 1 };
+const PRIO_RANK = { 'Urgent': 4, 'High': 3, 'Medium': 2, 'Low': 1 };
+const COL_IDX = { product: 0, key: 1, type: 2, priority: 3, summary: 5 };
+
+document.querySelectorAll('th.sortable').forEach(th => th.addEventListener('click', () => {
+  const col = th.dataset.col;
+  if (state.sortCol === col) {
+    state.sortDir = -state.sortDir;          // second click: reverse
+  } else {
+    state.sortCol = col;
+    state.sortDir = col === 'priority' ? -1 : 1;  // priority defaults to Urgent-first
+  }
+  document.querySelectorAll('th.sortable').forEach(x => {
+    x.classList.toggle('sorted', x === th);
+    x.dataset.arrow = x === th ? (state.sortDir === 1 ? '▲' : '▼') : '';
+  });
+  render();
+}));
+
+function cmp(a, b) {
+  const col = state.sortCol, i = COL_IDX[col];
+  let va = a[i], vb = b[i];
+  if (col === 'priority') { va = PRIO_RANK[va] || 0; vb = PRIO_RANK[vb] || 0; }
+  if (va < vb) return -1 * state.sortDir;
+  if (va > vb) return  1 * state.sortDir;
+  // tiebreakers: priority desc, then key asc — keeps grouped output stable
+  const pa = PRIO_RANK[a[3]] || 0, pb = PRIO_RANK[b[3]] || 0;
+  if (pa !== pb) return pb - pa;
+  return a[1] - b[1];
+}
+function bindGroup(id, key) {
+  document.querySelectorAll('#' + id + ' .fbtn').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('#' + id + ' .fbtn').forEach(x => x.classList.toggle('on', x === b));
+    state[key] = b.dataset.v;
+    render();
+  }));
+}
+bindGroup('f-product', 'product');
+bindGroup('f-type', 'type');
+bindGroup('f-pr', 'pr');
+document.getElementById('f-q').addEventListener('input', e => { state.q = e.target.value.toLowerCase(); render(); });
+
+function render() {
+  let rows = T.filter(([p, k, ty, pr, st, d]) =>
+    (state.product === '*' || p === state.product) &&
+    (state.type === '*' || ty === state.type) &&
+    (state.pr === '*' || (state.pr === 'Urgent' ? pr === 'Urgent' : (pr === 'Urgent' || pr === 'High'))) &&
+    (!state.q || d.toLowerCase().includes(state.q) || ('qpd-' + k).includes(state.q))
+  );
+  if (state.sortCol) rows = rows.slice().sort(cmp);
+  document.getElementById('count').textContent =
+    rows.length + ' of ' + T.length + ' ticket entries (cross-product duplicates listed per product)';
+  document.getElementById('rows').innerHTML = rows.map(([p, k, ty, pr, st, d]) => {
+    const prBadge = pr === 'Urgent' ? '<span class="badge urgent">Urgent</span>'
+                  : pr === 'High' ? '<span class="badge high">High</span>'
+                  : '<span style="color:var(--text-muted);font-size:12px">' + pr + '</span>';
+    const stBadge = st ? ' <span class="badge open">' + st + '</span>' : '';
+    const cls = p === 'CiC' ? 'cic' : p === 'Cloud' ? 'cloud' : p === 'App' ? 'app' : 'fw';
+    return '<tr>' +
+      '<td class="key"><a href="https://quatt-team.atlassian.net/browse/QPD-' + k + '" target="_blank">QPD-' + k + '</a></td>' +
+      '<td><span class="chip ' + cls + '">' + p + '</span></td>' +
+      '<td><span class="badge ' + ty.toLowerCase() + '">' + ty + '</span></td>' +
+      '<td>' + prBadge + '</td>' +
+      '<td>' + d + stBadge + '</td></tr>';
+  }).join('');
+}
+render();
+</script>
+
+</body>
+</html>
