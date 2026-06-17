@@ -3,13 +3,33 @@
    Newest release first. */
 
 window.SUMMARY = [
-  { n: "4",  l: "Releases in the last 60 days" },
-  { n: "92", l: "Tickets in latest wave" },
-  { n: "5",  l: "Products in latest wave" },
-  { n: "2",  l: "Open follow-ups flagged" }
+  { n: "5",  l: "Releases in the last 60 days" },
+  { n: "60", l: "Tickets in latest wave" },
+  { n: "3",  l: "Products in latest wave" },
+  { n: "3",  l: "Open follow-ups flagged" }
 ];
 
 window.RELEASES = [
+  {
+    date: "2026-06-17",
+    title: "Quatt Ecosystem Release 17.06.2026",
+    badge: { cls: "alpha", label: "alpha → general release" },
+    page: "releases/2026-06-17.html",
+    chips: [
+      { cls: "cic",   label: "CiC 4.8.0-alpha.0" },
+      { cls: "cloud", label: "Cloud v2.39.2–v2.40.0" },
+      { cls: "app",   label: "App v1.57.0 (unchanged)" },
+      { cls: "fw",    label: "Thread FW 2.11.1" },
+      { cls: "fw",    label: "Controller 6.9.0" },
+      { cls: "fw",    label: "cpp-apps 1.31.0" }
+    ],
+    stats: [
+      { b: "60", t: "tickets" },
+      { b: "22", t: "bugs fixed" },
+      { b: "Fleet OTA", t: "toward field" },
+      { b: "3-way valve", t: "commissioning test" }
+    ]
+  },
   {
     date: "2026-06-04",
     title: "Quatt Ecosystem Release 04.06.2026",
