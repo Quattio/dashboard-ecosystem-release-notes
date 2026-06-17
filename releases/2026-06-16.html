@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quatt Ecosystem Release 16.06.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css?v=2">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="logo"><span class="mark">Q</span> Quatt <span class="sys">Release notes</span></span>
+    <nav>
+      <a href="../index.html">Releases</a>
+      <a href="2026-06-16.html" class="active">Latest</a>
+      <button class="theme-toggle" onclick="toggleTheme()">Dark mode</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="crumb"><a href="../index.html">Releases</a> / 16.06.2026</div>
+  <div class="page-head">
+    <div class="kicker">CiC hotfix 4.7.0 &rarr; 4.7.1 &middot; single Urgent fix &middot; treated as stable release</div>
+    <h1>Quatt Ecosystem Release <span class="dim">16.06.2026</span></h1>
+    <div class="sub">
+      <span class="chip cic">CiC 4.7.1</span>
+    </div>
+  </div>
+
+  <div class="callout-warn">
+    <b>Degraded data source:</b> the product GitHub repos (cic-yocto-builder, Quatt-cloud, quatt-mobile-app, quatt-dongle)
+    were not reachable on this run, so tag dates and the paired-version surface could not be confirmed against the source of
+    truth. Scope below is built from Jira fixVersion <code>CiC - V4.7.1</code> only. See "Open follow-ups" on the PR.
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-panel="customer">Customer</button>
+    <button class="tab" data-panel="internal">Internal (ops / CS)</button>
+    <button class="tab" data-panel="engineering">Engineering</button>
+  </div>
+
+  <!-- ============ TIER 1 ============ -->
+  <section class="tab-panel tier1 active" id="panel-customer">
+
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button class="fbtn lang-btn on" data-lang="en">English</button>
+      <button class="fbtn lang-btn" data-lang="nl">Nederlands</button>
+    </div>
+
+    <div class="lang-pane" id="tier1-en">
+      <div class="theme-card">
+        <h3>Heating performance and reliability</h3>
+        <ul>
+          <li>Fixed a memory issue introduced in a recent update that could gradually reduce the available memory on the CiC. Over time this could lead to occasional restarts and, in rare cases, to the boiler briefly heating without a demand. Memory use now stays stable, restoring reliable heating control.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Bug fixes and maintenance</h3>
+        <ul>
+          <li>This update also includes general improvements to system reliability and stability.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lang-pane" id="tier1-nl" hidden>
+      <div class="theme-card">
+        <h3>Verwarmingsprestaties en betrouwbaarheid</h3>
+        <ul>
+          <li>Een geheugenprobleem opgelost dat in een recente update was ontstaan en waardoor het beschikbare geheugen van de CiC geleidelijk kon afnemen. Na verloop van tijd kon dit leiden tot incidentele herstarts en, in zeldzame gevallen, tot het kortstondig verwarmen door de ketel zonder warmtevraag. Het geheugengebruik blijft nu stabiel, waardoor de verwarmingsregeling weer betrouwbaar werkt.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Foutoplossingen en onderhoud</h3>
+        <ul>
+          <li>Deze update bevat daarnaast algemene verbeteringen aan de betrouwbaarheid en stabiliteit van het systeem.</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ TIER 2 ============ -->
+  <section class="tab-panel" id="panel-internal">
+
+    <div class="callout-warn">
+      <b>Scope:</b> emergency CiC hotfix 4.7.1, cut on top of 4.7.0. Exactly one ticket carries the
+      <code>CiC - V4.7.1</code> fixVersion (QPD-14564). No paired App / Cloud / Wireless Platform hotfix could be confirmed
+      for this wave (GitHub product repos unreachable this run — see PR follow-ups). The Cloud v2.40.0 / App v1.57.0 /
+      CIC 4.8.0 work in flight this week belongs to the next (4.8.0) wave, not to this hotfix.
+    </div>
+
+    <div class="theme-card">
+      <h3>1 · CiC memory-leak hotfix (cic-cloud-command) <span class="epic">Bug Fixing &amp; Fleet Diagnostics</span></h3>
+      <ul>
+        <li><b>Regression from 4.7.0.</b> The 4.7.0 WiFi-command port from Python to C++ libnm <span class="tkey">(QPD-14148)</span> left the libnm <code>NMClient</code>'s private <code>GMainContext</code> serviced only inside a WiFi command handler. Between commands — the normal steady state — NetworkManager D-Bus signal sources (AP scans, periodic signal-strength updates) queued up and were never drained, so <code>cic-cloud-command</code> RSS ratcheted up monotonically. <span class="tkey">(QPD-14564, Urgent)</span></li>
+        <li><b>Field impact.</b> On 4.7.x the per-CiC minimum free memory dropped from ~180&nbsp;MB (4.5/4.6) to as low as 16–90&nbsp;MB; roughly 19% of 4.7 CiCs fell below 30&nbsp;MB free (vs ~0% on 4.5/4.6). Under that pressure <code>cic-controller</code> overran its loop and OpenTherm bit-timing broke — the likely driver of the "boiler runs in CH mode with no demand" reports and the CiC reboots.</li>
+        <li><b>Fix.</b> The WiFi context is now pumped (bounded drain) from the single-threaded redis-listen watchdog that already ticks at least every 2&nbsp;s, so queued signals are drained continuously. No new threads, no locks; peak live-set bounded to ~2&nbsp;s of NetworkManager signals. x86 build + 62 existing tests green; hardware A/B confirmed the drain stops the growth.</li>
+      </ul>
+      <div class="impact"><b>Impact for CS / ops:</b> this is the fix for the "boiler heats in CH mode with no demand" + frequent-reboot symptom on 4.7.x fleets (incident NCR-3548; tracked behaviour QPD-14550). CICs on 4.7.0/4.7.1 showing low free memory, repeated reboots, or unexplained boiler-CH events should be prioritised onto this build. After rollout, watch the fleet min-free-memory metric (Snowflake <code>fct_cic_stats</code>) return toward the ~180&nbsp;MB 4.5/4.6 baseline.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3>Related / context</h3>
+      <ul>
+        <li>Caused by / regression of: <span class="tkey">QPD-14148</span> ("Port WiFi command handlers Python → C++ libnm", shipped 4.7.0).</li>
+        <li>Causes / blocks: <span class="tkey">QPD-14550</span> ("boiler triggered randomly since 4.7.1", N/A fixVersion) and incident <span class="tkey">NCR-3548</span>.</li>
+        <li>A milder, separate instability seen on 4.6 predates the WiFi port and is tracked as a possible second contributor — not addressed by this hotfix.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ TIER 3 ============ -->
+  <section class="tab-panel" id="panel-engineering">
+    <div class="filters">
+      <span class="fgroup" id="f-product">
+        <span class="flabel">Product</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="CiC">CiC</button>
+        <button class="fbtn" data-v="Wireless">Wireless</button>
+        <button class="fbtn" data-v="Cloud">Cloud</button>
+        <button class="fbtn" data-v="App">App</button>
+      </span>
+      <span class="fgroup" id="f-type">
+        <span class="flabel">Type</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="Task">Tasks</button>
+        <button class="fbtn" data-v="Bug">Bugs</button>
+      </span>
+      <span class="fgroup" id="f-pr">
+        <span class="flabel">Priority</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="Urgent">Urgent</button>
+        <button class="fbtn" data-v="High">High+</button>
+      </span>
+      <input class="search" id="f-q" type="search" placeholder="Search summary or QPD key…">
+    </div>
+    <div class="count" id="count"></div>
+    <table class="tickets">
+      <thead><tr>
+        <th class="sortable" data-col="key">Key</th>
+        <th class="sortable" data-col="product">Product</th>
+        <th class="sortable" data-col="type">Type</th>
+        <th class="sortable" data-col="priority">Priority</th>
+        <th class="sortable" data-col="summary">Summary</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p class="footer-note">
+      Built from the Jira <code>CiC - V4.7.1</code> fixVersion only. The product GitHub repos (normally the source of truth
+      for shipped tags and commit-level QPD attribution) were unreachable on this run, so no commit walk was performed and no
+      paired App / Cloud / Wireless tags could be confirmed. Run the <code>release-auditor</code> skill once GitHub access is
+      restored to verify traceability and catch any hotfix tags that carry no Jira fixVersion.
+    </p>
+  </section>
+
+</main>
+
+<script>
+/* ---------- theme ---------- */
+function toggleTheme() {
+  const r = document.documentElement;
+  const cur = r.getAttribute('data-theme') || 'dark';   // console is dark by default
+  const next = cur === 'dark' ? 'light' : 'dark';
+  r.setAttribute('data-theme', next);
+  localStorage.setItem('qrn-theme', next);
+}
+const saved = localStorage.getItem('qrn-theme');
+if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+/* ---------- Tier 1 language toggle (EN/NL) ---------- */
+function setLang(lang) {
+  document.getElementById('tier1-en').hidden = lang !== 'en';
+  document.getElementById('tier1-nl').hidden = lang !== 'nl';
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('on', b.dataset.lang === lang));
+  localStorage.setItem('qrn-tier1-lang', lang);
+}
+document.querySelectorAll('.lang-btn').forEach(b =>
+  b.addEventListener('click', () => setLang(b.dataset.lang)));
+setLang(localStorage.getItem('qrn-tier1-lang') || 'en');
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === t));
+  document.querySelectorAll('.tab-panel').forEach(p =>
+    p.classList.toggle('active', p.id === 'panel-' + t.dataset.panel));
+}));
+
+/* ---------- ticket data (generated by the /release-notes pipeline) ---------- */
+const T = [
+ // product, key, type, priority, status (if not Done), summary
+ ["CiC",14564,"Bug","Urgent","","cic-cloud-command memory leak: NMClient GMainContext never serviced between WiFi commands (regression from QPD-14148 / 4.7.0)"]
+];
+
+/* ---------- filters & sorting ---------- */
+const state = { product: '*', type: '*', pr: '*', q: '', sortCol: null, sortDir: 1 };
+const PRIO_RANK = { 'Urgent': 4, 'High': 3, 'Medium': 2, 'Low': 1 };
+const COL_IDX = { product: 0, key: 1, type: 2, priority: 3, summary: 5 };
+
+document.querySelectorAll('th.sortable').forEach(th => th.addEventListener('click', () => {
+  const col = th.dataset.col;
+  if (state.sortCol === col) {
+    state.sortDir = -state.sortDir;          // second click: reverse
+  } else {
+    state.sortCol = col;
+    state.sortDir = col === 'priority' ? -1 : 1;  // priority defaults to Urgent-first
+  }
+  document.querySelectorAll('th.sortable').forEach(x => {
+    x.classList.toggle('sorted', x === th);
+    x.dataset.arrow = x === th ? (state.sortDir === 1 ? '▲' : '▼') : '';
+  });
+  render();
+}));
+
+function cmp(a, b) {
+  const col = state.sortCol, i = COL_IDX[col];
+  let va = a[i], vb = b[i];
+  if (col === 'priority') { va = PRIO_RANK[va] || 0; vb = PRIO_RANK[vb] || 0; }
+  if (va < vb) return -1 * state.sortDir;
+  if (va > vb) return  1 * state.sortDir;
+  // tiebreakers: priority desc, then key asc — keeps grouped output stable
+  const pa = PRIO_RANK[a[3]] || 0, pb = PRIO_RANK[b[3]] || 0;
+  if (pa !== pb) return pb - pa;
+  return a[1] - b[1];
+}
+function bindGroup(id, key) {
+  document.querySelectorAll('#' + id + ' .fbtn').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('#' + id + ' .fbtn').forEach(x => x.classList.toggle('on', x === b));
+    state[key] = b.dataset.v;
+    render();
+  }));
+}
+bindGroup('f-product', 'product');
+bindGroup('f-type', 'type');
+bindGroup('f-pr', 'pr');
+document.getElementById('f-q').addEventListener('input', e => { state.q = e.target.value.toLowerCase(); render(); });
+
+function render() {
+  let rows = T.filter(([p, k, ty, pr, st, d]) =>
+    (state.product === '*' || p === state.product) &&
+    (state.type === '*' || ty === state.type) &&
+    (state.pr === '*' || (state.pr === 'Urgent' ? pr === 'Urgent' : (pr === 'Urgent' || pr === 'High'))) &&
+    (!state.q || d.toLowerCase().includes(state.q) || ('qpd-' + k).includes(state.q))
+  );
+  if (state.sortCol) rows = rows.slice().sort(cmp);
+  document.getElementById('count').textContent =
+    rows.length + ' of ' + T.length + ' ticket entries (cross-product duplicates listed per product)';
+  document.getElementById('rows').innerHTML = rows.map(([p, k, ty, pr, st, d]) => {
+    const prBadge = pr === 'Urgent' ? '<span class="badge urgent">Urgent</span>'
+                  : pr === 'High' ? '<span class="badge high">High</span>'
+                  : '<span style="color:var(--text-muted);font-size:12px">' + pr + '</span>';
+    const stBadge = st ? ' <span class="badge open">' + st + '</span>' : '';
+    const cls = p === 'CiC' ? 'cic' : p === 'Cloud' ? 'cloud' : p === 'App' ? 'app' : 'fw';
+    return '<tr>' +
+      '<td class="key"><a href="https://quatt-team.atlassian.net/browse/QPD-' + k + '" target="_blank">QPD-' + k + '</a></td>' +
+      '<td><span class="chip ' + cls + '">' + p + '</span></td>' +
+      '<td><span class="badge ' + ty.toLowerCase() + '">' + ty + '</span></td>' +
+      '<td>' + prBadge + '</td>' +
+      '<td>' + d + stBadge + '</td></tr>';
+  }).join('');
+}
+render();
+</script>
+
+</body>
+</html>

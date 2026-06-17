@@ -3,13 +3,29 @@
    Newest release first. */
 
 window.SUMMARY = [
-  { n: "4",  l: "Releases in the last 60 days" },
-  { n: "92", l: "Tickets in latest wave" },
-  { n: "5",  l: "Products in latest wave" },
-  { n: "2",  l: "Open follow-ups flagged" }
+  { n: "5",  l: "Releases in the last 60 days" },
+  { n: "1",  l: "Tickets in latest wave" },
+  { n: "1",  l: "Products in latest wave" },
+  { n: "3",  l: "Open follow-ups flagged" }
 ];
 
 window.RELEASES = [
+  {
+    date: "2026-06-16",
+    title: "Quatt Ecosystem Release 16.06.2026",
+    badge: { cls: "hotfix", label: "hotfix" },
+    page: "releases/2026-06-16.html",
+    chips: [
+      { cls: "cic", label: "CiC 4.7.1" }
+    ],
+    stats: [
+      { b: "1",       t: "ticket" },
+      { b: "1",       t: "bug fixed" },
+      { b: "Urgent",  t: "memory-leak regression" },
+      { b: "CiC-only", t: "hotfix" }
+    ],
+    note: "paired versions unconfirmed — GitHub repos unreachable"
+  },
   {
     date: "2026-06-04",
     title: "Quatt Ecosystem Release 04.06.2026",
