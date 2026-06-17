@@ -20,10 +20,10 @@ Generates three audience-tiered changelogs for a Quatt ecosystem release. Anchor
 
 ## Environment note (read first)
 
-This skill is **environment-agnostic**: it does not assume any local checkout of any repo. All version, tag, date, and commit data is pulled from the **GitHub REST API**, and all Jira/Slite/Slack data via their MCP integrations. It runs identically on a developer laptop and in an automated cloud routine.
+This skill is **environment-agnostic**: it does not assume any local checkout of any repo. All version, tag, date, and commit data is pulled from **GitHub** (MCP preferred, REST as fallback), and all Jira/Slite/Slack data via their MCP integrations. It runs identically on a developer laptop and in an automated cloud routine.
 
 - This skill lives **inside a checkout of `Quattio/dashboard-ecosystem-release-notes`** (under `.claude/skills/quatt-release-notes/`). The current working directory is the root of that repo — Step 8 writes the dashboard page and manifest relative to that root.
-- **GitHub access:** call the REST API. Prefer `gh api <path>` if the GitHub CLI is available and authenticated; otherwise use `curl -H "Authorization: Bearer $GH_TOKEN" https://api.github.com/<path>`. The GitHub MCP tools (`mcp__github__get_file_contents`, `mcp__github__list_commits`, `mcp__github__search_code`) cover file reads and commit listing but **not** tags/releases/compare — use the REST API for those (see Step 1 / Step 2a).
+- **GitHub access:** prefer the **GitHub MCP** tools — in the cloud routine they cover `list_releases` / `list_tags` / `list_commits` / `get_commit` / compare across the connected product repos, and this is the reliable path. Use the REST API (`gh api <path>`, or `curl -H "Authorization: Bearer $GH_TOKEN" https://api.github.com/<path>`) only as a fallback when the MCP is missing a repo or endpoint. **Do not assume `$GH_TOKEN` is set** — it is frequently empty/unset, and it is the MCP *connection* (not that env var) that grants cross-repo access. Verify reachability first; if `curl` returns 401, switch to the MCP rather than treating the repos as unreachable.
 - **No local git clones of the product repos** (`cic-yocto-builder`, `Quatt-cloud`, etc.) are needed or assumed. Tags, dates, and commit ranges come from the API.
 
 ## When to invoke
@@ -116,7 +116,7 @@ gh api 'repos/Quattio/<repo>/tags?per_page=100' --jq '.[].name'
 gh api repos/Quattio/<repo>/commits/<tag> --jq '.commit.committer.date'
 ```
 
-If `gh` is unavailable, the same endpoints work with `curl -H "Authorization: Bearer $GH_TOKEN" https://api.github.com/<path>`. To read a file (e.g. `CHANGELOG.md`) the GitHub MCP also works: `mcp__github__get_file_contents owner=Quattio repo=Quatt-cloud path=CHANGELOG.md`.
+**Prefer the GitHub MCP** (`list_releases` / `list_tags` / `list_commits` / `get_commit` / compare) — in the cloud routine it spans all connected product repos and is the reliable path. The `gh api` / `curl` forms above are the REST fallback (and `$GH_TOKEN` is often empty, so don't rely on `curl` without verifying). To read a file (e.g. `CHANGELOG.md`): `mcp__github__get_file_contents owner=Quattio repo=Quatt-cloud path=CHANGELOG.md`.
 
 For each repo, capture every tag created between `<previous-cic-tag-date>` and `<target-cic-tag-date + 7d>` (the +7d tail accounts for App/Cloud releases that ship a few days after the CiC tag during the alpha→beta gap). For each tag, also read the release body (notable changes, breaking changes) and the commit list since the previous tag of that product — this gives you the QPD keys to feed Jira in step 2b.
 
@@ -271,14 +271,14 @@ In an unattended (cloud-routine) run, record these as a "Open follow-ups" sectio
 
 This skill runs **inside a checkout of `github.com/Quattio/dashboard-ecosystem-release-notes`** — the current working directory is the repo root. There is **no separate local clone path**; write directly into the working tree. Pushing to `main` auto-deploys via Cloudflare Pages. After the three markdown tiers are approved, generate:
 
-1. **`releases/DD-MM-YYYY.html`** — one self-contained page per release wave (date = CiC tag creation date). Structure: topbar + page-head + three tab panels (Customer / Internal / Engineering) + a filterable, sortable ticket table with the full per-product ticket data embedded as a JS array. Copy the structure of an existing page in `releases/` (e.g. `releases/2026-06-04.html`); relative paths are one level deep (`../styles.css`, `../index.html`). **The Customer tab is bilingual:** two `.lang-pane` divs (`#tier1-en`, `#tier1-nl`) behind an English/Nederlands pill toggle (persisted in `localStorage` as `qrn-tier1-lang`, default `en`). Write the Dutch translation per the glossary + locked terminology (ketel niet boiler; Chill/HeatBattery/HomeBattery/All-Electric blijven Engels; "buitenunit" for outdoor unit). Only Tier 1 is translated — Internal and Engineering tabs stay English.
+1. **`releases/YYYY-MM-DD.html`** — one self-contained page per release wave (date = CiC tag creation date). **Filename and branch use `YYYY-MM-DD`** to match the repo's existing `releases/` pages and the `releases.js` page paths; the human-facing H1 title still uses `DD.MM.YYYY` (dots) per Step 6. Structure: topbar + page-head + three tab panels (Customer / Internal / Engineering) + a filterable, sortable ticket table with the full per-product ticket data embedded as a JS array. Copy the structure of an existing page in `releases/` (e.g. `releases/2026-06-04.html`); relative paths are one level deep (`../styles.css`, `../index.html`). **The Customer tab is bilingual:** two `.lang-pane` divs (`#tier1-en`, `#tier1-nl`) behind an English/Nederlands pill toggle (persisted in `localStorage` as `qrn-tier1-lang`, default `en`). Write the Dutch translation per the glossary + locked terminology (ketel niet boiler; Chill/HeatBattery/HomeBattery/All-Electric blijven Engels; "buitenunit" for outdoor unit). Only Tier 1 is translated — Internal and Engineering tabs stay English.
 2. **`releases.js`** — prepend a new entry to `window.RELEASES` (date, title per the Step 6 title convention, badge `alpha|stable|hotfix`, `page` path, product chips with classes `cic|cloud|app|fw`, stats line) and refresh `window.SUMMARY` (releases in window, ticket count, product count, open follow-ups). `index.html` renders this manifest at load — it must NOT be edited per release.
 3. **Styling is locked to the `quatt-visual-branding` skill** (light default, Plus Jakarta Sans, category chip colours, pill buttons, green selected states). `styles.css` and `index.html` only change on intentional redesigns, not per release.
 
 **Publish (after user confirms, or automatically in a cloud routine): open a PR, do not push straight to `main`.** The output is customer-facing and a maintainer should review before it deploys. Create a branch, commit the new page + manifest, and open a PR; merging to `main` triggers the Cloudflare Pages deploy. Use the GitHub MCP (works without a local git remote):
 
-- `mcp__github__create_branch` — branch `release-notes/DD-MM-YYYY` from `main`
-- `mcp__github__push_files` — commit `releases/DD-MM-YYYY.html` + `releases.js` in one commit, message `Add Quatt Ecosystem Release DD.MM.YYYY`
+- `mcp__github__create_branch` — branch `release-notes/YYYY-MM-DD` from `main`
+- `mcp__github__push_files` — commit `releases/YYYY-MM-DD.html` + `releases.js` in one commit, message `Add Quatt Ecosystem Release DD.MM.YYYY` (filename uses `YYYY-MM-DD`; the commit-message title keeps the `DD.MM.YYYY` dotted form)
 - `mcp__github__create_pull_request` — title `docs: Quatt Ecosystem Release DD.MM.YYYY`, body = the three tiers summary + open follow-ups (Step 7)
 
 If a maintainer is running interactively and explicitly wants to skip review, they may instead commit the same files directly to `main` with local git.
@@ -319,7 +319,7 @@ The production origin auto-deploys **Cloudflare Pages**: https://dashboard-ecosy
 | `release-notes-public.md` | `/tmp/release-notes-<sanitised-target>/` (scratch) | Marketing / loc team → mobile-app content CMS |
 | `release-notes-internal.md` | same | Slack thread for ops / CS / installer-support / management |
 | `release-notes-engineering.md` | same | Slack thread or PR description for engineering visibility |
-| `releases/DD-MM-YYYY.html` + `releases.js` | dashboard repo working tree | committed via PR → Cloudflare Pages (Step 8) |
+| `releases/YYYY-MM-DD.html` + `releases.js` | dashboard repo working tree | committed via PR → Cloudflare Pages (Step 8) |
 
 Slack-posting the markdown tiers is a user-triggered follow-up (use the `slack_send_message` MCP), not automatic.
 
@@ -365,5 +365,5 @@ Real bugs that have happened — read these before running the skill.
 ### Quick reference
 
 - GitHub repos: `Quattio/cic-yocto-builder`, `Quattio/Quatt-cloud`, `Quattio/quatt-mobile-app`, `Quattio/quatt-dongle`, `Quattio/quatt-heatcharger-firmware`
-- GitHub access: REST API via `gh api <path>` (preferred) or `curl -H "Authorization: Bearer $GH_TOKEN"`; no local clones. Tags/releases/compare are REST-only (not in the GitHub MCP toolset); file reads + commit listing also available via `mcp__github__get_file_contents` / `list_commits`.
+- GitHub access: prefer the GitHub MCP (`list_releases` / `list_tags` / `list_commits` / `get_commit` / compare) which spans the connected product repos; `gh api` / `curl -H "Authorization: Bearer $GH_TOKEN"` are REST fallbacks. No local clones. `$GH_TOKEN` is often empty — the MCP connection grants access, not that env var.
 - Slack release-context channels (full table in Step 2c): `#cloud-qa-and-deployment`, `#cloud-development`, `#app_quatt` (primary App channel), `#app_quatt_development`, `#app_quatt_product`, `#app_quatt_feedback_beta`, `#embedded-alpha-releases` (primary CiC alpha channel, private), `#embedded-releases`, `#cic-cloud`
