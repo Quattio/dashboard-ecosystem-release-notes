@@ -13,10 +13,10 @@ window.RELEASES = [
   {
     date: "2026-06-17",
     title: "Quatt Ecosystem Release 17.06.2026",
-    badge: { cls: "stable", label: "stable release" },
+    badge: { cls: "alpha", label: "alpha release" },
     page: "releases/2026-06-17.html",
     chips: [
-      { cls: "cic",   label: "CiC 4.8.0" },
+      { cls: "cic",   label: "CiC 4.8.0-alpha.0" },
       { cls: "cloud", label: "Cloud v2.39.2–v2.40.0" },
       { cls: "fw",    label: "Thread FW 2.11.1" },
       { cls: "fw",    label: "Controller 6.9.0" },
