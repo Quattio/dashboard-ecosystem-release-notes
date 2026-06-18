@@ -38,6 +38,20 @@
     </div>
   </div>
 
+  <div class="review-only">
+    <div class="review-panel">
+      <h3>What changed in this revision</h3>
+      <p class="sub">Shown only on the staging preview — hidden in production.</p>
+      <ul>
+        <li><b>Phase:</b> 4.8.0-alpha.1 &rarr; 4.8.0-alpha.1 — no phase transition. The published <code>main</code> entry already carries CiC <b>4.8.0-alpha.1</b> (promoted from alpha.0 in the previous run), so this revision is a re-publish of the same wave to validate the staging &rarr; PR &rarr; Slack pipeline end-to-end.</li>
+        <li><b>Paired product versions:</b> unchanged vs the published entry — Cloud v2.39.2–v2.40.0, Thread FW 2.11.1, Controller 6.9.0, Chill CB FW 2.0.0, ODU FW 2.1. No App release shipped in this window (latest remains v1.57.0).</li>
+        <li><b>New QPD tickets since the published revision:</b> none.</li>
+        <li><b>Removed / reverted:</b> none.</li>
+        <li><b>For reference</b> — the alpha.0 &rarr; alpha.1 substance is already live in the notes below: Chill control-board firmware 1.0.10 &rarr; 2.0.0, paired with embedded-apps 1.31.0 &rarr; 1.31.1 (disable cic-chill RX watchdog). Both are Chill-stability follow-ups carrying no new Jira keys.</li>
+      </ul>
+    </div>
+  </div>
+
   <div class="tabs" role="tablist">
     <button class="tab active" data-panel="customer">Customer</button>
     <button class="tab" data-panel="internal">Internal (ops / CS)</button>
