@@ -25,14 +25,14 @@
 <main class="wrap">
   <div class="crumb"><a href="../index.html">Releases</a> / 12.05.2026</div>
   <div class="page-head">
-    <div class="kicker">CiC diffed 4.5.0 &rarr; 4.6.0-alpha.0 &middot; treated as general release &middot; historical backfill</div>
+    <div class="kicker">CiC 4.5.0 &rarr; 4.6.2 &middot; stable &middot; historical backfill (this wave first shipped as 4.6.0-alpha.0; the 4.6 line reached GA as 4.6.0 and was patched to 4.6.1 and 4.6.2)</div>
     <h1>Quatt Ecosystem Release <span class="dim">12.05.2026</span></h1>
     <div class="sub">
-      <span class="chip cic">CiC 4.6.0-alpha.0</span>
-      <span class="chip cloud">Cloud v2.35.1–v2.37.2</span>
-      <span class="chip app">App v1.55.0–v1.56.1</span>
+      <span class="chip cic">CiC 4.6.2</span>
+      <span class="chip cloud">Cloud v2.35.1–v2.39.2</span>
+      <span class="chip app">App v1.55.0–v1.57.0</span>
       <span class="chip fw">Thread FW 2.9.0</span>
-      <span class="chip fw">Controller 6.7.2</span>
+      <span class="chip fw">Controller 6.7.3</span>
       <span class="chip fw">ODU FW 2.0</span>
     </div>
   </div>
@@ -64,6 +64,7 @@
         <h3>Heating performance and reliability</h3>
         <ul>
           <li>Fixed an issue where the boiler could briefly receive power demand spikes.</li>
+          <li>The boiler now reliably takes over heating when the outdoor units are disconnected.</li>
           <li>The central-heating water temperature is now always kept within a safe maximum range.</li>
           <li>Fixed an issue where Chill could suddenly lose its connection to the system.</li>
           <li>Smoother temperature control thanks to improved filtering of temperature measurements.</li>
@@ -91,6 +92,7 @@
         <h3>Verwarmingsprestaties en betrouwbaarheid</h3>
         <ul>
           <li>Een probleem opgelost waarbij de ketel kortstondig vermogenspieken kon ontvangen.</li>
+          <li>De ketel neemt de verwarming nu betrouwbaar over wanneer de buitenunits niet verbonden zijn.</li>
           <li>De aanvoertemperatuur van de centrale verwarming blijft nu altijd binnen een veilig maximum.</li>
           <li>Een probleem opgelost waarbij de Chill plotseling de verbinding met het systeem kon verliezen.</li>
           <li>Soepelere temperatuurregeling dankzij verbeterde filtering van temperatuurmetingen.</li>
@@ -111,10 +113,12 @@
   <section class="tab-panel" id="panel-internal">
 
     <div class="callout-warn">
-      <b>Scope:</b> Historical backfill. CiC diffed 4.5.0 → 4.6.0-alpha.0 (treated as general release per release captain);
-      Cloud window v2.35.0 → v2.37.2 and App v1.54.1 → v1.56.1, hand-off to the 04.06.2026 notes is gap-free.
-      The version-gating work (QPD-13559/13905/14021) and ZipStats CIC publish (QPD-13788) were <b>reverted before the alpha</b>
-      and shipped later in the 4.6.x betas — they appear here as no-ops.
+      <b>Scope:</b> Historical backfill, promoted to the line's final shipped tag. CiC 4.5.0 → <b>4.6.2 (stable)</b>: the 4.6 line
+      shipped 4.6.0 (GA, 2026-05-19/27) and was patched to 4.6.1 (2026-06-03) and <b>4.6.2 (2026-06-11, final)</b>. Cloud paired through
+      v2.39.2 and App through v1.57.0. <b>On the reverts</b> (per GitHub tag diffs): the dongle version-gate <span class="tkey">(QPD-13559)</span>
+      relanded in 4.6.0-alpha.1 and <b>ships in 4.6.2</b>; the /config-v2 + OTA-only version handling <span class="tkey">(QPD-13905, QPD-14021)</span>
+      relanded in the <b>4.7 line</b> (cpp-apps 1.30.0), not the 4.6.x betas; and ZipStats CIC publish <span class="tkey">(QPD-13788)</span> stayed
+      <b>reverted</b> in the whole 4.6.x line. The 4.6.1/4.6.2 LED + controller hotfixes (QPD-14277/14384/14280/14507) are now folded in below.
     </div>
 
     <div class="theme-card">
@@ -159,7 +163,10 @@
         <li><b>Lab/field Chills suddenly disconnecting</b> — consolidated zombie-session fix (libcoap ping_failed + app-level sweep) <span class="tkey">(QPD-13625, urgent)</span></li>
         <li>Dongle connection-quality monitor: path-cost based quality + simplified binary connection LED <span class="tkey">(QPD-12301)</span></li>
         <li>cic-thread-network-manager not started on boot (udev SYSTEMD_WANTS race) — auto-enabled <span class="tkey">(QPD-13760)</span></li>
-        <li>Boiler demand power-spike fix and CH water temperature clamped to acceptable range (controller 6.7.2) <span class="tkey">(QPD-13930)</span></li>
+        <li>Boiler demand power-spike fix and CH water temperature clamped to acceptable range (controller 6.7.2 → 6.7.3) <span class="tkey">(QPD-13930)</span></li>
+        <li><b>4.6.2 patch:</b> controller starts and lets the boiler heat with disconnected heatpumps; "hp connected not populated" treated as disconnected <span class="tkey">(QPD-14280, QPD-14507; controller 6.7.3)</span></li>
+        <li><b>4.6.1 patch:</b> don't show "connected to backend" LED while still provisioning; modem-fault LED only when backend unreachable, dim S5 idle to 10% <span class="tkey">(QPD-14277, QPD-14384)</span></li>
+        <li><b>Beta-line hardening:</b> tightened cic-cloud-proxy MQTT reconnect interval <span class="tkey">(QPD-14155)</span>; systemd watchdog enabled on remaining C++ services <span class="tkey">(QPD-14099)</span></li>
         <li>Chill NCR-3083: circulating pump PWM to 5.0% <span class="tkey">(QPD-13981)</span>; supply-temperature filter tuning <span class="tkey">(QPD-13583)</span>; no cooling while no Chills actively cooling <span class="tkey">(QPD-13698)</span></li>
         <li>Insights pipeline dropped rows on cicState startAt ties — tiebreaker added <span class="tkey">(QPD-13734, urgent)</span></li>
         <li>Flow-rate test on ALL_ELECTRIC_SINGLE installs unblocked (hp2 relay requirement removed) <span class="tkey">(QPD-14079, urgent, Cloud v2.36.1 hotfix)</span></li>
@@ -249,11 +256,11 @@
       <tbody id="rows"></tbody>
     </table>
     <p class="footer-note">
-      Built from GitHub tag diffs (source of truth), cross-referenced with Jira. Cross-product duplicates listed once per
-      product on purpose. Status flags shown for tickets whose Jira state lags the shipped commit. Reverted-in-window
-      work (QPD-13559, 13905, 14021, 13788) shipped as no-ops in the alpha and relanded in the 4.6.x betas.
-      Controller fixes QPD-13930 / QPD-13981 were cherry-picked to both the 6.7.x and 6.8.x lineages and also appear
-      in the 04.06.2026 notes.
+      Built from GitHub tag diffs (source of truth). Cross-product duplicates listed once per
+      product on purpose. Reverted-in-window work shipped as no-ops in the alpha: QPD-13559 relanded in 4.6.0-alpha.1
+      (ships in 4.6.2); QPD-14021 relanded in the 4.7 line, not the 4.6.x betas; QPD-13788 (ZipStats) stayed reverted across
+      the whole 4.6.x line. Controller fixes QPD-13930 / QPD-13981 (and the 4.6.2 disconnected-heatpump fixes QPD-14280 /
+      QPD-14507) were cherry-picked across the 6.7.x and 6.8.x lineages and also appear in the 04.06.2026 notes.
     </p>
   </section>
 
@@ -311,14 +318,14 @@ const T = [
  ["CiC",13746,"Task","Medium","","Self-host devcontainer images; archive quatt-embedded-containers"],
  ["CiC",13747,"Task","Medium","","Add lcov unit-test coverage reporting to CI"],
  ["CiC",13758,"Task","Medium","","Rev7 LED state machine + Thread topology schema alignment"],
- ["CiC",13788,"Task","Medium","Reverted","ZipStats: gzip stats publish on /cicZipStats (reverted; relands in 4.6.x betas)"],
+ ["CiC",13788,"Task","Medium","Reverted","ZipStats: gzip stats publish on /cicZipStats (stayed reverted across the entire 4.6.x line)"],
  ["CiC",13906,"Task","Medium","","Expose CIC update transfer progress (Mender download → Redis)"],
  ["CiC",13920,"Task","Medium","","CIC | Create Release V4.6.0"],
  ["CiC",13928,"Task","Medium","","Redesign cic-cloud-webserver + sync local feed data"],
  ["CiC",13027,"Bug","Medium","","netmon: don't toggle services on ambiguous initial connectivity"],
  ["CiC",13524,"Bug","Medium","","netmon: NetworkManager route metrics + ss -K connection kill"],
  ["CiC",13544,"Bug","Medium","","cic-cloud-proxy: skip dynamic topic subscriptions with register credentials"],
- ["CiC",13559,"Bug","High","Reverted","Version-gate CoAP features for older dongle FW (reverted; relands in 4.6.x betas)"],
+ ["CiC",13559,"Bug","High","","Version-gate CoAP features for older dongle FW (relanded in 4.6.0-alpha.1; ships in 4.6.2)"],
  ["CiC",13625,"Bug","Urgent","","Lab Chills suddenly disconnected — consolidated zombie-session fix"],
  ["CiC",13744,"Bug","Medium","","Stabilize flaky TicketGate FIFO test"],
  ["CiC",13760,"Bug","High","","cic-thread-network-manager not started on boot (udev SYSTEMD_WANTS race)"],
@@ -333,7 +340,13 @@ const T = [
  ["CiC",13981,"Bug","High","","Chill NCR-3083: circulating pump PWM to 5.0% (also cherry-picked to 6.8.x)"],
  ["CiC",13986,"Bug","Medium","","Detect hiredis read-buffer desync in Redis::get and reconnect"],
  ["CiC",14018,"Bug","Medium","","netmon: poll for ppp0 ESTAB instead of fixed sleep"],
- ["CiC",14021,"Bug","Medium","Reverted","Chill Thread firmware version reported empty (reverted; relands in 4.6.x betas)"],
+ ["CiC",14021,"Bug","Medium","Reverted","Chill Thread firmware version reported empty (reverted here; relanded in the 4.7 line, cpp-apps 1.30.0)"],
+ ["CiC",14099,"Task","Medium","","Enable systemd watchdog on remaining C++ services (4.6.0-beta.2)"],
+ ["CiC",14155,"Bug","Medium","","Tighten cic-cloud-proxy MQTT reconnect interval (4.6.0-beta.1)"],
+ ["CiC",14277,"Bug","Medium","","Don't show 'connected to backend' LED while still provisioning (4.6.1)"],
+ ["CiC",14384,"Bug","Medium","","Show LED modem fault only when backend unreachable, dim S5 idle to 10% (4.6.1)"],
+ ["CiC",14280,"Bug","Urgent","","Allow controller startup with disconnected heatpumps so the boiler can heat (6.7.3 / 4.6.2)"],
+ ["CiC",14507,"Bug","High","","Treat hp connected-not-populated as heatpump disconnected (6.7.3 / 4.6.2)"],
  ["Wireless",12301,"Task","High","","Path-cost connection quality module + binary connection LED"],
  ["Wireless",13746,"Task","Medium","","Use reusable docker-build workflow"],
  ["Wireless",13748,"Bug","Medium","","FTD build broken by espressif/coap registry revision — pin 4.3.5~5"],

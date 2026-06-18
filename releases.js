@@ -33,19 +33,19 @@ window.RELEASES = [
   {
     date: "2026-06-04",
     title: "Quatt Ecosystem Release 04.06.2026",
-    badge: { cls: "alpha", label: "alpha → GA track" },
+    badge: { cls: "stable", label: "stable (GA)" },
     page: "releases/2026-06-04.html",
     chips: [
-      { cls: "cic",   label: "CiC 4.7.0-alpha.0" },
-      { cls: "cloud", label: "Cloud v2.38.0–v2.39.1" },
+      { cls: "cic",   label: "CiC 4.7.1" },
+      { cls: "cloud", label: "Cloud v2.38.0–v2.39.2" },
       { cls: "app",   label: "App v1.57.0" },
       { cls: "fw",    label: "Thread FW 2.11.0" },
-      { cls: "fw",    label: "Controller 6.8.0" },
+      { cls: "fw",    label: "Controller 6.8.2" },
       { cls: "fw",    label: "ODU FW 2.1" }
     ],
     stats: [
-      { b: "92", t: "tickets" },
-      { b: "31", t: "bugs fixed" },
+      { b: "124", t: "tickets" },
+      { b: "36", t: "bugs fixed" },
       { b: "3",  t: "flagship themes" },
       { b: "ODUv2 OTA", t: "unlocked" }
     ]
@@ -53,19 +53,19 @@ window.RELEASES = [
   {
     date: "2026-05-12",
     title: "Quatt Ecosystem Release 12.05.2026",
-    badge: { cls: "alpha", label: "alpha · general release" },
+    badge: { cls: "stable", label: "stable" },
     page: "releases/2026-05-12.html",
     chips: [
-      { cls: "cic",   label: "CiC 4.6.0-alpha.0" },
-      { cls: "cloud", label: "Cloud v2.35.1–v2.37.2" },
-      { cls: "app",   label: "App v1.55.0–v1.56.1" },
+      { cls: "cic",   label: "CiC 4.6.2" },
+      { cls: "cloud", label: "Cloud v2.35.1–v2.39.2" },
+      { cls: "app",   label: "App v1.55.0–v1.57.0" },
       { cls: "fw",    label: "Thread FW 2.9.0" },
-      { cls: "fw",    label: "Controller 6.7.2" },
+      { cls: "fw",    label: "Controller 6.7.3" },
       { cls: "fw",    label: "ODU FW 2.0" }
     ],
     stats: [
-      { b: "111", t: "tickets" },
-      { b: "35",  t: "bugs fixed" },
+      { b: "128", t: "tickets" },
+      { b: "36",  t: "bugs fixed" },
       { b: "Hybrid commissioning", t: "GA" },
       { b: "ODUv2", t: "hardware launch" }
     ],
