@@ -552,3 +552,37 @@ html[data-env="staging"] body {
   text-align: center;
   padding: 9px 16px;
 }
+
+/* ============ REVIEW-ONLY "what changed" panel (staging only) ============ */
+/* Hidden in production; shown only on staging/preview (data-env="staging") so
+   reviewers see what this revision changed vs the published version. */
+.review-only { display: none; }
+html[data-env="staging"] .review-only { display: block; }
+.review-panel {
+  background: var(--bg-danger-light);
+  border: 1px solid var(--color-orange);
+  border-radius: var(--radius-card);
+  padding: 20px 24px;
+  margin: 0 0 28px;
+}
+.review-panel h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.review-panel .sub { font-size: 13px; color: var(--text-secondary); margin: 0 0 10px; }
+.review-panel ul { margin: 8px 0 0; padding-left: 22px; }
+.review-panel li { margin: 5px 0; font-size: 14px; line-height: 155%; }
+.review-panel li::marker { color: var(--color-orange); }
+.review-panel .none { color: var(--text-secondary); font-style: italic; }
+
+/* Optional per-row "new this revision" highlight in the engineering table. */
+html[data-env="staging"] table.tickets tr.new-row { background: var(--bg-danger-light); }
+.new-tag { display: none; }
+html[data-env="staging"] .new-tag {
+  display: inline;
+  font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--color-orange); margin-left: 8px;
+}
