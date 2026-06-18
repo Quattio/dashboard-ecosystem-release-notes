@@ -6,7 +6,7 @@ set -e
 npm install
 
 mkdir -p dist
-cp index.html styles.css releases.js dist/
+cp index.html styles.css releases.js env-banner.js dist/
 cp -r releases dist/
 
 echo "Build complete."
