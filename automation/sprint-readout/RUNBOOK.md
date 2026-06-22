@@ -49,40 +49,29 @@ The cloud agent has **no access to any local machine** — it is fully self-cont
    - **EXCLUDE the perpetual buckets from the children query entirely** — do NOT fetch children of QPD-152 (Production Incidents/Maintenance), the Bug Fixing & Fleet Diagnostics epic, or the Tech Debt epic. They never reach 100%, are never shown in the table, and their children are the bulk of the volume (the 2026-06-17 run paginated 1,169 children — ~600 of them were these buckets). Their sprint Deltas still come from step 2 and go in the buckets footer.
    - For every REMAINING (feature) epic, **paginate to completion** (`nextPageToken` until `hasNextPage` is false) before computing done/total — do NOT stop early, or %s come out wrong (an early run undercounted Dongle SW Improvements at 62% vs the true 32%). With the perpetual buckets removed the volumes are small enough to fully paginate reliably.
 4. **Releases** — derive from Jira `fixVersions` (CiC / Cloud / App / Controller / Wireless Platform).
-5. **Build the deck** — copy `build_slides.py` → `/tmp/build_this.py`, replace the data-constants block (TITLE_LINE, SUMMARY_LINE, TEAM_STATS, DELIVERIES [3 product tints: Copper=Heating/All-E, Blue=Chill, Green=Energy/HomeBattery], RELEASES, FOOTER, TABLE_DATA, SCOREBOARD, RISKS, BUCKETS_FOOTER, OUT_PATH) with the sprint's figures. Content in **English**. Run it, then `python3 slim_pptx.py <in> /tmp/sprint-<YY>Q<N>-cw<NN>-slides.pptx`. Verify it reopens with exactly 2 slides.
+5. **Build the deck** — copy `build_slides.py` → `/tmp/build_this.py`, replace the data-constants block (TITLE_LINE, SUMMARY_LINE, TEAM_STATS, DELIVERIES [3 product tints: Copper=Heating/All-E, Blue=Chill, Green=Energy/HomeBattery], RELEASES, FOOTER, TABLE_DATA, SCOREBOARD, RISKS, BUCKETS_FOOTER, OUT_PATH) with the sprint's figures. Content in **English**. Run it, then `python3 slim_pptx.py <in> /tmp/sprint-<YY>Q<N>-cw<NN>-slides-<YYYY-MM-DD>.pptx` (the `<YYYY-MM-DD>` is **today's generation date**, the date the routine runs). Verify it reopens with exactly 2 slides.
 
-6. **Deliver to Confluence — via REST API + PAT** (the connector can't write Confluence). Auth with Basic `-u "$CONFLUENCE_USER:$CONFLUENCE_PAT"`; on `401`/`403` retry the same call with `-H "Authorization: Bearer $CONFLUENCE_PAT"`. Base URL `https://quatt-team.atlassian.net/wiki/rest/api`. Filenames are **sprint-unique** (`sprint-<YY>Q<N>-cw<NN>-slides.pptx`), so a sprint reported on multiple Mondays reuses the same name — this is intentional (one evolving deck + row per sprint).
+6. **Deliver to Confluence — via REST API + PAT** (the connector can't write Confluence). Auth with Basic `-u "$CONFLUENCE_USER:$CONFLUENCE_PAT"`; on `401`/`403` retry the same call with `-H "Authorization: Bearer $CONFLUENCE_PAT"`. Base URL `https://quatt-team.atlassian.net/wiki/rest/api`. Filenames carry the **generation date** (`sprint-<YY>Q<N>-cw<NN>-slides-<YYYY-MM-DD>.pptx`), so **every run produces a unique attachment and a brand-new table row** — even when the same sprint is reported on multiple Mondays. There is **no upsert**: each run = a new deck + a new row (newest-on-top). This guarantees the upload always lands as a distinct file and the page version always bumps.
 
-   - **6a. Upload the deck (UPSERT by filename).** A plain POST to `…/child/attachment` returns **400 “same file name as an existing attachment”** if it already exists, so check first:
+   - **6a. Upload the deck (always a NEW attachment).** Because the filename is unique per run (it embeds the generation date), a plain POST to `…/child/attachment` never collides — no check-first/version dance is needed:
      ```bash
-     # look up existing attachment id by filename
-     ATT=$(curl -s -u "$CONFLUENCE_USER:$CONFLUENCE_PAT" \
-       "https://quatt-team.atlassian.net/wiki/rest/api/content/8126465/child/attachment?filename=sprint-<YY>Q<N>-cw<NN>-slides.pptx" \
-       | python3 -c 'import sys,json; r=json.load(sys.stdin)["results"]; print(r[0]["id"] if r else "")')
-     if [ -n "$ATT" ]; then   # exists -> new version
-       curl -s -u "$CONFLUENCE_USER:$CONFLUENCE_PAT" -X POST -H "X-Atlassian-Token: nocheck" \
-         -F "file=@/tmp/sprint-<YY>Q<N>-cw<NN>-slides.pptx" \
-         "https://quatt-team.atlassian.net/wiki/rest/api/content/8126465/child/attachment/$ATT/data"
-     else                     # new
-       curl -s -u "$CONFLUENCE_USER:$CONFLUENCE_PAT" -X POST -H "X-Atlassian-Token: nocheck" \
-         -F "file=@/tmp/sprint-<YY>Q<N>-cw<NN>-slides.pptx" \
-         "https://quatt-team.atlassian.net/wiki/rest/api/content/8126465/child/attachment"
-     fi
+     curl -s -u "$CONFLUENCE_USER:$CONFLUENCE_PAT" -X POST -H "X-Atlassian-Token: nocheck" \
+       -F "file=@/tmp/sprint-<YY>Q<N>-cw<NN>-slides-<YYYY-MM-DD>.pptx" \
+       "https://quatt-team.atlassian.net/wiki/rest/api/content/8126465/child/attachment"
      ```
+     (If a run is ever repeated on the *same* calendar day, the filename would collide and POST returns **400 “same file name as an existing attachment”** — in that case POST the bytes to `…/child/attachment/<id>/data` to add a new version instead.)
    - **6b. Read current body + version**:
      ```bash
      curl -s -u "$CONFLUENCE_USER:$CONFLUENCE_PAT" \
        "https://quatt-team.atlassian.net/wiki/rest/api/content/8126465?expand=body.storage,version"
      ```
      Take `body.storage.value` (storage XHTML) and `version.number` (= N).
-   - **6c. UPSERT the row** (do NOT blind-append). Parse the table rows:
-     - If a row for THIS sprint already exists (match on the sprint label, e.g. `CW<NN> (<YYQN>)`), **replace that row in place**.
-     - Otherwise **prepend** a new row immediately after the header row (newest-on-top).
-     Row format:
+   - **6c. PREPEND a new row** (one per run — do NOT upsert/replace). Parse the table rows and insert a new row immediately after the header row (newest-on-top). Every run adds its own row; previous rows for the same sprint stay as the run history.
+     Row format — the **Dates** cell is the **generation date** (the date this routine ran), NOT the sprint's data window:
      ```html
-     <tr><td><p>CW<NN> (<YYQN>)</p></td><td><p><DD–DD MMM YYYY></p></td><td><p><a href="/wiki/download/attachments/8126465/<filename>"><filename></a></p></td></tr>
+     <tr><td><p>CW<NN> (<YYQN>)</p></td><td><p><DD MMM YYYY (generation date)></p></td><td><p><a href="/wiki/download/attachments/8126465/<filename>"><filename></a></p></td></tr>
      ```
-     (Weekly cadence vs biweekly sprints means the same sprint is reported on multiple Mondays — upsert keeps it to one evolving row per sprint; the deck refreshes via the attachment version from 6a.) **NEVER** wrap the XHTML in `<![CDATA[ ]]>`. Build the PUT JSON with a real JSON serializer (`python3 -c 'import json,...'`), never hand-concatenate. If the new body is byte-identical to the current one the PUT is a 200 no-op and the version won't bump — that is success, not failure.
+     (Weekly cadence vs biweekly sprints means the same sprint is reported on multiple Mondays — the dated filename + always-new row gives one row per generation, so the table doubles as a run log.) **NEVER** wrap the XHTML in `<![CDATA[ ]]>`. Build the PUT JSON with a real JSON serializer (`python3 -c 'import json,...'`), never hand-concatenate. Because the filename and date change every run, the body always differs and the version always bumps — a 200 with a bumped version is the expected result.
      ```bash
      curl -s -u "$CONFLUENCE_USER:$CONFLUENCE_PAT" -X PUT -H "Content-Type: application/json" \
        "https://quatt-team.atlassian.net/wiki/rest/api/content/8126465" -d @/tmp/page_update.json
@@ -102,13 +91,16 @@ The cloud agent has **no access to any local machine** — it is fully self-cont
 ## Status report (end every run with this)
 
 Sprint + window; per-team counts; total tickets/epics; deck built (2 slides) y/n;
-attachment uploaded y/n (new vs new-version); **row upserted — say “added new row” or
-“updated existing <sprint> row”**; Slack DM result with link. If any Confluence REST
-call fails, report the exact call + HTTP status — never fail silently.
+attachment uploaded y/n (always a new, date-stamped file); **new row added** (one per run)
+& rendered as a real `<a>` link y/n, with the page version bump; Slack DM result with link.
+If any Confluence REST call fails, report the exact call + HTTP status — never fail silently.
 
-## Validated cloud-side (2026-06-17, Opus)
+## Validated cloud-side
 
-CW25 detected; 63 tickets / 22 epics; 2-slide deck built. **Both REST ops returned 200**:
-attachment upload via `…/attachment/{id}/data` (the plain POST 400s on duplicate filename),
-and page-body PUT (idempotent no-op when the row is unchanged). The Atlassian connector
-has no Confluence write tools — REST + PAT is the only delivery path.
+- **2026-06-22 (Opus):** Convention changed — filenames now embed the **generation date**
+  (`sprint-<YY>Q<N>-cw<NN>-slides-<YYYY-MM-DD>.pptx`) and the **Dates** column holds the
+  generation date, not the sprint window. Each run is a plain POST of a unique attachment
+  plus a **new prepended row** (no upsert), so the page version bumps every run.
+- **2026-06-17 (Opus):** CW25 detected; 63 tickets / 22 epics; 2-slide deck built; both REST
+  ops returned 200. The Atlassian connector has no Confluence write tools — REST + PAT is the
+  only delivery path.
