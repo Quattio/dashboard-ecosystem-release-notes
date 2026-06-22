@@ -293,6 +293,7 @@ The production origin auto-deploys **Cloudflare Pages**: https://dashboard-ecosy
   - Chill, HomeBattery, HeatBattery, HeatCharger — keep in English in every translation; never localise to Koeling, thuisbatterij, etc.
   - In Dutch: "ketel", never "boiler".
   - ODU is the official internal name; customer-facing copy avoids the acronym and uses "outdoor unit" where context demands.
+  - **Never refer to a generic "device" in Tier 1 — always name the specific Quatt product** (e.g. "the Quatt dongle", "your Chill", "the CiC"). Customer copy must point at a concrete product, not "a device".
   - If unsure, consult the live glossary at https://quatt.slite.com/app/docs/ai_xKOdL3NZkmW — never invent a friendly synonym.
 - **Tier 1 — neutral English changelog.** No "we", no "We're thrilled to announce", no emojis, no marketing copy. Plain bullet points or short paragraphs. Aim for the tone of Apple's "About this update" — informative, brief, no hype.
 - **Tier 2 — operational reportage.** Direct sentences, technical detail OK, action-oriented callouts (`> **Impact for ops:** ...`).
