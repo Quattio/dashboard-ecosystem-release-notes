@@ -202,18 +202,31 @@ Fields: `summary`, `status`, `issuetype`, `priority`, `parent` (for epic name), 
 
 ### Step 4 — Classify each ticket into the three tiers
 
+> **Guiding principle — the whole point of these release notes (Tier 1 above all): tell end customers what is _truly enabled, cross-product, and experienceable today_ — NOT what code merged.** A feature whose code shipped but whose runtime path is gated off (feature flag, config default, backend toggle not enabled in production) is **not** a customer feature. Tier 1 must reflect the *enabled* surface of the ecosystem, never the *merged* surface. This is the single most important rule for the customer tier — when in doubt, leave it out of Tier 1.
+
 Classification is **AI inference from summary + parent epic** (no Jira label drives it). Rules:
 
 **Tier 1 (public, customer-facing) — INCLUDE only:**
 - Runtime in-app behaviour the customer interacts with (e.g. earnings screen default change, dashboard display fixes the customer sees).
-- New runtime capabilities the customer directly uses (e.g. operating multiple Chills at runtime).
+- New runtime capabilities the customer directly uses (e.g. operating multiple Chills at runtime) — **only after the enablement check below confirms the feature is actually on in production**.
 - Bug fixes whose effect the customer perceives in system behaviour (e.g. anti-legionella reliability, heating control accuracy, comfort-affecting fixes).
 
 **Tier 1 — EXCLUDE (route to Tier 2 instead):**
+- **Flag-gated / shipped-but-disabled features.** If the runtime path is gated off (feature flag, config default `false`, backend toggle not enabled in production), the customer cannot experience it → Tier 2 as "shipped but disabled", **never** Tier 1. Run the mandatory enablement check below before any runtime feature enters Tier 1.
 - **Commissioning UX changes.** Commissioning mode is gated to installers — customers cannot reach it. `COMMISSIONING |` prefix in summary, or parent epic `CHILL | SW Improvements` / `Hybrid commissioning ...` → Tier 2.
 - **Automatic / over-the-air firmware updates.** OTA is invisible to customers; they never trigger or see it. Parent epics `ODUv2 | Heatpump OTA Update`, `CHILL | Control Board OTA Update`, dongle FW% reporting → Tier 2.
 - **Admin / CS-only features.** Anything that exposes data only to the Customer Success dashboard or admin API → Tier 2 (e.g. ADR0041 admin endpoints, multi-Chill Grafana link, faulty-flow-sensor support override).
 - **Tech debt, dependency upgrades, CI, internal tooling** → Tier 2 "internal" rollup or omitted entirely.
+
+**Feature-flag / enablement check (MANDATORY before any feature enters Tier 1):**
+
+GitHub tags prove code *merged*; they do **not** prove a feature is *on*. For every Tier-1 candidate that is a **runtime / control behaviour** (anything other than a pure, unconditional UI change), verify the enablement path end-to-end before including it. The Quatt enablement chain is **cloud feature flag / config → MQTT config-or-settings payload → Redis key → controller gate**. Concretely:
+
+- **Cloud:** grep the capability name across `Quatt-cloud/config/*.json`. A flag `false` in `default.json` and **not overridden to `true` in `production.json`** is OFF in the field. Also check whether it is per-installation writable or a **fleet-wide read-only** flag (schemas under `src/spec/schemas/`); a fleet-wide flag still `false` = nobody has it. Trace where it is sent (e.g. `settingsUpdate.ts`).
+- **Controller:** grep the capability in `quatt_controller/src` for the gating `if` and the Redis read (e.g. `redis_reader.cpp` → a Redis enable key defaulting to `false`). Double-gates are common (e.g. `has_heatcharger && charge_cool_enabled`).
+- **App:** flags named `*_feature_flag` / `*_mode` (e.g. `all_e_boost_mode`) and "scaffold … behind flag" commit messages mean the screen is flagged off.
+
+If the path is gated off → it is **shipped but disabled** → route to Tier 2 with a "do not communicate externally" callout, keep it in Tier 3 (annotated), and **exclude it from Tier 1**. Only if you can trace an *enabled* path (flag `true` in production, reachable by customers) does a runtime feature belong in Tier 1. **Watch for in-wave patterns:** if one All-E / Chill feature in a wave is flagged off, treat sibling features in the same wave with the same suspicion (Boost Mode and the All-E "charge-cool" path shipped flagged-off in the same 4.8.0 wave — see failure mode 7c).
 
 **Tier 2 (internal / operations / management) — INCLUDE:**
 - All commissioning UX, with installer-impact callouts.
@@ -222,6 +235,7 @@ Classification is **AI inference from summary + parent epic** (no Jira label dri
 - Admin API additions, support dashboard improvements, ops runbook-relevant items.
 - Customer-impacting bug fixes with sufficient technical context (heating control, anti-legionella, flow sensors).
 - Resilience features (ADR-tracked work like ADR0041 flowmeter mitigation).
+- **Shipped-but-disabled (flag-gated) features.** Any capability whose code shipped this wave but is gated off in production (caught by the Step 4 enablement check). Call it out explicitly so installer-support / CS know it exists in the build but is **not active for customers** — use a `> **Shipped but DISABLED — do not communicate to customers/installers until the flag is enabled:** ...` callout that names the flag and its default. This is the counterpart to excluding it from Tier 1: the feature is recorded for ops, with a clear "do not promise this yet" warning, so CS never tells a customer about a feature they don't have.
 - A separate "Internal / tech-debt highlights" rollup at the bottom for SDK upgrades, controller release management, and similar.
 
 **Tier 3 (engineering) — INCLUDE everything:**
@@ -230,6 +244,7 @@ Classification is **AI inference from summary + parent epic** (no Jira label dri
 - Each item: `[QPD-XXXXX](https://quatt-team.atlassian.net/browse/QPD-XXXXX) — <summary>` with priority annotation for High/Urgent.
 - Header row per product linking to the Jira Fix Version filter URL.
 - Note cross-product duplicates at the bottom (e.g. "QPD-XXXXX appears in both App and Cloud").
+- **Annotate flag-gated tickets.** Engineering detail can be richer than the other tiers, but where a shipped ticket's runtime path is gated off, mark it explicitly — e.g. `(shipped, gated off behind \`<flag>\`)` on the row or in the footer — so a gated feature is never mistaken for a live one when read at the engineering level.
 - Mention the `release-auditor` skill at the top for traceability audits.
 
 ### Step 5 — Group Tier 2 narratively
@@ -303,6 +318,7 @@ The production origin auto-deploys **Cloudflare Pages**: https://dashboard-ecosy
 
 - **Don't put commissioning items in Tier 1.** Commissioning is installer-only — customers cannot access it. (See `feedback_release_notes_tier1.md` memory.)
 - **Don't put automatic OTA in Tier 1.** Customers never see OTA happening. (Same memory.)
+- **Don't put flag-gated / shipped-but-disabled features in Tier 1.** A merged commit is not an enabled feature. Verify the enablement path (Step 4 "Feature-flag / enablement check"); if the flag is off in production, route to Tier 2 as "shipped but disabled" (with a do-not-communicate callout for CS/installers), never Tier 1. (See failure mode 7c.)
 - **Don't name specific QPD keys in Tier 1.** It's a customer document; Jira links break the abstraction.
 - **Don't merge Tier 2 themes by product.** Group by what shipped (theme), not which team shipped it. Engineers go to Tier 3 for product-level slicing.
 - **Don't pull descriptions for the bulk fixVersion query** — the MCP response will exceed token limits. Pull descriptions selectively for ambiguous tickets only.
@@ -350,6 +366,14 @@ Real bugs that have happened — read these before running the skill.
 **Symptom:** Skill defaulted to "alpha doesn't ship to customers, so don't pair App/Cloud." User then corrected: "treat this alpha as a general release, include APP and BE."
 
 **Fix:** Always ask whether to treat alpha/beta as a paired release. If yes, apply the +7d tail window (alpha→beta gap at Quatt) so the App/Cloud/Wireless releases that land in that gap are correctly attributed. In an unattended run, default to the trigger payload's intent (a stable tag → ship; an alpha/beta tag → notes only if the payload says so).
+
+### 7c. Flag-gated feature published to Tier 1 as if live (CiC 4.8.0-beta.0, 2026-06-23)
+
+**Symptom:** Tier 1 (customer, EN + NL) announced *"heat extracted by the Chill is automatically used to charge the HeatBattery"* as a new customer feature. The capability (All-E "charge-cool", QPD-13343 / QPD-14186) had merged, but was gated off fleet-wide and unreachable by any customer.
+
+**Root cause:** Classification inferred "customer-visible" from the CiC changelog line ("Integrate All-E cooling capacity model") — i.e. from *code merged*, not *feature enabled*. The enablement path was never checked: cloud `chillAllEChargeCoolEnabled` is `false` in `config/default.json` and not overridden in `production.json` (fleet-wide, read-only, not API-writable), and the controller double-gates on a Redis enable key (1387, default `false`) + `has_heatcharger`. The same wave had Boost Mode *correctly* flagged as a flagged-off prototype, so the off-by-flag pattern was visible in-wave and should have been applied to the sibling All-E feature.
+
+**Fix:** Step 4 "Guiding principle" (Tier 1 = the *enabled* cross-product surface, never the *merged* surface) + the mandatory "Feature-flag / enablement check" (cloud config → Redis → controller gate, with the in-wave-pattern heuristic); Tier 2 "shipped but disabled" callout for CS/installers; Tier 3 gated-state annotation; new "What NOT to do" bullet.
 
 ## 8 · References
 
