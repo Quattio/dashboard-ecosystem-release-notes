@@ -42,10 +42,10 @@
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview — hidden in production.</p>
     <ul>
-      <li><b>Phase promotion:</b> 4.8.0-alpha.1 &rarr; 4.8.0-beta.0 (alpha &rarr; beta). Badge advanced, CiC version + headline date updated to the beta tag (19.06.2026).</li>
-      <li><b>Paired-product version bumps:</b> none. Bundled components are unchanged — Controller 6.9.0, Thread FW 2.11.1, embedded-apps 1.31.1, Chill control-board FW 2.0.0, ODU FW 2.1; paired Cloud v2.39.2–v2.40.0 (latest v2.40.0, 16.06) and App v1.57.0 also unchanged.</li>
-      <li><b>Newly-added QPD tickets since the previous tag:</b> none. The <code>quatt-revisions.inc</code> manifest is byte-identical between 4.8.0-alpha.1 and 4.8.0-beta.0, and the beta.0 GitHub changelog is empty — this is a pure phase promotion of the same shipped content.</li>
-      <li><b>Reverted / removed:</b> nothing.</li>
+      <li><b>Correction — Tier 1 (Customer), EN + NL:</b> removed the "What's new" item <i>"heat extracted by the Chill is automatically used to charge the HeatBattery"</i>. The feature ships in the 4.8.0 build but is <b>gated off fleet-wide</b>: cloud flag <code>chillAllEChargeCoolEnabled</code> is <code>false</code> in every environment incl. production (read-only, not API-writable), and the controller double-gates on a Redis enable key + <code>has_heatcharger</code>. No customer can experience it, so it does not belong in the customer tier. The "What's new" card is dropped — no customer-facing feature graduated to GA this wave.</li>
+      <li><b>Tier 2 (Internal):</b> the All-E cooling-capacity / charge-cool work (QPD-13343, QPD-14186) is reframed as <b>shipped-but-disabled</b>, with an explicit "do not communicate externally" callout for CS / installer-support.</li>
+      <li><b>Phase / paired versions / ticket index:</b> unchanged — still CiC 4.8.0-beta.0, same paired versions (App v1.57.0 · Cloud v2.39.2–v2.40.0 · Thread FW 2.11.1), same 60-ticket engineering index. No new QPD tickets; nothing reverted in the build.</li>
+      <li><b>Prior revision (for context):</b> the published page was the 4.8.0-alpha.1 &rarr; 4.8.0-beta.0 phase promotion (no component bumps, no new tickets). This revision only corrects the Tier-1 misclassification.</li>
     </ul>
   </div></div>
 
@@ -65,12 +65,6 @@
 
     <div class="lang-pane" id="tier1-en">
       <div class="theme-card">
-        <h3>What's new</h3>
-        <ul>
-          <li>If you have an All-Electric system and Chill, heat extracted by the Chill will be automatically used to charge the HeatBattery whenever feasible.</li>
-        </ul>
-      </div>
-      <div class="theme-card">
         <h3>Heating performance and reliability</h3>
         <ul>
           <li>Improved connection stability over both Thread and Wi-Fi, reducing momentary dropouts.</li>
@@ -87,12 +81,6 @@
     </div>
 
     <div class="lang-pane" id="tier1-nl" hidden>
-      <div class="theme-card">
-        <h3>Wat is er nieuw</h3>
-        <ul>
-          <li>Als u een All-Electric systeem met een Chill heeft, wordt de door de Chill onttrokken warmte automatisch gebruikt om de HeatBattery op te laden wanneer dat mogelijk is.</li>
-        </ul>
-      </div>
       <div class="theme-card">
         <h3>Verwarmingsprestaties en betrouwbaarheid</h3>
         <ul>
@@ -181,10 +169,11 @@
       <h3>Field reliability and customer-impacting fixes <span class="epic">Controller 6.9.0 + CiC</span></h3>
       <ul>
         <li>Controller starts with both outdoor units disconnected so the boiler can still heat <span class="tkey">(QPD-14280)</span></li>
-        <li>All-Electric cooling capacity model integrated; Chill + All-Electric support power-demand estimator unified <span class="tkey">(QPD-13343, QPD-14186)</span></li>
+        <li>All-Electric cooling capacity model integrated and the Chill + All-Electric support power-demand estimator unified. This includes the new <b>Chill&rarr;HeatBattery "charge-cool"</b> path (heat extracted by a Chill used to charge the HeatBattery), but it ships <b>disabled</b> &mdash; gated behind the fleet-wide <code>chillAllEChargeCoolEnabled</code> flag, currently <code>false</code> in every environment including production <span class="tkey">(QPD-13343, QPD-14186)</span></li>
         <li>3-minute compressor cooldown treated as a recoverable lockout; DHW pump runs full speed when inlet is above target <span class="tkey">(QPD-14373, QPD-14374)</span></li>
         <li>Human-readable pump level corrected; lab Chills suddenly disconnecting fixed (stale-ping sweep) <span class="tkey">(QPD-14116, QPD-13625)</span></li>
       </ul>
+      <div class="callout-warn"><b>Chill&rarr;HeatBattery "charge-cool" is shipped but OFF.</b> The capability is gated by <code>chillAllEChargeCoolEnabled</code> (fleet-wide config, read-only / not API-writable, <code>false</code> everywhere incl. production) and double-gated in the controller (Redis enable key + a <code>has_heatcharger</code> check). It is NOT active for any customer on 4.8.0 &mdash; do not communicate it externally or to installers until the flag is deliberately enabled. This is why it is absent from the Customer tab.</div>
       <div class="callout-warn"><b>Boost Mode is still a flagged-off prototype.</b> QPD-14373 / QPD-14374 sit under the Boost Mode epic but ship here as general controller fixes (compressor lockout, DHW pump). Do not announce Boost Mode — verify flag state before any comms.</div>
     </div>
 
