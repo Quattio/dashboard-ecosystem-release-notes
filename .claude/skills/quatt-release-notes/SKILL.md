@@ -296,14 +296,17 @@ This skill runs **inside a checkout of `github.com/Quattio/dashboard-ecosystem-r
 - `mcp__github__push_files` — commit `releases/YYYY-MM-DD.html` + `releases.js` in one commit, message `Add Quatt Ecosystem Release DD.MM.YYYY` (filename uses `YYYY-MM-DD`; the commit-message title keeps the `DD.MM.YYYY` dotted form)
 - `mcp__github__create_pull_request` — title `docs: Quatt Ecosystem Release DD.MM.YYYY`, body = the three tiers summary + open follow-ups (Step 7)
 
-**Linking the Cloudflare staging preview (PR body + Slack) — link-formatting rule.** When the PR body or a Slack announcement references the staging preview, put the bare URL on **its own line as an angle-bracket autolink** and keep the label on the *previous* line:
+**Link-formatting rule for every URL in the PR body and Slack post (PR link AND preview link).** Put **each** URL on **its own line as an angle-bracket autolink**, keep its label on the *previous* line, and separate consecutive link entries with a **blank line**:
 
 ```
+PR:
+<https://github.com/Quattio/dashboard-ecosystem-release-notes/pull/NN>
+
 Rendered preview (sign in with your @quatt.io Google account):
 <https://release-notes-staging.dashboard-ecosystem-release-notes.pages.dev>
 ```
 
-Never write the label word immediately in front of the URL on the same line (e.g. `Rendered preview: https://…`). GitHub/Slack renderers can fold the leading word into the href, producing a dead link whose target starts with `rendered…` — angle brackets + a line break guarantee a clean, clickable link. The same applies to the PR URL in the Slack post: give it its own line.
+Never stack two URLs on back-to-back lines and never put a label word immediately in front of a URL on the same line. GitHub/Slack renderers fold an adjacent word (or the next line's leading word, e.g. the `Rendered` that follows the PR link) into the preceding href — producing a dead link whose target ends in `…/pull/NNRendered` or starts with `rendered…`. Angle brackets, a line break per URL, and a blank line between entries guarantee clean, clickable links.
 
 If a maintainer is running interactively and explicitly wants to skip review, they may instead commit the same files directly to `main` with local git.
 
