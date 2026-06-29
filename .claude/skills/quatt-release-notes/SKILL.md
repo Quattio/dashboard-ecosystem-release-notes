@@ -296,6 +296,15 @@ This skill runs **inside a checkout of `github.com/Quattio/dashboard-ecosystem-r
 - `mcp__github__push_files` — commit `releases/YYYY-MM-DD.html` + `releases.js` in one commit, message `Add Quatt Ecosystem Release DD.MM.YYYY` (filename uses `YYYY-MM-DD`; the commit-message title keeps the `DD.MM.YYYY` dotted form)
 - `mcp__github__create_pull_request` — title `docs: Quatt Ecosystem Release DD.MM.YYYY`, body = the three tiers summary + open follow-ups (Step 7)
 
+**Linking the Cloudflare staging preview (PR body + Slack) — link-formatting rule.** When the PR body or a Slack announcement references the staging preview, put the bare URL on **its own line as an angle-bracket autolink** and keep the label on the *previous* line:
+
+```
+Rendered preview (sign in with your @quatt.io Google account):
+<https://release-notes-staging.dashboard-ecosystem-release-notes.pages.dev>
+```
+
+Never write the label word immediately in front of the URL on the same line (e.g. `Rendered preview: https://…`). GitHub/Slack renderers can fold the leading word into the href, producing a dead link whose target starts with `rendered…` — angle brackets + a line break guarantee a clean, clickable link. The same applies to the PR URL in the Slack post: give it its own line.
+
 If a maintainer is running interactively and explicitly wants to skip review, they may instead commit the same files directly to `main` with local git.
 
 The production origin auto-deploys **Cloudflare Pages**: https://dashboard-ecosystem-release-notes.pages.dev — public URL gated by Google OAuth (quatt.io accounts only; enforced server-side in `functions/api/create-session.ts`, OAuth client `ecosystem-dashboard` in Google Cloud). The CF build runs `cf-pages-build.sh` (npm install for the `jose` dep + copy static files to `dist/`) — keep that script, `package.json`, and `functions/` intact when generating new release pages. CF Pages preview deployments (branch/commit subdomains) fail Google sign-in by design — only the production origin is registered. The repo's pre-dashboard history is the Quatt internal-tool React template — preserved in history, do not resurrect its files.
