@@ -97,6 +97,13 @@ If any Confluence REST call fails, report the exact call + HTTP status — never
 
 ## Validated cloud-side
 
+- **2026-06-29 (Opus):** CW25 detected; 127 tickets / 30 epics (24 feature + 6 buckets);
+  per-team Cloud 52 · Embedded 27 · APP 27 · Control 15 · SW&I 6; 2-slide deck built;
+  attachment + prepended row both 200 (version 9→10). **Layout fix:** slide-1 delivery
+  cards were overflowing — bodies now sit in a taller box (card 2.34", body box 1.32" @
+  9.5pt, releases nudged down), giving ~7.7 lines of headroom. Re-delivered same-day via
+  POST to `…/child/attachment/<id>/data` (new attachment version, no new row). Keep
+  DELIVERIES bodies ≤7 wrapped lines.
 - **2026-06-22 (Opus):** Convention changed — filenames now embed the **generation date**
   (`sprint-<YY>Q<N>-cw<NN>-slides-<YYYY-MM-DD>.pptx`) and the **Dates** column holds the
   generation date, not the sprint window. Each run is a plain POST of a unique attachment

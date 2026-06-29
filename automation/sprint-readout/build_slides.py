@@ -1,8 +1,10 @@
 """Build the 2-slide Quatt-branded sprint readout deck (PowerPoint).
 
-KNOWN-GOOD TEMPLATE — last verified against CW23 (2 Jun → 16 Jun 2026). The
-data constants below carry CW23 values as a worked example. To reuse for a new
-sprint:
+KNOWN-GOOD TEMPLATE — last verified against CW25 (16 Jun → 30 Jun 2026); the
+slide-1 delivery-card layout was widened/heightened on 2026-06-29 after long
+bodies overflowed the cards (see the delivery-card comment below — keep bodies
+to ≤7 wrapped lines). The data constants below carry CW23 values as a worked
+example. To reuse for a new sprint:
   1. Copy this file to a working copy, e.g. /tmp/build_cw<NN>_slides.py
   2. Replace the data constants with the new sprint's figures (steps 1-6):
        - TITLE_LINE / SUMMARY_LINE
@@ -208,26 +210,31 @@ for i, (num, label, accent) in enumerate(TEAM_STATS):
     p = tf.add_paragraph()
     set_para(p, label, size=10, color=GREY, align=PP_ALIGN.CENTER, space_after=0)
 
-tf = add_textbox(s1, Inches(0.5), Inches(2.7), Inches(12.3), Inches(0.4))
+tf = add_textbox(s1, Inches(0.5), Inches(2.62), Inches(12.3), Inches(0.4))
 set_para(tf.paragraphs[0], "Three coordinated deliveries this sprint", size=15, bold=True, color=WHITE)
 
+# Delivery cards: the rounded card is the visual container; the body textbox must
+# fit INSIDE it. python-pptx does NOT auto-shrink overflowing text, so the body box
+# is sized generously (1.32" tall) and the body font kept at 9.5pt — together ~7.7
+# lines of headroom. Keep each DELIVERIES body to ≤7 wrapped lines (~370 chars at
+# this width) or it will spill past the card edge. (Earlier 1.05"/10.5pt overflowed.)
 for i, (eyebrow_t, title, body, fill) in enumerate(DELIVERIES):
     x = Inches(0.5 + i * 4.2)
-    add_card(s1, x, Inches(3.15), Inches(4.05), Inches(2.0), fill)
-    tf = add_textbox(s1, Inches(0.7 + i * 4.2), Inches(3.3), Inches(3.7), Inches(0.3))
+    add_card(s1, x, Inches(3.02), Inches(4.05), Inches(2.34), fill)
+    tf = add_textbox(s1, Inches(0.7 + i * 4.2), Inches(3.12), Inches(3.7), Inches(0.3))
     set_para(tf.paragraphs[0], eyebrow_t, size=9, bold=True, color=NEON, space_after=2)
-    tf = add_textbox(s1, Inches(0.7 + i * 4.2), Inches(3.55), Inches(3.7), Inches(0.5))
-    set_para(tf.paragraphs[0], title, size=15, bold=True, color=WHITE, space_after=4)
-    tf = add_textbox(s1, Inches(0.7 + i * 4.2), Inches(4.05), Inches(3.7), Inches(1.05))
-    set_para(tf.paragraphs[0], body, size=10.5, color=WHITE)
+    tf = add_textbox(s1, Inches(0.7 + i * 4.2), Inches(3.37), Inches(3.7), Inches(0.55))
+    set_para(tf.paragraphs[0], title, size=14, bold=True, color=WHITE, space_after=2)
+    tf = add_textbox(s1, Inches(0.7 + i * 4.2), Inches(3.96), Inches(3.7), Inches(1.32))
+    set_para(tf.paragraphs[0], body, size=9.5, color=WHITE)
 
-tf = add_textbox(s1, Inches(0.5), Inches(5.35), Inches(12.3), Inches(0.4))
+tf = add_textbox(s1, Inches(0.5), Inches(5.48), Inches(12.3), Inches(0.4))
 set_para(tf.paragraphs[0], "Releases shipped / moved this sprint", size=15, bold=True, color=WHITE)
 
-add_card(s1, Inches(0.5), Inches(5.75), Inches(12.3), Inches(1.4), DARKER)
-rel_tf = add_textbox(s1, Inches(0.8), Inches(5.85), Inches(11.8), Inches(1.25))
+add_card(s1, Inches(0.5), Inches(5.84), Inches(12.3), Inches(1.28), DARKER)
+rel_tf = add_textbox(s1, Inches(0.8), Inches(5.90), Inches(11.8), Inches(1.18))
 for lead, body in RELEASES:
-    add_bullet(rel_tf, body, bold_lead=lead, size=11, color=WHITE, marker_color=NEON)
+    add_bullet(rel_tf, body, bold_lead=lead, size=10.5, color=WHITE, marker_color=NEON)
 
 fp = add_textbox(s1, Inches(0.5), Inches(7.2), Inches(12.3), Inches(0.25))
 set_para(fp.paragraphs[0], FOOTER, size=8, color=GREY)
