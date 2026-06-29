@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quatt Ecosystem Release 19.06.2026</title>
+<title>Quatt Ecosystem Release 22.06.2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,19 +17,19 @@
     <span class="logo"><span class="mark">Q</span> Quatt <span class="sys">Release notes</span></span>
     <nav>
       <a href="../index.html">Releases</a>
-      <a href="2026-06-19.html" class="active">Latest</a>
+      <a href="2026-06-22.html" class="active">Latest</a>
       <button class="theme-toggle" onclick="toggleTheme()">Dark mode</button>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
-  <div class="crumb"><a href="../index.html">Releases</a> / 19.06.2026</div>
+  <div class="crumb"><a href="../index.html">Releases</a> / 22.06.2026</div>
   <div class="page-head">
-    <div class="kicker">CiC diffed 4.7.1 &rarr; 4.8.0-beta.0 &middot; beta release</div>
-    <h1>Quatt Ecosystem Release <span class="dim">19.06.2026</span></h1>
+    <div class="kicker">CiC diffed 4.7.1 &rarr; 4.8.0 &middot; stable release (GA)</div>
+    <h1>Quatt Ecosystem Release <span class="dim">22.06.2026</span></h1>
     <div class="sub">
-      <span class="chip cic">CiC 4.8.0-beta.0</span>
+      <span class="chip cic">CiC 4.8.0</span>
       <span class="chip cloud">Cloud v2.39.2–v2.40.0</span>
       <span class="chip fw">Thread FW 2.11.1</span>
       <span class="chip fw">Controller 6.9.0</span>
@@ -42,10 +42,11 @@
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview — hidden in production.</p>
     <ul>
-      <li><b>Correction — Tier 1 (Customer), EN + NL:</b> removed the "What's new" item <i>"heat extracted by the Chill is automatically used to charge the HeatBattery"</i>. The feature ships in the 4.8.0 build but is <b>gated off fleet-wide</b>: cloud flag <code>chillAllEChargeCoolEnabled</code> is <code>false</code> in every environment incl. production (read-only, not API-writable), and the controller double-gates on a Redis enable key + <code>has_heatcharger</code>. No customer can experience it, so it does not belong in the customer tier. The "What's new" card is dropped — no customer-facing feature graduated to GA this wave.</li>
-      <li><b>Tier 2 (Internal):</b> the All-E cooling-capacity / charge-cool work (QPD-13343, QPD-14186) is reframed as <b>shipped-but-disabled</b>, with an explicit "do not communicate externally" callout for CS / installer-support.</li>
-      <li><b>Phase / paired versions / ticket index:</b> unchanged — still CiC 4.8.0-beta.0, same paired versions (App v1.57.0 · Cloud v2.39.2–v2.40.0 · Thread FW 2.11.1), same 60-ticket engineering index. No new QPD tickets; nothing reverted in the build.</li>
-      <li><b>Prior revision (for context):</b> the published page was the 4.8.0-alpha.1 &rarr; 4.8.0-beta.0 phase promotion (no component bumps, no new tickets). This revision only corrects the Tier-1 misclassification.</li>
+      <li><b>Phase promotion — beta &rarr; stable (GA):</b> the previously-published page documented this wave at <b>CiC 4.8.0-beta.0</b>. This revision promotes it to the <b>stable 4.8.0 (GA)</b> tag. Badge beta &rarr; stable; CiC chip and kicker updated 4.8.0-beta.0 &rarr; 4.8.0.</li>
+      <li><b>Headline date 19.06.2026 &rarr; 22.06.2026, page renamed:</b> the 4.8.0 tag carries <b>no GitHub Release</b> yet, so the headline date falls back to the tag commit's committer date (2026-06-22). The wave's single page is renamed <code>2026-06-19.html</code> &rarr; <code>2026-06-22.html</code> (one page per wave preserved).</li>
+      <li><b>beta.0 &rarr; 4.8.0 build delta — effectively nil:</b> 4.8.0 is a stable promotion of the beta.0 commit. The only manifest change is a <b>CI-test-only</b> quatt-pylibs bump (0.14.0 &rarr; 0.14.1, QPD-14428 — swap_cloud overlay fix, &ldquo;only affecting the CI tests&rdquo;), plus a release-notes workflow chore (#795). Neither alters the image customers receive. <b>No paired-product version bumps</b> (Cloud v2.40.0, Thread FW 2.11.1, Controller 6.9.0, Chill CB 2.0.0, ODU FW 2.1 all unchanged), nothing reverted. The engineering index grows by exactly <b>one row</b> — QPD-14428 (the CI-only pylibs bump), highlighted as <span class="new-tag">new</span> in the Engineering tab — taking it from 60 to 61 entries; no feature/bug ticket added.</li>
+      <li><b>Customer + Internal tiers unchanged in substance:</b> because the shipped surface is identical to beta.0, the Tier-1 (EN + NL) content carries over verbatim, including the existing &ldquo;charge-cool shipped-but-disabled&rdquo; callout (the 4.8.0-beta.0 Tier-1 flag-gating correction stands). Tier-2 carries over unchanged except for the scope note and one tech-debt bullet recording the GA pylibs bump.</li>
+      <li><b>Deliberately excluded — flagged for reviewer decision (mobile-app + embedded):</b> two product releases now fall inside the +7d tail window (target 2026-06-22 &rarr; 2026-06-29) but are <b>not</b> part of the 4.8.0 shipped surface: <b>dongle / Thread FW 2.12.0</b> (2026-06-26) is <b>not bundled</b> in the 4.8.0 image (which ships Thread FW 2.11.1), and <b>App v1.58.0</b> (2026-06-26) is predominantly flagged-off Boost-Mode UI that reads as next-wave. Both are held for the next CiC wave. If you want App v1.58.0 folded in here, comment <code>@claude include App v1.58.0</code> on the PR.</li>
     </ul>
   </div></div>
 
@@ -103,10 +104,14 @@
   <section class="tab-panel" id="panel-internal">
 
     <div class="callout-warn">
-      <b>Scope:</b> CiC 4.8.0-beta.0 diffed from 4.7.1 (beta release; promoted from 4.8.0-alpha.1). This wave bundles
+      <b>Scope:</b> CiC 4.8.0 (stable / GA) diffed from 4.7.1; promoted from 4.8.0-beta.0. This wave bundles
       Controller 6.9.0, Thread firmware 2.11.1 and embedded-apps 1.31.1 into the CiC image, and pairs Cloud v2.39.2 + v2.40.0
-      (v2.39.3 hotfix folded in). <b>No App release shipped in this window</b> — the latest App build remains v1.57.0 from the
-      04.06.2026 wave.
+      (v2.39.3 hotfix folded in). <b>No App release ships with this CiC wave</b> — the latest paired App build remains v1.57.0
+      from the 04.06.2026 wave (App v1.58.0 and dongle FW 2.12.0 are held for the next wave; see the staging review note).
+      <br><b>beta.0 → 4.8.0 (GA) delta:</b> stable promotion of the beta.0 commit — the shipped CiC and firmware surface is
+      <b>identical</b>. The only <code>quatt-revisions.inc</code> change is a <b>CI-test-only</b> quatt-pylibs bump
+      (0.14.0 → 0.14.1, QPD-14428, swap_cloud overlay fix) plus a release-notes workflow chore; neither affects the image
+      customers receive. No component bumps and no new feature/bug tickets.
       <br><b>alpha.1 → beta.0 delta:</b> pure phase promotion — the <code>quatt-revisions.inc</code> manifest is byte-identical
       between the two tags and the beta.0 changelog is empty. No component bumps and no new Jira tickets; the same shipped
       content advances from alpha to beta.
@@ -185,6 +190,7 @@
         <li>Build traceability: AUTOREV in quatt-revisions + per-app version logging at startup <span class="tkey">(QPD-13837)</span></li>
         <li>cic-cloud-webserver redesigned to track messagespec; live-stats page made mobile-friendly; stats gzipped on <code>/cicZipStats</code>; simulation tools consolidated; liveview kept enabled during commissioning <span class="tkey">(QPD-13928, QPD-14380, QPD-13788, QPD-13911, QPD-14378)</span></li>
         <li>Cloud platform: ECS monitoring Grafana dashboards (reverted then restored with a CloudWatch filter fix), MemoryDB-over-Heroku proxy migration, office dashboard feed job; flaky recommissioning E2E pollution fixed <span class="tkey">(QPD-14456, QPD-14460, QPD-14493)</span></li>
+        <li><b>GA promotion (beta.0 → 4.8.0):</b> CI-test-only quatt-pylibs bump 0.14.0 → 0.14.1 (swap_cloud overlay fix) <span class="tkey">(QPD-14428)</span> — no shipped-image change</li>
       </ul>
     </div>
   </section>
@@ -226,12 +232,15 @@
       <tbody id="rows"></tbody>
     </table>
     <p class="footer-note">
-      Built from GitHub tag diffs (source of truth: CiC 4.7.1 → 4.8.0-beta.0 release body + Cloud v2.39.2/v2.40.0 bodies),
-      cross-referenced with Jira for ticket detail. The alpha.1 → beta.0 promotion added no new Jira tickets and no component
-      bumps — the <code>quatt-revisions.inc</code> manifest is byte-identical across the two tags (pure phase promotion). The
-      earlier alpha.0 → alpha.1 step added only a Chill control-board firmware bump (1.0.10 → 2.0.0) and an embedded-apps point
-      fix (1.31.0 → 1.31.1, no QPD). No App release shipped in this window. Status flags shown for tickets whose Jira state
-      lags the shipped commit. Use the <code>release-auditor</code> skill for commit-level traceability.
+      Built from GitHub tag diffs (source of truth: CiC 4.7.1 → 4.8.0 release body/commits + Cloud v2.39.2/v2.40.0 bodies),
+      cross-referenced with Jira for ticket detail. CiC 4.8.0 (GA) is a <b>stable promotion of the 4.8.0-beta.0 commit</b>:
+      the only beta.0 → 4.8.0 manifest change is a CI-test-only quatt-pylibs bump (0.14.0 → 0.14.1, QPD-14428) plus a
+      release-notes workflow chore (#795) — no shipped-surface change, so this index gains only QPD-14428 (CI-test-only, marked <span class="new-tag">new</span>), 60 → 61 entries. The
+      alpha.1 → beta.0 promotion added no new Jira tickets and no component bumps (the <code>quatt-revisions.inc</code> manifest
+      is byte-identical across those two tags). The earlier alpha.0 → alpha.1 step added only a Chill control-board firmware
+      bump (1.0.10 → 2.0.0) and an embedded-apps point fix (1.31.0 → 1.31.1, no QPD). No App release ships with this CiC wave
+      (App v1.58.0 and dongle FW 2.12.0, both 2026-06-26, are held for the next wave). Status flags shown for tickets whose
+      Jira state lags the shipped commit. Use the <code>release-auditor</code> skill for commit-level traceability.
     </p>
   </section>
 
@@ -297,6 +306,7 @@ const T = [
  ["CiC",14378,"Task","Urgent","","Keep liveview enabled during commissioning"],
  ["CiC",14380,"Task","Medium","In Progress","Make cic-cloud-webserver live-stats page mobile-friendly"],
  ["CiC",14384,"Task","Medium","","LED: modem fault only when backend unreachable; reduce brightness"],
+ ["CiC",14428,"Task","Low","","Bump quatt-pylibs to 0.14.1 (swap_cloud overlay fix — CI-test only)",1],
  ["CiC",14566,"Task","Medium","","Optimise Mender deployment-group creation for fleet rollouts"],
  ["CiC",13559,"Bug","High","","Version-gate CoAP features for older dongle firmware"],
  ["CiC",13625,"Bug","Urgent","","Lab Chills suddenly disconnected (stale-ping sweep)"],
@@ -386,14 +396,15 @@ function render() {
   if (state.sortCol) rows = rows.slice().sort(cmp);
   document.getElementById('count').textContent =
     rows.length + ' of ' + T.length + ' ticket entries (cross-product duplicates listed per product)';
-  document.getElementById('rows').innerHTML = rows.map(([p, k, ty, pr, st, d]) => {
+  document.getElementById('rows').innerHTML = rows.map(([p, k, ty, pr, st, d, isNew]) => {
     const prBadge = pr === 'Urgent' ? '<span class="badge urgent">Urgent</span>'
                   : pr === 'High' ? '<span class="badge high">High</span>'
                   : '<span style="color:var(--text-muted);font-size:12px">' + pr + '</span>';
     const stBadge = st ? ' <span class="badge open">' + st + '</span>' : '';
     const cls = p === 'CiC' ? 'cic' : p === 'Cloud' ? 'cloud' : p === 'App' ? 'app' : 'fw';
-    return '<tr>' +
-      '<td class="key"><a href="https://quatt-team.atlassian.net/browse/QPD-' + k + '" target="_blank">QPD-' + k + '</a></td>' +
+    const newTag = isNew ? ' <span class="new-tag">new</span>' : '';
+    return '<tr' + (isNew ? ' class="new-row"' : '') + '>' +
+      '<td class="key"><a href="https://quatt-team.atlassian.net/browse/QPD-' + k + '" target="_blank">QPD-' + k + '</a>' + newTag + '</td>' +
       '<td><span class="chip ' + cls + '">' + p + '</span></td>' +
       '<td><span class="badge ' + ty.toLowerCase() + '">' + ty + '</span></td>' +
       '<td>' + prBadge + '</td>' +

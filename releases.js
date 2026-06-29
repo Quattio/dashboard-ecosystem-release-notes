@@ -4,19 +4,19 @@
 
 window.SUMMARY = [
   { n: "3",  l: "Release waves documented" },
-  { n: "60", l: "Tickets in latest wave" },
+  { n: "61", l: "Tickets in latest wave" },
   { n: "3",  l: "Products in latest wave" },
   { n: "5",  l: "Open follow-ups flagged" }
 ];
 
 window.RELEASES = [
   {
-    date: "2026-06-19",
-    title: "Quatt Ecosystem Release 19.06.2026",
-    badge: { cls: "beta", label: "beta release" },
-    page: "releases/2026-06-19.html",
+    date: "2026-06-22",
+    title: "Quatt Ecosystem Release 22.06.2026",
+    badge: { cls: "stable", label: "stable (GA)" },
+    page: "releases/2026-06-22.html",
     chips: [
-      { cls: "cic",   label: "CiC 4.8.0-beta.0" },
+      { cls: "cic",   label: "CiC 4.8.0" },
       { cls: "cloud", label: "Cloud v2.39.2–v2.40.0" },
       { cls: "fw",    label: "Thread FW 2.11.1" },
       { cls: "fw",    label: "Controller 6.9.0" },
@@ -24,7 +24,7 @@ window.RELEASES = [
       { cls: "fw",    label: "ODU FW 2.1" }
     ],
     stats: [
-      { b: "60", t: "tickets" },
+      { b: "61", t: "tickets" },
       { b: "23", t: "bugs fixed" },
       { b: "3",  t: "flagship themes" },
       { b: "ODUv2 OTA", t: "validated" }
