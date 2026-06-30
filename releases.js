@@ -11,10 +11,10 @@ window.SUMMARY = [
 
 window.RELEASES = [
   {
-    date: "2026-06-22",
-    title: "Quatt Ecosystem Release 22.06.2026",
+    date: "2026-06-29",
+    title: "Quatt Ecosystem Release 29.06.2026",
     badge: { cls: "stable", label: "stable (GA)" },
-    page: "releases/2026-06-22.html",
+    page: "releases/2026-06-29.html",
     chips: [
       { cls: "cic",   label: "CiC 4.8.0" },
       { cls: "cloud", label: "Cloud v2.39.2–v2.40.0" },
