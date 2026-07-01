@@ -3,18 +3,37 @@
    Newest release first. */
 
 window.SUMMARY = [
-  { n: "3",  l: "Release waves documented" },
-  { n: "61", l: "Tickets in latest wave" },
-  { n: "3",  l: "Products in latest wave" },
-  { n: "5",  l: "Open follow-ups flagged" }
+  { n: "4",  l: "Release waves documented" },
+  { n: "2",  l: "Tickets in latest wave" },
+  { n: "1",  l: "Products in latest wave" },
+  { n: "1",  l: "Open follow-ups flagged" }
 ];
 
 window.RELEASES = [
   {
-    date: "2026-06-22",
-    title: "Quatt Ecosystem Release 22.06.2026",
+    date: "2026-06-30",
+    title: "Quatt Ecosystem Release 30.06.2026",
+    badge: { cls: "hotfix", label: "hotfix" },
+    page: "releases/2026-06-30.html",
+    chips: [
+      { cls: "cic", label: "CiC 4.8.1" },
+      { cls: "fw",  label: "Controller 6.9.2" },
+      { cls: "fw",  label: "Thread FW 2.11.1" },
+      { cls: "fw",  label: "Chill CB FW 2.0.0" },
+      { cls: "fw",  label: "ODU FW 2.1" }
+    ],
+    stats: [
+      { b: "2", t: "tickets" },
+      { b: "1", t: "Urgent fix" },
+      { b: "Controller 6.9.2", t: "hotfix bump" },
+      { b: "Condensation", t: "Chill cooling fix" }
+    ]
+  },
+  {
+    date: "2026-06-29",
+    title: "Quatt Ecosystem Release 29.06.2026",
     badge: { cls: "stable", label: "stable (GA)" },
-    page: "releases/2026-06-22.html",
+    page: "releases/2026-06-29.html",
     chips: [
       { cls: "cic",   label: "CiC 4.8.0" },
       { cls: "cloud", label: "Cloud v2.39.2–v2.40.0" },

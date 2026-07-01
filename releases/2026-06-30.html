@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quatt Ecosystem Release 30.06.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css?v=3">
+<script src="../env-banner.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="logo"><span class="mark">Q</span> Quatt <span class="sys">Release notes</span></span>
+    <nav>
+      <a href="../index.html">Releases</a>
+      <a href="2026-06-30.html" class="active">Latest</a>
+      <button class="theme-toggle" onclick="toggleTheme()">Dark mode</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="crumb"><a href="../index.html">Releases</a> / 30.06.2026</div>
+  <div class="page-head">
+    <div class="kicker">CiC diffed 4.8.0 &rarr; 4.8.1 &middot; hotfix</div>
+    <h1>Quatt Ecosystem Release <span class="dim">30.06.2026</span></h1>
+    <div class="sub">
+      <span class="chip cic">CiC 4.8.1</span>
+      <span class="chip fw">Controller 6.9.2</span>
+      <span class="chip fw">Thread FW 2.11.1</span>
+      <span class="chip fw">Chill CB FW 2.0.0</span>
+      <span class="chip fw">ODU FW 2.1</span>
+    </div>
+  </div>
+
+  <div class="review-only"><div class="review-panel">
+    <h3>What changed in this revision</h3>
+    <p class="sub">Shown only on the staging preview — hidden in production.</p>
+    <p class="none">New release notes — first published revision.</p>
+  </div></div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-panel="customer">Customer</button>
+    <button class="tab" data-panel="internal">Internal (ops / CS)</button>
+    <button class="tab" data-panel="engineering">Engineering</button>
+  </div>
+
+  <!-- ============ TIER 1 ============ -->
+  <section class="tab-panel tier1 active" id="panel-customer">
+
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button class="fbtn lang-btn on" data-lang="en">English</button>
+      <button class="fbtn lang-btn" data-lang="nl">Nederlands</button>
+    </div>
+
+    <div class="lang-pane" id="tier1-en">
+      <div class="theme-card">
+        <h3>Cooling performance and reliability</h3>
+        <ul>
+          <li>During warm, humid weather, your Chill now keeps the cooling supply water slightly warmer to reduce condensation forming on the cooling pipes.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Bug fixes and maintenance</h3>
+        <ul>
+          <li>This update also includes general reliability improvements.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lang-pane" id="tier1-nl" hidden>
+      <div class="theme-card">
+        <h3>Koelprestaties en betrouwbaarheid</h3>
+        <ul>
+          <li>Bij warm, vochtig weer houdt je Chill het aanvoerwater voor de koeling nu iets warmer om condensvorming op de koelleidingen te verminderen.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Foutoplossingen en onderhoud</h3>
+        <ul>
+          <li>Deze update bevat daarnaast algemene betrouwbaarheidsverbeteringen.</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ TIER 2 ============ -->
+  <section class="tab-panel" id="panel-internal">
+
+    <div class="callout-warn">
+      <b>Scope:</b> CiC <b>4.8.1</b> — a <b>hotfix</b> on top of 4.8.0 (GA), diffed 4.8.0 &rarr; 4.8.1. The single change in this
+      build is a <b>controller bump 6.9.0 &rarr; 6.9.2</b>, which folds in two fixes (controller 6.9.1 = QPD-14749, controller
+      6.9.2 = QPD-14755). <b>No other component bumps</b>: Thread FW 2.11.1, Chill control-board FW 2.0.0 and ODU FW 2.1 are
+      unchanged from 4.8.0, and <b>no App build</b> is paired. The 4.8.1 tag carries no GitHub Release yet, so the headline date
+      is the tag commit's committer date (2026-06-30).
+      <br><b>Concurrent but NOT paired:</b> Cloud <b>v2.41.1</b> shipped 2026-06-30 — it is an independent backend minor
+      (next-sprint commissioning/Boost work + an app-minVersion bump), not part of this CiC hotfix. It is held for the next CiC
+      wave; see the engineering footer and the PR follow-ups.
+    </div>
+
+    <div class="theme-card">
+      <h3>1 · Chill cooling — condensation quick fix <span class="epic">CHILL | Field Test Stability Improvement</span></h3>
+      <ul>
+        <li><b>Raise Chill cooling supply-temperature bounds 18–25&deg;C &rarr; 20–27&deg;C</b> (band width kept identical to avoid short-cycling / compressor undershoot, notably on V1 / V1.5 units), and additionally <b>gate cooling on the ODU outlet temperature</b> <span class="tkey">(QPD-14755, Urgent)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for CS:</b> during the recent heat wave several customers (incl. public reports on Tweakers) saw condensation form on the cooling water pipes — the indoor dew point rose above the supply-water temperature. This deliberate quick fix shifts both cooling bounds up by 2&deg;C to keep the supply water above the dew point under extreme indoor humidity. A permanent solution is tracked separately. Expect condensation complaints on cooling Chills to drop on 4.8.1.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3>2 · Commissioning <span class="epic">Bug Fixing &amp; Fleet Diagnostics</span></h3>
+      <ul>
+        <li>V1 commissioning heat-pump test frequency lowered <b>49 Hz &rarr; 30 Hz</b> <span class="tkey">(QPD-14749)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for installers:</b> the V1 heat-pump commissioning test now runs the compressor at 30 Hz instead of 49 Hz. Installer-only change — not customer-visible.</div>
+    </div>
+  </section>
+
+  <!-- ============ TIER 3 ============ -->
+  <section class="tab-panel" id="panel-engineering">
+    <div class="filters">
+      <span class="fgroup" id="f-product">
+        <span class="flabel">Product</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="CiC">CiC</button>
+      </span>
+      <span class="fgroup" id="f-type">
+        <span class="flabel">Type</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="Task">Tasks</button>
+        <button class="fbtn" data-v="Bug">Bugs</button>
+      </span>
+      <span class="fgroup" id="f-pr">
+        <span class="flabel">Priority</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="Urgent">Urgent</button>
+        <button class="fbtn" data-v="High">High+</button>
+      </span>
+      <input class="search" id="f-q" type="search" placeholder="Search summary or QPD key…">
+    </div>
+    <div class="count" id="count"></div>
+    <table class="tickets">
+      <thead><tr>
+        <th class="sortable" data-col="key">Key</th>
+        <th class="sortable" data-col="product">Product</th>
+        <th class="sortable" data-col="type">Type</th>
+        <th class="sortable" data-col="priority">Priority</th>
+        <th class="sortable" data-col="summary">Summary</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p class="footer-note">
+      Built from GitHub tag diffs (source of truth: CiC 4.8.0 → 4.8.1, a single commit bumping cic-controller 6.9.0 → 6.9.2),
+      cross-referenced with Jira for ticket detail. The 4.8.1 tag has no GitHub Release; its committer date (2026-06-30) is the
+      headline date. The controller bump spans 6.9.1 (QPD-14749) and 6.9.2 (QPD-14755); no other component changed.
+      Cloud v2.41.1 (2026-06-30) shipped in the same window but is an independent backend minor (next-sprint work) and is
+      <b>not</b> paired with this CiC hotfix — held for the next CiC wave. Use the <code>release-auditor</code> skill for
+      commit-level traceability.
+    </p>
+  </section>
+
+</main>
+
+<script>
+/* ---------- theme ---------- */
+function toggleTheme() {
+  const r = document.documentElement;
+  const cur = r.getAttribute('data-theme') || 'dark';   // console is dark by default
+  const next = cur === 'dark' ? 'light' : 'dark';
+  r.setAttribute('data-theme', next);
+  localStorage.setItem('qrn-theme', next);
+}
+const saved = localStorage.getItem('qrn-theme');
+if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+/* ---------- Tier 1 language toggle (EN/NL) ---------- */
+function setLang(lang) {
+  document.getElementById('tier1-en').hidden = lang !== 'en';
+  document.getElementById('tier1-nl').hidden = lang !== 'nl';
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('on', b.dataset.lang === lang));
+  localStorage.setItem('qrn-tier1-lang', lang);
+}
+document.querySelectorAll('.lang-btn').forEach(b =>
+  b.addEventListener('click', () => setLang(b.dataset.lang)));
+setLang(localStorage.getItem('qrn-tier1-lang') || 'en');
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === t));
+  document.querySelectorAll('.tab-panel').forEach(p =>
+    p.classList.toggle('active', p.id === 'panel-' + t.dataset.panel));
+}));
+
+/* ---------- ticket data (generated by the /release-notes pipeline) ---------- */
+const T = [
+ // product, key, type, priority, status (if not Done), summary
+ ["CiC",14749,"Task","Medium","","Change V1 commissioning heat-pump test frequency from 49 to 30 Hz"],
+ ["CiC",14755,"Task","Urgent","","CHILL: raise cooling supply-temperature bounds 18–25°C → 20–27°C + gate cooling on ODU outlet temp (condensation quick fix)"]
+];
+
+/* ---------- filters & sorting ---------- */
+const state = { product: '*', type: '*', pr: '*', q: '', sortCol: null, sortDir: 1 };
+const PRIO_RANK = { 'Urgent': 4, 'High': 3, 'Medium': 2, 'Low': 1 };
+const COL_IDX = { product: 0, key: 1, type: 2, priority: 3, summary: 5 };
+
+document.querySelectorAll('th.sortable').forEach(th => th.addEventListener('click', () => {
+  const col = th.dataset.col;
+  if (state.sortCol === col) {
+    state.sortDir = -state.sortDir;          // second click: reverse
+  } else {
+    state.sortCol = col;
+    state.sortDir = col === 'priority' ? -1 : 1;  // priority defaults to Urgent-first
+  }
+  document.querySelectorAll('th.sortable').forEach(x => {
+    x.classList.toggle('sorted', x === th);
+    x.dataset.arrow = x === th ? (state.sortDir === 1 ? '▲' : '▼') : '';
+  });
+  render();
+}));
+
+function cmp(a, b) {
+  const col = state.sortCol, i = COL_IDX[col];
+  let va = a[i], vb = b[i];
+  if (col === 'priority') { va = PRIO_RANK[va] || 0; vb = PRIO_RANK[vb] || 0; }
+  if (va < vb) return -1 * state.sortDir;
+  if (va > vb) return  1 * state.sortDir;
+  // tiebreakers: priority desc, then key asc — keeps grouped output stable
+  const pa = PRIO_RANK[a[3]] || 0, pb = PRIO_RANK[b[3]] || 0;
+  if (pa !== pb) return pb - pa;
+  return a[1] - b[1];
+}
+function bindGroup(id, key) {
+  document.querySelectorAll('#' + id + ' .fbtn').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('#' + id + ' .fbtn').forEach(x => x.classList.toggle('on', x === b));
+    state[key] = b.dataset.v;
+    render();
+  }));
+}
+bindGroup('f-product', 'product');
+bindGroup('f-type', 'type');
+bindGroup('f-pr', 'pr');
+document.getElementById('f-q').addEventListener('input', e => { state.q = e.target.value.toLowerCase(); render(); });
+
+function render() {
+  let rows = T.filter(([p, k, ty, pr, st, d]) =>
+    (state.product === '*' || p === state.product) &&
+    (state.type === '*' || ty === state.type) &&
+    (state.pr === '*' || (state.pr === 'Urgent' ? pr === 'Urgent' : (pr === 'Urgent' || pr === 'High'))) &&
+    (!state.q || d.toLowerCase().includes(state.q) || ('qpd-' + k).includes(state.q))
+  );
+  if (state.sortCol) rows = rows.slice().sort(cmp);
+  document.getElementById('count').textContent =
+    rows.length + ' of ' + T.length + ' ticket entries (cross-product duplicates listed per product)';
+  document.getElementById('rows').innerHTML = rows.map(([p, k, ty, pr, st, d, isNew]) => {
+    const prBadge = pr === 'Urgent' ? '<span class="badge urgent">Urgent</span>'
+                  : pr === 'High' ? '<span class="badge high">High</span>'
+                  : '<span style="color:var(--text-muted);font-size:12px">' + pr + '</span>';
+    const stBadge = st ? ' <span class="badge open">' + st + '</span>' : '';
+    const cls = p === 'CiC' ? 'cic' : p === 'Cloud' ? 'cloud' : p === 'App' ? 'app' : 'fw';
+    const newTag = isNew ? ' <span class="new-tag">new</span>' : '';
+    return '<tr' + (isNew ? ' class="new-row"' : '') + '>' +
+      '<td class="key"><a href="https://quatt-team.atlassian.net/browse/QPD-' + k + '" target="_blank">QPD-' + k + '</a>' + newTag + '</td>' +
+      '<td><span class="chip ' + cls + '">' + p + '</span></td>' +
+      '<td><span class="badge ' + ty.toLowerCase() + '">' + ty + '</span></td>' +
+      '<td>' + prBadge + '</td>' +
+      '<td>' + d + stBadge + '</td></tr>';
+  }).join('');
+}
+render();
+</script>
+
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quatt Ecosystem Release 22.06.2026</title>
+<title>Quatt Ecosystem Release 29.06.2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,17 +17,17 @@
     <span class="logo"><span class="mark">Q</span> Quatt <span class="sys">Release notes</span></span>
     <nav>
       <a href="../index.html">Releases</a>
-      <a href="2026-06-22.html" class="active">Latest</a>
+      <a href="2026-06-29.html" class="active">Latest</a>
       <button class="theme-toggle" onclick="toggleTheme()">Dark mode</button>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
-  <div class="crumb"><a href="../index.html">Releases</a> / 22.06.2026</div>
+  <div class="crumb"><a href="../index.html">Releases</a> / 29.06.2026</div>
   <div class="page-head">
     <div class="kicker">CiC diffed 4.7.1 &rarr; 4.8.0 &middot; stable release (GA)</div>
-    <h1>Quatt Ecosystem Release <span class="dim">22.06.2026</span></h1>
+    <h1>Quatt Ecosystem Release <span class="dim">29.06.2026</span></h1>
     <div class="sub">
       <span class="chip cic">CiC 4.8.0</span>
       <span class="chip cloud">Cloud v2.39.2–v2.40.0</span>
@@ -42,11 +42,9 @@
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview — hidden in production.</p>
     <ul>
-      <li><b>Phase promotion — beta &rarr; stable (GA):</b> the previously-published page documented this wave at <b>CiC 4.8.0-beta.0</b>. This revision promotes it to the <b>stable 4.8.0 (GA)</b> tag. Badge beta &rarr; stable; CiC chip and kicker updated 4.8.0-beta.0 &rarr; 4.8.0.</li>
-      <li><b>Headline date 19.06.2026 &rarr; 22.06.2026, page renamed:</b> the 4.8.0 tag carries <b>no GitHub Release</b> yet, so the headline date falls back to the tag commit's committer date (2026-06-22). The wave's single page is renamed <code>2026-06-19.html</code> &rarr; <code>2026-06-22.html</code> (one page per wave preserved).</li>
-      <li><b>beta.0 &rarr; 4.8.0 build delta — effectively nil:</b> 4.8.0 is a stable promotion of the beta.0 commit. The only manifest change is a <b>CI-test-only</b> quatt-pylibs bump (0.14.0 &rarr; 0.14.1, QPD-14428 — swap_cloud overlay fix, &ldquo;only affecting the CI tests&rdquo;), plus a release-notes workflow chore (#795). Neither alters the image customers receive. <b>No paired-product version bumps</b> (Cloud v2.40.0, Thread FW 2.11.1, Controller 6.9.0, Chill CB 2.0.0, ODU FW 2.1 all unchanged), nothing reverted. The engineering index grows by exactly <b>one row</b> — QPD-14428 (the CI-only pylibs bump), highlighted as <span class="new-tag">new</span> in the Engineering tab — taking it from 60 to 61 entries; no feature/bug ticket added.</li>
-      <li><b>Customer + Internal tiers unchanged in substance:</b> because the shipped surface is identical to beta.0, the Tier-1 (EN + NL) content carries over verbatim, including the existing &ldquo;charge-cool shipped-but-disabled&rdquo; callout (the 4.8.0-beta.0 Tier-1 flag-gating correction stands). Tier-2 carries over unchanged except for the scope note and one tech-debt bullet recording the GA pylibs bump.</li>
-      <li><b>Deliberately excluded — flagged for reviewer decision (mobile-app + embedded):</b> two product releases now fall inside the +7d tail window (target 2026-06-22 &rarr; 2026-06-29) but are <b>not</b> part of the 4.8.0 shipped surface: <b>dongle / Thread FW 2.12.0</b> (2026-06-26) is <b>not bundled</b> in the 4.8.0 image (which ships Thread FW 2.11.1), and <b>App v1.58.0</b> (2026-06-26) is predominantly flagged-off Boost-Mode UI that reads as next-wave. Both are held for the next CiC wave. If you want App v1.58.0 folded in here, comment <code>@claude include App v1.58.0</code> on the PR.</li>
+      <li><b>Re-dated 22.06.2026 &rarr; 29.06.2026 to match the actual GA publication:</b> the previously-published revision of this page used the 4.8.0 tag commit's committer date (2026-06-22) as a fallback because the GitHub Release was not yet public. The <b>4.8.0 GitHub Release is now published</b> (<code>published_at</code> 2026-06-29T07:57:29Z) — the date the GA build actually went public — so the headline date, page filename, and manifest entry move to <b>29.06.2026</b>. The wave's single page is renamed <code>2026-06-22.html</code> &rarr; <code>2026-06-29.html</code> (one page per wave preserved); the manifest row is updated in place, not duplicated.</li>
+      <li><b>No phase change, no shipped-surface change:</b> the wave was already published as <b>stable (GA)</b> at CiC <b>4.8.0</b>; it stays stable. The 4.8.0 final tag is a stable promotion of the 4.8.0-beta.0 commit whose only manifest delta — a CI-test-only quatt-pylibs bump (0.14.0 &rarr; 0.14.1, QPD-14428) — was <b>already folded into the prior revision</b>. <b>No new QPD tickets</b> this revision; the engineering index stays at 61 entries (the now-stale &ldquo;new&rdquo; marker on QPD-14428 is cleared, since nothing was added this revision). <b>No paired-product version bumps</b> (Cloud v2.39.2–v2.40.0, Thread FW 2.11.1, Controller 6.9.0, Chill CB 2.0.0, ODU FW 2.1 all unchanged), nothing reverted. Customer (EN + NL) and Internal tiers carry over verbatim, including the &ldquo;charge-cool shipped-but-disabled&rdquo; flag-gating callout.</li>
+      <li><b>Deliberately excluded — newly-published next-wave releases (flagged for reviewer decision):</b> three product releases now sit just past the 4.8.0 tag but are <b>not</b> part of the 4.8.0 shipped surface and are held for the next CiC wave: <b>Cloud v2.41.1</b> (2026-06-30 — a new minor line carrying next-sprint commissioning/Boost work and an app-minVersion bump, not paired with this CiC), <b>dongle / Thread FW 2.12.0</b> (2026-06-26 — <b>not bundled</b> in the 4.8.0 image, which ships Thread FW 2.11.1), and <b>App v1.58.0</b> (2026-06-26 — predominantly flagged-off Boost-Mode UI). If you want any of these folded into this wave, comment e.g. <code>@claude include App v1.58.0</code> on the PR.</li>
     </ul>
   </div></div>
 
@@ -233,9 +231,10 @@
     </table>
     <p class="footer-note">
       Built from GitHub tag diffs (source of truth: CiC 4.7.1 → 4.8.0 release body/commits + Cloud v2.39.2/v2.40.0 bodies),
-      cross-referenced with Jira for ticket detail. CiC 4.8.0 (GA) is a <b>stable promotion of the 4.8.0-beta.0 commit</b>:
+      cross-referenced with Jira for ticket detail. The 4.8.0 GitHub Release went public on 2026-06-29 (<code>published_at</code>),
+      which is the headline date of this page. CiC 4.8.0 (GA) is a <b>stable promotion of the 4.8.0-beta.0 commit</b>:
       the only beta.0 → 4.8.0 manifest change is a CI-test-only quatt-pylibs bump (0.14.0 → 0.14.1, QPD-14428) plus a
-      release-notes workflow chore (#795) — no shipped-surface change, so this index gains only QPD-14428 (CI-test-only, marked <span class="new-tag">new</span>), 60 → 61 entries. The
+      release-notes workflow chore (#795) — no shipped-surface change. This 61-entry index is unchanged from the prior revision. The
       alpha.1 → beta.0 promotion added no new Jira tickets and no component bumps (the <code>quatt-revisions.inc</code> manifest
       is byte-identical across those two tags). The earlier alpha.0 → alpha.1 step added only a Chill control-board firmware
       bump (1.0.10 → 2.0.0) and an embedded-apps point fix (1.31.0 → 1.31.1, no QPD). No App release ships with this CiC wave
@@ -306,7 +305,7 @@ const T = [
  ["CiC",14378,"Task","Urgent","","Keep liveview enabled during commissioning"],
  ["CiC",14380,"Task","Medium","In Progress","Make cic-cloud-webserver live-stats page mobile-friendly"],
  ["CiC",14384,"Task","Medium","","LED: modem fault only when backend unreachable; reduce brightness"],
- ["CiC",14428,"Task","Low","","Bump quatt-pylibs to 0.14.1 (swap_cloud overlay fix — CI-test only)",1],
+ ["CiC",14428,"Task","Low","","Bump quatt-pylibs to 0.14.1 (swap_cloud overlay fix — CI-test only)"],
  ["CiC",14566,"Task","Medium","","Optimise Mender deployment-group creation for fleet rollouts"],
  ["CiC",13559,"Bug","High","","Version-gate CoAP features for older dongle firmware"],
  ["CiC",13625,"Bug","Urgent","","Lab Chills suddenly disconnected (stale-ping sweep)"],
