@@ -288,12 +288,24 @@ This skill runs **inside a checkout of `github.com/Quattio/dashboard-ecosystem-r
 
 1. **`releases/YYYY-MM-DD.html`** — one self-contained page per release wave (date = CiC tag creation date). **Filename and branch use `YYYY-MM-DD`** to match the repo's existing `releases/` pages and the `releases.js` page paths; the human-facing H1 title still uses `DD.MM.YYYY` (dots) per Step 6. Structure: topbar + page-head + three tab panels (Customer / Internal / Engineering) + a filterable, sortable ticket table with the full per-product ticket data embedded as a JS array. Copy the structure of an existing page in `releases/` (e.g. `releases/2026-06-04.html`); relative paths are one level deep (`../styles.css`, `../index.html`). **The Customer tab is bilingual:** two `.lang-pane` divs (`#tier1-en`, `#tier1-nl`) behind an English/Nederlands pill toggle (persisted in `localStorage` as `qrn-tier1-lang`, default `en`). Write the Dutch translation per the glossary + locked terminology (ketel niet boiler; Chill/HeatBattery/HomeBattery/All-Electric blijven Engels; "buitenunit" for outdoor unit). Only Tier 1 is translated — Internal and Engineering tabs stay English.
 2. **`releases.js`** — prepend a new entry to `window.RELEASES` (date, title per the Step 6 title convention, badge `alpha|stable|hotfix`, `page` path, product chips with classes `cic|cloud|app|fw`, stats line) and refresh `window.SUMMARY` (releases in window, ticket count, product count, open follow-ups). `index.html` renders this manifest at load — it must NOT be edited per release.
-3. **Styling is locked to the `quatt-visual-branding` skill** (light default, Plus Jakarta Sans, category chip colours, pill buttons, green selected states). `styles.css` and `index.html` only change on intentional redesigns, not per release.
+3. **Limits tab (auto-generated)** — after writing the page, inject the product limits / thresholds / targets tab (fourth tab next to Engineering) with the repo tool:
+
+   ```
+   GITHUB_TOKEN=${GITHUB_TOKEN:-$(gh auth token)} node tools/generate-limits.mjs \
+     --page releases/YYYY-MM-DD.html \
+     --cic <CiC version> \
+     --controller-tag <controller tag from this wave's chips> \
+     --prev-controller-tag <controller tag from the previous wave's chips> \
+     --heatcharger-ref main
+   ```
+
+   Controller tags come from the version chips resolved in Step 2 (current wave, and the previous entry in `window.RELEASES`). The script fetches firmware source at those tags, renders the limits tables, and highlights every value that changed vs the previous wave. It is idempotent — safe to re-run on a page that already has the tab. If the run reports "symbol not found" rows, a constant moved or was renamed in firmware: update `tools/limits-spec.json` (file paths, `scope` struct fallbacks, or `symA|symB` alternatives) in the same PR — do not hand-edit the generated HTML. Until a per-wave HeatCharger firmware version is tracked in the chips, `--heatcharger-ref main` is the accepted default. Commit the updated page in the same commit as the manifest.
+4. **Styling is locked to the `quatt-visual-branding` skill** (light default, Plus Jakarta Sans, category chip colours, pill buttons, green selected states). `styles.css` and `index.html` only change on intentional redesigns, not per release.
 
 **Publish (after user confirms, or automatically in a cloud routine): open a PR, do not push straight to `main`.** The output is customer-facing and a maintainer should review before it deploys. Create a branch, commit the new page + manifest, and open a PR; merging to `main` triggers the Cloudflare Pages deploy. Use the GitHub MCP (works without a local git remote):
 
 - `mcp__github__create_branch` — branch `release-notes/YYYY-MM-DD` from `main`
-- `mcp__github__push_files` — commit `releases/YYYY-MM-DD.html` + `releases.js` in one commit, message `Add Quatt Ecosystem Release DD.MM.YYYY` (filename uses `YYYY-MM-DD`; the commit-message title keeps the `DD.MM.YYYY` dotted form)
+- `mcp__github__push_files` — commit `releases/YYYY-MM-DD.html` (including the generated Limits tab) + `releases.js` in one commit, message `Add Quatt Ecosystem Release DD.MM.YYYY` (filename uses `YYYY-MM-DD`; the commit-message title keeps the `DD.MM.YYYY` dotted form)
 - `mcp__github__create_pull_request` — title `docs: Quatt Ecosystem Release DD.MM.YYYY`, body = the three tiers summary + open follow-ups (Step 7)
 
 **Link-formatting rule for every URL in the PR body and Slack post (PR link AND preview link).** Put **each** URL on **its own line as an angle-bracket autolink**, keep its label on the *previous* line, and separate consecutive link entries with a **blank line**:
