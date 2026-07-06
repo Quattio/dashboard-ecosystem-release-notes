@@ -1,0 +1,2 @@
+// TEST FIXTURE — fake value.
+#define NUM_CALIBRATION_STEPS 561

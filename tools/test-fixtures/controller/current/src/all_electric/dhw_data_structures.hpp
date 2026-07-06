@@ -1,0 +1,37 @@
+// TEST FIXTURE — fake values.
+struct DomesticHotWaterBounds {
+    double ch_outlet_temperature_max = 50.5;
+    double ch_inlet_temperature_max = 50.6;
+    double dhw_outlet_temperature_max = 70.5;
+    double dhw_outlet_temperature_max_hysteresis = 60.5;
+    double dhw_inlet_temperature_max = 60.6;
+    double dhw_disable_compressor_flowrate_minimum = 201.0;
+    double anti_legionella_minimum_temperature = 60.7;
+    double boost_charge_minimum_temperature = 45.7;
+    double ch_supply_temperature_heat_demand_lower_limit = 19.5;
+    double ch_supply_temperature_heat_demand_hysteresis_upper_limit = 25.5;
+    double dhw_circulating_pump_feedforward_duty_cycle = 70.5;
+    double central_heating_circulating_pump_feedforward_duty_cycle = 70.6;
+    double charging_power_demand = 2502.0;
+    double dhw_disable_compressor_flowrate_time = 61.0;
+    double heatbattery_full_charge_temperature = 55.5;
+    double ch_inlet_temperature_protection_normal = 17.1;
+    double ch_inlet_temperature_protection_critical = 12.1;
+    double ch_outlet_temperature_protection_normal = 15.1;
+    double ch_outlet_temperature_protection_critical = 9.1;
+    double ch_inlet_upper_limit = 57.5;
+    double ch_backup_heater_temperature_upper_limit = 55.1;
+    double ch_backup_heater_temperature_upper_limit_hysteresis = 50.1;
+    double ch_inlet_freezing_temperature_minimum = 10.1;
+    double ch_outlet_freezing_temperature_minimum = 5.6;
+    double dhw_inlet_freezing_temperature_minimum = 10.2;
+    double dhw_outlet_freezing_temperature_minimum = 10.3;
+    double dhw_freezing_protection_reset_temperature = 15.2;
+    double minimum_shower_minutes_storage_medium = 22.5;
+    double minimum_shower_minutes_storage_discharge_medium = 23.5;
+    double minimum_shower_minutes_storage_large = 25.5;
+    double minimum_shower_minutes_storage_discharge_large = 30.5;
+    double minimum_shower_minutes_storage_extra_large = 37.5;
+    double minimum_shower_minutes_storage_discharge_extra_large = 42.5;
+    uint16_t preferred_anti_legionella_start_time_hour = 13;
+};

@@ -1,0 +1,149 @@
+{
+  "sections": [
+    {
+      "id": "hybrid",
+      "title": "1 · Shared / Hybrid (ODU + boiler)",
+      "repo": "controller",
+      "rows": [
+        { "label": "Max supply water temp — ODU V2 setups", "unit": "°C", "value": "{kOduV2TemperatureLimit}", "files": ["src/common/constants.hpp"] },
+        { "label": "Max supply water temp — non-V2 setups", "unit": "°C", "value": "{kOduNonV2TemperatureLimit}", "files": ["src/common/constants.hpp"] },
+        { "label": "CH temp limit user-setting range", "unit": "°C", "value": "{kDefaultCHTemperatureLowerLimit} – {kDefaultCHTemperatureUpperLimit}", "files": ["src/common/constants.hpp"] },
+        { "label": "ODU outlet out-of-spec (stop) — V1", "unit": "°C", "value": "{out_of_spec_temperature_v1} (hyst. {out_of_spec_temperature_hysteresis_v1})", "scope": ["Parameters"], "files": ["src/odu/watchdog/watchdog_structs.hpp"] },
+        { "label": "ODU outlet out-of-normal (reduce) — V1", "unit": "°C", "value": "{out_of_normal_temperature_threshold_v1} (hyst. Δ{out_of_normal_delta_temperature_hysteresis_v1})", "scope": ["Parameters"], "files": ["src/odu/watchdog/watchdog_structs.hpp"] },
+        { "label": "ODU outlet out-of-spec (stop) — V2", "unit": "°C", "value": "{out_of_spec_temperature_v2} (hyst. {out_of_spec_temperature_hysteresis_v2})", "scope": ["Parameters"], "files": ["src/odu/watchdog/watchdog_structs.hpp"] },
+        { "label": "ODU outlet out-of-normal (reduce) — V2", "unit": "°C", "value": "{out_of_normal_temperature_threshold_v2} (hyst. Δ{out_of_normal_delta_temperature_hysteresis_v2})", "scope": ["Parameters"], "files": ["src/odu/watchdog/watchdog_structs.hpp"] },
+        { "label": "Minimum flow rate (out-of-spec stop)", "unit": "L/h", "value": "{minimum_flowrate}", "scope": ["Parameters"], "files": ["src/odu/watchdog/watchdog_structs.hpp"] },
+        { "label": "Minimum flow rate (out-of-normal)", "unit": "L/h", "value": "{minimum_flowrate_out_of_normal}", "scope": ["Parameters"], "files": ["src/odu/watchdog/watchdog_structs.hpp"] },
+        { "label": "Supply voltage window", "unit": "V", "value": "{volt_hp_min} – {volt_hp_max}", "scope": ["Parameters"], "files": ["src/odu/watchdog/watchdog_structs.hpp"] },
+        { "label": "Max current", "unit": "A", "value": "{current_max}", "scope": ["Parameters"], "files": ["src/odu/watchdog/watchdog_structs.hpp"] },
+        { "label": "Overcurrent max compressor freq — V1 / V2", "unit": "Hz", "value": "{max_frequency_for_overcurrent_protection} / {max_frequency_for_overcurrent_protection_v2}", "scope": ["Parameters"], "files": ["src/odu/watchdog/watchdog_structs.hpp"] },
+        { "label": "Compressor freq range — V1 heating", "unit": "Hz", "computed": "freqRange", "args": { "vector": "kV1HeatingRegions", "file": "src/odu/data/available_frequencies.cpp" }, "files": ["src/odu/data/available_frequencies.cpp"] },
+        { "label": "Compressor freq range — V2 heating", "unit": "Hz", "computed": "freqRange", "args": { "vector": "kV2HeatingRegions", "file": "src/odu/data/available_frequencies.cpp" }, "files": ["src/odu/data/available_frequencies.cpp"] },
+        { "label": "Compressor freq range — V2.1 (R290, FW ≥ 2.0) heating", "unit": "Hz", "computed": "freqRange", "args": { "vector": "kV2_1HeatingRegions", "file": "src/odu/data/available_frequencies.cpp" }, "files": ["src/odu/data/available_frequencies.cpp"] },
+        { "label": "Compressor freq range — V1 cooling", "unit": "Hz", "computed": "freqRange", "args": { "vector": "kV1CoolingRegions", "file": "src/odu/data/available_frequencies.cpp" }, "files": ["src/odu/data/available_frequencies.cpp"] },
+        { "label": "Compressor freq range — V2 cooling", "unit": "Hz", "computed": "freqRange", "args": { "vector": "kV2CoolingRegions", "file": "src/odu/data/available_frequencies.cpp" }, "files": ["src/odu/data/available_frequencies.cpp"] },
+        { "label": "Min evaporator pressure", "unit": "bar", "value": "{min_evaporator_pressure}", "scope": ["Parameters"], "files": ["src/odu/watchdog/watchdog_structs.hpp"] },
+        { "label": "Min inlet temperature", "unit": "°C", "value": "{inlet_temperature_minimum}", "scope": ["Parameters"], "files": ["src/odu/watchdog/watchdog_structs.hpp"] },
+        { "label": "Defrost min outlet temperature", "unit": "°C", "value": "{outlet_temperature_defrost_min}", "scope": ["Parameters"], "files": ["src/odu/watchdog/watchdog_structs.hpp"] },
+        { "label": "Anti-freeze: boiler heating trigger (inlet/outlet), release at", "unit": "°C", "value": "< {inlet_temperature_heating_trigger} (≥ {inlet_temperature_heating_trigger_hysteresis})", "scope": ["Parameters"], "files": ["src/odu/watchdog/watchdog_structs.hpp"] },
+        { "label": "Anti-freeze: pump circulation — ambient, release at", "unit": "°C", "value": "< {ambient_temperature_pump_trigger} (≥ {ambient_temperature_pump_trigger_hysteresis})", "scope": ["Parameters"], "files": ["src/odu/watchdog/watchdog_structs.hpp"] },
+        { "label": "Anti-freeze: pump circulation — inlet/outlet, release at", "unit": "°C", "value": "< {inlet_temperature_pump_trigger} (≥ {inlet_temperature_pump_trigger_hysteresis})", "scope": ["Parameters"], "files": ["src/odu/watchdog/watchdog_structs.hpp"] },
+        { "label": "Anti-freeze pump level (% duty or raw PWM mod)", "unit": "—", "value": "{anti_freeze_pump_percentage|anti_freeze_pwm_level}", "scope": ["Parameters"], "files": ["src/odu/watchdog/watchdog_structs.hpp"] },
+        { "label": "Min ODU inlet water temp for commissioning test", "unit": "°C", "value": "{min_temperature_for_odu_commissioning}", "scope": ["Parameters"], "files": ["src/odu/watchdog/watchdog_structs.hpp"] },
+        { "label": "Commissioning HP test frequency — V1 / V2 (low-level default)", "unit": "Hz", "value": "{hp_medium_test_frequency} / {hp_medium_test_frequency_v2}", "files": ["src/odu/low_level_control/heatpump_controller.hpp"] }
+      ]
+    },
+    {
+      "id": "chill",
+      "title": "2 · Chill (fan-coil units)",
+      "repo": "controller",
+      "files": ["src/chill/chill_data_structs.hpp"],
+      "rows": [
+        { "label": "Cooling support start (supply ≥; also ODU outlet gate from 4.8.1)", "unit": "°C", "value": "{cooling_start_temperature}", "scope": ["ODUCoolingSupportSettings", "ODUCoolingSettings"] },
+        { "label": "Cooling support stop (supply <)", "unit": "°C", "value": "{cooling_stop_temperature}", "scope": ["ODUCoolingSupportSettings", "ODUCoolingSettings"] },
+        { "label": "Cooling supply water setpoint", "unit": "°C", "value": "{odu_cooling_setpoint}", "scope": ["ODUCoolingSupportSettings", "ODUCoolingSettings"] },
+        { "label": "ODU cooling start delay / min on-time", "unit": "s", "value": "{odu_cooling_start_delay_time} / {odu_cooling_minimum_on_time}", "scope": ["ODUCoolingSupportSettings", "ODUCoolingSettings"] },
+        { "label": "Heating support start / stop (supply temp)", "unit": "°C", "value": "{odu_heating_start_temperature} / {odu_heating_stop_temperature}", "scope": ["ODUHeatingSupportSettings", "ODUHeatingSettings"] },
+        { "label": "Heating setpoint range (no thermostat)", "unit": "°C", "value": "{odu_heating_min_setpoint} – {odu_heating_max_setpoint}", "scope": ["ODUHeatingSupportSettings", "ODUHeatingSettings"] },
+        { "label": "Heating setpoint (thermostat active)", "unit": "°C", "value": "{kThermostatActiveHeatingSetpoint}", "files": ["src/odu/power_demand_estimator/support_power_demand_estimator.hpp", "src/chill/power_demand_estimator/chill_support_power_demand_estimator.hpp"] },
+        { "label": "Mixed mode: heating start / stop", "unit": "°C", "value": "{odu_heating_start_temperature} / {odu_heating_stop_temperature}", "scope": ["ODUMixedHeatingCoolingSupportSettings", "ODUMixedSettings"] },
+        { "label": "Mixed mode: cooling start / stop", "unit": "°C", "value": "{odu_cooling_start_temperature} / {odu_cooling_stop_temperature}", "scope": ["ODUMixedHeatingCoolingSupportSettings", "ODUMixedSettings"] },
+        { "label": "Mixed mode: heating / cooling setpoints", "unit": "°C", "value": "{odu_heating_setpoint} / {odu_cooling_setpoint}", "scope": ["ODUMixedHeatingCoolingSupportSettings", "ODUMixedSettings"] },
+        { "label": "All-E charge-cool support: heating start / stop / setpoint", "unit": "°C", "value": "{odu_heating_start_temperature} / {odu_heating_stop_temperature} / {odu_heating_setpoint}", "scope": ["ODUChargingSupportSettings"] },
+        { "label": "Chill circulating pump PWM (active)", "unit": "%", "value": "{kCirculatingPumpPwmActive}", "files": ["src/chill/supervisory_control/chill_state_machine.cpp"] }
+      ]
+    },
+    {
+      "id": "alle",
+      "title": "3 · All-Electric (HeatCharger + HeatBattery)",
+      "repo": "controller",
+      "files": ["src/all_electric/dhw_data_structures.hpp"],
+      "rows": [
+        { "label": "Min usable hot water temperature", "unit": "°C", "value": "{kMinimumHotWaterTemperature}", "files": ["src/all_electric/constants.hpp"] },
+        { "label": "Fallback charge start temperature", "unit": "°C", "value": "{kFallbackChargeStartTemperature}", "files": ["src/all_electric/constants.hpp"] },
+        { "label": "Heat battery full-charge temperature", "unit": "°C", "value": "{heatbattery_full_charge_temperature}" },
+        { "label": "Anti-legionella minimum temperature", "unit": "°C", "value": "{anti_legionella_minimum_temperature}" },
+        { "label": "Boost charge minimum temperature", "unit": "°C", "value": "{boost_charge_minimum_temperature}" },
+        { "label": "DHW outlet max (stop) / hysteresis", "unit": "°C", "value": "{dhw_outlet_temperature_max} / {dhw_outlet_temperature_max_hysteresis}" },
+        { "label": "DHW inlet max", "unit": "°C", "value": "{dhw_inlet_temperature_max}" },
+        { "label": "CH heat-exchanger inlet / outlet max", "unit": "°C", "value": "{ch_inlet_temperature_max} / {ch_outlet_temperature_max}" },
+        { "label": "CH inlet upper limit", "unit": "°C", "value": "{ch_inlet_upper_limit}" },
+        { "label": "CH backup heater upper limit / hysteresis", "unit": "°C", "value": "{ch_backup_heater_temperature_upper_limit} / {ch_backup_heater_temperature_upper_limit_hysteresis}" },
+        { "label": "CH inlet protection normal / critical", "unit": "°C", "value": "{ch_inlet_temperature_protection_normal} / {ch_inlet_temperature_protection_critical}" },
+        { "label": "CH outlet protection normal / critical", "unit": "°C", "value": "{ch_outlet_temperature_protection_normal} / {ch_outlet_temperature_protection_critical}" },
+        { "label": "Freezing protection: CH inlet / outlet min", "unit": "°C", "value": "{ch_inlet_freezing_temperature_minimum} / {ch_outlet_freezing_temperature_minimum}" },
+        { "label": "Freezing protection: DHW inlet / outlet min (reset)", "unit": "°C", "value": "{dhw_inlet_freezing_temperature_minimum} / {dhw_outlet_freezing_temperature_minimum} ({dhw_freezing_protection_reset_temperature})" },
+        { "label": "DHW flow sensor minimum flow", "unit": "L/h", "value": "{kFlowSensorMinimumFlowRate}", "files": ["src/all_electric/constants.hpp"] },
+        { "label": "Standard water discharge rate", "unit": "L/h", "value": "{kStandardWaterDischargeRate}", "files": ["src/all_electric/constants.hpp"] },
+        { "label": "DHW compressor-disable min flowrate (detection time)", "unit": "L/h", "value": "{dhw_disable_compressor_flowrate_minimum} ({dhw_disable_compressor_flowrate_time} s)" },
+        { "label": "CH backup heater power", "unit": "W", "value": "{kChBackupHeaterPower}", "files": ["src/all_electric/constants.hpp"] },
+        { "label": "DHW backup heater power", "unit": "W", "value": "{kDhwBackupHeaterPower}", "files": ["src/all_electric/constants.hpp"] },
+        { "label": "Avg HeatCharger heating power", "unit": "W", "value": "{kAverageHeatchargerHeatingPower}", "files": ["src/all_electric/constants.hpp"] },
+        { "label": "Charging power demand (default)", "unit": "W", "value": "{charging_power_demand}" },
+        { "label": "Min shower-minutes storage (M/L/XL)", "unit": "min", "value": "{minimum_shower_minutes_storage_medium} / {minimum_shower_minutes_storage_large} / {minimum_shower_minutes_storage_extra_large}" },
+        { "label": "Shower-minutes to re-enable discharge (M/L/XL)", "unit": "min", "value": "{minimum_shower_minutes_storage_discharge_medium} / {minimum_shower_minutes_storage_discharge_large} / {minimum_shower_minutes_storage_discharge_extra_large}" },
+        { "label": "CH supply heat-demand lower limit / hysteresis", "unit": "°C", "value": "{ch_supply_temperature_heat_demand_lower_limit} / {ch_supply_temperature_heat_demand_hysteresis_upper_limit}" },
+        { "label": "Municipal water supply temp (std / min / max)", "unit": "°C", "value": "{kStandardMunicipalWaterSupplyTemperature} / {kMinimumMunicipalWaterSupplyTemperature} / {kMaximumMunicipalWaterSupplyTemperature}", "files": ["src/all_electric/constants.hpp"] }
+      ]
+    },
+    {
+      "id": "targets",
+      "title": "4 · Fixed targets (default control parameters)",
+      "repo": "controller",
+      "files": ["src/odu/supervisory_structs.hpp"],
+      "rows": [
+        { "label": "ODU circulation flow rate target", "unit": "L/h", "value": "{ref_circ_flow_rate_hr}" },
+        { "label": "Commissioning flow test target", "unit": "L/h", "value": "{commissioning_flow_test_ref_flow_rate}" },
+        { "label": "Commissioning flow test PWM ceiling 4 kW / 8 kW", "unit": "%", "value": "{commissioning_4kw_flow_test_pwm_level_limit} / {commissioning_8kw_flow_test_pwm_level_limit}" },
+        { "label": "Max supply temperature (default)", "unit": "°C", "value": "{max_supply_temperature_default}" },
+        { "label": "Standard room temperature setpoint", "unit": "°C", "value": "{standard_room_temperature_setpoint}" },
+        { "label": "Boiler assist turn-on / turn-off threshold", "unit": "W", "value": "{boiler_power_turn_on_threshold} / {boiler_power_turn_off_threshold}" },
+        { "label": "Minimum power demand to run", "unit": "W", "value": "{min_power_demand_threshold}" },
+        { "label": "Both-ODUs cooling threshold (duo)", "unit": "W", "value": "{cooling_threshold_both_odus}" },
+        { "label": "Min cooling demand per ODU (upper/lower)", "unit": "W", "value": "{min_cooling_demand_odu_upper} / {min_cooling_demand_odu_lower}" },
+        { "label": "Max compressor freq at outlet-above-normal", "unit": "Hz", "value": "{maximum_compressor_frequency_heatpump_outlet_temperature_above_normal}" },
+        { "label": "COP hysteresis band", "unit": "%", "value": "{cop_hysteris_lower_percent} – {cop_hysteris_upper_percent}" },
+        { "label": "COP correction: return temp offset", "unit": "°C", "value": "{cop_correction_return_temperature_offset}" },
+        { "label": "Sticky-pump protection level (% duty or raw mod)", "unit": "—", "value": "{sticky_pump_protection_percentage|sticky_pump_protection_mod_level}" },
+        { "label": "Deaeration pump level (% duty or raw mod) / on / off", "unit": "—", "value": "{deaeration_pump_percentage|deaeration_pump_mod} / {deaeration_pump_on_time} s / {deaeration_pump_off_time} s" },
+        { "label": "HP test frequency — low / medium / medium-V2 (install params)", "unit": "Hz", "value": "{hpLowTestFrequency} / {hpMediumTestFrequency} / {hpMediumTestFrequencyV2}" },
+        { "label": "All-E DHW / CH pump feedforward duty", "unit": "%", "value": "{dhw_circulating_pump_feedforward_duty_cycle} / {central_heating_circulating_pump_feedforward_duty_cycle}", "files": ["src/all_electric/dhw_data_structures.hpp"] },
+        { "label": "Anti-legionella preferred start time", "unit": "—", "value": "{preferred_anti_legionella_start_time_hour}:00", "files": ["src/all_electric/dhw_data_structures.hpp"] }
+      ]
+    },
+    {
+      "id": "hc-safety",
+      "title": "5 · HeatCharger FW — refrigerant-cycle safety",
+      "repo": "heatcharger",
+      "files": ["include/quatt/safety_checks.h"],
+      "rows": [
+        { "label": "Suction pressure range", "unit": "barG", "value": "{SAFETY_SUCTION_MIN_PRESSURE} – {SAFETY_SUCTION_MAX_PRESSURE}" },
+        { "label": "Suction critical min pressure (max duration ms)", "unit": "barG", "value": "{SAFETY_SUCTION_CRITICAL_MIN_PRESSURE}" },
+        { "label": "Discharge pressure range", "unit": "barG", "value": "{SAFETY_DISCHARGE_MIN_PRESSURE} – {SAFETY_DISCHARGE_MAX_PRESSURE}" },
+        { "label": "Compressor discharge max temperature", "unit": "°C", "value": "{SAFETY_DISCHARGE_MAX_TEMPERATURE}" },
+        { "label": "Suction temperature range", "unit": "°C", "value": "{SAFETY_SUCTION_MIN_TEMPERATURE} – {SAFETY_SUCTION_MAX_TEMPERATURE}" },
+        { "label": "Max compression ratio", "unit": "—", "value": "{SAFETY_COMPRESSION_RATIO_MAX}" },
+        { "label": "Refrigerant min charge pressure", "unit": "barG", "value": "{SAFETY_REFRIGERANT_MIN_CHARGE_PRESSURE}" },
+        { "label": "Equalized-pressure max delta (start OK)", "unit": "bar", "value": "{SAFETY_EQUALIZED_PRESSURE_MAX_DELTA}" },
+        { "label": "Heating system (CH) min pressure", "unit": "barG", "value": "{SAFETY_HEATING_SYSTEM_MIN_PRESSURE}" },
+        { "label": "Freezing-risk inlet / outlet temperature", "unit": "°C", "value": "{SAFETY_FREEZING_RISK_INLET_TEMPERATURE} / {SAFETY_FREEZING_RISK_OUTLET_TEMPERATURE}" }
+      ]
+    },
+    {
+      "id": "hc-state",
+      "title": "6 · HeatCharger FW — state machine, superheat & EEV",
+      "repo": "heatcharger",
+      "files": ["include/quatt/state_machine.h"],
+      "rows": [
+        { "label": "Max heat battery temperature", "unit": "°C", "value": "{STATE_MACHINE_MAXIMUM_HEATBATTERY_TEMPERATURE}" },
+        { "label": "Max CH backup-heater inlet temperature", "unit": "°C", "value": "{STATE_MACHINE_MAXIMUM_CH_BACKUP_HEATER_INLET_TEMPERATURE}" },
+        { "label": "Superheat target (normal / during DHW flow)", "unit": "°C", "value": "{SETPOINT_DEGREES} / {DHW_FLOW_SUPERHEAT_SETPOINT}", "files": ["src/superheat.c"] },
+        { "label": "Minimum superheat (protection trigger)", "unit": "°C", "value": "{MINIMUM_SUPERHEAT} ({MINIMUM_SUPERHEAT_PROTECTION})", "files": ["src/superheat.c"] },
+        { "label": "Superheat-protection forced EEV opening", "unit": "%", "value": "≥ {MINIMUM_SUPERHEAT_PROTECTION_OPEN_RATIO}", "files": ["src/superheat.c"] },
+        { "label": "Minimum EEV open ratio", "unit": "%", "value": "{MINIMUM_EEV_OPEN_RATIO}", "files": ["src/superheat.c"] },
+        { "label": "EEV range / calibration", "unit": "steps", "value": "{EEV_NUM_STEPS} / {NUM_CALIBRATION_STEPS}", "files": ["include/quatt/eev.h", "src/eev.c"] },
+        { "label": "Min DHW flow rate for flow-mode (hysteresis ms)", "unit": "L/h", "value": "{MINIMUM_DHW_FLOW_RATE} ({DHW_FLOW_HYSTERESIS_MS})", "files": ["src/superheat.c"] }
+      ]
+    }
+  ]
+}

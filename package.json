@@ -4,5 +4,9 @@
   "version": "1.0.0",
   "dependencies": {
     "jose": "^6.1.2"
+  },
+  "scripts": {
+    "limits": "node tools/generate-limits.mjs",
+    "limits:test": "node tools/test-limits.mjs"
   }
 }
