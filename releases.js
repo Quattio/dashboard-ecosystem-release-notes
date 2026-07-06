@@ -3,13 +3,33 @@
    Newest release first. */
 
 window.SUMMARY = [
-  { n: "4",  l: "Release waves documented" },
-  { n: "2",  l: "Tickets in latest wave" },
-  { n: "1",  l: "Products in latest wave" },
-  { n: "1",  l: "Open follow-ups flagged" }
+  { n: "5",  l: "Release waves documented" },
+  { n: "45", l: "Tickets in latest wave" },
+  { n: "3",  l: "Products in latest wave" },
+  { n: "3",  l: "Open follow-ups flagged" }
 ];
 
 window.RELEASES = [
+  {
+    date: "2026-07-03",
+    title: "Quatt Ecosystem Release 03.07.2026",
+    badge: { cls: "beta", label: "beta" },
+    page: "releases/2026-07-03.html",
+    chips: [
+      { cls: "cic",   label: "CiC 4.9.0-beta.0" },
+      { cls: "cloud", label: "Cloud v2.41.1–v2.41.2" },
+      { cls: "fw",    label: "Controller 6.10.2" },
+      { cls: "fw",    label: "Thread FW 2.12.0" },
+      { cls: "fw",    label: "Chill CB FW 2.0.0" },
+      { cls: "fw",    label: "ODU FW 2.1" }
+    ],
+    stats: [
+      { b: "45", t: "tickets" },
+      { b: "ModemManager", t: "LTE stack rebuilt" },
+      { b: "MPC", t: "predictive-heating groundwork" },
+      { b: "beta", t: "pre-release (not fleet)" }
+    ]
+  },
   {
     date: "2026-06-30",
     title: "Quatt Ecosystem Release 30.06.2026",
