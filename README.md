@@ -21,17 +21,21 @@ extracted from `quatt_controller` (and `quatt-heatcharger-firmware`) at the rele
 Rows whose value changed vs the previous release's tag are highlighted, and symbols that no longer
 resolve are greyed out with an explicit "symbol not found" marker (useful drift signal for Signal/TCS).
 
-Generate (idempotent — safe to re-run on a page that already has the tab):
+Two ways to run (both idempotent — safe to re-run on a page that already has the tab):
+
+**MCP-driven (how the `/release-notes` skill runs it — no token):** the skill lists the needed
+source files with `node tools/generate-limits.mjs --list-files`, fetches them at the release's tags
+via the GitHub MCP into `/tmp/limits-src/<repoKey>/<ref>/<path>`, then runs:
 
 ```
-GITHUB_TOKEN=<token with read access to Quattio/quatt_controller> \
-node tools/generate-limits.mjs \
-  --page releases/2026-06-30.html \
-  --cic 4.8.1 \
-  --controller-tag 6.9.2 \
-  --prev-controller-tag 6.9.0 \
-  --heatcharger-ref main
+QUATT_LIMITS_SRC_DIR=/tmp/limits-src node tools/generate-limits.mjs \
+  --page releases/2026-06-30.html --cic 4.8.1 \
+  --controller-tag 6.9.2 --prev-controller-tag 6.9.0 \
+  --heatcharger-ref 1.2.2 --prev-heatcharger-ref 1.2.2
 ```
+
+**Standalone (human, outside MCP context):** set `GITHUB_TOKEN` (read access to the firmware repos)
+and omit `QUATT_LIMITS_SRC_DIR` — the script fetches raw files itself with the same arguments.
 
 The symbol → table-row mapping lives in `tools/limits-spec.json`; when firmware moves or renames a
 constant, update the spec (files, `scope` struct fallbacks, or `symA|symB` alternatives). Offline

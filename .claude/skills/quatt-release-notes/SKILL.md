@@ -288,19 +288,27 @@ This skill runs **inside a checkout of `github.com/Quattio/dashboard-ecosystem-r
 
 1. **`releases/YYYY-MM-DD.html`** — one self-contained page per release wave (date = CiC tag creation date). **Filename and branch use `YYYY-MM-DD`** to match the repo's existing `releases/` pages and the `releases.js` page paths; the human-facing H1 title still uses `DD.MM.YYYY` (dots) per Step 6. Structure: topbar + page-head + three tab panels (Customer / Internal / Engineering) + a filterable, sortable ticket table with the full per-product ticket data embedded as a JS array. Copy the structure of an existing page in `releases/` (e.g. `releases/2026-06-04.html`); relative paths are one level deep (`../styles.css`, `../index.html`). **The Customer tab is bilingual:** two `.lang-pane` divs (`#tier1-en`, `#tier1-nl`) behind an English/Nederlands pill toggle (persisted in `localStorage` as `qrn-tier1-lang`, default `en`). Write the Dutch translation per the glossary + locked terminology (ketel niet boiler; Chill/HeatBattery/HomeBattery/All-Electric blijven Engels; "buitenunit" for outdoor unit). Only Tier 1 is translated — Internal and Engineering tabs stay English.
 2. **`releases.js`** — prepend a new entry to `window.RELEASES` (date, title per the Step 6 title convention, badge `alpha|stable|hotfix`, `page` path, product chips with classes `cic|cloud|app|fw`, stats line) and refresh `window.SUMMARY` (releases in window, ticket count, product count, open follow-ups). `index.html` renders this manifest at load — it must NOT be edited per release.
-3. **Limits tab (auto-generated)** — after writing the page, inject the product limits / thresholds / targets tab (fourth tab next to Engineering) with the repo tool:
+3. **Limits tab (auto-generated)** — after writing the page, inject the product limits / thresholds / targets tab (fourth tab next to Engineering) with the repo tool. Source files are fetched **via the GitHub MCP** (same access path as Step 2 — no `GITHUB_TOKEN` needed):
+
+   a. List the source files the spec needs: `node tools/generate-limits.mjs --list-files` → lines of `<repoKey>\t<path>` (repoKey `controller` = `Quattio/quatt_controller`, `heatcharger` = `Quattio/quatt-heatcharger-firmware`).
+
+   b. Resolve four refs: this wave's controller tag and the previous wave's (from the Step 2 chips / previous `window.RELEASES` entry), plus the latest `quatt-heatcharger-firmware` tag (semver `1.2.2`-style, already in the Step 2 tag walk) at/before this wave's and the previous wave's CiC tag dates.
+
+   c. For each ref, fetch every listed file for that repoKey with `mcp__github__get_file_contents` and write it to `/tmp/limits-src/<repoKey>/<ref>/<path>`. A file missing at an old ref is fine — skip it; the generator renders those rows as "symbol not found".
+
+   d. Run the generator offline against that directory:
 
    ```
-   GITHUB_TOKEN=${GITHUB_TOKEN:-$(gh auth token)} node tools/generate-limits.mjs \
+   QUATT_LIMITS_SRC_DIR=/tmp/limits-src node tools/generate-limits.mjs \
      --page releases/YYYY-MM-DD.html \
      --cic <CiC version> \
-     --controller-tag <controller tag from this wave's chips> \
-     --prev-controller-tag <controller tag from the previous wave's chips> \
-     --heatcharger-ref <latest quatt-heatcharger-firmware tag at/before the CiC tag date> \
-     --prev-heatcharger-ref <same rule at the previous wave's CiC tag date>
+     --controller-tag <this wave's controller tag> \
+     --prev-controller-tag <previous wave's controller tag> \
+     --heatcharger-ref <this wave's HC tag> \
+     --prev-heatcharger-ref <previous wave's HC tag>
    ```
 
-   Controller tags come from the version chips resolved in Step 2 (current wave, and the previous entry in `window.RELEASES`). The script fetches firmware source at those tags, renders the limits tables, and highlights every value that changed vs the previous wave. It is idempotent — safe to re-run on a page that already has the tab. If the run reports "symbol not found" rows, a constant moved or was renamed in firmware: update `tools/limits-spec.json` (file paths, `scope` struct fallbacks, or `symA|symB` alternatives) in the same PR — do not hand-edit the generated HTML. HeatCharger firmware tags (semver: `1.2.2`, `1.1.0`, …) are already discovered by the Step 2 tag walk of `Quattio/quatt-heatcharger-firmware` — use the latest tag at or before the CiC tag date (fall back to `main` only if no tag resolves). Consider adding an `HC FW x.y.z` chip to the wave entry in `releases.js` when the HC tag changed since the previous wave. Commit the updated page in the same commit as the manifest.
+   The tab highlights every value that changed vs the previous wave and is idempotent — safe to re-run on a page that already has it. If the run reports "symbol not found" rows, a constant moved or was renamed in firmware: update `tools/limits-spec.json` (file paths, `scope` struct fallbacks, or `symA|symB` alternatives) in the same PR — do not hand-edit the generated HTML. Consider adding an `HC FW x.y.z` chip to the wave entry in `releases.js` when the HC tag changed since the previous wave. Commit the updated page in the same commit as the manifest. (A human running standalone outside the MCP context can instead set `GITHUB_TOKEN` and omit `QUATT_LIMITS_SRC_DIR` — the script then fetches raw files itself.)
 4. **Styling is locked to the `quatt-visual-branding` skill** (light default, Plus Jakarta Sans, category chip colours, pill buttons, green selected states). `styles.css` and `index.html` only change on intentional redesigns, not per release.
 
 **Publish (after user confirms, or automatically in a cloud routine): open a PR, do not push straight to `main`.** The output is customer-facing and a maintainer should review before it deploys. Create a branch, commit the new page + manifest, and open a PR; merging to `main` triggers the Cloudflare Pages deploy. Use the GitHub MCP (works without a local git remote):

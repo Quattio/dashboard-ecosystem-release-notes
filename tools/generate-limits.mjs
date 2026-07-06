@@ -35,7 +35,8 @@ function parseArgs(argv) {
   for (let i = 2; i < argv.length; i++) {
     const m = argv[i].match(/^--([\w-]+)$/);
     if (!m) fail(`Unexpected argument: ${argv[i]}`);
-    args[m[1]] = argv[++i];
+    if (argv[i + 1] === undefined || argv[i + 1].startsWith('--')) args[m[1]] = true;
+    else args[m[1]] = argv[++i];
   }
   return args;
 }
@@ -45,10 +46,29 @@ function fail(msg) {
 }
 
 const args = parseArgs(process.argv);
+const SPEC_PATH = args.spec ?? path.join(path.dirname(new URL(import.meta.url).pathname), 'limits-spec.json');
+
+// --list-files: print every source file the spec reads, as "<repoKey>\t<path>"
+// (repoKey = controller | heatcharger). Lets a caller (e.g. the release-notes
+// skill via the GitHub MCP) fetch the files itself into QUATT_LIMITS_SRC_DIR/
+// <repoKey>/<ref>/<path> and run this script fully offline, without any token.
+if ('list-files' in args || process.argv.includes('--list-files')) {
+  const spec = JSON.parse(fs.readFileSync(SPEC_PATH, 'utf8'));
+  const seen = new Set();
+  for (const section of spec.sections) {
+    const repo = section.repo ?? 'controller';
+    for (const row of section.rows) {
+      for (const f of row.files ?? section.files ?? []) seen.add(`${repo}\t${f}`);
+      if (row.args?.file) seen.add(`${repo}\t${row.args.file}`);
+    }
+  }
+  for (const line of [...seen].sort()) console.log(line);
+  process.exit(0);
+}
+
 for (const req of ['page', 'cic', 'controller-tag']) {
   if (!args[req]) fail(`--${req} is required`);
 }
-const SPEC_PATH = args.spec ?? path.join(path.dirname(new URL(import.meta.url).pathname), 'limits-spec.json');
 const HC_REF = args['heatcharger-ref'] ?? 'main';
 const PREV_CONTROLLER_TAG = args['prev-controller-tag'] ?? null;
 const PREV_HC_REF = args['prev-heatcharger-ref'] ?? HC_REF;
