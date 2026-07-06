@@ -41,7 +41,7 @@
   <div class="review-only"><div class="review-panel">
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview — hidden in production.</p>
-    <p class="none">New release notes — first published revision.</p>
+    <p>First published revision of the 4.9.0 wave. <b>This staging update</b> adds the Tier 2 <b>ZipStats production-enablement</b> callout (QPD-13788 + QPD-14293) that was missing from the initial push: compressed MQTT stats are being enabled in production with the 4.9.0 release — a rollout item with no commit in the 4.8.1 → 4.9.0 diff, so it is cited inline and not added to the ticket table. No other tier, paired version, or the ticket count changed.</p>
   </div></div>
 
   <div class="tabs" role="tablist">
@@ -122,7 +122,16 @@
     </div>
 
     <div class="theme-card">
-      <h3>2 · Predictive heating — controller groundwork (MPC) <span class="epic">Controls | Predictive Heating</span></h3>
+      <h3>2 · ZipStats — compressed MQTT stats going to production <span class="epic">CIC | Cloud Cost</span></h3>
+      <ul>
+        <li>The CiC now <b>gzips its stats JSON on-device</b> and publishes on the basic-ingest <code>cicZipStats</code> path <span class="tkey">(QPD-13788)</span>; the backend enables the <b>production <code>cicZipStats</code> IoT rule / Kafka action</b> via <code>kafkaConfig</code> <span class="tkey">(QPD-14293)</span></li>
+        <li>~90% less AWS IoT Core message cost (~60&nbsp;KB &rarr; ~6&nbsp;KB; 12 &rarr; 2 billed chunks per publish). The inner <code>{ "stats": [...] }</code> contract is unchanged, so downstream consumers are unaffected</li>
+      </ul>
+      <div class="impact"><b>Impact for ops:</b> this feature is being <b>enabled in production with this release</b>. The firmware shipped in an earlier (4.8.x) wave, so what is new here is the fleet / production enablement — hence it is cited inline rather than as a row in the ticket table (which is strictly this wave's commit diff). Watch the production <code>cicZipStats</code> rule and the Parquet / SQS consumer output during rollout.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3>3 · Predictive heating — controller groundwork (MPC) <span class="epic">Controls | Predictive Heating</span></h3>
       <ul>
         <li>Refactor the controller to be <b>MPC-ready</b> (Model Predictive Control interface) and add a mixed-integer quadratic-programming solver, including a binary switch for minimum heat-pump / ketel power <span class="tkey">(QPD-14137, QPD-14520)</span></li>
         <li>Add offset correction driven by a state estimator + MPC model, support both hard and soft constraints per output, and surface the latest solver status <span class="tkey">(QPD-14517, QPD-14649, QPD-14650)</span></li>
@@ -132,7 +141,7 @@
     </div>
 
     <div class="theme-card">
-      <h3>3 · Chill fault-flag reset — CS tooling <span class="epic">CHILL | Support Tooling</span></h3>
+      <h3>4 · Chill fault-flag reset — CS tooling <span class="epic">CHILL | Support Tooling</span></h3>
       <ul>
         <li>New <b>&ldquo;Reset fault flags&rdquo; button in the CS dashboard</b> for Chill devices, backed by the end-to-end path: the CiC now lets the backend reset a Chill's permanent fault, the backend exposes the reset command and a <b>GET of the Chill's active fault flags</b> for the confirmation pop-up <span class="tkey">(QPD-13799, QPD-14371, QPD-14645)</span></li>
       </ul>
@@ -140,7 +149,7 @@
     </div>
 
     <div class="theme-card">
-      <h3>4 · Commissioning &amp; diagnostics <span class="epic">Commissioning</span></h3>
+      <h3>5 · Commissioning &amp; diagnostics <span class="epic">Commissioning</span></h3>
       <ul>
         <li>All-Electric: faster preheat during the ODU test <span class="tkey">(QPD-14483)</span>; cooling test pump speed corrected to 5% <span class="tkey">(QPD-14626)</span>; tighter CH / DHW delta reference ranges for the charging-mode test <span class="tkey">(QPD-14324)</span></li>
         <li>Surface <b>live Chill faults as banners</b> on the Chill commissioning test screens <span class="tkey">(QPD-14625)</span>, and add the Quatt Network (Thread) state to system diagnostics <span class="tkey">(QPD-14555)</span></li>
@@ -152,7 +161,7 @@
     </div>
 
     <div class="theme-card">
-      <h3>5 · Fleet firmware-deployment reliability <span class="epic">CIC | Fleet Management</span></h3>
+      <h3>6 · Fleet firmware-deployment reliability <span class="epic">CIC | Fleet Management</span></h3>
       <ul>
         <li>Fix <b>Deploy-Latest CIC firmware doing nothing</b> for any CiC above the 3.0.0 commissioning floor (it compared versions incorrectly and treated up-to-date units as needing no work) <span class="tkey">(QPD-14579, Urgent)</span></li>
         <li>Fix a <b>fleet-wide 500</b> when creating a firmware deployment, caused by a malformed Mender artifact name breaking the semver compare <span class="tkey">(QPD-14785)</span>; normalize the artifact version before comparing <span class="tkey">(QPD-14785)</span></li>
@@ -163,7 +172,7 @@
     </div>
 
     <div class="theme-card">
-      <h3>6 · Environment sensors over Thread — data groundwork <span class="epic">Wireless Platform | Sensors</span></h3>
+      <h3>7 · Environment sensors over Thread — data groundwork <span class="epic">Wireless Platform | Sensors</span></h3>
       <ul>
         <li>The Quatt dongle now reads its on-board temperature / humidity sensor and reports it over CoAP <code>/sensors</code>; the CiC subscribes and publishes the readings <span class="tkey">(QPD-14458)</span></li>
       </ul>
@@ -171,7 +180,7 @@
     </div>
 
     <div class="theme-card">
-      <h3>7 · Field reliability &amp; bug fixes <span class="epic">Bug Fixing &amp; Fleet Diagnostics</span></h3>
+      <h3>8 · Field reliability &amp; bug fixes <span class="epic">Bug Fixing &amp; Fleet Diagnostics</span></h3>
       <ul>
         <li>Allow ICMPv6 ping over Thread (<code>wpan0</code>) through the firewall, restoring Thread certification test TC 9.2.x <span class="tkey">(QPD-14620, High)</span></li>
         <li>The routine that clears stale persisted files after an over-the-air update now runs reliably and reverts cleanly if the update is rolled back <span class="tkey">(QPD-14287)</span></li>
