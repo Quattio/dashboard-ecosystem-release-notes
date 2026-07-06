@@ -101,7 +101,7 @@ Per-product repositories:
 | Cloud (BE) | `Quattio/Quatt-cloud` | `v2.36.0`, `v2.36.1` (lowercase `v`) |
 | App | `Quattio/quatt-mobile-app` | `v1.55.0`, `v1.56.1` (lowercase `v`) |
 | Wireless Platform (Dongle / Thread FW) | `Quattio/quatt-dongle` | `2.8.0`, `2.9.0` (no `v`-prefix) |
-| Heatcharger | `Quattio/quatt-heatcharger-firmware` | varies |
+| Heatcharger | `Quattio/quatt-heatcharger-firmware` | `1.1.0`, `1.2.2` (plain semver, no `v`-prefix) |
 
 For **every** repo (CiC included — there is no special-cased local clone), enumerate tags and dates via the GitHub REST API:
 
