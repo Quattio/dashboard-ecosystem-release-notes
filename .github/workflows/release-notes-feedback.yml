@@ -9,8 +9,11 @@ name: Release notes — @claude feedback forwarder
 # IMPORTANT: issue_comment / PR-review-comment workflows always run from the
 # DEFAULT branch (main), so this only takes effect once merged to main.
 #
-# Requires repo secret CLAUDE_RELEASE_NOTES_TOKEN (the routine's API token —
-# same value used in cic-yocto-builder).
+# Requires repo secret CLAUDE_RELEASE_NOTES_TOKEN (the routine's API token) and
+# repo variable CLAUDE_TRIGGER_API (the routine's trigger ID, "trig_..."), both
+# under Settings → Secrets and variables → Actions — same values used in
+# cic-yocto-builder. The token and trigger ID are a pair: both come from the
+# same routine's trigger settings on claude.ai.
 
 on:
   issue_comment:
@@ -61,14 +64,15 @@ jobs:
         if: steps.pr.outputs.skip == 'false'
         env:
           TRIGGER_TOKEN: ${{ secrets.CLAUDE_RELEASE_NOTES_TOKEN }}
+          TRIGGER_ID: ${{ vars.CLAUDE_TRIGGER_API }}
           COMMENT: ${{ github.event.comment.body }}
           COMMENTER: ${{ github.event.comment.user.login }}
           PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
           PR_URL: ${{ steps.pr.outputs.pr_url }}
         run: |
           set -euo pipefail
-          if [[ -z "${TRIGGER_TOKEN:-}" ]]; then
-            echo "::warning::CLAUDE_RELEASE_NOTES_TOKEN not set — cannot forward feedback."
+          if [[ -z "${TRIGGER_TOKEN:-}" || -z "${TRIGGER_ID:-}" ]]; then
+            echo "::warning::CLAUDE_RELEASE_NOTES_TOKEN secret or CLAUDE_TRIGGER_API variable not set — cannot forward feedback."
             exit 0
           fi
 
@@ -81,7 +85,7 @@ jobs:
           payload="$(jq -nc --arg t "$text" '{text: $t}')"
 
           curl -sS -f -X POST \
-            "https://api.anthropic.com/v1/claude_code/routines/trig_01XTCWWFxTageYApSgHXDNry/fire" \
+            "https://api.anthropic.com/v1/claude_code/routines/${TRIGGER_ID}/fire" \
             -H "Authorization: Bearer ${TRIGGER_TOKEN}" \
             -H "anthropic-version: 2023-06-01" \
             -H "anthropic-beta: experimental-cc-routine-2026-04-01" \
