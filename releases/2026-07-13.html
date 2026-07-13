@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quatt Ecosystem Release 03.07.2026</title>
+<title>Quatt Ecosystem Release 13.07.2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,17 +17,17 @@
     <span class="logo"><span class="mark">Q</span> Quatt <span class="sys">Release notes</span></span>
     <nav>
       <a href="../index.html">Releases</a>
-      <a href="2026-07-03.html" class="active">Latest</a>
+      <a href="2026-07-13.html" class="active">Latest</a>
       <button class="theme-toggle" onclick="toggleTheme()">Dark mode</button>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
-  <div class="crumb"><a href="../index.html">Releases</a> / 03.07.2026</div>
+  <div class="crumb"><a href="../index.html">Releases</a> / 13.07.2026</div>
   <div class="page-head">
     <div class="kicker">CiC diffed 4.8.1 &rarr; 4.9.0 &middot; stable (GA)</div>
-    <h1>Quatt Ecosystem Release <span class="dim">03.07.2026</span></h1>
+    <h1>Quatt Ecosystem Release <span class="dim">13.07.2026</span></h1>
     <div class="sub">
       <span class="chip cic">CiC 4.9.0</span>
       <span class="chip cloud">Cloud v2.41.1&ndash;v2.41.2</span>
@@ -41,15 +41,17 @@
   <div class="review-only"><div class="review-panel">
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview — hidden in production.</p>
-    <p><b>Phase promotion: beta &rarr; stable (GA).</b> The 4.9.0 wave graduates from the 4.9.0-beta.0 pre-release to the general
-    <b>4.9.0</b> release for the fleet. The <b>4.9.0 GA tag points at the same commit</b> (<code>b70b8856</code>) as 4.9.0-beta.0
-    and 4.9.0-alpha.0 — this is the beta build promoted to GA, not a rebuild.</p>
+    <p><b>Headline date corrected to the GA public date: 03.07.2026 &rarr; 13.07.2026.</b> When this wave was first documented, the
+    <b>4.9.0 GA tag had no GitHub Release of its own</b>, so the beta.0 public date (2026-07-03) was used as the headline. The
+    <b>4.9.0 GA release has since been published</b> (<code>published_at</code> 2026-07-13), so per the published-date rule the
+    headline now uses the GA public date. The <b>build is unchanged</b>: 4.9.0 GA still points at the same commit
+    (<code>b70b8856</code>) as 4.9.0-beta.0 and 4.9.0-alpha.0 — this is the beta build promoted to GA, not a rebuild.</p>
     <ul>
-      <li><b>Badge / version:</b> <code>beta</code> &rarr; <code>stable (GA)</code>; CiC <code>4.9.0-beta.0</code> &rarr; <code>4.9.0</code> across the page and manifest.</li>
-      <li><b>Newly-added tickets since the previous tag (4.9.0-beta.0):</b> none — GitHub reports no commits between 4.9.0-beta.0 and 4.9.0, so the ticket table is unchanged (45 entries).</li>
-      <li><b>Paired-product versions:</b> unchanged — bundled Controller 6.10.2, Thread FW 2.12.0, Chill CB FW 2.0.0, ODU FW 2.1; paired Cloud v2.41.1&ndash;v2.41.2. No App build is paired.</li>
-      <li><b>Tier 1:</b> the beta &ldquo;not for the fleet&rdquo; notice is removed (now a general release); the two fixed sections are unchanged and still report no day-to-day heating change.</li>
-      <li><b>Tier 2:</b> scope callout updated from beta to GA. The <b>ZipStats production-enablement</b> callout (QPD-13788 + QPD-14293) and the <b>held cross-product</b> HeatCharger three-way-valve item (QPD-13979) are <b>carried forward</b> unchanged. Nothing reverted or removed.</li>
+      <li><b>Date / page:</b> title, breadcrumb and H1 move <code>03.07.2026</code> &rarr; <code>13.07.2026</code>; the page is renamed <code>releases/2026-07-03.html</code> &rarr; <code>releases/2026-07-13.html</code> (one page per wave) and the manifest date/path follow.</li>
+      <li><b>Badge / version:</b> unchanged — <code>stable (GA)</code>, CiC <code>4.9.0</code>. This wave was already promoted to GA in the previous revision.</li>
+      <li><b>Newly-added tickets since the previous revision:</b> none — GitHub reports no commits between 4.9.0-beta.0 and 4.9.0, so the ticket table is unchanged (45 entries).</li>
+      <li><b>Paired-product versions:</b> unchanged — bundled Controller 6.10.2, Thread FW 2.12.0, Chill CB FW 2.0.0, ODU FW 2.1; paired Cloud v2.41.1&ndash;v2.41.2. Re-checked the extended window (2026-07-03 &rarr; 2026-07-20): no new App or Cloud build shipped. No App build is paired (v1.58.0 predates the window).</li>
+      <li><b>Tier 2:</b> the scope callout's date-rationale line is updated — the GA tag now has its own published Release dated 2026-07-13. The <b>ZipStats production-enablement</b> callout (QPD-13788 + QPD-14293) and the <b>held cross-product</b> HeatCharger three-way-valve item (QPD-13979) are <b>carried forward</b> unchanged. Nothing reverted or removed.</li>
     </ul>
   </div></div>
 
@@ -108,8 +110,8 @@
       since the beta. Bundled firmware: <b>Controller 6.9.2 &rarr; 6.10.2</b>, <b>Thread / Wireless Platform FW 2.11.1 &rarr;
       2.12.0</b>; ODU FW 2.1 and Chill control-board FW 2.0.0 are unchanged. Paired backend: <b>Cloud v2.41.1 &rarr; v2.41.2</b>
       (v2.41.1 shipped 2026-06-30 and was deferred from the 4.8.1 hotfix to this wave). <b>No App build is paired</b> — v1.58.0
-      predates this window. Headline date 2026-07-03 = the date this build went public as 4.9.0-beta.0 (the 4.9.0 GA tag has no
-      separate GitHub Release object; it repackages the same build).
+      predates this window. Headline date 2026-07-13 = the 4.9.0 GA GitHub Release <code>published_at</code> date (the date the
+      general release went public); the same build first went public as 4.9.0-beta.0 on 2026-07-03.
       <br><b>Rolling out to the fleet:</b> two flagship items below (predictive-heating groundwork, the rebuilt LTE stack) are
       <b>shipped but not yet enabled</b> in production. Do not communicate them to customers or installers until they are enabled.
     </div>
