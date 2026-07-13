@@ -13,10 +13,10 @@ window.RELEASES = [
   {
     date: "2026-07-03",
     title: "Quatt Ecosystem Release 03.07.2026",
-    badge: { cls: "beta", label: "beta" },
+    badge: { cls: "stable", label: "stable (GA)" },
     page: "releases/2026-07-03.html",
     chips: [
-      { cls: "cic",   label: "CiC 4.9.0-beta.0" },
+      { cls: "cic",   label: "CiC 4.9.0" },
       { cls: "cloud", label: "Cloud v2.41.1–v2.41.2" },
       { cls: "fw",    label: "Controller 6.10.2" },
       { cls: "fw",    label: "Thread FW 2.12.0" },
@@ -27,7 +27,7 @@ window.RELEASES = [
       { b: "45", t: "tickets" },
       { b: "ModemManager", t: "LTE stack rebuilt" },
       { b: "MPC", t: "predictive-heating groundwork" },
-      { b: "beta", t: "pre-release (not fleet)" }
+      { b: "GA", t: "general release (fleet)" }
     ]
   },
   {
