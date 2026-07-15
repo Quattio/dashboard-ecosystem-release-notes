@@ -4,7 +4,7 @@
 
 window.SUMMARY = [
   { n: "6",  l: "Release waves documented" },
-  { n: "51", l: "Tickets in latest wave" },
+  { n: "46", l: "Tickets in latest wave" },
   { n: "3",  l: "Products in latest wave" },
   { n: "2",  l: "Open follow-ups flagged" }
 ];
@@ -25,8 +25,8 @@ window.RELEASES = [
       { cls: "fw",  label: "ODU FW 2.1" }
     ],
     stats: [
-      { b: "51", t: "tickets" },
-      { b: "Night hours", t: "custom quiet window (app)" },
+      { b: "46", t: "tickets" },
+      { b: "3-way valve", t: "All-E commissioning check" },
       { b: "HeatCharger 1.3.0", t: "All-E field reliability" },
       { b: "alpha", t: "internal — not on fleet" }
     ]

@@ -43,6 +43,7 @@
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview — hidden in production.</p>
     <p class="none">New release notes — first published revision.</p>
+    <p class="sub"><b>Revision update (reviewer feedback, PR #20):</b> Custom night hours has been postponed to app v1.60.0 and removed from this release across all tiers — the customer bullet (EN + NL), the Tier 2 "Custom night hours" section (remaining sections renumbered), and 5 engineering rows (QPD-14789, QPD-14813, QPD-15079, QPD-15081, QPD-14801). Ticket count 51 → 46. Paired app stays v1.59.0.</p>
   </div></div>
 
   <div class="tabs" role="tablist">
@@ -67,7 +68,7 @@
       <div class="theme-card">
         <h3>Heating performance and reliability</h3>
         <ul>
-          <li>You can now set your own night-time hours in the Quatt app. The night-time window — which keeps your Quatt running quietly at night, and on All-Electric systems also sets when it charges — now has its own <b>Night hours</b> screen under My House, so you can choose the start and end times that suit your home.</li>
+          <li>This app update is focused on maintenance and reliability. Everyday heating and comfort behaviour is unchanged in this release.</li>
         </ul>
       </div>
       <div class="theme-card">
@@ -88,7 +89,7 @@
       <div class="theme-card">
         <h3>Verwarmingsprestaties en betrouwbaarheid</h3>
         <ul>
-          <li>Je kunt nu je eigen nachturen instellen in de Quatt app. Het nachtvenster — dat je Quatt &rsquo;s nachts stil laat draaien en op All-Electric systemen ook bepaalt wanneer er wordt geladen — heeft nu een eigen scherm <b>Nachturen</b> onder Mijn Huis, zodat je zelf de begin- en eindtijd kiest die bij je huis passen.</li>
+          <li>Deze app-update draait om onderhoud en betrouwbaarheid. Het dagelijkse verwarmings- en comfortgedrag verandert niet in deze release.</li>
         </ul>
       </div>
       <div class="theme-card">
@@ -113,23 +114,14 @@
       unchanged. Paired app: <b>App v1.59.0</b> (shipped 2026-07-14). <b>No new backend build is paired</b> — the last Cloud
       release (v2.41.2, 2026-07-01) belongs to the 4.9.0 wave. Headline date 2026-07-15 = the CiC 4.10.0-alpha.0 tag commit
       date (this alpha has no GitHub Release object yet).
-      <br><b>Enablement sweep:</b> no fleet feature-flag flips or backend rollouts go live with this wave — the CiC build is an
-      alpha and is not on the fleet. The one customer-facing enablement is app-side only (custom Night hours, below), whose
-      backend already shipped in the 4.9.0 wave.
+      <br><b>Enablement sweep:</b> no fleet feature-flag flips or backend rollouts go live with this wave, and no app-side
+      feature enablement is paired — the CiC build is an alpha and is not on the fleet. (Custom night hours has been
+      <b>postponed to app v1.60.0</b> and is no longer part of this release.)
       <br><b>Do not communicate the alpha CiC firmware behaviour to customers or installers.</b>
     </div>
 
     <div class="theme-card">
-      <h3>1 · Custom night hours — now a dedicated app screen <span class="epic">App | Comfort &amp; Settings</span></h3>
-      <ul>
-        <li>The Quatt app gains a dedicated <b>Night hours</b> screen under My House (moved out of the Sound slider), with an animated dial to set the start and end of the night-time window <span class="tkey">(QPD-14789, QPD-15081, QPD-14813)</span></li>
-        <li>All-Electric settings now point users to the same Night hours control for changing the times <span class="tkey">(QPD-15079)</span>; dial spacing / readout alignment polished <span class="tkey">(QPD-14801)</span></li>
-      </ul>
-      <div class="impact"><b>Impact for CS:</b> customers on app v1.59.0 can now set their own quiet night-time window (which on All-Electric systems also drives the night-charging window). The backend for this shipped in the 4.9.0 wave, so the feature works today for any customer with the app update — it does not depend on the alpha CiC firmware.</div>
-    </div>
-
-    <div class="theme-card">
-      <h3>2 · HeatCharger firmware 1.3.0 — All-Electric field reliability &amp; safety <span class="epic">HeatCharger | Firmware</span></h3>
+      <h3>1 · HeatCharger firmware 1.3.0 — All-Electric field reliability &amp; safety <span class="epic">HeatCharger | Firmware</span></h3>
       <ul>
         <li>Enforce a <b>2-minute minimum compressor on-time</b> and improve central-heating pressure-noise handling (widened to an 80-sample filter) <span class="tkey">(QPD-13439, QPD-13867)</span></li>
         <li>Read a <b>sub-zero (freezing) suction temperature as a valid, signed value</b> so the suction-unsafe condition is no longer missed — spanning the HeatCharger firmware, the message spec and the CiC apps <span class="tkey">(QPD-11712, High)</span></li>
@@ -140,7 +132,7 @@
     </div>
 
     <div class="theme-card">
-      <h3>3 · Three-way-valve commissioning check <span class="epic">Commissioning</span></h3>
+      <h3>2 · Three-way-valve commissioning check <span class="epic">Commissioning</span></h3>
       <ul>
         <li>New app <b>3-way-valve position check</b> test screen, replacing the old Boost test <span class="tkey">(QPD-14403, QPD-14061, High)</span></li>
         <li>The CiC maps the <code>three_way_valve_heatcharger</code> commissioning mode and reports it in the stats stream <span class="tkey">(QPD-14061)</span></li>
@@ -149,7 +141,7 @@
     </div>
 
     <div class="theme-card">
-      <h3>4 · Commissioning UX <span class="epic">App | Commissioning</span></h3>
+      <h3>3 · Commissioning UX <span class="epic">App | Commissioning</span></h3>
       <ul>
         <li>The app now <b>surfaces a cloud-initiated CIC firmware deployment during commissioning</b> (a &ldquo;preparing&rdquo; state plus a failed-state retry) <span class="tkey">(QPD-15005, Urgent)</span></li>
         <li>The Cancel-commissioning button now <b>warns the installer that cancelling leaves the system non-working</b> <span class="tkey">(QPD-14616, Urgent)</span></li>
@@ -160,7 +152,7 @@
     </div>
 
     <div class="theme-card">
-      <h3>5 · Predictive heating (MPC) — controller groundwork <span class="epic">Controls | Predictive Heating</span></h3>
+      <h3>4 · Predictive heating (MPC) — controller groundwork <span class="epic">Controls | Predictive Heating</span></h3>
       <ul>
         <li>Add a <b>terminal cost</b> to the predictive-heating MPC (Model Predictive Control) <span class="tkey">(QPD-15003)</span></li>
         <li>Complete <b>boost-mode exit-reason and recoverable-condition reporting</b> in the controller <span class="tkey">(QPD-15024)</span></li>
@@ -169,7 +161,7 @@
     </div>
 
     <div class="theme-card">
-      <h3>6 · Environment sensors over Thread — data groundwork <span class="epic">Wireless Platform | Sensors</span></h3>
+      <h3>5 · Environment sensors over Thread — data groundwork <span class="epic">Wireless Platform | Sensors</span></h3>
       <ul>
         <li>The Quatt dongle now exposes its <b>temperature / humidity readout over the Spinel vendor property in RCP mode</b>, and the CiC reads it <span class="tkey">(QPD-14888)</span></li>
       </ul>
@@ -177,7 +169,7 @@
     </div>
 
     <div class="theme-card">
-      <h3>7 · Shipped but DISABLED — do not communicate to customers or installers <span class="epic">App | All-Electric &amp; Insights</span></h3>
+      <h3>6 · Shipped but DISABLED — do not communicate to customers or installers <span class="epic">App | All-Electric &amp; Insights</span></h3>
       <ul>
         <li><b>Insights V2</b> — the Insights charts are rebuilt on victory-native XL and the legacy cards/banner ported to modern components, all <b>behind the <code>insights_v2</code> feature flag</b> (off for customers). Includes new touch tooltips and unified chart gestures <span class="tkey">(QPD-14773, QPD-14881, QPD-14880, QPD-14945, QPD-14975)</span></li>
         <li><b>All-Electric Boost Mode</b> continues to evolve behind its <code>all_e_boost_mode</code> flag: the never-emitted DEGRADED status is removed (app + message spec) and the app reads live All-E fields from the boost response instead of polling the CiC <span class="tkey">(QPD-14892, QPD-14299, QPD-14223)</span></li>
@@ -186,7 +178,7 @@
     </div>
 
     <div class="theme-card">
-      <h3>8 · App &amp; CiC maintenance <span class="epic">Maintenance</span></h3>
+      <h3>7 · App &amp; CiC maintenance <span class="epic">Maintenance</span></h3>
       <ul>
         <li>App: explicit splash-driven startup / auth state machine (AppPhase) <span class="tkey">(QPD-14408)</span>; migrate the legacy <code>legacy/api</code>, MobX store, app-compatibility check and RegistrationInstallerId screen to modern patterns <span class="tkey">(QPD-14769, QPD-14770, QPD-14771, QPD-14772, QPD-15004)</span>; victory-native XL bump <span class="tkey">(QPD-14703)</span></li>
         <li>Fixes: the app measurement-locale bug <span class="tkey">(QPD-14955)</span> and the &ldquo;Fair&rdquo; signal-strength mistranslation in NL/DE/SK <span class="tkey">(QPD-14778)</span> (both customer-visible — see the Customer tab)</li>
@@ -304,8 +296,6 @@ const T = [
  ["App",14771,"Task","Medium","","Migrate the unauthenticated app-compatibility check off legacy/api"],
  ["App",14772,"Task","Medium","","Migrate RegistrationInstallerId to a modern functional screen"],
  ["App",14773,"Task","Medium","","Insights V2: rebuild charts on victory-native XL behind the insights_v2 flag"],
- ["App",14789,"Task","Medium","","Custom night times MVP (Night hours)"],
- ["App",14813,"Task","Medium","","Night window dial: animate thumbs on drag/reset + fix reset not discarding edits"],
  ["App",14880,"Task","Medium","","Insights V2: dissolve the shared presenter into suspense queries"],
  ["App",14881,"Task","Medium","","Insights V2: port legacy cards (Savings, AverageCOP, HeatDistributionBar) + banner"],
  ["App",14892,"Task","Medium","","Remove never-emitted DEGRADED status from All-E Boost Mode (app)"],
@@ -314,13 +304,10 @@ const T = [
  ["App",14975,"Task","Medium","","Insights charts: touch tooltips for advanced insights + unified press gestures"],
  ["App",15004,"Task","Medium","","Migrate DevtoolsStack to Static API and clean up navigation docs/types"],
  ["App",15005,"Task","Urgent","","Surface cloud-initiated CIC firmware deployment during commissioning (preparing + retry)"],
- ["App",15079,"Task","Medium","","All-Electric settings: copy pointing to the SoundSlider Night hours"],
- ["App",15081,"Task","Medium","","Move Night hours out of SoundSlider into its own screen under My House"],
  ["App",14381,"Task","Medium","","E2E app automation + clean slate (Hybrid Beta flow)"],
  ["App",15007,"Task","Medium","","Remove the legacy (non-beta) hybrid commissioning E2E test flow"],
  ["App",14766,"Task","Medium","","E2E app automation: target the Virtual Rig"],
  ["App",14778,"Bug","Medium","","Signal strength 'Fair' mistranslated in NL/DE/SK"],
- ["App",14801,"Bug","Medium","","Custom night window dial: Start/End times sit too tight to the circle"],
  ["App",14955,"Bug","Medium","","Measurement values follow device locale while currencies follow app language"],
  ["App",15019,"Bug","Medium","","Hybrid-beta E2E commissioning always searches the 8kW address, regardless of target CiC"],
  ["Wireless",14888,"Task","Medium","","Dongle FW 2.13.0: expose temp/humidity over the Spinel vendor property in RCP mode"],
