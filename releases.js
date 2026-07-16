@@ -3,13 +3,32 @@
    Newest release first. */
 
 window.SUMMARY = [
-  { n: "6",  l: "Release waves documented" },
-  { n: "47", l: "Tickets in latest wave" },
-  { n: "3",  l: "Products in latest wave" },
+  { n: "7",  l: "Release waves documented" },
+  { n: "1",  l: "Tickets in latest wave" },
+  { n: "1",  l: "Products in latest wave" },
   { n: "2",  l: "Open follow-ups flagged" }
 ];
 
 window.RELEASES = [
+  {
+    date: "2026-07-16",
+    title: "Quatt Ecosystem Release 16.07.2026",
+    badge: { cls: "hotfix", label: "hotfix" },
+    page: "releases/2026-07-16-4.9.1.html",
+    chips: [
+      { cls: "cic", label: "CiC 4.9.1" },
+      { cls: "fw",  label: "Controller 6.10.3" },
+      { cls: "fw",  label: "Thread FW 2.12.0" },
+      { cls: "fw",  label: "Chill CB FW 2.0.0" },
+      { cls: "fw",  label: "ODU FW 2.1" }
+    ],
+    stats: [
+      { b: "1", t: "ticket" },
+      { b: "1", t: "High-priority fix" },
+      { b: "QPD-15262", t: "Chill cooling regression fix" },
+      { b: "hotfix", t: "stable — to the fleet" }
+    ]
+  },
   {
     date: "2026-07-16",
     title: "Quatt Ecosystem Release 16.07.2026",
