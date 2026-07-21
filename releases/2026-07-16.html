@@ -83,7 +83,6 @@
       <div class="theme-card">
         <h3>Bug fixes and maintenance</h3>
         <ul>
-          <li>Fixed the Wi-Fi signal-strength label showing the wrong word for &ldquo;Fair&rdquo; in Dutch, German and Slovak.</li>
           <li>Measured values such as temperatures now follow your app&rsquo;s language setting consistently.</li>
           <li>General reliability and maintenance improvements.</li>
         </ul>
@@ -104,7 +103,6 @@
       <div class="theme-card">
         <h3>Foutoplossingen en onderhoud</h3>
         <ul>
-          <li>Het Wi-Fi-signaalsterktelabel toonde het verkeerde woord voor &ldquo;Redelijk&rdquo; in het Nederlands, Duits en Slowaaks; dit is opgelost.</li>
           <li>Gemeten waarden zoals temperaturen volgen nu consistent de taalinstelling van je app.</li>
           <li>Algemene verbeteringen op het gebied van betrouwbaarheid en onderhoud.</li>
         </ul>
@@ -206,7 +204,7 @@
       <h3>8 · App &amp; CiC maintenance <span class="epic">Maintenance</span></h3>
       <ul>
         <li>App: explicit splash-driven startup / auth state machine (AppPhase) <span class="tkey">(QPD-14408)</span>; migrate the legacy <code>legacy/api</code>, MobX store, app-compatibility check and RegistrationInstallerId screen to modern patterns <span class="tkey">(QPD-14769, QPD-14770, QPD-14771, QPD-14772, QPD-15004)</span>; victory-native XL bump <span class="tkey">(QPD-14703)</span></li>
-        <li>Fixes: the app measurement-locale bug <span class="tkey">(QPD-14955)</span> and the &ldquo;Fair&rdquo; signal-strength mistranslation in NL/DE/SK <span class="tkey">(QPD-14778)</span> (both customer-visible — see the Customer tab)</li>
+        <li>Fixes: the app measurement-locale bug <span class="tkey">(QPD-14955)</span> (customer-visible — see the Customer tab) and the &ldquo;Fair&rdquo; signal-strength mistranslation in NL/DE/SK, which appears in the installer app and is not customer-facing <span class="tkey">(QPD-14778)</span></li>
         <li>CiC: fix <code>forget_wifi</code> returning &ldquo;bad&rdquo; for a just-connected SSID (libnm connection cache not drained before lookup) <span class="tkey">(QPD-14979)</span>; cross-compile all C++ apps against the Yocto SDK dev container <span class="tkey">(QPD-15050)</span></li>
         <li>Message spec: <b>Chill dew-point correction groundwork</b> — Redis keys added ahead of the controller logic, which is <b>not yet in this wave</b>, so dew-point protection is not yet functional <span class="tkey">(QPD-14756)</span></li>
       </ul>
