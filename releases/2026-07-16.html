@@ -552,7 +552,17 @@ function render() {
     (state.pr === '*' || (state.pr === 'Urgent' ? pr === 'Urgent' : (pr === 'Urgent' || pr === 'High'))) &&
     (!state.q || d.toLowerCase().includes(state.q) || ('qpd-' + k).includes(state.q))
   );
-  if (state.sortCol) rows = rows.slice().sort(cmp);
+  if (state.sortCol) {
+    rows = rows.slice().sort(cmp);
+  } else {
+    // Default: group by product, with products ordered by ticket count ASCENDING
+    // (stable sort keeps each product's rows contiguous and in curated order),
+    // so a small group (e.g. a single Thread ticket) sits at the top rather than
+    // buried at the bottom. Counts reflect the currently-filtered rows.
+    const pc = {};
+    rows.forEach(r => { pc[r[0]] = (pc[r[0]] || 0) + 1; });
+    rows = rows.slice().sort((a, b) => pc[a[0]] - pc[b[0]]);
+  }
   document.getElementById('count').textContent =
     rows.length + ' of ' + T.length + ' ticket entries (cross-product duplicates listed per product)';
   document.getElementById('rows').innerHTML = rows.map(([p, k, ty, pr, st, d]) => {
