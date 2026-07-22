@@ -609,12 +609,3 @@ html[data-env="staging"] .review-only { display: block; }
 .review-panel li { margin: 5px 0; font-size: 14px; line-height: 155%; }
 .review-panel li::marker { color: var(--color-orange); }
 .review-panel .none { color: var(--text-secondary); font-style: italic; }
-
-/* Optional per-row "new this revision" highlight in the engineering table. */
-html[data-env="staging"] table.tickets tr.new-row { background: var(--bg-danger-light); }
-.new-tag { display: none; }
-html[data-env="staging"] .new-tag {
-  display: inline;
-  font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-  color: var(--color-orange); margin-left: 8px;
-}
