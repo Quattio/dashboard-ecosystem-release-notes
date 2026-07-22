@@ -421,6 +421,38 @@ a.release-card:hover {
 .callout-warn b { color: var(--color-red); }
 :root[data-theme="dark"] .callout-warn b { color: #ff9d8a; }
 
+/* ---- epic-grouped internal tab (restructure test) ---- */
+.theme-card h3 a { color: inherit; text-decoration: none; border-bottom: 2px solid var(--color-orange); }
+.theme-card h3 a:hover { color: var(--color-orange); }
+.epic-desc {
+  margin: 0 0 14px;
+  font-size: 14.5px;
+  line-height: 165%;
+  color: var(--text-secondary);
+  max-width: 84ch;
+}
+/* per-ticket owning-team badge (Jira Team field) */
+.team {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: var(--card-soft);
+  color: var(--text-secondary);
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+/* scope banner — more breathing room + neutral structural labels */
+.scope-banner { padding: 22px 26px; }
+.scope-banner p { margin: 0 0 16px; }
+.scope-banner p:last-child { margin-bottom: 0; }
+.scope-banner .lead { display: block; margin-bottom: 3px; font-weight: 600; color: var(--text); }
+.scope-banner ul { margin: 6px 0 16px; padding-left: 20px; }
+.scope-banner li { margin: 7px 0; }
+.scope-banner li::marker { color: var(--color-orange); }
+
 /* ============ ENGINEERING: filters ============ */
 .filters {
   display: flex;
