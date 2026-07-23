@@ -2,7 +2,7 @@
 
 **Repo:** `Quattio/dashboard-ecosystem-release-notes` · **Live:** https://dashboard-ecosystem-release-notes.pages.dev (Google OAuth, quatt.io only)
 
-Static, manifest-driven dashboard for Quatt ecosystem release notes (CiC + Cloud + App + Wireless Platform). One self-contained page per release wave, three audience tiers (Customer EN/NL, Internal, Engineering), styled per the `quatt-visual-branding` design tokens.
+Static, manifest-driven dashboard for Quatt ecosystem release notes (CiC + Cloud + App + Thread/Wireless Platform). One self-contained page per release wave, three audience tiers (Customer EN/NL, Internal, Engineering), styled per the `quatt-visual-branding` design tokens. The **Internal and Engineering tiers group tickets by their Jira parent epic**; the Internal tier tags each ticket with a colour-coded owning-**Team** pill, and the Engineering table colour-codes each epic group (`releases/2026-07-16-epic-grouping-test.html` is the current-format template).
 
 ## Structure
 

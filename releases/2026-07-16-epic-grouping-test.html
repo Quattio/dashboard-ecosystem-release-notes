@@ -9,49 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css?v=3">
 <script src="../env-banner.js"></script>
-<style>
-/* ===== Prototype v2 — additional visual styles (self-contained) ===== */
-
-/* --- Engineering: epic-grouped ticket table --- */
-.epic-c0 { --ec:#F76622; } .epic-c1 { --ec:#1A7A6B; } .epic-c2 { --ec:#39636B; }
-.epic-c3 { --ec:#86594E; } .epic-c4 { --ec:#7A5AB0; }
-:root[data-theme="dark"] .epic-c0{--ec:#ff8a4d;} :root[data-theme="dark"] .epic-c1{--ec:#4fb89f;}
-:root[data-theme="dark"] .epic-c2{--ec:#6fa6b0;} :root[data-theme="dark"] .epic-c3{--ec:#c79a86;}
-:root[data-theme="dark"] .epic-c4{--ec:#b9a3e0;}
-table.tickets tr.epic-row td {
-  background: color-mix(in srgb, var(--ec, var(--line-strong)) 12%, var(--card));
-  border-top: 2px solid var(--line-strong);
-  border-left: 4px solid var(--ec, var(--line-strong));
-  padding: 13px 18px; font-weight: 600; font-size: 13px; letter-spacing: -0.01em; }
-table.tickets tr.epic-row:first-child td { border-top: none; }
-table.tickets tr.epic-row td a { color: var(--ec); text-decoration: none; border-bottom: 2px solid var(--ec); }
-table.tickets tr.epic-row td a:hover { color: var(--color-orange); border-bottom-color: var(--color-orange); }
-table.tickets tr.epic-row .ecount { margin-left: 10px; font-weight: 400; font-size: 12px; color: var(--text-tertiary); }
-table.tickets tr.tk td.key { border-left: 4px solid var(--ec, transparent); }
-
-/* --- Internal: merged Technical-Debt group with sub-panels --- */
-.tech-debt-group .group-title { margin: 0 0 18px; }
-.subcard { background: var(--card-soft); border: 1px solid var(--line);
-  border-radius: var(--radius-input); padding: 20px 24px; margin-top: 14px; }
-.subcard:first-of-type { margin-top: 0; }
-.subcard h4 { margin: 0 0 12px; font-size: 17px; font-weight: 600;
-  line-height: 130%; letter-spacing: -0.01em; }
-.subcard h4 a { color: inherit; text-decoration: none; border-bottom: 2px solid var(--color-orange); }
-.subcard h4 a:hover { color: var(--color-orange); }
-.subcard code { background: var(--card); }
-.subcard > :last-child { margin-bottom: 0; }
-
-/* --- Internal: colour-coded per-ticket Team bubbles --- */
-.team { font-weight: 600; }
-.team-app      { background: var(--catgreen-light); color: var(--catgreen-dark); }
-.team-cloud    { background: var(--blue-light);      color: var(--blue-dark); }
-.team-embedded { background: var(--copper-light);    color: var(--copper-dark); }
-.team-control  { background: #FBE3D6; color: #B8461A; }
-.team-swi      { background: #E7E9F5; color: #4A4E86; }
-.team-none     { background: var(--card-soft); color: var(--text-tertiary); }
-:root[data-theme="dark"] .team-control { background: #4a2a1c; color: #ffb08c; }
-:root[data-theme="dark"] .team-swi     { background: #2c2e46; color: #b9bdf0; }
-</style>
 </head>
 <body>
 
