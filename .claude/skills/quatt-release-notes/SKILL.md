@@ -8,7 +8,7 @@ description: >
   versions by time-window match against the previous CiC release, queries Jira for every Fix Version's
   tickets, and writes three markdown files: `release-notes-public.md` (customer-facing, in-app),
   `release-notes-internal.md` (ops / installer support / management), `release-notes-engineering.md`
-  (per-product flat ticket index with Jira links). Distinct from the `release-auditor` skill — that
+  (ticket index grouped by Jira parent epic, with Jira links). Distinct from the `release-auditor` skill — that
   one verifies traceability, this one writes the customer-, ops-, and engineering-facing changelogs.
   Distinct from `quatt-sprint-readout` — sprint readouts cover a sprint window across teams; release
   notes cover a release version across products.
@@ -239,27 +239,33 @@ If the path is gated off → it is **shipped but disabled** → route to Tier 2 
 - A separate "Internal / tech-debt highlights" rollup at the bottom for SDK upgrades, controller release management, and similar.
 
 **Tier 3 (engineering) — INCLUDE everything:**
-- Flat ticket index, grouped **by product** (not by epic).
-- Two sub-sections per product: **Tasks** and **Bugs**. Sort by issuetype, then key.
-- Each item: `[QPD-XXXXX](https://quatt-team.atlassian.net/browse/QPD-XXXXX) — <summary>` with priority annotation for High/Urgent.
-- Header row per product linking to the Jira Fix Version filter URL.
-- Note cross-product duplicates at the bottom (e.g. "QPD-XXXXX appears in both App and Cloud").
+- Ticket index **grouped by Jira parent Epic** (not by product), rendered as a filterable/sortable table. Each epic is a coloured header row (linking to the Jira epic) showing its ticket count, followed by that epic's rows; assign each epic group a rotating colour class `epic-c0`..`epic-c4` (cycle for a 6th+ epic).
+- **Keep the Product column and the Product filter** — product is shown per row and still filterable; only the *grouping* changed from product to epic.
+- Tickets with **no parent epic** collect under a trailing "No parent Epic" group.
+- Each row: QPD key (linked), Product chip, Type badge, Priority, Summary.
+- **A column-header sort flattens the table** (clears the epic grouping) — this is expected behaviour, not a bug.
+- **Product naming:** the wireless/dongle group is labelled **Thread** (`quatt-dongle` / Thread FW); **HeatCharger firmware** (`quatt-heatcharger-firmware`) rows are folded into the **CiC** product.
+- **No "new since last revision" highlight** — the whole release is shown as new; the old `isNew`/`new-row`/`new-tag` mechanism is removed.
+- Note cross-product duplicates in the footer (e.g. "QPD-XXXXX appears in both App and Cloud").
 - **Annotate flag-gated tickets.** Engineering detail can be richer than the other tiers, but where a shipped ticket's runtime path is gated off, mark it explicitly — e.g. `(shipped, gated off behind \`<flag>\`)` on the row or in the footer — so a gated feature is never mistaken for a live one when read at the engineering level.
-- Mention the `release-auditor` skill at the top for traceability audits.
+- Mention the `release-auditor` skill for traceability audits.
 
-### Step 5 — Group Tier 2 narratively
+### Step 5 — Group Tier 2 by Jira parent Epic
 
-Tier 2 is the **most editorial** tier. Group by feature theme, not by product. Themes recur across Quatt releases:
+Tier 2 is grouped by each ticket's **Jira parent Epic** (not by feature theme, not by product). One card per epic, ordered by ticket count descending (largest first), with a trailing **"No parent Epic"** fallback card for tickets Jira leaves unparented.
 
-- **Major releases for installers and operations** — flagship items (e.g. "Hybrid commissioning GA", "Multi-Chill support shipped", "ODU OTA flow advances").
-- **Commissioning UX changes** — installer-visible app changes.
-- **Networking and connectivity** — Thread, dongle, OpenThread, HDLC, observers.
-- **Field reliability and customer-impacting bug fixes** — anti-legionella, flow sensors, anti-freeze, watchdog, insights pipeline.
-- **Resilience / Duo installations** — ADR-tracked work like ADR0041.
-- **App-side bug fixes and maintenance** — ESLint upgrades, energyOS items.
-- **Internal / tech-debt highlights** — controller release management, dashboard versions, cleanup tasks.
+Each epic card contains:
+- **Clickable title** — the *whole* epic title is the link to the Jira epic (no `QPD-XXX ·` prefix in front of it), followed by a ticket-count chip.
+- **Short description** — 1–3 sentences synthesised from the **epic's own Jira description (high weight)** plus its **child tickets shipped in this wave (medium weight)**. Fetch the epic description via a per-epic Jira lookup (the epic key is each ticket's `parent`).
+- **Bullets** citing the epic's tickets. After each QPD key, show the ticket's **owning Team** as a colour-coded pill. **Do not** add a priority (High/Urgent) tag next to the pill — it clutters; priority lives in Tier 3.
+- **Impact callout** — `> **Impact for <ops|CS|installers>:** ...` per epic.
+- **Shipped-but-disabled callout** inside the owning epic when a flag-gated feature lives there (see Step 4) — the "do not communicate" warning sits in the epic that owns the work, not in a separate section.
 
-Within each theme, list 3–8 bullets with QPD keys in parentheses. Add a `> **Impact for <ops|CS|commissioning>:**` callout below the flagship items.
+**Team field.** The owning team is the Jira **Team** field `customfield_10001` (use `.name`). Map to a colour class: `App`→`team-app`, `Cloud / Backend`→`team-cloud`, `Embedded Systems`→`team-embedded`, `Systems Control`→`team-control`, `SW&I`→`team-swi`, unset→`team-none` (label "no team set"). Note `SW&amp;I` renders as textContent `SW&I`.
+
+**Merge technical-debt epics.** Epics that are generic technical-debt buckets (e.g. `SW&I Technical Debt`, `26.Q1 Embedded Technical Debt`, `Technical Debt and Continuous Improvement`) are combined into a single **"Technical Debt"** parent card (`.tech-debt-group`) with one `.subcard` sub-panel per epic — each sub-panel keeps its own clickable title, count chip, description, bullets and impact box. Place the merged card where the largest of the merged epics would otherwise sit.
+
+**Scope banner.** Above the cards, a `.scope-banner` gives the version list, wave phase, and an "Enablement sweep" bullet list of what actually goes live. Space it for readability (labelled `.lead` paragraphs + a bulleted sweep), not one dense block.
 
 ### Step 6 — Write three markdown files
 
@@ -268,8 +274,8 @@ Scratch directory: `/tmp/release-notes-<sanitised-target>/` (sanitise spaces and
 | File | Audience | Length budget | Style |
 |---|---|---|---|
 | `release-notes-public.md` | Mobile-app customers | ~200–400 words | Neutral English changelog; no marketing copy; no jargon; no Jira keys; bullet `## What's new` + `## Heating performance and reliability` + `## Bug fixes and maintenance` (single line rollup). |
-| `release-notes-internal.md` | Ops / Installer Support / CS / management | ~1500–3000 words | Theme-grouped with QPD keys in parentheses. `> **Impact for X:**` callouts below flagship items. Header banner with version list + audience + window. |
-| `release-notes-engineering.md` | Engineers | ~1000–2000 words | Per-product flat ticket index. Jira Fix Version page link header. Tasks + Bugs sub-sections. Cross-product duplicate notes at bottom. |
+| `release-notes-internal.md` | Ops / Installer Support / CS / management | ~1500–3000 words | **Epic-grouped** (one section per Jira parent epic, ordered by ticket count, + a "No parent Epic" fallback). QPD keys followed by colour-coded owning-Team pills (no priority tag). `> **Impact for X:**` callout per epic. Technical-debt epics merged into one "Technical Debt" section. Scope banner with version list + enablement sweep. |
+| `release-notes-engineering.md` | Engineers | ~1000–2000 words | Ticket index **grouped by Jira parent epic** (Product column + filter retained per row). Cross-product duplicate notes at bottom. |
 
 **Title convention (all three files + Slack parent posts):** the H1 title is **`Quatt Ecosystem Release DD.MM.YYYY`**, where the date is the target CiC tag's creation date (e.g. `Quatt Ecosystem Release 04.06.2026`). Do NOT title documents "Release notes — CiC X.Y.Z ecosystem release" — the date, not the CiC version, is the headline. Append the tier qualifier after an em-dash where needed: `Quatt Ecosystem Release 04.06.2026 — Internal notes` / `— Engineering changelog`. The full version list (CiC, Cloud, App, bundled firmware) stays in the header banner below the title, where it already lives. The scratch directory naming (`/tmp/release-notes-<sanitised-target>/`) keeps using the CiC version, not the date.
 
@@ -286,9 +292,14 @@ In an unattended (cloud-routine) run, record these as a "Open follow-ups" sectio
 
 This skill runs **inside a checkout of `github.com/Quattio/dashboard-ecosystem-release-notes`** — the current working directory is the repo root. There is **no separate local clone path**; write directly into the working tree. Pushing to `main` auto-deploys via Cloudflare Pages. After the three markdown tiers are approved, generate:
 
-1. **`releases/YYYY-MM-DD.html`** — one self-contained page per release wave (date = CiC tag creation date). **Filename and branch use `YYYY-MM-DD`** to match the repo's existing `releases/` pages and the `releases.js` page paths; the human-facing H1 title still uses `DD.MM.YYYY` (dots) per Step 6. Structure: topbar + page-head + three tab panels (Customer / Internal / Engineering) + a filterable, sortable ticket table with the full per-product ticket data embedded as a JS array. Copy the structure of an existing page in `releases/` (e.g. `releases/2026-06-04.html`); relative paths are one level deep (`../styles.css`, `../index.html`). **The Customer tab is bilingual:** two `.lang-pane` divs (`#tier1-en`, `#tier1-nl`) behind an English/Nederlands pill toggle (persisted in `localStorage` as `qrn-tier1-lang`, default `en`). Write the Dutch translation per the glossary + locked terminology (ketel niet boiler; Chill/HeatBattery/HomeBattery/All-Electric blijven Engels; "buitenunit" for outdoor unit). Only Tier 1 is translated — Internal and Engineering tabs stay English.
+1. **`releases/YYYY-MM-DD.html`** — one self-contained page per release wave (date = CiC tag creation date). **Filename and branch use `YYYY-MM-DD`** to match the repo's existing `releases/` pages and the `releases.js` page paths; the human-facing H1 title still uses `DD.MM.YYYY` (dots) per Step 6. **Copy the structure of the current-format template `releases/2026-07-16-epic-grouping-test.html`** (relative paths are one level deep: `../styles.css`, `../index.html`). Structure:
+   - **topbar + page-head + three tab panels** (Customer / Internal / Engineering).
+   - **Customer tab** — bilingual: two `.lang-pane` divs (`#tier1-en`, `#tier1-nl`) behind an English/Nederlands pill toggle (persisted in `localStorage` as `qrn-tier1-lang`, default `en`). Dutch translation per the glossary + locked terminology (ketel niet boiler; Chill/HeatBattery/HomeBattery/All-Electric blijven Engels; "buitenunit" for outdoor unit). Only Tier 1 is translated — Internal and Engineering tabs stay English.
+   - **Internal tab** — a `.scope-banner` at top, then one `.theme-card` per Jira parent epic (Step 5): clickable epic title + count chip, short description, ticket bullets with colour-coded Team pills, per-epic Impact callout; technical-debt epics merged into a `.tech-debt-group` card with `.subcard` sub-panels; trailing "No parent Epic" card.
+   - **Engineering tab** — a filterable/sortable `table.tickets` (Product / Type / Priority filters + search) whose `render()` **groups rows by Jira parent epic**: a coloured `tr.epic-row` header (epic link + count) then that epic's `tr.tk` rows, each group cycling `epic-c0`..`epic-c4`; a column-header sort flattens the list. Ticket data is embedded as a JS array in which **each row carries its parent-epic key** (plus a small epic-key→title/URL map). Product is `CiC | Cloud | App | Thread` with HeatCharger firmware folded into CiC. **No `isNew`/`new-row` highlight.**
+   - Two small JS passes run at the end of the inline `<script>`: one makes the whole Internal-tab epic title the link (dropping the `QPD-XXX ·` prefix), one adds the `team-*` colour class to each Team pill from its text.
 2. **`releases.js`** — prepend a new entry to `window.RELEASES` (date, title per the Step 6 title convention, badge `alpha|stable|hotfix`, `page` path, product chips with classes `cic|cloud|app|fw`, stats line) and refresh `window.SUMMARY` (releases in window, ticket count, product count, open follow-ups). `index.html` renders this manifest at load — it must NOT be edited per release.
-3. **Styling is locked to the `quatt-visual-branding` skill** (light default, Plus Jakarta Sans, category chip colours, pill buttons, green selected states). `styles.css` and `index.html` only change on intentional redesigns, not per release.
+3. **Styling is locked to the `quatt-visual-branding` skill** (light default, Plus Jakarta Sans, category chip colours, pill buttons, green selected states). `styles.css` and `index.html` only change on intentional redesigns, not per release. The epic-grouped format's classes already live in shared `styles.css` — `.scope-banner`, `.epic-desc`, `.team` + `.team-*`, `.tech-debt-group`/`.subcard`, and `.epic-row`/`.epic-cN`/`tr.tk` rail — so **reuse them; do not inline per-page CSS**.
 
 **Publish (after user confirms, or automatically in a cloud routine): open a PR, do not push straight to `main`.** The output is customer-facing and a maintainer should review before it deploys. Create a branch, commit the new page + manifest, and open a PR; merging to `main` triggers the Cloudflare Pages deploy. Use the GitHub MCP (works without a local git remote):
 
@@ -332,7 +343,10 @@ The production origin auto-deploys **Cloudflare Pages**: https://dashboard-ecosy
 - **Don't put automatic OTA in Tier 1.** Customers never see OTA happening. (Same memory.)
 - **Don't put flag-gated / shipped-but-disabled features in Tier 1.** A merged commit is not an enabled feature. Verify the enablement path (Step 4 "Feature-flag / enablement check"); if the flag is off in production, route to Tier 2 as "shipped but disabled" (with a do-not-communicate callout for CS/installers), never Tier 1. (See failure mode 7c.)
 - **Don't name specific QPD keys in Tier 1.** It's a customer document; Jira links break the abstraction.
-- **Don't merge Tier 2 themes by product.** Group by what shipped (theme), not which team shipped it. Engineers go to Tier 3 for product-level slicing.
+- **Don't group Tier 2 by feature theme or by product.** Group by **Jira parent epic** (Step 5), ordered by ticket count; merge technical-debt epics into one "Technical Debt" panel; unparented tickets go to a "No parent Epic" card.
+- **Don't add a priority (High/Urgent) tag next to the Team pill in Tier 2.** It clutters the bullets — priority stays in Tier 3.
+- **Don't group Tier 3 by product.** Group by Jira parent epic (colour-coded header rows), keeping the Product column + filter per row.
+- **Don't reintroduce a "new since last revision" highlight** (`isNew` / `new-row` / `new-tag`). The whole release is presented as new.
 - **Don't pull descriptions for the bulk fixVersion query** — the MCP response will exceed token limits. Pull descriptions selectively for ambiguous tickets only.
 - **Don't auto-detect target version from git tags.** Ask the user (or read the routine trigger payload); CiC `4.5.0-alpha.0` and `4.5.0-beta.0` are not release-notes targets *unless the user explicitly says "treat the alpha as a general release"*. In that case widen the tail window to +7 days (alpha→beta gap).
 - **Don't de-duplicate cross-fixVersion tickets in Tier 3.** They legitimately belong to both products' releases (e.g. ODU revision mapping in App + Cloud). Note duplicates at the bottom of the engineering file instead.
