@@ -53,6 +53,12 @@
     <p class="sub"><b>Tier 1 (customer) is unchanged:</b> a beta CiC build ships to the beta-tester track, not the general fleet, and Cloud v2.42.0 adds no new customer-live feature (custom night hours postponed to app v1.60.0), so the customer surface remains the app v1.59.0 fixes.</p>
   </div></div>
 
+  <section class="timeline-wrap" id="release-timeline" hidden>
+    <h2>Release timeline</h2>
+    <p class="tl-sub">Live from the shared Quatt release calendar.</p>
+    <ol class="timeline" id="tl-list"></ol>
+  </section>
+
   <div class="tabs" role="tablist">
     <button class="tab active" data-panel="customer">Customer</button>
     <button class="tab" data-panel="internal">Internal (ops / CS)</button>
@@ -633,6 +639,62 @@ document.querySelectorAll('#panel-internal h3, #panel-internal h4').forEach(h =>
     const c = map[el.textContent.trim()];
     if (c) el.classList.add(c);
   });
+})();
+
+/* ---------- Release timeline (live from /api/calendar, scoped to this version, with durations) ---------- */
+(function () {
+  const RELEASE_DATE = '2026-07-16';   // this page's headline date (fallback windowing)
+  const RELEASE_VERSION = '4.10.0';    // milestones whose title contains this belong to this release's cycle
+  const sec = document.getElementById('release-timeline');
+  const list = document.getElementById('tl-list');
+  const sub = document.querySelector('#release-timeline .tl-sub');
+  if (!sec || !list) return;
+
+  const DAY = 86400000;
+  const esc = s => (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const toDate = iso => new Date((iso || '').length === 10 ? iso + 'T00:00:00Z' : iso);
+  const optMD = { day: 'numeric', month: 'short', timeZone: 'UTC' };
+  const optMDY = { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' };
+
+  // For all-day events Google's end date is EXCLUSIVE (the day after the last day).
+  function span(ev) {
+    const s = toDate(ev.start);
+    if (ev.end) {
+      const e = toDate(ev.end);
+      const days = Math.max(1, Math.round((e - s) / DAY));
+      const last = ev.allDay ? new Date(e - DAY) : e;   // inclusive last day for all-day
+      return { days, startD: s, lastD: last, single: days <= 1 };
+    }
+    return { days: 1, startD: s, lastD: s, single: true };
+  }
+  const rangeText = sp => sp.single
+    ? sp.startD.toLocaleDateString('en-GB', optMDY)
+    : sp.startD.toLocaleDateString('en-GB', optMD) + ' – ' + sp.lastD.toLocaleDateString('en-GB', optMDY);
+
+  fetch('/api/calendar', { credentials: 'include' })
+    .then(r => (r.ok ? r.json() : null))
+    .then(data => {
+      if (!data || !data.ok || !Array.isArray(data.events)) return;   // stay hidden
+      let evs = data.events.filter(ev => (ev.title || '').includes(RELEASE_VERSION));
+      if (!evs.length) {
+        // Untagged release → fall back to concrete milestones within ~6 weeks of the headline date.
+        const base = toDate(RELEASE_DATE).getTime(), lo = base - 7 * DAY, hi = base + 42 * DAY;
+        evs = data.events.filter(ev => { const t = toDate(ev.start).getTime(); return t >= lo && t <= hi; });
+      }
+      if (!evs.length) return;   // nothing relevant → stay hidden
+
+      list.innerHTML = evs.map(ev => {
+        const sp = span(ev);
+        const title = (ev.title || 'Untitled').replace(/\s*\|\s*CiC\b.*$/i, '').trim();   // drop the "| CiC x.y.z" suffix
+        return '<li class="tl-item">' +
+          '<div class="tl-date">' + esc(rangeText(sp)) + '</div>' +
+          '<div class="tl-title">' + esc(title) + '</div>' +
+          '</li>';
+      }).join('');
+      if (sub) sub.textContent = 'CiC ' + RELEASE_VERSION + ' · live from the shared release calendar';
+      sec.hidden = false;   // only reveal once we actually have events
+    })
+    .catch(() => {});       // endpoint missing / network error → section stays hidden, no breakage
 })();
 </script>
 
