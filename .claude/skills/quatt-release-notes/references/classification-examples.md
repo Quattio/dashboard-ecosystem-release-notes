@@ -71,13 +71,13 @@ A short section for items that don't drive any customer or installer behaviour c
 
 ## Tier 3 — engineering tier mechanics
 
-- Group **by product** (CiC, App, Cloud, Wireless Platform).
-- Within product, two sub-sections: **Tasks** then **Bugs**. Sort by issuetype, then key ascending.
-- Each item: `[QPD-XXXXX](https://quatt-team.atlassian.net/browse/QPD-XXXXX) — <summary>`.
-- Annotate priority for `High` and `Urgent` only: ` _(Urgent)_` or ` _(High)_`. Skip Medium/Low (default).
-- Cross-product duplicates (e.g. QPD-13677 in App + Cloud, QPD-13638 in CiC + Wireless Platform) appear under each — call them out in a "Source-of-truth notes" section at the bottom.
-- Lead with a table: product → version → Jira Fix Version filter URL.
-- Mention `release-auditor` for traceability audits at the top so engineers know where to dig if they want commit-level granularity.
+- Group **by Jira parent epic** (not by product): one colour-coded header row per epic (cycling `epic-c0`..`epic-c4`) linking to the Jira epic + its ticket count, then that epic's rows. Unparented tickets go to a trailing "No parent Epic" group.
+- **Keep the Product column and Product filter** — product is shown per row and still filterable; only the grouping changed to epic. Product labels: `CiC | Cloud | App | Thread` (the wireless/dongle group is **Thread**; **HeatCharger firmware** rows are folded into **CiC**).
+- Each row: QPD key (linked) — Product — Type — Priority — Summary. Annotate priority for `High`/`Urgent` only; skip Medium/Low.
+- A column-header sort flattens the table (clears the epic grouping) — expected behaviour.
+- Cross-product duplicates (e.g. QPD-13677 in App + Cloud) appear under each product's row — call them out in a "Source-of-truth notes" section at the bottom.
+- **No "new since last revision" highlight** — the whole release is presented as new.
+- Mention `release-auditor` for traceability audits so engineers know where to dig for commit-level granularity.
 
 ## Voice samples
 
@@ -96,6 +96,6 @@ A short section for items that don't drive any customer or installer behaviour c
 
 - **Hotfix windows compress** — `4.4.1` was cut 4h before `4.5.0`. Use the previous *minor* release (`4.4.0`) as the effective customer window when the immediate predecessor is a same-day hotfix.
 - **App/Cloud versions user names may be wrong era** — if the user names a version, sanity-check against the CiC release date. The user proposed `App v1.57.0` / `Cloud v2.37.0` when the actual era pair for CiC 4.5.0 was `App v1.55.0` / `Cloud v2.36.0` (those were the upcoming-CiC-4.6.0 versions).
-- **Wireless Platform shares epics with CiC** — Wireless Platform tickets typically parent under `CHILL | Field Test Stability Improvement`, same as CiC connectivity bugs. For Tier 1/2, mention once under CiC narrative; in Tier 3, list under Wireless Platform product with a note about the cross-tag.
+- **Wireless Platform shares epics with CiC** — its tickets typically parent under `CHILL | Field Test Stability Improvement`, same as CiC connectivity bugs. In the dashboard the product is labelled **Thread**; grouping is by epic, so these rows sit under their parent epic with the Product column showing Thread.
 - **Cross-fixVersion tickets are expected** — App + Cloud changes that need to ship together (e.g. ODU revision mapping QPD-13677) are tagged with both fixVersions. Don't treat as data error.
-- **`Heatcharger` is its own product** seen in Jira fixVersions but did not appear in the CiC 4.5.0 window. If present in a future window, treat as a CiC sub-component for Tier 1/2 (like Wireless Platform).
+- **`Heatcharger` is its own Jira fixVersion/product** but in the dashboard its firmware rows are **folded into the CiC product** (Tier 3 Product column shows CiC) and treated as a CiC sub-component for Tier 1/2.
