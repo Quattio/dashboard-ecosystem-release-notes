@@ -641,29 +641,62 @@ document.querySelectorAll('#panel-internal h3, #panel-internal h4').forEach(h =>
   });
 })();
 
-/* ---------- Release timeline (live from /api/calendar) ---------- */
+/* ---------- Release timeline (live from /api/calendar, scoped to this version, with durations) ---------- */
 (function () {
-  const RELEASE_DATE = '2026-07-16';   // this page's release date — highlights the matching calendar event
+  const RELEASE_DATE = '2026-07-16';   // this page's headline date (fallback windowing)
+  const RELEASE_VERSION = '4.10.0';    // milestones whose title contains this belong to this release's cycle
   const sec = document.getElementById('release-timeline');
   const list = document.getElementById('tl-list');
+  const sub = document.querySelector('#release-timeline .tl-sub');
   if (!sec || !list) return;
+
+  const DAY = 86400000;
   const esc = s => (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  const fmt = iso => {
-    const d = new Date(iso.length === 10 ? iso + 'T00:00:00' : iso);
-    return isNaN(d.getTime()) ? iso : d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-  };
+  const toDate = iso => new Date((iso || '').length === 10 ? iso + 'T00:00:00Z' : iso);
+  const optMD = { day: 'numeric', month: 'short', timeZone: 'UTC' };
+  const optMDY = { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' };
+
+  // For all-day events Google's end date is EXCLUSIVE (the day after the last day).
+  function span(ev) {
+    const s = toDate(ev.start);
+    if (ev.end) {
+      const e = toDate(ev.end);
+      const days = Math.max(1, Math.round((e - s) / DAY));
+      const last = ev.allDay ? new Date(e - DAY) : e;   // inclusive last day for all-day
+      return { days, startD: s, lastD: last, single: days <= 1 };
+    }
+    return { days: 1, startD: s, lastD: s, single: true };
+  }
+  const rangeText = sp => sp.single
+    ? sp.startD.toLocaleDateString('en-GB', optMDY)
+    : sp.startD.toLocaleDateString('en-GB', optMD) + ' – ' + sp.lastD.toLocaleDateString('en-GB', optMDY);
+
   fetch('/api/calendar', { credentials: 'include' })
     .then(r => (r.ok ? r.json() : null))
     .then(data => {
-      if (!data || !data.ok || !Array.isArray(data.events) || !data.events.length) return;  // stay hidden
-      list.innerHTML = data.events.map(ev => {
-        const isCur = (ev.start || '').slice(0, 10) === RELEASE_DATE;
-        return '<li class="tl-item' + (isCur ? ' current' : '') + '">' +
-          '<div class="tl-date">' + esc(fmt(ev.start)) + (isCur ? '<span class="tl-badge">this release</span>' : '') + '</div>' +
-          '<div class="tl-title">' + esc(ev.title || 'Untitled') + '</div>' +
-          (ev.description ? '<div class="tl-desc">' + esc(ev.description.slice(0, 240)) + '</div>' : '') +
+      if (!data || !data.ok || !Array.isArray(data.events)) return;   // stay hidden
+      let evs = data.events.filter(ev => (ev.title || '').includes(RELEASE_VERSION));
+      if (!evs.length) {
+        // Untagged release → fall back to concrete milestones within ~6 weeks of the headline date.
+        const base = toDate(RELEASE_DATE).getTime(), lo = base - 7 * DAY, hi = base + 42 * DAY;
+        evs = data.events.filter(ev => { const t = toDate(ev.start).getTime(); return t >= lo && t <= hi; });
+      }
+      if (!evs.length) return;   // nothing relevant → stay hidden
+
+      const spans = evs.map(span);
+      const maxDays = Math.max.apply(null, spans.map(s => s.days));
+      list.innerHTML = evs.map((ev, i) => {
+        const sp = spans[i];
+        const pct = Math.max(8, Math.round((sp.days / maxDays) * 100));
+        const title = (ev.title || 'Untitled').replace(/\s*\|\s*CiC\b.*$/i, '').trim();   // drop the "| CiC x.y.z" suffix
+        const dur = sp.days === 1 ? '1 day' : sp.days + ' days';
+        return '<li class="tl-item">' +
+          '<div class="tl-date">' + esc(rangeText(sp)) + '<span class="tl-dur">' + dur + '</span></div>' +
+          '<div class="tl-title">' + esc(title) + '</div>' +
+          '<div class="tl-bar"><div class="tl-bar-fill" style="width:' + pct + '%"></div></div>' +
           '</li>';
       }).join('');
+      if (sub) sub.textContent = 'CiC ' + RELEASE_VERSION + ' · live from the shared release calendar';
       sec.hidden = false;   // only reveal once we actually have events
     })
     .catch(() => {});       // endpoint missing / network error → section stays hidden, no breakage

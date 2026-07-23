@@ -60,7 +60,7 @@ function parseDate(value: string): { iso: string; allDay: boolean } | null {
 function parseIcs(ics: string): CalEvent[] {
   const lines = unfold(ics);
   const events: CalEvent[] = [];
-  let cur: Partial<CalEvent> & { _start?: string } | null = null;
+  let cur: (Partial<CalEvent> & { _recurring?: boolean }) | null = null;
 
   for (const line of lines) {
     if (line === "BEGIN:VEVENT") {
@@ -68,11 +68,16 @@ function parseIcs(ics: string): CalEvent[] {
       continue;
     }
     if (line === "END:VEVENT") {
-      if (cur && cur.start) events.push(cur as CalEvent);
+      // Skip un-expanded recurring masters (they carry an RRULE and a DTSTART
+      // back at the series start). The concrete instances that matter here are
+      // one-off events and per-occurrence overrides (RECURRENCE-ID, no RRULE) —
+      // e.g. the version-tagged milestones — which keep their real dates.
+      if (cur && cur.start && !cur._recurring) events.push(cur as CalEvent);
       cur = null;
       continue;
     }
     if (!cur) continue;
+    if (/^RRULE[:;]/i.test(line)) { cur._recurring = true; continue; }
 
     const colon = line.indexOf(":");
     if (colon === -1) continue;
