@@ -511,10 +511,6 @@ table.tickets tr.tk td.key { border-left: 4px solid var(--ec, transparent); }
 .tl-item.current .tl-title { font-weight: 700; }
 .tl-desc { font-size: 13px; color: var(--text-secondary); margin-top: 2px; line-height: 150%; white-space: pre-line; }
 .tl-badge { display: inline-block; margin-left: 8px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-orange); }
-.tl-dur { margin-left: 8px; font-size: 11px; font-weight: 500; color: var(--text-tertiary); }
-.tl-bar { margin-top: 7px; height: 6px; border-radius: 4px; background: var(--card-soft); overflow: hidden; max-width: 320px; }
-.tl-bar-fill { height: 100%; border-radius: 4px; background: var(--color-orange); }
-.tl-item.current .tl-bar-fill { background: var(--color-orange); }
 
 /* ============ ENGINEERING: filters ============ */
 .filters {

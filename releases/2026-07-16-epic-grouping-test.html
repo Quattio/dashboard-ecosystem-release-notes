@@ -683,17 +683,12 @@ document.querySelectorAll('#panel-internal h3, #panel-internal h4').forEach(h =>
       }
       if (!evs.length) return;   // nothing relevant → stay hidden
 
-      const spans = evs.map(span);
-      const maxDays = Math.max.apply(null, spans.map(s => s.days));
-      list.innerHTML = evs.map((ev, i) => {
-        const sp = spans[i];
-        const pct = Math.max(8, Math.round((sp.days / maxDays) * 100));
+      list.innerHTML = evs.map(ev => {
+        const sp = span(ev);
         const title = (ev.title || 'Untitled').replace(/\s*\|\s*CiC\b.*$/i, '').trim();   // drop the "| CiC x.y.z" suffix
-        const dur = sp.days === 1 ? '1 day' : sp.days + ' days';
         return '<li class="tl-item">' +
-          '<div class="tl-date">' + esc(rangeText(sp)) + '<span class="tl-dur">' + dur + '</span></div>' +
+          '<div class="tl-date">' + esc(rangeText(sp)) + '</div>' +
           '<div class="tl-title">' + esc(title) + '</div>' +
-          '<div class="tl-bar"><div class="tl-bar-fill" style="width:' + pct + '%"></div></div>' +
           '</li>';
       }).join('');
       if (sub) sub.textContent = 'CiC ' + RELEASE_VERSION + ' · live from the shared release calendar';
