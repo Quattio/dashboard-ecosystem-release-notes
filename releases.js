@@ -4,12 +4,34 @@
 
 window.SUMMARY = [
   { n: "7",  l: "Release waves documented" },
-  { n: "78", l: "Tickets in latest wave" },
+  { n: "102", l: "Tickets in latest wave" },
   { n: "4",  l: "Products in latest wave" },
   { n: "3",  l: "Open follow-ups flagged" }
 ];
 
 window.RELEASES = [
+  {
+    date: "2026-07-21",
+    title: "Quatt Ecosystem Release 21.07.2026",
+    badge: { cls: "beta", label: "beta" },
+    page: "releases/2026-07-21.html",
+    chips: [
+      { cls: "cic",   label: "CiC 4.10.0-beta.0" },
+      { cls: "cloud", label: "Cloud v2.42.0" },
+      { cls: "app",   label: "App v1.59.0" },
+      { cls: "fw",    label: "Controller 6.11.2" },
+      { cls: "fw",    label: "Thread FW 2.13.0" },
+      { cls: "fw",    label: "HeatCharger FW 1.3.0" },
+      { cls: "fw",    label: "Chill CB FW 2.0.0" },
+      { cls: "fw",    label: "ODU FW 2.1" }
+    ],
+    stats: [
+      { b: "106", t: "ticket entries" },
+      { b: "19 epics", t: "grouped by Jira parent" },
+      { b: "MPC ×7", t: "predictive-heating cluster" },
+      { b: "beta", t: "beta testers — not general fleet" }
+    ]
+  },
   {
     date: "2026-07-16",
     title: "Quatt Ecosystem Release 16.07.2026",
@@ -27,28 +49,6 @@ window.RELEASES = [
       { b: "1", t: "High-priority fix" },
       { b: "QPD-15262", t: "Chill cooling regression fix" },
       { b: "hotfix", t: "stable — to the fleet" }
-    ]
-  },
-  {
-    date: "2026-07-16",
-    title: "Quatt Ecosystem Release 16.07.2026",
-    badge: { cls: "beta", label: "beta" },
-    page: "releases/2026-07-16.html",
-    chips: [
-      { cls: "cic",   label: "CiC 4.10.0-beta.0" },
-      { cls: "cloud", label: "Cloud v2.42.0" },
-      { cls: "app",   label: "App v1.59.0" },
-      { cls: "fw",    label: "Controller 6.11.2" },
-      { cls: "fw",    label: "Thread FW 2.13.0" },
-      { cls: "fw",    label: "HeatCharger FW 1.3.0" },
-      { cls: "fw",    label: "Chill CB FW 2.0.0" },
-      { cls: "fw",    label: "ODU FW 2.1" }
-    ],
-    stats: [
-      { b: "78", t: "ticket entries" },
-      { b: "Cloud v2.42.0", t: "backend now paired" },
-      { b: "3-way valve", t: "commissioning check end-to-end" },
-      { b: "beta", t: "beta testers — not general fleet" }
     ]
   },
   {

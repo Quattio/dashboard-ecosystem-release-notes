@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quatt Ecosystem Release 21.07.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css?v=3">
+<script src="../env-banner.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="logo"><span class="mark">Q</span> Quatt <span class="sys">Release notes</span></span>
+    <nav>
+      <a href="../index.html">Releases</a>
+      <a href="2026-07-21.html" class="active">Latest</a>
+      <button class="theme-toggle" onclick="toggleTheme()">Dark mode</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="crumb"><a href="../index.html">Releases</a> / 21.07.2026</div>
+  <div class="page-head">
+    <div class="kicker">CiC diffed 4.9.0 &rarr; 4.10.0-beta.0 &middot; beta</div>
+    <h1>Quatt Ecosystem Release <span class="dim">21.07.2026</span></h1>
+    <div class="sub">
+      <span class="chip cic">CiC 4.10.0-beta.0</span>
+      <span class="chip cloud">Cloud v2.42.0</span>
+      <span class="chip app">App v1.59.0</span>
+      <span class="chip fw">Controller 6.11.2</span>
+      <span class="chip fw">Thread FW 2.13.0</span>
+      <span class="chip fw">HeatCharger FW 1.3.0</span>
+      <span class="chip fw">Chill CB FW 2.0.0</span>
+      <span class="chip fw">ODU FW 2.1</span>
+    </div>
+  </div>
+
+
+  <div class="review-only"><div class="review-panel">
+    <h3>What changed in this revision</h3>
+    <p class="sub">Shown only on the staging preview — hidden in production. The page presents the whole release as one changelog; there is no per-revision &ldquo;new since last time&rdquo; highlighting.</p>
+    <p class="sub"><b>Rebuilt in the epic-grouped format from the canonical template (<code>releases/_template.html</code>), and re-dated to the beta.0 GitHub Release publication date (2026-07-21).</b> The previously-published entry for this wave was in the older numbered-theme layout; this revision regenerates it in the current epic-grouped format &mdash; Internal grouped by Jira parent epic with owning-Team pills, Engineering grouped by epic &mdash; and moves the headline date 2026-07-16 &rarr; 2026-07-21 (<code>published_at</code>).</p>
+    <p class="sub"><b>Fresh Jira discovery.</b> Every wave ticket was re-pulled from Jira (type / priority / status / parent epic): <b>106 ticket rows / 102 unique</b> across 19 epics + a No-parent bucket. The full predictive-heating <b>MPC cluster</b> (epic QPD-148, 7 tickets), the <b>custom night-window</b> app work (epic QPD-138) and further Cloud items are now included; priority corrections applied (several Medium/High &rarr; Urgent); prior-wave / untraceable tickets removed (QPD-14555, QPD-14785, QPD-15050, QPD-13746).</p>
+    <p class="sub"><b>Tier 1 (customer) is unchanged:</b> a beta CiC build ships to the beta-tester track, not the general fleet, so the customer surface remains the app v1.59.0 fixes.</p>
+  </div></div>
+
+  <section class="timeline-wrap" id="release-timeline" hidden>
+    <h2>Release timeline</h2>
+    <p class="tl-sub">Live from the shared Quatt release calendar.</p>
+    <ol class="timeline" id="tl-list"></ol>
+  </section>
+
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-panel="customer">Customer</button>
+    <button class="tab" data-panel="internal">Internal (ops / CS)</button>
+    <button class="tab" data-panel="engineering">Engineering</button>
+  </div>
+
+  <!-- ============ TIER 1 ============ -->
+  <section class="tab-panel tier1 active" id="panel-customer">
+
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button class="fbtn lang-btn on" data-lang="en">English</button>
+      <button class="fbtn lang-btn" data-lang="nl">Nederlands</button>
+    </div>
+
+    <div class="lang-pane" id="tier1-en">
+      <div class="callout-warn">
+        This ecosystem update centres on a CiC 4.10.0 <b>beta</b> firmware build, which goes to a limited beta-tester group and is
+        not yet installed on the wider customer fleet. The customer-visible changes below arrive with the Quatt app update (version 1.59.0).
+      </div>
+      <div class="theme-card">
+        <h3>Heating performance and reliability</h3>
+        <ul>
+          <li>This app update is focused on maintenance and reliability. Everyday heating and comfort behaviour is unchanged in this release.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Bug fixes and maintenance</h3>
+        <ul>
+          <li>Measured values such as temperatures now follow your app&rsquo;s language setting consistently.</li>
+          <li>General reliability and maintenance improvements.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lang-pane" id="tier1-nl" hidden>
+      <div class="callout-warn">
+        Deze ecosysteem-update draait om een CiC 4.10.0 <b>beta</b> firmware-build die naar een beperkte groep betatesters gaat en nog niet
+        op de bredere klantenvloot staat. De hieronder genoemde zichtbare wijzigingen komen met de Quatt app-update (versie 1.59.0).
+      </div>
+      <div class="theme-card">
+        <h3>Verwarmingsprestaties en betrouwbaarheid</h3>
+        <ul>
+          <li>Deze app-update draait om onderhoud en betrouwbaarheid. Het dagelijkse verwarmings- en comfortgedrag verandert niet in deze release.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Foutoplossingen en onderhoud</h3>
+        <ul>
+          <li>Gemeten waarden zoals temperaturen volgen nu consistent de taalinstelling van je app.</li>
+          <li>Algemene verbeteringen op het gebied van betrouwbaarheid en onderhoud.</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ TIER 2 ============ -->
+  <section class="tab-panel" id="panel-internal">
+
+    <div class="callout-warn scope-banner">
+      <p>
+        <span class="lead">Scope &mdash; CiC 4.10.0-beta.0 (beta-tester track, not the general fleet)</span>
+        Diffed 4.9.0 &rarr; 4.10.0-beta.0. Bundled firmware: Controller <strong>6.10.2 &rarr; 6.11.2</strong>,
+        Thread FW <strong>2.12.0 &rarr; 2.13.0</strong>, HeatCharger FW <strong>1.2.2 &rarr; 1.3.0</strong>;
+        Chill control-board FW 2.0.0 and ODU FW 2.1 unchanged. Paired app <strong>v1.59.0</strong> (2026-07-14);
+        paired backend <strong>Cloud v2.42.0</strong> (2026-07-20, within the wave&rsquo;s +7d tail).
+        Headline date 2026-07-21 = the 4.10.0-beta.0 GitHub Release publication date.
+      </p>
+      <p>
+        <span class="lead">Wave phase &mdash; beta</span>
+        beta.0 points at the <strong>same commit</strong> as alpha.1, so the CiC / firmware content is unchanged;
+        the paired Cloud v2.42.0 is folded in. Grouped below by Jira parent epic (ticket-count order).
+      </p>
+      <p><span class="lead">Enablement sweep &mdash; what actually goes live this wave</span></p>
+      <ul>
+        <li><strong>ZipStats telemetry rollout</strong> to production continues in Cloud v2.42.0 (Firehose / Lambda tuning + compression metrics) &mdash; epic QPD-13717.</li>
+        <li>The <strong>3-way-valve commissioning check</strong> becomes functional end-to-end: its Cloud gate targets CiC firmware 4.10.0 &mdash; epic QPD-14022.</li>
+        <li>Boost-mode <strong>production minimum CiC version stays at 4.9.0</strong> (a bump to 4.10.0 was raised and reverted) &mdash; epic QPD-11732.</li>
+        <li><strong>Custom night hours:</strong> backend shipped in Cloud v2.42.0 and the app UI is present in v1.59.0, but postponed to app v1.60.0 and not enabled &mdash; do not communicate it.</li>
+      </ul>
+      <p><b>The beta CiC firmware goes only to beta testers &mdash; do not communicate its behaviour to the wider customer base or installers.</b></p>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-152" target="_blank">QPD-152</a> &middot; Production Incidents/Continuous Improvements - App/Backend <span class="epic">18 tickets</span></h3>
+      <p class="epic-desc">Quatt’s rolling maintenance Epic: every ticket traces back to a production NCR (the Quality team is first contact; SW&amp;Infra then investigates and fixes). No target date — priority-driven. This wave it carries backend security hardening, fleet backfill tooling, data-integration and diagnostics fixes, and several customer/installer-facing app fixes.</p>
+      <ul>
+        <li>Cancel commissioning button copy: warn installer that cancelling leaves the system non-working <span class="tkey">(QPD-14616 <span class="team">App</span>)</span></li>
+        <li>Migrate EEX Group DataSource integration from sFTP to File Cloud (Bearer token auth) <span class="tkey">(QPD-14336 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Bump commissioning min CIC version &amp; minQuattBuildRequired to 4.6 <span class="badge open">Backlog</span> <span class="tkey">(QPD-14465 <span class="team">no team set</span>)</span></li>
+        <li>GET /me/referral crashes (SyntaxError) when ReferralRock returns a non-JSON error body <span class="tkey">(QPD-14718 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Mass assignment on CIC update: req.body spread into prisma.cic.update allows arbitrary column writes (e.g. installationId) <span class="tkey">(QPD-14752 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Signal strength "Fair" mistranslated in NL/DE/SK <span class="tkey">(QPD-14778 <span class="team">App</span>)</span></li>
+        <li>Fix failing 'coverage' CI check (Node 24.17.0 runner regression) <span class="tkey">(QPD-14781 <span class="team">App</span>)</span></li>
+        <li>Custom night window dial: Start/End times sit too tight to the circle <span class="tkey">(QPD-14801 <span class="team">App</span>)</span></li>
+        <li>Optimize CLAUDE.md and agent context files (dedupe, fix dead refs, model-agnostic) <span class="tkey">(QPD-14849 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Worker: fetch the cic row once per stats message instead of three times <span class="tkey">(QPD-14885 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Clean up obsolete and dead scripts in src/scripts <span class="tkey">(QPD-14903 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>[HIGH] Prototype pollution via unvalidated device-stats merge (deepReduceStats) <span class="tkey">(QPD-14914 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>[HIGH] GraphQL injection into HubSpot CRM via unescaped installer house-search fields <span class="tkey">(QPD-14915 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Bulk-job status API — GET list + detail endpoints for backfill monitoring <span class="tkey">(QPD-14923 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Persist live backfill progress (current step + batch %) for in-flight installations <span class="tkey">(QPD-14924 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>BACKFILL_INSIGHTS bulk job: installationBulkJob upsert races parent bulkJob row creation (spurious @here Sentry alerts) <span class="tkey">(QPD-14928 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>App: measurement values follow device locale while currencies follow app language <span class="tkey">(QPD-14955 <span class="team">App</span>)</span></li>
+        <li>CiC Restarts last 24h badge shows non-deterministic/inflated count (ClickHouse lagInFrame missing ORDER BY) <span class="tkey">(QPD-15272 <span class="team">Cloud / Backend</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for CS:</b> the security fixes are backend-only and need no customer action. QPD-14955 is customer-visible (see the Customer tab); QPD-14778 affects the <b>installer app only</b>, not customers.</div>
+    </div>
+
+    <div class="theme-card tech-debt-group">
+      <h3 class="group-title">Technical Debt <span class="epic">3 Epics &middot; 15 tickets</span></h3>
+
+      <div class="subcard">
+        <h4><a href="https://quatt-team.atlassian.net/browse/QPD-7154" target="_blank">QPD-7154</a> &middot; SW&amp;I Technical Debt <span class="epic">13 tickets</span></h4>
+        <p class="epic-desc">The SW&amp;Infra technical-debt Epic (app + backend). This wave is largely <strong>app modernization</strong> plus the Insights V2 chart rebuild.</p>
+        <ul>
+          <li>Update package dependencies in quatt-cloud <span class="tkey">(QPD-14097 <span class="team">Cloud / Backend</span>)</span></li>
+          <li>Make app startup/auth flow explicit and predictable <span class="tkey">(QPD-14408 <span class="team">App</span>)</span></li>
+          <li>Bump Node 20 GitHub Actions to Node 24 versions in e2e workflow <span class="badge open">In validation</span> <span class="tkey">(QPD-14482 <span class="team">Cloud / Backend</span>)</span></li>
+          <li>Update victory-native (XL) from 41.20.2 to latest <span class="tkey">(QPD-14703 <span class="team">App</span>)</span></li>
+          <li>Remove the legacy MobX store (src/legacy/store) <span class="tkey">(QPD-14769 <span class="team">App</span>)</span></li>
+          <li>Migrate src/legacy/api to the generated OpenAPI client and delete it <span class="tkey">(QPD-14770 <span class="team">App</span>)</span></li>
+          <li>Migrate the unauthenticated app-compatibility check off legacy/api <span class="tkey">(QPD-14771 <span class="team">App</span>)</span></li>
+          <li>Migrate RegistrationInstallerId to a modern functional screen <span class="tkey">(QPD-14772 <span class="team">App</span>)</span></li>
+          <li>Insights V2: rebuild the Insights charts on victory-native XL behind the insights_v2 flag <span class="tkey">(QPD-14773 <span class="team">App</span>)</span></li>
+          <li>Insights V2: dissolve the shared presenter into suspense queries (HomeBattery shape) <span class="tkey">(QPD-14880 <span class="team">App</span>)</span></li>
+          <li>Insights V2: port the legacy cards (Savings, AverageCOP, HeatDistributionBar) and banner to modern components <span class="tkey">(QPD-14881 <span class="team">App</span>)</span></li>
+          <li>Insights V2: consolidate translation keys under the Insights namespace <span class="tkey">(QPD-14945 <span class="team">App</span>)</span></li>
+          <li>Migrate DevtoolsStack to Static API and clean up navigation docs/types <span class="tkey">(QPD-15004 <span class="team">App</span>)</span></li>
+        </ul>
+        <div class="callout-warn"><b>Shipped but DISABLED — do not communicate:</b> the Insights V2 rebuild (QPD-14773/14880/14881/14945) ships behind the <code>insights_v2</code> flag (off for the fleet). Customers cannot reach the new Insights screens yet.</div>
+        <div class="impact"><b>Impact for ops:</b> internal refactoring — no field action, aside from the flagged-off Insights V2 work above.</div>
+      </div>
+
+      <div class="subcard">
+        <h4><a href="https://quatt-team.atlassian.net/browse/QPD-11879" target="_blank">QPD-11879</a> &middot; 26.Q1 Embedded Technical Debt <span class="epic">1 ticket</span></h4>
+        <p class="epic-desc">The Q1-2026 embedded technical-debt Epic (message-spec unification, config handling, LTE update handling).</p>
+        <ul>
+          <li>forget_wifi returns "bad" for a just-connected SSID: libnm connection cache not drained before lookup <span class="tkey">(QPD-14979 <span class="team">Embedded Systems</span>)</span></li>
+        </ul>
+        <div class="impact"><b>Impact for CS:</b> resolves a Wi-Fi reconnection false-negative on the CiC.</div>
+      </div>
+
+      <div class="subcard">
+        <h4><a href="https://quatt-team.atlassian.net/browse/QPD-12488" target="_blank">QPD-12488</a> &middot; Technical Debt and Continuous Improvement <span class="epic">1 ticket</span></h4>
+        <p class="epic-desc">A general technical-debt and continuous-improvement Epic.</p>
+        <ul>
+          <li>Restore old-simulator parity: scenario parameters, run modes, and dashboard <span class="tkey">(QPD-14466 <span class="team">Systems Control</span>)</span></li>
+        </ul>
+        <div class="impact"><b>Impact for ops:</b> internal simulator/build tooling — no field impact.</div>
+      </div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11732" target="_blank">QPD-11732</a> &middot; All-E | Boost Mode Feature <span class="epic">12 tickets</span></h3>
+      <p class="epic-desc">Boost Mode lets an All-Electric system quickly restore hot water for at least one shower (~15 min) when the HeatBattery is depleted — heating speed over efficiency. This wave refines the round-trip UX, adds a security fix, and lands controller-side reporting.</p>
+      <ul>
+        <li>Expose live All-E fields (shower minutes, draw-off, charging) in /me/cic/{cicId}/allElectricBoost response <span class="tkey">(QPD-14222 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>[Security] All-E Boost | /me POST skips CIC ownership check (source:"admin") <span class="tkey">(QPD-14740 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Boost/Leave-Boost button lags ~5s — surface pending request in GET status <span class="tkey">(QPD-14742 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Temporary shower-minutes correction during/after Boost (July launch band-aid) <span class="tkey">(QPD-14747 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Set production minimum CIC version for Boost Mode to 4.9.0 (minQuattBuildRequiredForBoostMode) <span class="tkey">(QPD-15022 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Drop CIC polling on HeatBatteryV2 once boost endpoint exposes the live All-E fields <span class="tkey">(QPD-14223 <span class="team">App</span>)</span></li>
+        <li>All-Electric Boost: app reflects START/CANCEL with ~15s delay and flickers back to idle <span class="tkey">(QPD-14788 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>All-E Boost: stale exit outcome re-cached right after START suppresses the STARTING overlay (flicker to 'Boost has stopped') <span class="tkey">(QPD-14817 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Adjust boost end time to sync APP and CIC clocks <span class="tkey">(QPD-14879 <span class="team">Systems Control</span>)</span></li>
+        <li>Remove DEGRADED status from All-E Boost Mode (App) <span class="tkey">(QPD-14892 <span class="team">App</span>)</span></li>
+        <li>Complete boost mode exit-reason and recoverable-condition reporting <span class="tkey">(QPD-15024 <span class="team">Systems Control</span>)</span></li>
+        <li>Remove DEGRADED status from All-E Boost Mode (BE) <span class="tkey">(QPD-14299 <span class="team">Cloud / Backend</span>)</span></li>
+      </ul>
+      <div class="callout-warn"><b>Shipped but DISABLED — do not communicate:</b> All-Electric Boost Mode is gated off fleet-wide behind <code>all_e_boost_mode</code>. The code is in app v1.59.0 and Cloud v2.42.0, but customers cannot reach it yet.</div>
+      <div class="impact"><b>Impact for CS:</b> no customer action — Boost Mode is not live. The <code>/me</code> boost security fix (QPD-14740) is backend-only.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11795" target="_blank">QPD-11795</a> &middot; CHILL | Field Test Stability Improvement <span class="epic">11 tickets</span></h3>
+      <p class="epic-desc">Stability work for Chill pilot installations — fixing Chill and dongle bugs outside current feature development, hardening the commissioning firmware-deploy path, and supporting new customer pilots.</p>
+      <ul>
+        <li>Add flow test <span class="tkey">(QPD-14263 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Trigger MenderAPI requests for manual CiC firmware updates <span class="tkey">(QPD-14271 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Auto-trigger Mender firmware deployment when CiC firmware blocks commissioning (no button) <span class="tkey">(QPD-14485 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Raise cooling supply temperature bounds (Quick fix) <span class="tkey">(QPD-14755 <span class="team">Systems Control</span>)</span></li>
+        <li>Chill CS dashboard not showing correct unit state <span class="tkey">(QPD-14901 <span class="team">SW&amp;I</span>)</span></li>
+        <li>Chill flow test — fail on flow switch status instead of fault flags <span class="tkey">(QPD-14986 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>App: surface cloud-initiated CIC firmware deployment during commissioning (preparing state + failed-state retry) <span class="tkey">(QPD-15005 <span class="team">App</span>)</span></li>
+        <li>Extend Cooling test (COOLING_CHILL) timeout to 30 minutes <span class="tkey">(QPD-14552 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Investigation - Ambient and humidity correction model <span class="tkey">(QPD-13505 <span class="team">Systems Control</span>)</span></li>
+        <li>Chill reset_flags CIC ack is unhandled in the worker → spurious "Invalid topic part" error log + duplicate ERROR row in MQTT-debug view <span class="tkey">(QPD-14780 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Chill | syncSettingsWithCIC 500s (CannotFindAnyChillStatsError) when a registered chill isn't in the CIC lastStat <span class="tkey">(QPD-14783 <span class="team">Cloud / Backend</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for CS / installers:</b> the CS dashboard now reflects the correct Chill unit state, and commissioning can bring the CiC to the required firmware automatically with a retry path if it fails.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-148" target="_blank">QPD-148</a> &middot; MPC predictive heating <span class="epic">7 tickets</span></h3>
+      <p class="epic-desc">Model Predictive Control for central heating — cloud-trained house-dynamics models served to the controller. This wave is the bulk of the controller 6.10.2 → 6.11.2 change: MPC formulation build-out plus simulation and interpretability tooling.</p>
+      <ul>
+        <li>Prepare validated simulation house for MPC <span class="tkey">(QPD-14138 <span class="team">Systems Control</span>)</span></li>
+        <li>Make MPC decisions interpretable and understandable <span class="tkey">(QPD-14683 <span class="team">Systems Control</span>)</span></li>
+        <li>Implement multi-rate MPC to try the multi-rate prediction model <span class="tkey">(QPD-14713 <span class="team">Systems Control</span>)</span></li>
+        <li>Run MPC in separate thread in the controller <span class="tkey">(QPD-14839 <span class="team">Systems Control</span>)</span></li>
+        <li>Add reference comfort bands to MPC formulation <span class="tkey">(QPD-14853 <span class="team">Systems Control</span>)</span></li>
+        <li>Incorporate COP in model predictive control <span class="tkey">(QPD-14980 <span class="team">Systems Control</span>)</span></li>
+        <li>Add terminal cost to predictive heating MPC <span class="tkey">(QPD-15003 <span class="team">Systems Control</span>)</span></li>
+      </ul>
+      <div class="callout-warn"><b>Shipped but not live:</b> MPC predictive heating is not enabled for the fleet and does not change how any customer’s system heats today.</div>
+      <div class="impact"><b>Impact for CS:</b> no customer-visible change — MPC predictive heating is not enabled for the fleet.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-14022" target="_blank">QPD-14022</a> &middot; ALL-E | Commisioning &amp; B2B Enhancements <span class="epic">7 tickets</span></h3>
+      <p class="epic-desc">The programme to let external B2B partners commission and service All-Electric systems without Quatt Field Ops support — commissioning improvements aimed at lifting external self-completion toward 80%.</p>
+      <ul>
+        <li>Real CH backup heater validation (delta T) <span class="tkey">(QPD-14060 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>[BE] 3-way valve position check (replaces Boost test) <span class="tkey">(QPD-14402 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>3-way valve position check (replaces Boost test) <span class="tkey">(QPD-14061 <span class="team">Systems Control</span>)</span></li>
+        <li>HeatCharger FW: CH Pressure (Heating System Pressure) Noise Handling <span class="tkey">(QPD-13867 <span class="team">Embedded Systems</span>)</span></li>
+        <li>[APP] 3-way valve position check (replaces Boost test) <span class="tkey">(QPD-14403 <span class="team">App</span>)</span></li>
+        <li>App | M5 CH backup heater test screen — temperature-based criteria (QPD-14060) <span class="tkey">(QPD-14902 <span class="team">App</span>)</span></li>
+        <li>HeatCharger FW: Enable flash read-out protection <span class="tkey">(QPD-13854 <span class="team">Embedded Systems</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for installers:</b> the All-Electric commissioning flow replaces the Boost step with a direct 3-way-valve position check. Because the backend gate targets CiC 4.10.0, it activates only on installations on the 4.10.0 line (with app v1.59.0) — this is the wave that makes the replacement functional end-to-end.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11880" target="_blank">QPD-11880</a> &middot; Bug Fixing &amp; Fleet Diagnostics <span class="epic">6 tickets</span></h3>
+      <p class="epic-desc">The controls team’s rolling bug-fixing and fleet-diagnostics Epic. This wave’s headline is the Chill cooling regression fix, plus commissioning-frequency and silent-mode control refinements.</p>
+      <ul>
+        <li>Freezing Suction Temperature - Missing Suction Unsafe Flag <span class="tkey">(QPD-11712 <span class="team">Embedded Systems</span>)</span></li>
+        <li>HeatCharger FW: ALL-E | Freezing Suction Temperature - Missing Suction Unsafe Flag <span class="tkey">(QPD-11712 <span class="team">Embedded Systems</span>)</span></li>
+        <li>ODU does not go to cooling when thermostat reports CH Enable = True <span class="tkey">(QPD-15262 <span class="team">Systems Control</span>)</span></li>
+        <li>HeatCharger FW: Flaky heatcharger unit tests: mock lifetime vs process shutdown <span class="tkey">(QPD-13749 <span class="team">Embedded Systems</span>)</span></li>
+        <li>Change the V1 commissioning heatpump test frequency from 49 to 30 Hz <span class="tkey">(QPD-14749 <span class="team">Systems Control</span>)</span></li>
+        <li>Use firmware mapping of available frequencies for V1 <span class="tkey">(QPD-14840 <span class="team">Systems Control</span>)</span></li>
+        <li>Investigate and fix silent mode problem <span class="tkey">(QPD-15002 <span class="team">Systems Control</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for installers / CS:</b> the Chill cooling fix (QPD-15262) resolves NCR-3862 — 6 Chill systems where cooling water temperature could run away with certain thermostats. It already reached the fleet via the <b>4.9.1 hotfix</b> (Controller 6.10.3) and is carried forward here. This beta build goes only to beta testers.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-13717" target="_blank">QPD-13717</a> &middot; ZipIt: Telemetry Firehose + Parquet Pipeline <span class="epic">6 tickets</span></h3>
+      <p class="epic-desc">The telemetry-pipeline overhaul (ZipIt): replacing the per-CiC S3 file layout (~60M files/month) with a compacted Firehose → Lambda → Parquet+GZIP pipeline, queryable via Athena and ClickHouse. This wave is production-rollout tuning.</p>
+      <ul>
+        <li>ZipStats: compression-ratio metrics via CloudWatch EMF <span class="tkey">(QPD-14900 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Bump telemetry-transform Lambda memory 128→256 MB for zipStats rollout <span class="tkey">(QPD-15130 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Fix telemetry-transform 413 payload errors: lower Firehose buffer 3→0.5 MB <span class="tkey">(QPD-15150 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Migrate telemetry-transform Lambda to arm64/Graviton <span class="tkey">(QPD-15270 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Drop redundant payload JSON.stringify on zipped path in telemetry-transform Lambda <span class="tkey">(QPD-15271 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>Increase telemetry-transform Firehose buffer 0.25 -&gt; 0.5 MB <span class="tkey">(QPD-15289 <span class="team">Cloud / Backend</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for ops:</b> the ZipStats rollout reduces telemetry cost and payload size as it reaches the fleet — watch the telemetry-transform metrics during rollout.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-138" target="_blank">QPD-138</a> &middot; Quatt App ideas &amp; improvements <span class="epic">5 tickets</span></h3>
+      <p class="epic-desc">The app ideas-and-improvements backlog. This wave it carries the custom night-hours UI and Insights-chart interaction work.</p>
+      <ul>
+        <li>Custom night times MVP <span class="tkey">(QPD-14789 <span class="team">App</span>)</span></li>
+        <li>Night window dial: animate thumbs on drag/reset + fix reset not discarding unsaved edits <span class="tkey">(QPD-14813 <span class="team">App</span>)</span></li>
+        <li>Insights charts: touch tooltips for advanced insights + unified chart press gestures <span class="tkey">(QPD-14975 <span class="team">App</span>)</span></li>
+        <li>All-Electric settings: add copy pointing to SoundSlider Night hours for changing the times <span class="tkey">(QPD-15079 <span class="team">App</span>)</span></li>
+        <li>Move Night hours out of SoundSlider into its own screen under My House <span class="tkey">(QPD-15081 <span class="team">App</span>)</span></li>
+      </ul>
+      <div class="callout-warn"><b>Shipped but DISABLED / postponed — do not communicate:</b> the Insights chart interaction work is behind the <code>insights_v2</code> flag, and the custom night-hours UI is <b>postponed to app v1.60.0</b>. Neither is reachable by customers yet.</div>
+      <div class="impact"><b>Impact for CS:</b> custom night hours is <b>postponed to app v1.60.0</b> — do not tell customers it is available; the Insights interaction work is flagged off.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-165" target="_blank">QPD-165</a> &middot; QA automation via virtual rig <span class="epic">3 tickets</span></h3>
+      <p class="epic-desc">Stepping up embedded QA automation via a virtual rig — nightly image builds, hardware-in-the-loop tests, vulnerability scans and coverage.</p>
+      <ul>
+        <li>E2E App automation: target Virtual Rig <span class="tkey">(QPD-14766 <span class="team">Embedded Systems</span>)</span></li>
+        <li>Remove legacy (non-beta) hybrid commissioning E2E test flow <span class="tkey">(QPD-15007 <span class="team">Embedded Systems</span>)</span></li>
+        <li>Hybrid-beta E2E commissioning always searches the 8kW address, regardless of target CiC <span class="tkey">(QPD-15019 <span class="team">Embedded Systems</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for ops:</b> internal test-infrastructure only — no field impact.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-7079" target="_blank">QPD-7079</a> &middot; Heatcharger | FW Improvements <span class="epic">3 tickets</span></h3>
+      <p class="epic-desc">General HeatCharger firmware improvements for All-Electric systems.</p>
+      <ul>
+        <li>HeatCharger FW: Word/block flash programming in NVMEM driver (faster updates and less wear) <span class="tkey">(QPD-14524 <span class="team">Embedded Systems</span>)</span></li>
+        <li>HeatCharger FW: Enforce minimum on time in Heatcharger firmware <span class="tkey">(QPD-13439 <span class="team">Embedded Systems</span>)</span></li>
+        <li>HeatCharger FW: 3-way valve error does not activate warning LED <span class="tkey">(QPD-13979 <span class="team">Embedded Systems</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for installers / CS:</b> a reliability and safety pass on the HeatCharger (the indoor unit that replaces the boiler on All-Electric systems). The 3-way-valve warning LED (QPD-13979) was held back in the 4.9.0 wave pending its firmware counterpart, which ships here — now functional end-to-end.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-7060" target="_blank">QPD-7060</a> &middot; Migrate hybrid commissioning to new architecture <span class="epic">2 tickets</span></h3>
+      <p class="epic-desc">Migrating hybrid commissioning onto the more robust All-Electric architecture and tearing down the legacy system. HYBRID_BETA reached GA and the legacy flow was removed from product selection in June 2026.</p>
+      <ul>
+        <li>Remove GoInstall screen <span class="tkey">(QPD-7507 <span class="team">App</span>)</span></li>
+        <li>The legacy test screens should be removed <span class="tkey">(QPD-7509 <span class="team">App</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for installers:</b> the legacy hybrid commissioning path is fully retired in favour of the HYBRID_BETA flow.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-6894" target="_blank">QPD-6894</a> &middot; CiC New features/Improvements <span class="epic">1 ticket</span></h3>
+      <p class="epic-desc">CiC platform features and improvements outside a specific product programme.</p>
+      <ul>
+        <li>OOM killer kills critical CiC processes because no oom_score_adj is set <span class="tkey">(QPD-14011 <span class="team">Embedded Systems</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for ops:</b> resource-management hardening on the CiC — critical services are protected from the OOM killer. No field action.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-7133" target="_blank">QPD-7133</a> &middot; Dongle | SW Improvements <span class="epic">1 ticket</span></h3>
+      <p class="epic-desc">Non-MVP software improvements for the Quatt dongle (the Thread radio co-processor).</p>
+      <ul>
+        <li>Add RCP node temperature &amp; humidity readout <span class="tkey">(QPD-14888 <span class="team">Embedded Systems</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for ops:</b> environment temperature/humidity data-collection groundwork — readings are now stored in the cloud but not surfaced to customers.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-10387" target="_blank">QPD-10387</a> &middot; QA Expand integration test suite <span class="epic">1 ticket</span></h3>
+      <p class="epic-desc">Expanding the integration test suite.</p>
+      <ul>
+        <li>E2E App automation + clean slate <span class="tkey">(QPD-14381 <span class="team">Embedded Systems</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for ops:</b> internal QA — no field impact.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-10390" target="_blank">QPD-10390</a> &middot; CHILL | SW Improvements <span class="epic">1 ticket</span></h3>
+      <p class="epic-desc">A placeholder Epic for non-urgent Chill software improvements, groomed as time allows.</p>
+      <ul>
+        <li>Mobile: restore CIC-specific copy on the pre-identification firmware-update screen (distinct from post-identification device update copy) <span class="tkey">(QPD-14468 <span class="team">App</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for installers:</b> clearer copy on the firmware-update screen shown before identification.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-14931" target="_blank">QPD-14931</a> &middot; CHILL | Temperature and humidity modelling <span class="epic">1 ticket</span></h3>
+      <p class="epic-desc">Chill temperature and humidity modelling.</p>
+      <ul>
+        <li>Dew point correction groundwork <span class="tkey">(QPD-14756 <span class="team">Systems Control</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for ops:</b> groundwork only — do not present dew-point protection as a live feature until the controller side ships.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3>No parent Epic <span class="epic">2 tickets</span></h3>
+      <p class="epic-desc">These backend tickets carry <b>no parent Epic</b> in Jira, so a strict epic grouping cannot place them — they land in this fallback bucket.</p>
+      <ul>
+        <li>Push notifications prep: widen userClient.pushToken and add optional platform <span class="badge open">In Review</span> <span class="tkey">(QPD-14793 <span class="team">no team set</span>)</span></li>
+        <li>GET /admin/installation/:uuid/events 500s when Snowflake EVENT_TEXT / EVENT_TITLE is null <span class="tkey">(QPD-15258 <span class="team">Cloud / Backend</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for ops:</b> backend maintenance — no field impact.</div>
+    </div>
+  </section>
+
+  <!-- ============ TIER 3 ============ -->
+  <section class="tab-panel" id="panel-engineering">
+    <div class="filters">
+      <span class="fgroup" id="f-product">
+        <span class="flabel">Product</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="CiC">CiC</button>
+        <button class="fbtn" data-v="Cloud">Cloud</button>
+        <button class="fbtn" data-v="App">App</button>
+        <button class="fbtn" data-v="Thread">Thread</button>
+      </span>
+      <span class="fgroup" id="f-type">
+        <span class="flabel">Type</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="Task">Tasks</button>
+        <button class="fbtn" data-v="Bug">Bugs</button>
+      </span>
+      <span class="fgroup" id="f-pr">
+        <span class="flabel">Priority</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="Urgent">Urgent</button>
+        <button class="fbtn" data-v="High">High+</button>
+      </span>
+      <input class="search" id="f-q" type="search" placeholder="Search summary or QPD key…">
+    </div>
+    <div class="count" id="count"></div>
+    <table class="tickets">
+      <thead><tr>
+        <th class="sortable" data-col="key">Key</th>
+        <th class="sortable" data-col="product">Product</th>
+        <th class="sortable" data-col="type">Type</th>
+        <th class="sortable" data-col="priority">Priority</th>
+        <th class="sortable" data-col="summary">Summary</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p class="footer-note">
+      Built from GitHub tag diffs (source of truth: CiC 4.9.0 &rarr; 4.10.0-beta.0 via <code>quatt-revisions.inc</code>),
+      cross-referenced with Jira for ticket type / priority / status / parent epic. Bundled firmware moved Controller
+      6.10.2 &rarr; 6.11.2, Thread FW 2.12.0 &rarr; 2.13.0, HeatCharger FW 1.2.2 &rarr; 1.3.0; embedded apps 1.32.0 &rarr; 1.33.0,
+      message spec 2.78.0 &rarr; 2.80.0, Python libs 0.14.2 &rarr; 0.15.0. Paired app v1.59.0; paired backend Cloud v2.42.0
+      (v2.41.2 &rarr; v2.42.0). <b>106 ticket rows / 102 unique</b>, grouped by Jira parent epic. <b>Product naming:</b>
+      the wireless/dongle group is <b>Thread</b>; HeatCharger firmware is folded into <b>CiC</b>. <b>Cross-product duplicates:</b>
+      QPD-14888 (CiC embedded readout + Thread dongle RCP sensor), QPD-14299 (CiC message-spec + Cloud backend), QPD-14766
+      (App + CiC Python libs); <b>QPD-11712</b> appears twice under CiC (HeatCharger-FW decode + apps/message-spec side).
+      <b>Not yet Done in Jira</b> (shipped per GitHub): QPD-14793 (In Review), QPD-14482 (In validation), QPD-14465 (Backlog).
+      <b>Excluded as prior-wave / not in this diff:</b> QPD-14555, QPD-14785 (Cloud v2.41.1 / v2.41.2 &mdash; the 4.9.0 wave);
+      QPD-15050, QPD-13746 (no commit in the 4.10.0 tag diff). <b>Held / groundwork:</b> QPD-14756 (Chill dew-point keys) is
+      spec-only. Use the <code>release-auditor</code> skill for commit-level traceability.
+    </p>
+  </section>
+
+</main>
+
+<script>
+/* ---------- theme ---------- */
+function toggleTheme() {
+  const r = document.documentElement;
+  const cur = r.getAttribute('data-theme') || 'dark';   // console is dark by default
+  const next = cur === 'dark' ? 'light' : 'dark';
+  r.setAttribute('data-theme', next);
+  localStorage.setItem('qrn-theme', next);
+}
+const saved = localStorage.getItem('qrn-theme');
+if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+/* ---------- Tier 1 language toggle (EN/NL) ---------- */
+function setLang(lang) {
+  document.getElementById('tier1-en').hidden = lang !== 'en';
+  document.getElementById('tier1-nl').hidden = lang !== 'nl';
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('on', b.dataset.lang === lang));
+  localStorage.setItem('qrn-tier1-lang', lang);
+}
+document.querySelectorAll('.lang-btn').forEach(b =>
+  b.addEventListener('click', () => setLang(b.dataset.lang)));
+setLang(localStorage.getItem('qrn-tier1-lang') || 'en');
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === t));
+  document.querySelectorAll('.tab-panel').forEach(p =>
+    p.classList.toggle('active', p.id === 'panel-' + t.dataset.panel));
+}));
+
+/* ---------- ticket data (generated by the /release-notes pipeline) ---------- */
+const T = [
+ // product, key, type, priority, status (if not Done), summary, epicKey
+ ["CiC", 14011, "Task", "Medium", "", "OOM killer kills critical CiC processes because no oom_score_adj is set", 6894],
+ ["CiC", 14061, "Task", "High", "", "Commissioning | M6 — 3-way valve position check (replaces Boost test)", 14022],
+ ["CiC", 11712, "Bug", "High", "", "ALL-E | Freezing Suction Temperature - Missing Suction Unsafe Flag", 11880],
+ ["CiC", 14299, "Task", "Low", "", "Remove DEGRADED status from All-E Boost Mode (BE)", 11732],
+ ["CiC", 14756, "Task", "High", "", "CHILL | Dew point correction groundwork", 14931],
+ ["CiC", 14766, "Task", "Medium", "", "E2E App automation: target Virtual Rig", 165],
+ ["CiC", 14683, "Task", "Medium", "", "Make MPC decisions interpretable and understandable", 148],
+ ["CiC", 14466, "Task", "Medium", "", "Restore old-simulator parity: scenario parameters, run modes, and dashboard", 12488],
+ ["CiC", 13505, "Task", "Medium", "", "Investigation - Ambient and humidity correction model", 11795],
+ ["CiC", 14713, "Task", "Medium", "", "Implement multi-rate MPC to try the multi-rate prediction model", 148],
+ ["CiC", 14840, "Task", "Medium", "", "Use firmware mapping of available frequencies for V1", 11880],
+ ["CiC", 14839, "Task", "Medium", "", "Run MPC in separate thread in the controller", 148],
+ ["CiC", 14138, "Task", "Medium", "", "Prepare validated simulation house for MPC", 148],
+ ["CiC", 14853, "Task", "Medium", "", "Add reference comfort bands to MPC formulation", 148],
+ ["CiC", 14980, "Task", "Medium", "", "Incorporate COP in model predictive control", 148],
+ ["CiC", 15003, "Task", "Medium", "", "Add terminal cost to predictive heating MPC", 148],
+ ["CiC", 14749, "Task", "Medium", "", "Change the V1 commissioning heatpump test frequency from 49 to 30 Hz", 11880],
+ ["CiC", 14755, "Task", "Urgent", "", "CHILL | Raise cooling supply temperature bounds (Quick fix)", 11795],
+ ["CiC", 14879, "Bug", "Medium", "", "Adjust boost end time to sync APP and CIC clocks", 11732],
+ ["CiC", 15002, "Bug", "Medium", "", "Investigate and fix silent mode problem", 11880],
+ ["CiC", 15024, "Bug", "Medium", "", "Complete boost mode exit-reason and recoverable-condition reporting", 11732],
+ ["CiC", 15262, "Bug", "High", "", "ODU does not go to cooling when thermostat reports CH Enable = True", 11880],
+ ["CiC", 14979, "Bug", "Low", "", "[CIC] forget_wifi returns \"bad\" for a just-connected SSID: libnm connection cache not drained before lookup", 11879],
+ ["CiC", 14888, "Task", "Medium", "", "Wireless Platform | Add RCP node temperature & humidity readout", 7133],
+ ["CiC", 13979, "Bug", "Low", "", "HeatCharger FW: 3-way valve error does not activate warning LED", 7079],
+ ["CiC", 13867, "Task", "Medium", "", "HeatCharger FW: CH Pressure (Heating System Pressure) Noise Handling", 14022],
+ ["CiC", 13439, "Task", "Low", "", "HeatCharger FW: Enforce minimum on time in Heatcharger firmware", 7079],
+ ["CiC", 13854, "Task", "Low", "", "HeatCharger FW: Enable flash read-out protection", 14022],
+ ["CiC", 13749, "Bug", "Medium", "", "HeatCharger FW: Flaky heatcharger unit tests: mock lifetime vs process shutdown", 11880],
+ ["CiC", 14524, "Task", "Medium", "", "HeatCharger FW: Word/block flash programming in NVMEM driver (faster updates and less wear)", 7079],
+ ["CiC", 11712, "Bug", "High", "", "HeatCharger FW: ALL-E | Freezing Suction Temperature - Missing Suction Unsafe Flag", 11880],
+ ["Thread", 14888, "Task", "Medium", "", "Wireless Platform | Add RCP node temperature & humidity readout", 7133],
+ ["App", 7509, "Task", "Low", "", "The legacy test screens should be removed", 7060],
+ ["App", 7507, "Task", "Low", "", "Remove GoInstall screen", 7060],
+ ["App", 14616, "Task", "Urgent", "", "Cancel commissioning button copy: warn installer that cancelling leaves the system non-working", 152],
+ ["App", 14468, "Task", "Medium", "", "Mobile: restore CIC-specific copy on the pre-identification firmware-update screen (distinct from post-identification device update copy)", 10390],
+ ["App", 14381, "Task", "Medium", "", "E2E App automation + clean slate", 10387],
+ ["App", 14778, "Bug", "Medium", "", "Signal strength \"Fair\" mistranslated in NL/DE/SK", 152],
+ ["App", 14781, "Bug", "Medium", "", "Fix failing 'coverage' CI check (Node 24.17.0 runner regression)", 152],
+ ["App", 14408, "Task", "Medium", "", "Make app startup/auth flow explicit and predictable", 7154],
+ ["App", 14703, "Task", "Medium", "", "Update victory-native (XL) from 41.20.2 to latest", 7154],
+ ["App", 14789, "Task", "Medium", "", "[Hackathon] Custom night times MVP", 138],
+ ["App", 14801, "Bug", "Medium", "", "Custom night window dial: Start/End times sit too tight to the circle", 152],
+ ["App", 14813, "Task", "Medium", "", "Night window dial: animate thumbs on drag/reset + fix reset not discarding unsaved edits", 138],
+ ["App", 14223, "Task", "Medium", "", "Drop CIC polling on HeatBatteryV2 once boost endpoint exposes the live All-E fields", 11732],
+ ["App", 14769, "Task", "Medium", "", "Remove the legacy MobX store (src/legacy/store)", 7154],
+ ["App", 14892, "Task", "Medium", "", "Remove DEGRADED status from All-E Boost Mode (App)", 11732],
+ ["App", 14771, "Task", "Medium", "", "Migrate the unauthenticated app-compatibility check off legacy/api", 7154],
+ ["App", 14772, "Task", "Medium", "", "Migrate RegistrationInstallerId to a modern functional screen", 7154],
+ ["App", 14773, "Task", "Medium", "", "Insights V2: rebuild the Insights charts on victory-native XL behind the insights_v2 flag", 7154],
+ ["App", 14770, "Task", "Medium", "", "Migrate src/legacy/api to the generated OpenAPI client and delete it", 7154],
+ ["App", 14880, "Task", "Medium", "", "Insights V2: dissolve the shared presenter into suspense queries (HomeBattery shape)", 7154],
+ ["App", 14881, "Task", "Medium", "", "Insights V2: port the legacy cards (Savings, AverageCOP, HeatDistributionBar) and banner to modern components", 7154],
+ ["App", 14975, "Task", "Medium", "", "Insights charts: touch tooltips for advanced insights + unified chart press gestures", 138],
+ ["App", 14945, "Task", "Medium", "", "Insights V2: consolidate translation keys under the Insights namespace", 7154],
+ ["App", 14955, "Bug", "Medium", "", "App: measurement values follow device locale while currencies follow app language", 152],
+ ["App", 14766, "Task", "Medium", "", "E2E App automation: target Virtual Rig", 165],
+ ["App", 15005, "Task", "Urgent", "", "App: surface cloud-initiated CIC firmware deployment during commissioning (preparing state + failed-state retry)", 11795],
+ ["App", 14403, "Task", "Medium", "", "Commissioning | M6 — [APP] 3-way valve position check (replaces Boost test)", 14022],
+ ["App", 15007, "Task", "Medium", "", "Remove legacy (non-beta) hybrid commissioning E2E test flow", 165],
+ ["App", 14902, "Task", "Medium", "", "App | M5 CH backup heater test screen — temperature-based criteria (QPD-14060)", 14022],
+ ["App", 15004, "Task", "Medium", "", "Migrate DevtoolsStack to Static API and clean up navigation docs/types", 7154],
+ ["App", 15079, "Task", "Medium", "", "All-Electric settings: add copy pointing to SoundSlider Night hours for changing the times", 138],
+ ["App", 15019, "Bug", "Medium", "", "Hybrid-beta E2E commissioning always searches the 8kW address, regardless of target CiC", 165],
+ ["App", 15081, "Task", "Medium", "", "Move Night hours out of SoundSlider into its own screen under My House", 138],
+ ["Cloud", 14402, "Task", "Urgent", "", "Commissioning | M6 — [BE] 3-way valve position check (replaces Boost test)", 14022],
+ ["Cloud", 14060, "Task", "Urgent", "", "Commissioning | M5 — Real CH backup heater validation (delta T)", 14022],
+ ["Cloud", 14263, "Task", "Urgent", "", "COMMISSIONING | Add flow test", 11795],
+ ["Cloud", 14986, "Task", "Urgent", "", "COMMISSIONING | Chill flow test — fail on flow switch status instead of fault flags", 11795],
+ ["Cloud", 14485, "Task", "Urgent", "", "Auto-trigger Mender firmware deployment when CiC firmware blocks commissioning (no button)", 11795],
+ ["Cloud", 14271, "Task", "Urgent", "", "D5: Trigger MenderAPI requests for manual CiC firmware updates", 11795],
+ ["Cloud", 14552, "Task", "High", "", "COMMISSIONING | Extend Cooling test (COOLING_CHILL) timeout to 30 minutes", 11795],
+ ["Cloud", 14742, "Bug", "Urgent", "", "[BE] All-E Boost | Boost/Leave-Boost button lags ~5s — surface pending request in GET status", 11732],
+ ["Cloud", 14222, "Task", "Urgent", "", "Expose live All-E fields (shower minutes, draw-off, charging) in /me/cic/{cicId}/allElectricBoost response", 11732],
+ ["Cloud", 14747, "Task", "Urgent", "", "[BE] All-E Boost | Temporary shower-minutes correction during/after Boost (July launch band-aid)", 11732],
+ ["Cloud", 14740, "Bug", "Urgent", "", "[BE][Security] All-E Boost | /me POST skips CIC ownership check (source:\"admin\")", 11732],
+ ["Cloud", 14788, "Bug", "Medium", "", "All-Electric Boost: app reflects START/CANCEL with ~15s delay and flickers back to idle", 11732],
+ ["Cloud", 14817, "Bug", "Medium", "", "All-E Boost: stale exit outcome re-cached right after START suppresses the STARTING overlay (flicker to 'Boost has stopped')", 11732],
+ ["Cloud", 14299, "Task", "Low", "", "Remove DEGRADED status from All-E Boost Mode (BE)", 11732],
+ ["Cloud", 15022, "Task", "High", "", "Set production minimum CIC version for Boost Mode to 4.9.0 (minQuattBuildRequiredForBoostMode)", 11732],
+ ["Cloud", 14915, "Bug", "Medium", "", "[Security][HIGH] GraphQL injection into HubSpot CRM via unescaped installer house-search fields", 152],
+ ["Cloud", 14752, "Bug", "Medium", "", "[Security] Mass assignment on CIC update: req.body spread into prisma.cic.update allows arbitrary column writes (e.g. installationId)", 152],
+ ["Cloud", 14914, "Bug", "Medium", "", "[Security][HIGH] Prototype pollution via unvalidated device-stats merge (deepReduceStats)", 152],
+ ["Cloud", 14900, "Task", "Medium", "", "ZipStats: compression-ratio metrics via CloudWatch EMF", 13717],
+ ["Cloud", 15130, "Task", "Medium", "", "Hotfix: Bump telemetry-transform Lambda memory 128→256 MB for zipStats rollout", 13717],
+ ["Cloud", 15150, "Task", "Medium", "", "Hotfix: Fix telemetry-transform 413 payload errors: lower Firehose buffer 3→0.5 MB", 13717],
+ ["Cloud", 15270, "Task", "Medium", "", "Migrate telemetry-transform Lambda to arm64/Graviton", 13717],
+ ["Cloud", 15271, "Task", "Medium", "", "Drop redundant payload JSON.stringify on zipped path in telemetry-transform Lambda", 13717],
+ ["Cloud", 15289, "Task", "Medium", "", "hotfix: Increase telemetry-transform Firehose buffer 0.25 -> 0.5 MB", 13717],
+ ["Cloud", 14923, "Task", "Medium", "", "[Backend] Bulk-job status API — GET list + detail endpoints for backfill monitoring", 152],
+ ["Cloud", 14924, "Task", "Medium", "", "[Backend] Persist live backfill progress (current step + batch %) for in-flight installations", 152],
+ ["Cloud", 14928, "Bug", "Medium", "", "BACKFILL_INSIGHTS bulk job: installationBulkJob upsert races parent bulkJob row creation (spurious @here Sentry alerts)", 152],
+ ["Cloud", 14336, "Task", "Medium", "", "Migrate EEX Group DataSource integration from sFTP to File Cloud (Bearer token auth)", 152],
+ ["Cloud", 14793, "Task", "Medium", "In Review", "Push notifications prep: widen userClient.pushToken and add optional platform", 0],
+ ["Cloud", 14780, "Bug", "Medium", "", "Chill reset_flags CIC ack is unhandled in the worker → spurious \"Invalid topic part\" error log + duplicate ERROR row in MQTT-debug view", 11795],
+ ["Cloud", 14783, "Bug", "Medium", "", "[BE] Chill | syncSettingsWithCIC 500s (CannotFindAnyChillStatsError) when a registered chill isn't in the CIC lastStat", 11795],
+ ["Cloud", 14901, "Bug", "Urgent", "", "Chill CS dashboard not showing correct unit state", 11795],
+ ["Cloud", 14718, "Bug", "Medium", "", "GET /me/referral crashes (SyntaxError) when ReferralRock returns a non-JSON error body", 152],
+ ["Cloud", 15258, "Bug", "Medium", "", "GET /admin/installation/:uuid/events 500s when Snowflake EVENT_TEXT / EVENT_TITLE is null", 0],
+ ["Cloud", 15272, "Bug", "Medium", "", "CiC Restarts last 24h badge shows non-deterministic/inflated count (ClickHouse lagInFrame missing ORDER BY)", 152],
+ ["Cloud", 14885, "Task", "Medium", "", "Worker: fetch the cic row once per stats message instead of three times", 152],
+ ["Cloud", 14097, "Task", "Urgent", "", "Update package dependencies in quatt-cloud", 7154],
+ ["Cloud", 14903, "Task", "Medium", "", "Clean up obsolete and dead scripts in src/scripts", 152],
+ ["Cloud", 14849, "Task", "Medium", "", "Optimize CLAUDE.md and agent context files (dedupe, fix dead refs, model-agnostic)", 152],
+ ["Cloud", 14482, "Task", "Medium", "In validation", "Bump Node 20 GitHub Actions to Node 24 versions in e2e workflow", 7154],
+ ["Cloud", 14465, "Task", "Medium", "Backlog", "Bump commissioning min CIC version & minQuattBuildRequired to 4.6", 152],
+];
+
+/* ---------- filters & sorting ---------- */
+const state = { product: '*', type: '*', pr: '*', q: '', sortCol: null, sortDir: 1 };
+const PRIO_RANK = { 'Urgent': 4, 'High': 3, 'Medium': 2, 'Low': 1 };
+const COL_IDX = { product: 0, key: 1, type: 2, priority: 3, summary: 5 };
+
+document.querySelectorAll('th.sortable').forEach(th => th.addEventListener('click', () => {
+  const col = th.dataset.col;
+  if (state.sortCol === col) {
+    state.sortDir = -state.sortDir;          // second click: reverse
+  } else {
+    state.sortCol = col;
+    state.sortDir = col === 'priority' ? -1 : 1;  // priority defaults to Urgent-first
+  }
+  document.querySelectorAll('th.sortable').forEach(x => {
+    x.classList.toggle('sorted', x === th);
+    x.dataset.arrow = x === th ? (state.sortDir === 1 ? '▲' : '▼') : '';
+  });
+  render();
+}));
+
+function cmp(a, b) {
+  const col = state.sortCol, i = COL_IDX[col];
+  let va = a[i], vb = b[i];
+  if (col === 'priority') { va = PRIO_RANK[va] || 0; vb = PRIO_RANK[vb] || 0; }
+  if (va < vb) return -1 * state.sortDir;
+  if (va > vb) return  1 * state.sortDir;
+  // tiebreakers: priority desc, then key asc — keeps grouped output stable
+  const pa = PRIO_RANK[a[3]] || 0, pb = PRIO_RANK[b[3]] || 0;
+  if (pa !== pb) return pb - pa;
+  return a[1] - b[1];
+}
+function bindGroup(id, key) {
+  document.querySelectorAll('#' + id + ' .fbtn').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('#' + id + ' .fbtn').forEach(x => x.classList.toggle('on', x === b));
+    state[key] = b.dataset.v;
+    render();
+  }));
+}
+bindGroup('f-product', 'product');
+bindGroup('f-type', 'type');
+bindGroup('f-pr', 'pr');
+document.getElementById('f-q').addEventListener('input', e => { state.q = e.target.value.toLowerCase(); render(); });
+
+/* Epic grouping for the Engineering table: each ticket row carries its Jira
+   parent-epic key (index 6); EPICS lists epics in ticket-count order with a
+   trailing "No parent Epic" (key 0). Groups cycle colour classes epic-c0..4. */
+const EPICS = [
+  [152, "Production Incidents/Continuous Improvements - App/Backend"],
+  [7154, "SW&amp;I Technical Debt"],
+  [11732, "All-E | Boost Mode Feature"],
+  [11795, "CHILL | Field Test Stability Improvement"],
+  [148, "MPC predictive heating"],
+  [14022, "ALL-E | Commisioning &amp; B2B Enhancements"],
+  [11880, "Bug Fixing &amp; Fleet Diagnostics"],
+  [13717, "ZipIt: Telemetry Firehose + Parquet Pipeline"],
+  [138, "Quatt App ideas &amp; improvements"],
+  [165, "QA automation via virtual rig"],
+  [7079, "Heatcharger | FW Improvements"],
+  [7060, "Migrate hybrid commissioning to new architecture"],
+  [6894, "CiC New features/Improvements"],
+  [7133, "Dongle | SW Improvements"],
+  [10387, "QA Expand integration test suite"],
+  [10390, "CHILL | SW Improvements"],
+  [11879, "26.Q1 Embedded Technical Debt"],
+  [12488, "Technical Debt and Continuous Improvement"],
+  [14931, "CHILL | Temperature and humidity modelling"],
+  [0, "No parent Epic"],
+];
+const epicKeyOf = r => r[6];
+
+function rowHTML([p, k, ty, pr, st, d], epicCls) {
+  const prBadge = pr === 'Urgent' ? '<span class="badge urgent">Urgent</span>'
+                : pr === 'High' ? '<span class="badge high">High</span>'
+                : '<span style="color:var(--text-muted);font-size:12px">' + pr + '</span>';
+  const stBadge = st ? ' <span class="badge open">' + st + '</span>' : '';
+  const cls = p === 'CiC' ? 'cic' : p === 'Cloud' ? 'cloud' : p === 'App' ? 'app' : 'fw';
+  const trClass = epicCls ? ' class="tk ' + epicCls + '"' : '';   // grouped rows get the rail; flat rows don't
+  return '<tr' + trClass + '>' +
+    '<td class="key"><a href="https://quatt-team.atlassian.net/browse/QPD-' + k + '" target="_blank">QPD-' + k + '</a></td>' +
+    '<td><span class="chip ' + cls + '">' + p + '</span></td>' +
+    '<td><span class="badge ' + ty.toLowerCase() + '">' + ty + '</span></td>' +
+    '<td>' + prBadge + '</td>' +
+    '<td>' + d + stBadge + '</td></tr>';
+}
+
+function render() {
+  let rows = T.filter(([p, k, ty, pr, st, d]) =>
+    (state.product === '*' || p === state.product) &&
+    (state.type === '*' || ty === state.type) &&
+    (state.pr === '*' || (state.pr === 'Urgent' ? pr === 'Urgent' : (pr === 'Urgent' || pr === 'High'))) &&
+    (!state.q || d.toLowerCase().includes(state.q) || ('qpd-' + k).includes(state.q))
+  );
+  document.getElementById('count').textContent =
+    rows.length + ' of ' + T.length + ' ticket entries (cross-product duplicates listed per product)';
+
+  let html;
+  if (state.sortCol) {
+    // A column sort flattens the table and clears the epic grouping (no rails).
+    html = rows.slice().sort(cmp).map(r => rowHTML(r, null)).join('');
+  } else {
+    // Default view: group by Jira Epic. Each group gets a colour class (epic-c0..4)
+    // on its header row and its ticket rows. Empty groups (after filtering) are skipped.
+    html = EPICS.map(([ek, etitle], gi) => {
+      const grp = rows.filter(r => epicKeyOf(r) === ek);
+      if (!grp.length) return '';
+      const c = 'epic-c' + (gi % 5);
+      const link = ek
+        ? '<a href="https://quatt-team.atlassian.net/browse/QPD-' + ek + '" target="_blank">' + etitle + '</a>'
+        : etitle;
+      const header = '<tr class="epic-row ' + c + '"><td colspan="5">' + link +
+        '<span class="ecount">' + grp.length + ' ticket' + (grp.length === 1 ? '' : 's') + '</span></td></tr>';
+      return header + grp.map(r => rowHTML(r, c)).join('');
+    }).join('');
+  }
+  document.getElementById('rows').innerHTML = html;
+}
+render();
+
+/* ---------- Internal tab: make the WHOLE epic title the link (drop the "QPD-XXX ·" prefix) ---------- */
+document.querySelectorAll('#panel-internal h3, #panel-internal h4').forEach(h => {
+  const a = h.querySelector(':scope > a');
+  if (!a) return;                                                     // "Technical Debt" group / "No parent Epic" — no link, leave plain
+  const sib = a.nextSibling;
+  if (!sib || sib.nodeType !== 3 || sib.textContent.indexOf('·') === -1) return;   // needs the " · <title>" text node
+  const title = sib.textContent.replace(/^\s*·\s*/, '').replace(/\s+$/, '');
+  if (!title) return;
+  a.textContent = title;                                             // whole title becomes the link
+  sib.textContent = ' ';                                             // drop the old "QPD-XXX · " prefix text
+});
+
+/* ---------- Internal tab: colour-code the per-ticket Team bubbles ---------- */
+(function () {
+  const map = {
+    'App': 'team-app', 'Cloud / Backend': 'team-cloud', 'Embedded Systems': 'team-embedded',
+    'Systems Control': 'team-control', 'SW&I': 'team-swi', 'no team set': 'team-none'
+  };
+  document.querySelectorAll('#panel-internal .team').forEach(el => {
+    const c = map[el.textContent.trim()];
+    if (c) el.classList.add(c);
+  });
+})();
+
+/* ---------- Release timeline (live from /api/calendar, scoped to this version, with durations) ---------- */
+(function () {
+  // REPLACE both per release (see the template banner at the top of <body>):
+  const RELEASE_DATE = '2026-07-21';   // this page's headline date (fallback windowing)
+  const RELEASE_VERSION = '4.10.0';    // milestones whose title contains this belong to this release's cycle
+  const sec = document.getElementById('release-timeline');
+  const list = document.getElementById('tl-list');
+  const sub = document.querySelector('#release-timeline .tl-sub');
+  if (!sec || !list) return;
+
+  const DAY = 86400000;
+  const esc = s => (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const toDate = iso => new Date((iso || '').length === 10 ? iso + 'T00:00:00Z' : iso);
+  const optMD = { day: 'numeric', month: 'short', timeZone: 'UTC' };
+  const optMDY = { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' };
+
+  // For all-day events Google's end date is EXCLUSIVE (the day after the last day).
+  function span(ev) {
+    const s = toDate(ev.start);
+    if (ev.end) {
+      const e = toDate(ev.end);
+      const days = Math.max(1, Math.round((e - s) / DAY));
+      const last = ev.allDay ? new Date(e - DAY) : e;   // inclusive last day for all-day
+      return { days, startD: s, lastD: last, single: days <= 1 };
+    }
+    return { days: 1, startD: s, lastD: s, single: true };
+  }
+  const rangeText = sp => sp.single
+    ? sp.startD.toLocaleDateString('en-GB', optMDY)
+    : sp.startD.toLocaleDateString('en-GB', optMD) + ' – ' + sp.lastD.toLocaleDateString('en-GB', optMDY);
+
+  fetch('/api/calendar', { credentials: 'include' })
+    .then(r => (r.ok ? r.json() : null))
+    .then(data => {
+      if (!data || !data.ok || !Array.isArray(data.events)) return;   // stay hidden
+      let evs = data.events.filter(ev => (ev.title || '').includes(RELEASE_VERSION));
+      if (!evs.length) {
+        // Untagged release → fall back to concrete milestones within ~6 weeks of the headline date.
+        const base = toDate(RELEASE_DATE).getTime(), lo = base - 7 * DAY, hi = base + 42 * DAY;
+        evs = data.events.filter(ev => { const t = toDate(ev.start).getTime(); return t >= lo && t <= hi; });
+      }
+      if (!evs.length) return;   // nothing relevant → stay hidden
+
+      list.innerHTML = evs.map(ev => {
+        const sp = span(ev);
+        const title = (ev.title || 'Untitled').replace(/\s*\|\s*CiC\b.*$/i, '').trim();   // drop the "| CiC x.y.z" suffix
+        return '<li class="tl-item">' +
+          '<div class="tl-date">' + esc(rangeText(sp)) + '</div>' +
+          '<div class="tl-title">' + esc(title) + '</div>' +
+          '</li>';
+      }).join('');
+      if (sub) sub.textContent = 'CiC ' + RELEASE_VERSION + ' · live from the shared release calendar';
+      sec.hidden = false;   // only reveal once we actually have events
+    })
+    .catch(() => {});       // endpoint missing / network error → section stays hidden, no breakage
+})();
+</script>
+
+</body>
+</html>
