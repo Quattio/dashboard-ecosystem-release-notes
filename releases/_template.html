@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>[Prototype] Quatt Ecosystem Release 16.07.2026 — structure test</title>
+<title>[Prototype v2] Quatt Ecosystem Release 16.07.2026 — epic-grouped Engineering + colour</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,6 +11,24 @@
 <script src="../env-banner.js"></script>
 </head>
 <body>
+
+<!--
+  ============================================================================
+  CANONICAL STRUCTURAL TEMPLATE for release-wave pages (epic-grouped format).
+  This is NOT a real release: it is intentionally excluded from releases.js and
+  is never listed on the index. It is kept previewable on Cloudflare Pages so
+  the layout can be reviewed.
+
+  When generating a new wave page (Step 8 of the quatt-release-notes skill):
+    • COPY this file to releases/YYYY-MM-DD.html — do NOT clone a previous
+      dated release page. Older pages may be in a superseded layout, and
+      cloning one silently carries the old format forward.
+    • Replace the page-head (title, kicker, chips), the three tab panels, and
+      the ticket data with the wave's content.
+    • Set RELEASE_DATE and RELEASE_VERSION in the timeline script below so the
+      live release-timeline (PR-added, /api/calendar) scopes to this release.
+  ============================================================================
+-->
 
 <header class="topbar">
   <div class="topbar-inner">
@@ -41,7 +59,7 @@
   </div>
 
   <div class="callout-warn" style="border:2px solid var(--color-orange)">
-    <b>PROTOTYPE &mdash; structure test, not the published release notes.</b> This is a <b>copy</b> of the 16.07.2026 release used to trial a new layout: an Internal tab grouped by <b>Jira Epic</b> with per-ticket <b>Team</b>, an Engineering tab with <b>Thread</b> (renamed from Wireless) and HeatCharger folded into <b>CiC</b>, product groups sorted by ticket count, and no revision-diff highlight. The live, published page is <a href="2026-07-16.html">2026-07-16.html</a> and is unaffected. Nothing here changes how releases are generated.
+    <b>PROTOTYPE (v2) &mdash; structure test, not the published release notes.</b> A <b>copy</b> of the 16.07.2026 release trialling further layout ideas: the <b>Engineering</b> table grouped by <b>Jira Epic</b> with colour-coded groups (epic membership here is illustrative), the Internal tab&rsquo;s three Technical-Debt epics <b>merged into one panel</b> with sub-cards, <b>clickable epic titles</b>, and colour-coded per-ticket <b>Team</b> bubbles. The live, published page is <a href="2026-07-16.html">2026-07-16.html</a> and is unaffected. Nothing here changes how releases are generated.
   </div>
 
   <div class="review-only"><div class="review-panel">
@@ -52,6 +70,12 @@
     <p class="sub"><b>Regeneration:</b> ticket and Epic data re-fetched from Jira. Source change picked up this run — Epic <b>QPD-152</b>&rsquo;s description now routes production issues via an <b>NCR</b> raised by the <b>Quality team</b> (previously an INC via QRES); reflected in its Epic card.</p>
     <p class="sub"><b>Tier 1 (customer) is unchanged:</b> a beta CiC build ships to the beta-tester track, not the general fleet, and Cloud v2.42.0 adds no new customer-live feature (custom night hours postponed to app v1.60.0), so the customer surface remains the app v1.59.0 fixes.</p>
   </div></div>
+
+  <section class="timeline-wrap" id="release-timeline" hidden>
+    <h2>Release timeline</h2>
+    <p class="tl-sub">Live from the shared Quatt release calendar.</p>
+    <ol class="timeline" id="tl-list"></ol>
+  </section>
 
   <div class="tabs" role="tablist">
     <button class="tab active" data-panel="customer">Customer</button>
@@ -140,24 +164,46 @@
       <h3><a href="https://quatt-team.atlassian.net/browse/QPD-152" target="_blank">QPD-152</a> &middot; Production Incidents / Continuous Improvements &mdash; App / Backend <span class="epic">12 tickets</span></h3>
       <p class="epic-desc">Quatt&rsquo;s rolling maintenance Epic: every ticket traces back to a production NCR (the Quality team is first contact; SW&amp;Infra then investigates and fixes). No target date &mdash; priority-driven; WBSO / capitalization applicable. This wave it carries the backend security hardening, fleet backfill tooling, a data-integration migration, and two customer/installer-facing app fixes.</p>
       <ul>
-        <li><b>Backend security hardening:</b> fix a GraphQL injection into HubSpot CRM via house-search fields <span class="tkey">(QPD-14915 <span class="team">Cloud / Backend</span>, High)</span>; allow-list columns on CiC update to stop mass-assignment <span class="tkey">(QPD-14752 <span class="team">Cloud / Backend</span>)</span>; strip prototype-pollution keys from device JSON <span class="tkey">(QPD-14914 <span class="team">Cloud / Backend</span>)</span></li>
+        <li><b>Backend security hardening:</b> fix a GraphQL injection into HubSpot CRM via house-search fields <span class="tkey">(QPD-14915 <span class="team">Cloud / Backend</span>)</span>; allow-list columns on CiC update to stop mass-assignment <span class="tkey">(QPD-14752 <span class="team">Cloud / Backend</span>)</span>; strip prototype-pollution keys from device JSON <span class="tkey">(QPD-14914 <span class="team">Cloud / Backend</span>)</span></li>
         <li><b>Fleet backfill tooling:</b> a bulk-job status API (list + detail) and live backfill-progress persistence, with an enqueue-ordering fix closing an FK race <span class="tkey">(QPD-14923 <span class="team">Cloud / Backend</span>, QPD-14924 <span class="team">Cloud / Backend</span>, QPD-14928 <span class="team">Cloud / Backend</span>)</span></li>
         <li><b>Data / integrations &amp; perf:</b> migrate EEX gas pricing from sFTP to EEX File Cloud <span class="tkey">(QPD-14336 <span class="team">Cloud / Backend</span>)</span>; guard ReferralRock against non-JSON responses <span class="tkey">(QPD-14718 <span class="team">Cloud / Backend</span>)</span>; fetch the CiC row once per stats message <span class="tkey">(QPD-14885 <span class="team">Cloud / Backend</span>)</span></li>
-        <li><b>Customer / installer-facing fixes:</b> measurement values now follow app language <span class="tkey">(QPD-14955 <span class="team">App</span>)</span>; cancel-commissioning copy warns the installer the system is left non-working <span class="tkey">(QPD-14616 <span class="team">App</span>, Urgent)</span>; &ldquo;Fair&rdquo; signal-strength mistranslation in NL/DE/SK <span class="tkey">(QPD-14778 <span class="team">App</span>)</span></li>
+        <li><b>Customer / installer-facing fixes:</b> measurement values now follow app language <span class="tkey">(QPD-14955 <span class="team">App</span>)</span>; cancel-commissioning copy warns the installer the system is left non-working <span class="tkey">(QPD-14616 <span class="team">App</span>)</span>; &ldquo;Fair&rdquo; signal-strength mistranslation in NL/DE/SK <span class="tkey">(QPD-14778 <span class="team">App</span>)</span></li>
       </ul>
       <div class="impact"><b>Impact for CS:</b> the security fixes are backend-only and need no customer action. QPD-14955 is customer-visible (see the Customer tab); QPD-14778 affects the <b>installer app only</b>, not customers.</div>
     </div>
 
-    <div class="theme-card">
-      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-7154" target="_blank">QPD-7154</a> &middot; SW&amp;I Technical Debt <span class="epic">12 tickets</span></h3>
-      <p class="epic-desc">The SW&amp;Infra technical-debt Epic (app + backend). This wave is almost entirely <strong>app modernization</strong> plus the Insights V2 chart rebuild.</p>
-      <ul>
-        <li><b>Retire legacy app layers:</b> remove the MobX store <span class="tkey">(QPD-14769 <span class="team">App</span>)</span>; migrate <code>legacy/api</code> to the generated OpenAPI client <span class="tkey">(QPD-14770 <span class="team">App</span>)</span>, plus the unauthenticated app-compatibility check <span class="tkey">(QPD-14771 <span class="team">App</span>)</span>, the RegistrationInstallerId screen <span class="tkey">(QPD-14772 <span class="team">App</span>)</span> and DevtoolsStack <span class="tkey">(QPD-15004 <span class="team">App</span>)</span>; explicit splash-driven AppPhase startup/auth state machine <span class="tkey">(QPD-14408 <span class="team">App</span>)</span>; victory-native XL bump <span class="tkey">(QPD-14703 <span class="team">App</span>)</span></li>
-        <li><b>Insights V2 chart rebuild</b> (behind the <code>insights_v2</code> flag): charts rebuilt on victory-native XL <span class="tkey">(QPD-14773 <span class="team">App</span>)</span>, shared presenter dissolved into suspense queries <span class="tkey">(QPD-14880 <span class="team">App</span>)</span>, legacy cards + banner ported <span class="tkey">(QPD-14881 <span class="team">App</span>)</span>, translation keys consolidated <span class="tkey">(QPD-14945 <span class="team">App</span>)</span></li>
-        <li>Backend dependency update sweep <span class="tkey">(QPD-14097 <span class="team">Cloud / Backend</span>)</span></li>
-      </ul>
-      <div class="callout-warn"><b>Shipped but DISABLED &mdash; do not communicate:</b> the Insights V2 rebuild ships behind the <code>insights_v2</code> flag (off for the fleet). Customers cannot reach the new Insights screens yet.</div>
-      <div class="impact"><b>Impact for ops:</b> internal refactoring &mdash; no field action, aside from the flagged-off Insights V2 work above.</div>
+    <div class="theme-card tech-debt-group">
+      <h3 class="group-title">Technical Debt <span class="epic">3 Epics &middot; 14 tickets</span></h3>
+
+      <div class="subcard">
+        <h4><a href="https://quatt-team.atlassian.net/browse/QPD-7154" target="_blank">QPD-7154</a> &middot; SW&amp;I Technical Debt <span class="epic">12 tickets</span></h4>
+        <p class="epic-desc">The SW&amp;Infra technical-debt Epic (app + backend). This wave is almost entirely <strong>app modernization</strong> plus the Insights V2 chart rebuild.</p>
+        <ul>
+          <li><b>Retire legacy app layers:</b> remove the MobX store <span class="tkey">(QPD-14769 <span class="team">App</span>)</span>; migrate <code>legacy/api</code> to the generated OpenAPI client <span class="tkey">(QPD-14770 <span class="team">App</span>)</span>, plus the unauthenticated app-compatibility check <span class="tkey">(QPD-14771 <span class="team">App</span>)</span>, the RegistrationInstallerId screen <span class="tkey">(QPD-14772 <span class="team">App</span>)</span> and DevtoolsStack <span class="tkey">(QPD-15004 <span class="team">App</span>)</span>; explicit splash-driven AppPhase startup/auth state machine <span class="tkey">(QPD-14408 <span class="team">App</span>)</span>; victory-native XL bump <span class="tkey">(QPD-14703 <span class="team">App</span>)</span></li>
+          <li><b>Insights V2 chart rebuild</b> (behind the <code>insights_v2</code> flag): charts rebuilt on victory-native XL <span class="tkey">(QPD-14773 <span class="team">App</span>)</span>, shared presenter dissolved into suspense queries <span class="tkey">(QPD-14880 <span class="team">App</span>)</span>, legacy cards + banner ported <span class="tkey">(QPD-14881 <span class="team">App</span>)</span>, translation keys consolidated <span class="tkey">(QPD-14945 <span class="team">App</span>)</span></li>
+          <li>Backend dependency update sweep <span class="tkey">(QPD-14097 <span class="team">Cloud / Backend</span>)</span></li>
+        </ul>
+        <div class="callout-warn"><b>Shipped but DISABLED &mdash; do not communicate:</b> the Insights V2 rebuild ships behind the <code>insights_v2</code> flag (off for the fleet). Customers cannot reach the new Insights screens yet.</div>
+        <div class="impact"><b>Impact for ops:</b> internal refactoring &mdash; no field action, aside from the flagged-off Insights V2 work above.</div>
+      </div>
+
+      <div class="subcard">
+        <h4><a href="https://quatt-team.atlassian.net/browse/QPD-11879" target="_blank">QPD-11879</a> &middot; 26.Q1 Embedded Technical Debt <span class="epic">1 ticket</span></h4>
+        <p class="epic-desc">The Q1-2026 embedded technical-debt Epic (message-spec unification, config handling, LTE update handling).</p>
+        <ul>
+          <li>Fix <code>forget_wifi</code> returning &ldquo;bad&rdquo; for a just-connected SSID &mdash; the libnm connection cache wasn&rsquo;t drained before lookup <span class="tkey">(QPD-14979 <span class="team">Embedded Systems</span>)</span></li>
+        </ul>
+        <div class="impact"><b>Impact for CS:</b> resolves a Wi-Fi reconnection false-negative on the CiC.</div>
+      </div>
+
+      <div class="subcard">
+        <h4><a href="https://quatt-team.atlassian.net/browse/QPD-12488" target="_blank">QPD-12488</a> &middot; Technical Debt and Continuous Improvement <span class="epic">1 ticket</span></h4>
+        <p class="epic-desc">A general technical-debt and continuous-improvement Epic.</p>
+        <ul>
+          <li>Cross-compile all C++ apps against the Yocto SDK dev container <span class="tkey">(QPD-15050 <span class="team">Embedded Systems</span>)</span></li>
+        </ul>
+        <div class="impact"><b>Impact for ops:</b> internal build tooling &mdash; no field impact.</div>
+      </div>
     </div>
 
     <div class="theme-card">
@@ -167,7 +213,7 @@
         <li><b>Round-trip UX (backend, Cloud v2.42.0):</b> optimistic Boost/Leave-Boost status <span class="tkey">(QPD-14742 <span class="team">Cloud / Backend</span>)</span>, live All-Electric fields surfaced in the boost response <span class="tkey">(QPD-14222 <span class="team">Cloud / Backend</span>)</span>, Live View on START/CANCEL <span class="tkey">(QPD-14788 <span class="team">Cloud / Backend</span>)</span>, outcome tombstoning against a stale exitReason <span class="tkey">(QPD-14817 <span class="team">Cloud / Backend</span>)</span>, time-based shower-minutes bonus while the tank sensor lags <span class="tkey">(QPD-14747 <span class="team">Cloud / Backend</span>)</span></li>
         <li><b>App + spec:</b> read live All-E fields from the boost response instead of polling the CiC <span class="tkey">(QPD-14223 <span class="team">App</span>)</span>; remove the never-emitted DEGRADED status across app, message spec and backend <span class="tkey">(QPD-14892 <span class="team">App</span>, QPD-14299 <span class="team">Cloud / Backend</span>)</span></li>
         <li><b>Controller:</b> complete boost-mode exit-reason and recoverable-condition reporting <span class="tkey">(QPD-15024 <span class="team">Systems Control</span>)</span></li>
-        <li><b>Security:</b> enforce CiC ownership on the <code>/me</code> boost action route <span class="tkey">(QPD-14740 <span class="team">Cloud / Backend</span>, High)</span></li>
+        <li><b>Security:</b> enforce CiC ownership on the <code>/me</code> boost action route <span class="tkey">(QPD-14740 <span class="team">Cloud / Backend</span>)</span></li>
         <li><b>Rollout:</b> production minimum CiC version for boost stays at 4.9.0 &mdash; a bump to 4.10.0 was raised and reverted <span class="tkey">(QPD-15022 <span class="team">Cloud / Backend</span>)</span></li>
       </ul>
       <div class="callout-warn"><b>Shipped but DISABLED &mdash; do not communicate:</b> All-Electric Boost Mode is gated off fleet-wide behind <code>all_e_boost_mode</code>. The code is in app v1.59.0 and Cloud v2.42.0, but customers cannot reach it yet.</div>
@@ -178,7 +224,7 @@
       <h3><a href="https://quatt-team.atlassian.net/browse/QPD-14022" target="_blank">QPD-14022</a> &middot; ALL-E | Commissioning &amp; B2B Enhancements <span class="epic">7 tickets</span></h3>
       <p class="epic-desc">The programme to let external B2B partners commission and service All-Electric systems without Quatt Field Ops support &mdash; commissioning improvements aimed at lifting external self-completion toward 80%.</p>
       <ul>
-        <li><b>M6 three-way-valve position check &mdash; end-to-end this wave:</b> the CiC maps the <code>three_way_valve_heatcharger</code> mode and reports it in stats <span class="tkey">(QPD-14061 <span class="team">Systems Control</span>, High)</span>; the backend position check replaces the Boost test, <b>gated on CiC firmware 4.10.0</b> <span class="tkey">(QPD-14402 <span class="team">Cloud / Backend</span>, Urgent)</span>; new app test screen <span class="tkey">(QPD-14403 <span class="team">App</span>)</span></li>
+        <li><b>M6 three-way-valve position check &mdash; end-to-end this wave:</b> the CiC maps the <code>three_way_valve_heatcharger</code> mode and reports it in stats <span class="tkey">(QPD-14061 <span class="team">Systems Control</span>)</span>; the backend position check replaces the Boost test, <b>gated on CiC firmware 4.10.0</b> <span class="tkey">(QPD-14402 <span class="team">Cloud / Backend</span>)</span>; new app test screen <span class="tkey">(QPD-14403 <span class="team">App</span>)</span></li>
         <li><b>CH backup-heater test:</b> a temperature-based test screen in the app <span class="tkey">(QPD-14902 <span class="team">App</span>)</span>, validated on the backend by a temperature-rise (&Delta;T) check <span class="tkey">(QPD-14060 <span class="team">Cloud / Backend</span>)</span></li>
         <li><b>HeatCharger firmware supporting work:</b> flash read-out protection <span class="tkey">(QPD-13854 <span class="team">Embedded Systems</span>)</span> and CH pressure-noise handling via an 80-sample filter <span class="tkey">(QPD-13867 <span class="team">Embedded Systems</span>)</span></li>
       </ul>
@@ -190,7 +236,7 @@
       <p class="epic-desc">Stability work for Chill pilot installations &mdash; fixing Chill and dongle bugs that fall outside current feature development, and supporting new customer pilots.</p>
       <ul>
         <li><b>CHILL flow test:</b> add flow-test validation <span class="tkey">(QPD-14263 <span class="team">Cloud / Backend</span>)</span> and fail on flow-switch protection rather than raw fault flags <span class="tkey">(QPD-14986 <span class="team">Cloud / Backend</span>)</span></li>
-        <li><b>Commissioning firmware handling:</b> backend auto-trigger for CiC firmware deployment + retry endpoint <span class="tkey">(QPD-14485 <span class="team">Cloud / Backend</span>)</span>, surfaced in the app as a &ldquo;preparing&rdquo; state with a failed-state retry <span class="tkey">(QPD-15005 <span class="team">App</span>, Urgent)</span></li>
+        <li><b>Commissioning firmware handling:</b> backend auto-trigger for CiC firmware deployment + retry endpoint <span class="tkey">(QPD-14485 <span class="team">Cloud / Backend</span>)</span>, surfaced in the app as a &ldquo;preparing&rdquo; state with a failed-state retry <span class="tkey">(QPD-15005 <span class="team">App</span>)</span></li>
         <li><b>Diagnostics:</b> add Thread connection status to diagnostics <span class="tkey">(QPD-14555 <span class="team">Cloud / Backend</span>)</span>; fix the Chill CS dashboard not showing the correct unit state <span class="tkey">(QPD-14901 <span class="team">SW&amp;I</span>)</span></li>
       </ul>
       <div class="impact"><b>Impact for CS / installers:</b> the CS dashboard now reflects the correct Chill unit state, and commissioning can bring the CiC to the required firmware automatically with a retry path if it fails.</div>
@@ -200,8 +246,8 @@
       <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11880" target="_blank">QPD-11880</a> &middot; Bug Fixing &amp; Fleet Diagnostics <span class="epic">4 tickets</span></h3>
       <p class="epic-desc">The controls team&rsquo;s rolling bug-fixing and fleet-diagnostics Epic. This wave&rsquo;s headline is the Chill cooling regression fix.</p>
       <ul>
-        <li><b>Chill cooling regression fixed:</b> the outdoor unit now enters cooling on the actual house heating demand rather than the raw OpenTherm CH-enable bit. Some thermostats (e.g. Remeha Celcia 20) hold CH-enable asserted year-round, which had left the water temperature running away (observed 24&nbsp;&rarr;&nbsp;33&nbsp;&deg;C in ~30&nbsp;min). Regression from CiC 4.8.0 <span class="tkey">(QPD-15262 <span class="team">Systems Control</span>, High)</span></li>
-        <li>Read a <b>sub-zero (freezing) suction temperature as a valid, signed value</b> so the suction-unsafe condition is no longer missed &mdash; spanning the HeatCharger firmware, the message spec and the CiC apps <span class="tkey">(QPD-11712 <span class="team">Embedded Systems</span>, High)</span></li>
+        <li><b>Chill cooling regression fixed:</b> the outdoor unit now enters cooling on the actual house heating demand rather than the raw OpenTherm CH-enable bit. Some thermostats (e.g. Remeha Celcia 20) hold CH-enable asserted year-round, which had left the water temperature running away (observed 24&nbsp;&rarr;&nbsp;33&nbsp;&deg;C in ~30&nbsp;min). Regression from CiC 4.8.0 <span class="tkey">(QPD-15262 <span class="team">Systems Control</span>)</span></li>
+        <li>Read a <b>sub-zero (freezing) suction temperature as a valid, signed value</b> so the suction-unsafe condition is no longer missed &mdash; spanning the HeatCharger firmware, the message spec and the CiC apps <span class="tkey">(QPD-11712 <span class="team">Embedded Systems</span>)</span></li>
         <li>Controller refinements with no ticket: a compressor safety cooldown is no longer reported as degraded service; higher commissioning frequency in the low-level controls</li>
         <li>HeatCharger firmware CI hardening: self-host devcontainer images <span class="tkey">(QPD-13746 <span class="team">Embedded Systems</span>)</span>; fix flaky unit tests (mock lifetime vs process shutdown) <span class="tkey">(QPD-13749 <span class="team">Embedded Systems</span>)</span></li>
       </ul>
@@ -270,7 +316,7 @@
       <h3><a href="https://quatt-team.atlassian.net/browse/QPD-14931" target="_blank">QPD-14931</a> &middot; CHILL | Temperature and humidity modelling <span class="epic">1 ticket</span></h3>
       <p class="epic-desc">Chill temperature and humidity modelling.</p>
       <ul>
-        <li>Message-spec groundwork for Chill dew-point correction &mdash; Redis keys added ahead of the controller logic, which is <b>not in this wave</b> <span class="tkey">(QPD-14756 <span class="team">Systems Control</span>, High)</span></li>
+        <li>Message-spec groundwork for Chill dew-point correction &mdash; Redis keys added ahead of the controller logic, which is <b>not in this wave</b> <span class="tkey">(QPD-14756 <span class="team">Systems Control</span>)</span></li>
       </ul>
       <div class="impact"><b>Impact for ops:</b> groundwork only &mdash; do not present dew-point protection as a live feature until the controller side ships.</div>
     </div>
@@ -295,15 +341,6 @@
     </div>
 
     <div class="theme-card">
-      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11879" target="_blank">QPD-11879</a> &middot; 26.Q1 Embedded Technical Debt <span class="epic">1 ticket</span></h3>
-      <p class="epic-desc">The Q1-2026 embedded technical-debt Epic (message-spec unification, config handling, LTE update handling).</p>
-      <ul>
-        <li>Fix <code>forget_wifi</code> returning &ldquo;bad&rdquo; for a just-connected SSID &mdash; the libnm connection cache wasn&rsquo;t drained before lookup <span class="tkey">(QPD-14979 <span class="team">Embedded Systems</span>)</span></li>
-      </ul>
-      <div class="impact"><b>Impact for CS:</b> resolves a Wi-Fi reconnection false-negative on the CiC.</div>
-    </div>
-
-    <div class="theme-card">
       <h3><a href="https://quatt-team.atlassian.net/browse/QPD-148" target="_blank">QPD-148</a> &middot; MPC predictive heating <span class="epic">1 ticket</span></h3>
       <p class="epic-desc">Model Predictive Control for central heating &mdash; cloud-trained house-dynamics models served to the controller.</p>
       <ul>
@@ -311,15 +348,6 @@
       </ul>
       <div class="callout-warn"><b>Shipped but not live:</b> MPC predictive heating is not enabled for the fleet and does not change how any customer&rsquo;s system heats today.</div>
       <div class="impact"><b>Impact for CS:</b> no customer-visible change.</div>
-    </div>
-
-    <div class="theme-card">
-      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-12488" target="_blank">QPD-12488</a> &middot; Technical Debt and Continuous Improvement <span class="epic">1 ticket</span></h3>
-      <p class="epic-desc">A general technical-debt and continuous-improvement Epic.</p>
-      <ul>
-        <li>Cross-compile all C++ apps against the Yocto SDK dev container <span class="tkey">(QPD-15050 <span class="team">Embedded Systems</span>)</span></li>
-      </ul>
-      <div class="impact"><b>Impact for ops:</b> internal build tooling &mdash; no field impact.</div>
     </div>
 
     <div class="theme-card">
@@ -549,6 +577,33 @@ bindGroup('f-type', 'type');
 bindGroup('f-pr', 'pr');
 document.getElementById('f-q').addEventListener('input', e => { state.q = e.target.value.toLowerCase(); render(); });
 
+/* Illustrative Epic grouping for the Engineering table (visual mock):
+   every ticket is assigned to one of 5 real epics by (ticket number % 5),
+   so each group deliberately mixes products (CiC / Cloud / App / Thread). */
+const EPICS = [
+  [11732, "All-E | Boost Mode Feature"],
+  [14022, "ALL-E | Commissioning &amp; B2B Enhancements"],
+  [13717, "ZipIt: Telemetry Firehose + Parquet Pipeline"],
+  [7154,  "SW&amp;I Technical Debt"],
+  [11880, "Bug Fixing &amp; Fleet Diagnostics"]
+];
+const epicIndexOf = k => k % 5;
+
+function rowHTML([p, k, ty, pr, st, d], epicCls) {
+  const prBadge = pr === 'Urgent' ? '<span class="badge urgent">Urgent</span>'
+                : pr === 'High' ? '<span class="badge high">High</span>'
+                : '<span style="color:var(--text-muted);font-size:12px">' + pr + '</span>';
+  const stBadge = st ? ' <span class="badge open">' + st + '</span>' : '';
+  const cls = p === 'CiC' ? 'cic' : p === 'Cloud' ? 'cloud' : p === 'App' ? 'app' : 'fw';
+  const trClass = epicCls ? ' class="tk ' + epicCls + '"' : '';   // grouped rows get the rail; flat rows don't
+  return '<tr' + trClass + '>' +
+    '<td class="key"><a href="https://quatt-team.atlassian.net/browse/QPD-' + k + '" target="_blank">QPD-' + k + '</a></td>' +
+    '<td><span class="chip ' + cls + '">' + p + '</span></td>' +
+    '<td><span class="badge ' + ty.toLowerCase() + '">' + ty + '</span></td>' +
+    '<td>' + prBadge + '</td>' +
+    '<td>' + d + stBadge + '</td></tr>';
+}
+
 function render() {
   let rows = T.filter(([p, k, ty, pr, st, d]) =>
     (state.product === '*' || p === state.product) &&
@@ -556,34 +611,110 @@ function render() {
     (state.pr === '*' || (state.pr === 'Urgent' ? pr === 'Urgent' : (pr === 'Urgent' || pr === 'High'))) &&
     (!state.q || d.toLowerCase().includes(state.q) || ('qpd-' + k).includes(state.q))
   );
-  if (state.sortCol) {
-    rows = rows.slice().sort(cmp);
-  } else {
-    // Default: group by product, with products ordered by ticket count ASCENDING
-    // (stable sort keeps each product's rows contiguous and in curated order),
-    // so a small group (e.g. a single Thread ticket) sits at the top rather than
-    // buried at the bottom. Counts reflect the currently-filtered rows.
-    const pc = {};
-    rows.forEach(r => { pc[r[0]] = (pc[r[0]] || 0) + 1; });
-    rows = rows.slice().sort((a, b) => pc[a[0]] - pc[b[0]]);
-  }
   document.getElementById('count').textContent =
     rows.length + ' of ' + T.length + ' ticket entries (cross-product duplicates listed per product)';
-  document.getElementById('rows').innerHTML = rows.map(([p, k, ty, pr, st, d]) => {
-    const prBadge = pr === 'Urgent' ? '<span class="badge urgent">Urgent</span>'
-                  : pr === 'High' ? '<span class="badge high">High</span>'
-                  : '<span style="color:var(--text-muted);font-size:12px">' + pr + '</span>';
-    const stBadge = st ? ' <span class="badge open">' + st + '</span>' : '';
-    const cls = p === 'CiC' ? 'cic' : p === 'Cloud' ? 'cloud' : p === 'App' ? 'app' : 'fw';
-    return '<tr>' +
-      '<td class="key"><a href="https://quatt-team.atlassian.net/browse/QPD-' + k + '" target="_blank">QPD-' + k + '</a></td>' +
-      '<td><span class="chip ' + cls + '">' + p + '</span></td>' +
-      '<td><span class="badge ' + ty.toLowerCase() + '">' + ty + '</span></td>' +
-      '<td>' + prBadge + '</td>' +
-      '<td>' + d + stBadge + '</td></tr>';
-  }).join('');
+
+  let html;
+  if (state.sortCol) {
+    // A column sort flattens the table and clears the epic grouping (no rails).
+    html = rows.slice().sort(cmp).map(r => rowHTML(r, null)).join('');
+  } else {
+    // Default view: group by Jira Epic. Each group gets a colour class (epic-c0..4)
+    // on its header row and its ticket rows. Empty groups (after filtering) are skipped.
+    html = EPICS.map(([ek, etitle], gi) => {
+      const grp = rows.filter(r => epicIndexOf(r[1]) === gi);
+      if (!grp.length) return '';
+      const c = 'epic-c' + gi;
+      const header = '<tr class="epic-row ' + c + '"><td colspan="5">' +
+        '<a href="https://quatt-team.atlassian.net/browse/QPD-' + ek + '" target="_blank">' + etitle + '</a>' +
+        '<span class="ecount">' + grp.length + ' ticket' + (grp.length === 1 ? '' : 's') + '</span></td></tr>';
+      return header + grp.map(r => rowHTML(r, c)).join('');
+    }).join('');
+  }
+  document.getElementById('rows').innerHTML = html;
 }
 render();
+
+/* ---------- Internal tab: make the WHOLE epic title the link (drop the "QPD-XXX ·" prefix) ---------- */
+document.querySelectorAll('#panel-internal h3, #panel-internal h4').forEach(h => {
+  const a = h.querySelector(':scope > a');
+  if (!a) return;                                                     // "Technical Debt" group / "No parent Epic" — no link, leave plain
+  const sib = a.nextSibling;
+  if (!sib || sib.nodeType !== 3 || sib.textContent.indexOf('·') === -1) return;   // needs the " · <title>" text node
+  const title = sib.textContent.replace(/^\s*·\s*/, '').replace(/\s+$/, '');
+  if (!title) return;
+  a.textContent = title;                                             // whole title becomes the link
+  sib.textContent = ' ';                                             // drop the old "QPD-XXX · " prefix text
+});
+
+/* ---------- Internal tab: colour-code the per-ticket Team bubbles ---------- */
+(function () {
+  const map = {
+    'App': 'team-app', 'Cloud / Backend': 'team-cloud', 'Embedded Systems': 'team-embedded',
+    'Systems Control': 'team-control', 'SW&I': 'team-swi', 'no team set': 'team-none'
+  };
+  document.querySelectorAll('#panel-internal .team').forEach(el => {
+    const c = map[el.textContent.trim()];
+    if (c) el.classList.add(c);
+  });
+})();
+
+/* ---------- Release timeline (live from /api/calendar, scoped to this version, with durations) ---------- */
+(function () {
+  // REPLACE both per release (see the template banner at the top of <body>):
+  const RELEASE_DATE = '2026-07-16';   // this page's headline date (fallback windowing)
+  const RELEASE_VERSION = '4.10.0';    // milestones whose title contains this belong to this release's cycle
+  const sec = document.getElementById('release-timeline');
+  const list = document.getElementById('tl-list');
+  const sub = document.querySelector('#release-timeline .tl-sub');
+  if (!sec || !list) return;
+
+  const DAY = 86400000;
+  const esc = s => (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const toDate = iso => new Date((iso || '').length === 10 ? iso + 'T00:00:00Z' : iso);
+  const optMD = { day: 'numeric', month: 'short', timeZone: 'UTC' };
+  const optMDY = { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' };
+
+  // For all-day events Google's end date is EXCLUSIVE (the day after the last day).
+  function span(ev) {
+    const s = toDate(ev.start);
+    if (ev.end) {
+      const e = toDate(ev.end);
+      const days = Math.max(1, Math.round((e - s) / DAY));
+      const last = ev.allDay ? new Date(e - DAY) : e;   // inclusive last day for all-day
+      return { days, startD: s, lastD: last, single: days <= 1 };
+    }
+    return { days: 1, startD: s, lastD: s, single: true };
+  }
+  const rangeText = sp => sp.single
+    ? sp.startD.toLocaleDateString('en-GB', optMDY)
+    : sp.startD.toLocaleDateString('en-GB', optMD) + ' – ' + sp.lastD.toLocaleDateString('en-GB', optMDY);
+
+  fetch('/api/calendar', { credentials: 'include' })
+    .then(r => (r.ok ? r.json() : null))
+    .then(data => {
+      if (!data || !data.ok || !Array.isArray(data.events)) return;   // stay hidden
+      let evs = data.events.filter(ev => (ev.title || '').includes(RELEASE_VERSION));
+      if (!evs.length) {
+        // Untagged release → fall back to concrete milestones within ~6 weeks of the headline date.
+        const base = toDate(RELEASE_DATE).getTime(), lo = base - 7 * DAY, hi = base + 42 * DAY;
+        evs = data.events.filter(ev => { const t = toDate(ev.start).getTime(); return t >= lo && t <= hi; });
+      }
+      if (!evs.length) return;   // nothing relevant → stay hidden
+
+      list.innerHTML = evs.map(ev => {
+        const sp = span(ev);
+        const title = (ev.title || 'Untitled').replace(/\s*\|\s*CiC\b.*$/i, '').trim();   // drop the "| CiC x.y.z" suffix
+        return '<li class="tl-item">' +
+          '<div class="tl-date">' + esc(rangeText(sp)) + '</div>' +
+          '<div class="tl-title">' + esc(title) + '</div>' +
+          '</li>';
+      }).join('');
+      if (sub) sub.textContent = 'CiC ' + RELEASE_VERSION + ' · live from the shared release calendar';
+      sec.hidden = false;   // only reveal once we actually have events
+    })
+    .catch(() => {});       // endpoint missing / network error → section stays hidden, no breakage
+})();
 </script>
 
 </body>
