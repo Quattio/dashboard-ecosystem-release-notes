@@ -53,6 +53,12 @@
     <p class="sub"><b>Tier 1 (customer) is unchanged:</b> a beta CiC build ships to the beta-tester track, not the general fleet, and Cloud v2.42.0 adds no new customer-live feature (custom night hours postponed to app v1.60.0), so the customer surface remains the app v1.59.0 fixes.</p>
   </div></div>
 
+  <section class="timeline-wrap" id="release-timeline" hidden>
+    <h2>Release timeline</h2>
+    <p class="tl-sub">Live from the shared Quatt release calendar.</p>
+    <ol class="timeline" id="tl-list"></ol>
+  </section>
+
   <div class="tabs" role="tablist">
     <button class="tab active" data-panel="customer">Customer</button>
     <button class="tab" data-panel="internal">Internal (ops / CS)</button>
@@ -633,6 +639,34 @@ document.querySelectorAll('#panel-internal h3, #panel-internal h4').forEach(h =>
     const c = map[el.textContent.trim()];
     if (c) el.classList.add(c);
   });
+})();
+
+/* ---------- Release timeline (live from /api/calendar) ---------- */
+(function () {
+  const RELEASE_DATE = '2026-07-16';   // this page's release date — highlights the matching calendar event
+  const sec = document.getElementById('release-timeline');
+  const list = document.getElementById('tl-list');
+  if (!sec || !list) return;
+  const esc = s => (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const fmt = iso => {
+    const d = new Date(iso.length === 10 ? iso + 'T00:00:00' : iso);
+    return isNaN(d.getTime()) ? iso : d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  };
+  fetch('/api/calendar', { credentials: 'include' })
+    .then(r => (r.ok ? r.json() : null))
+    .then(data => {
+      if (!data || !data.ok || !Array.isArray(data.events) || !data.events.length) return;  // stay hidden
+      list.innerHTML = data.events.map(ev => {
+        const isCur = (ev.start || '').slice(0, 10) === RELEASE_DATE;
+        return '<li class="tl-item' + (isCur ? ' current' : '') + '">' +
+          '<div class="tl-date">' + esc(fmt(ev.start)) + (isCur ? '<span class="tl-badge">this release</span>' : '') + '</div>' +
+          '<div class="tl-title">' + esc(ev.title || 'Untitled') + '</div>' +
+          (ev.description ? '<div class="tl-desc">' + esc(ev.description.slice(0, 240)) + '</div>' : '') +
+          '</li>';
+      }).join('');
+      sec.hidden = false;   // only reveal once we actually have events
+    })
+    .catch(() => {});       // endpoint missing / network error → section stays hidden, no breakage
 })();
 </script>
 
