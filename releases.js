@@ -4,7 +4,7 @@
 
 window.SUMMARY = [
   { n: "7",  l: "Release waves documented" },
-  { n: "98", l: "Tickets in latest wave" },
+  { n: "78", l: "Tickets in latest wave" },
   { n: "4",  l: "Products in latest wave" },
   { n: "3",  l: "Open follow-ups flagged" }
 ];
@@ -38,7 +38,6 @@ window.RELEASES = [
       { cls: "cic",   label: "CiC 4.10.0" },
       { cls: "cloud", label: "Cloud v2.42.0" },
       { cls: "app",   label: "App v1.59.0" },
-      { cls: "app",   label: "App v1.60.0" },
       { cls: "fw",    label: "Controller 6.11.2" },
       { cls: "fw",    label: "Thread FW 2.13.0" },
       { cls: "fw",    label: "HeatCharger FW 1.3.0" },
@@ -46,8 +45,8 @@ window.RELEASES = [
       { cls: "fw",    label: "ODU FW 2.1" }
     ],
     stats: [
-      { b: "98", t: "ticket entries" },
-      { b: "App v1.60.0", t: "paired — enables Insights V2 + Boost + sound schedule" },
+      { b: "78", t: "ticket entries" },
+      { b: "Cloud v2.42.0", t: "backend paired" },
       { b: "3-way valve", t: "commissioning check end-to-end" },
       { b: "stable", t: "GA — promoted from beta (same build)" }
     ]

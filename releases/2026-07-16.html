@@ -32,7 +32,6 @@
       <span class="chip cic">CiC 4.10.0</span>
       <span class="chip cloud">Cloud v2.42.0</span>
       <span class="chip app">App v1.59.0</span>
-      <span class="chip app">App v1.60.0</span>
       <span class="chip fw">Controller 6.11.2</span>
       <span class="chip fw">Thread FW 2.13.0</span>
       <span class="chip fw">HeatCharger FW 1.3.0</span>
@@ -46,9 +45,8 @@
     <p class="sub">Shown only on the staging preview — hidden in production.</p>
     <p class="sub"><b>Promotion of the 4.10.0 wave from beta to stable (GA) — this revision.</b> The wave advances from <b>beta</b> to <b>stable</b>; the CiC tag moves <b>4.10.0-beta.0 &rarr; 4.10.0</b>. The stable tag points at the <b>same commit</b> as beta.0 and alpha.1 (<code>1c134b9</code>), so there is <b>no build delta</b> — all bundled firmware is unchanged (Controller 6.11.2, Thread 2.13.0, HeatCharger 1.3.0, Chill CB 2.0.0, ODU 2.1) and <b>no CiC / App / Cloud tickets are added</b>. The 4.10.0 GitHub Release is not yet published, so the headline date stays the tag commit&rsquo;s committer date (2026-07-16) and the page keeps its 2026-07-16 filename.</p>
     <p class="sub"><b>Layout rebuilt from the canonical template.</b> The previously-published 16.07.2026 entry was in the older numbered-theme layout; this revision is rebuilt from <code>releases/_template.html</code> into the current <b>epic-grouped</b> format: the <b>Internal</b> tab is grouped by Jira parent Epic (with each ticket&rsquo;s owning <b>Team</b> pill and the three technical-debt Epics merged into one card), and the <b>Engineering</b> tab groups rows by real Jira Epic, renames <b>Wireless&rarr;Thread</b>, and folds HeatCharger firmware into <b>CiC</b>.</p>
-    <p class="sub"><b>Tier 1 (customer) — GA framing.</b> The disclaimer changes from &ldquo;beta-tester track&rdquo; to the stable / general-fleet build. Everyday heating behaviour on the CiC is unchanged; the customer-facing changes arrive with the app updates (v1.59.0 and, as of this revision, v1.60.0 — which turns on Insights V2, All-Electric Boost Mode and the day/night sound schedule).</p>
-    <p class="sub"><b>Reviewer feedback revision (PR #26) — App v1.60.0 now paired.</b> Per <a href="https://github.com/Quattio/dashboard-ecosystem-release-notes/pull/26#issuecomment-5088859735" target="_blank">Alex&rsquo;s request</a>, <b>App v1.60.0</b> (shipped 2026-07-24, one day past the auto-computed +7d tail) is now paired to this 4.10.0 wave alongside v1.59.0. v1.60.0 <b>removes the app-side gates</b> — QPD-14883 drops the <code>insights_v2</code> flag and the legacy Insights code, and QPD-14724 drops the <code>all_e_boost_mode</code> flag and the legacy V1 HeatBattery screen — and QPD-15101 redesigns the Sound settings screen with separate day/night modes. As a result, three features that the prior revision listed as <b>shipped-but-disabled</b> now go <b>live</b>: <b>Insights V2</b>, <b>All-Electric Boost Mode</b> and the <b>custom day/night sound schedule</b>. This revision adds v1.60.0&rsquo;s 20 tickets to the Engineering table, moves those three enablements into the Customer tab (EN + NL), and converts the &ldquo;do not communicate&rdquo; callouts in the Internal tab to &ldquo;now live&rdquo;.</p>
-    <p class="sub"><b>CiC / firmware content is still identical to the beta entry.</b> Pairing v1.60.0 changes only the App surface — the CiC 4.10.0 tag still points at the same commit as 4.10.0-beta.0 (<code>1c134b9</code>) and all bundled firmware is unchanged. Nothing was reverted or removed.</p>
+    <p class="sub"><b>Tier 1 (customer) — GA framing.</b> The disclaimer changes from &ldquo;beta-tester track&rdquo; to the stable / general-fleet build. The customer-visible surface is unchanged: everyday heating behaviour is the same, and the customer-facing changes still arrive with app v1.59.0.</p>
+    <p class="sub"><b>Enablement sweep — nothing new goes live vs the beta entry.</b> Paired <b>App v1.59.0</b> and <b>Cloud v2.42.0</b> are unchanged. <b>App v1.60.0</b> (shipped 2026-07-24, which removes the <code>all_e_boost_mode</code> and <code>insights_v2</code> flags and lands custom night hours) falls <b>one day past this wave&rsquo;s +7d tail</b> (window ends 2026-07-23) and belongs to the next CiC wave — so Insights V2, All-Electric Boost Mode and custom night hours remain <b>shipped-but-disabled</b> for 4.10.0. Nothing was reverted or removed.</p>
   </div></div>
 
   <section class="timeline-wrap" id="release-timeline" hidden>
@@ -74,20 +72,17 @@
     <div class="lang-pane" id="tier1-en">
       <div class="callout-warn">
         This ecosystem update brings the CiC 4.10.0 firmware to the general fleet as a stable release. Everyday heating and
-        comfort behaviour on the CiC is unchanged; the customer-visible changes below arrive with the Quatt app updates (versions 1.59.0 and 1.60.0).
+        comfort behaviour is unchanged; the customer-visible changes below arrive with the Quatt app update (version 1.59.0).
       </div>
       <div class="theme-card">
         <h3>Heating performance and reliability</h3>
         <ul>
-          <li>All-Electric systems can now use Boost Mode: when the HeatBattery is low, you can quickly restore enough hot water for at least one shower, prioritising heating speed over efficiency.</li>
-          <li>Sound settings now let you set separate day and night modes, so your outdoor unit can run more quietly during the hours you choose.</li>
-          <li>Everyday central-heating and comfort behaviour is otherwise unchanged in this release.</li>
+          <li>This update is focused on maintenance and reliability. Everyday heating and comfort behaviour is unchanged in this release.</li>
         </ul>
       </div>
       <div class="theme-card">
         <h3>Bug fixes and maintenance</h3>
         <ul>
-          <li>The energy insights screens in the app have been rebuilt with clearer charts and smoother touch interactions.</li>
           <li>Measured values such as temperatures now follow your app&rsquo;s language setting consistently.</li>
           <li>General reliability and maintenance improvements.</li>
         </ul>
@@ -97,20 +92,17 @@
     <div class="lang-pane" id="tier1-nl" hidden>
       <div class="callout-warn">
         Deze ecosysteem-update brengt de CiC 4.10.0 firmware als stabiele release naar de bredere klantenvloot. Het dagelijkse
-        verwarmings- en comfortgedrag op de CiC verandert niet; de hieronder genoemde zichtbare wijzigingen komen met de Quatt app-updates (versies 1.59.0 en 1.60.0).
+        verwarmings- en comfortgedrag verandert niet; de hieronder genoemde zichtbare wijzigingen komen met de Quatt app-update (versie 1.59.0).
       </div>
       <div class="theme-card">
         <h3>Verwarmingsprestaties en betrouwbaarheid</h3>
         <ul>
-          <li>All-Electric systemen kunnen nu Boost Mode gebruiken: als de HeatBattery bijna leeg is, herstel je snel genoeg warm water voor minstens één douche, waarbij verwarmingssnelheid voorrang krijgt op efficiëntie.</li>
-          <li>Bij de geluidsinstellingen kun je nu aparte dag- en nachtstanden instellen, zodat je buitenunit stiller kan draaien op de uren die jij kiest.</li>
-          <li>Het dagelijkse verwarmings- en comfortgedrag blijft verder ongewijzigd in deze release.</li>
+          <li>Deze update draait om onderhoud en betrouwbaarheid. Het dagelijkse verwarmings- en comfortgedrag verandert niet in deze release.</li>
         </ul>
       </div>
       <div class="theme-card">
         <h3>Foutoplossingen en onderhoud</h3>
         <ul>
-          <li>De energie-inzichtschermen in de app zijn opnieuw opgebouwd met duidelijkere grafieken en soepelere aanraakbediening.</li>
           <li>Gemeten waarden zoals temperaturen volgen nu consistent de taalinstelling van je app.</li>
           <li>Algemene verbeteringen op het gebied van betrouwbaarheid en onderhoud.</li>
         </ul>
@@ -127,54 +119,50 @@
         <span class="lead">Scope &mdash; CiC 4.10.0 (stable / general-fleet release)</span>
         Diffed 4.9.0 &rarr; 4.10.0. Bundled firmware: Controller <strong>6.10.2 &rarr; 6.11.2</strong>,
         Thread FW <strong>2.12.0 &rarr; 2.13.0</strong>, HeatCharger FW <strong>1.2.2 &rarr; 1.3.0</strong>;
-        Chill control-board FW 2.0.0 and ODU FW 2.1 unchanged. Paired app <strong>v1.59.0</strong> (2026-07-14)
-        <strong>+ v1.60.0</strong> (2026-07-24, paired to this wave per reviewer request &mdash; one day past the auto-computed +7d tail);
+        Chill control-board FW 2.0.0 and ODU FW 2.1 unchanged. Paired app <strong>v1.59.0</strong> (2026-07-14);
         paired backend <strong>Cloud v2.42.0</strong> (2026-07-20, within the wave&rsquo;s +7d tail).
         Headline date 2026-07-16 = the 4.10.0 tag commit&rsquo;s committer date (no GitHub Release published yet).
       </p>
       <p>
         <span class="lead">Wave phase &mdash; promotion from beta to stable (GA)</span>
         The 4.10.0 tag points at the <strong>same commit</strong> as 4.10.0-beta.0 (and 4.10.0-alpha.1), so the CiC / firmware
-        content is unchanged from the beta build; this revision promotes the wave to the stable line. No CiC / firmware change lands beyond the beta entry &mdash;
-        but the newly-paired <strong>app v1.60.0</strong> removes the app-side feature gates, so three previously shipped-but-disabled app features now go live (below).
+        content is unchanged from the beta build; this revision promotes the wave to the stable line. Nothing new lands beyond the beta entry.
       </p>
       <p><span class="lead">Enablement sweep &mdash; what actually goes live this wave</span></p>
       <ul>
         <li><strong>ZipStats telemetry rollout</strong> to production continues in Cloud v2.42.0 (Firehose / Lambda tuning + compression metrics) &mdash; epic QPD-13717.</li>
         <li>The <strong>3-way-valve commissioning check</strong> becomes functional end-to-end: its Cloud gate targets CiC firmware 4.10.0 &mdash; epic QPD-14022.</li>
-        <li><strong>All-Electric Boost Mode is now live</strong> &mdash; app v1.60.0 removes the <code>all_e_boost_mode</code> gate (QPD-14724) and deletes the legacy V1 HeatBattery screen; the backend minimum CiC version stays at 4.9.0 (a 4.10.0 bump was raised and reverted), so All-Electric systems on 4.9.0+ can reach it &mdash; epic QPD-11732.</li>
-        <li><strong>Insights V2 is now live</strong> &mdash; app v1.60.0 removes the <code>insights_v2</code> flag and deletes the legacy Insights code (QPD-14883), so the rebuilt energy-insights screens are the only implementation &mdash; epic QPD-7154.</li>
-        <li><strong>Custom day/night sound schedule is now live</strong> &mdash; app v1.60.0 redesigns the Sound settings screen with separate day and night modes (QPD-15101); the backend shipped in Cloud v2.42.0 &mdash; epic QPD-138.</li>
+        <li>Boost-mode <strong>production minimum CiC version stays at 4.9.0</strong> (a bump to 4.10.0 was raised and reverted) &mdash; epic QPD-11732.</li>
+        <li><strong>Custom night hours:</strong> backend shipped in Cloud v2.42.0 and the app UI is present in v1.59.0, but the feature is postponed to app v1.60.0 and is not enabled &mdash; do not communicate it. (App v1.60.0, which enables it, ships in the next wave.)</li>
       </ul>
-      <p><b>The CiC 4.10.0 firmware content is identical to the 4.10.0-beta.0 build validated on the beta-tester track; the Chill cooling regression fix it carries already reached the fleet via the 4.9.1 hotfix. The customer-facing changes above come from the paired app v1.60.0, not from a CiC firmware change.</b></p>
+      <p><b>The CiC 4.10.0 firmware content is identical to the 4.10.0-beta.0 build validated on the beta-tester track; the Chill cooling regression fix it carries already reached the fleet via the 4.9.1 hotfix.</b></p>
     </div>
 
     <div class="theme-card">
-      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-152" target="_blank">QPD-152</a> &middot; Production Incidents / Continuous Improvements &mdash; App / Backend <span class="epic">14 tickets</span></h3>
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-152" target="_blank">QPD-152</a> &middot; Production Incidents / Continuous Improvements &mdash; App / Backend <span class="epic">12 tickets</span></h3>
       <p class="epic-desc">Quatt&rsquo;s rolling maintenance Epic: every ticket traces back to a production NCR (the Quality team is first contact; SW&amp;Infra then investigates and fixes). No target date &mdash; priority-driven; WBSO / capitalization applicable. This wave it carries the backend security hardening, fleet backfill tooling, a data-integration migration, and two customer/installer-facing app fixes.</p>
       <ul>
         <li><b>Backend security hardening:</b> fix a GraphQL injection into HubSpot CRM via house-search fields <span class="tkey">(QPD-14915 <span class="team">Cloud / Backend</span>)</span>; allow-list columns on CiC update to stop mass-assignment <span class="tkey">(QPD-14752 <span class="team">Cloud / Backend</span>)</span>; strip prototype-pollution keys from device JSON <span class="tkey">(QPD-14914 <span class="team">Cloud / Backend</span>)</span></li>
         <li><b>Fleet backfill tooling:</b> a bulk-job status API (list + detail) and live backfill-progress persistence, with an enqueue-ordering fix closing an FK race <span class="tkey">(QPD-14923 <span class="team">Cloud / Backend</span>, QPD-14924 <span class="team">Cloud / Backend</span>, QPD-14928 <span class="team">Cloud / Backend</span>)</span></li>
         <li><b>Data / integrations &amp; perf:</b> migrate EEX gas pricing from sFTP to EEX File Cloud <span class="tkey">(QPD-14336 <span class="team">Cloud / Backend</span>)</span>; guard ReferralRock against non-JSON responses <span class="tkey">(QPD-14718 <span class="team">Cloud / Backend</span>)</span>; fetch the CiC row once per stats message <span class="tkey">(QPD-14885 <span class="team">Cloud / Backend</span>)</span></li>
         <li><b>Customer / installer-facing fixes:</b> measurement values now follow app language <span class="tkey">(QPD-14955 <span class="team">App</span>)</span>; cancel-commissioning copy warns the installer the system is left non-working <span class="tkey">(QPD-14616 <span class="team">App</span>)</span>; &ldquo;Fair&rdquo; signal-strength mistranslation in NL/DE/SK <span class="tkey">(QPD-14778 <span class="team">App</span>)</span></li>
-        <li><b>App layout fixes (v1.60.0):</b> use <code>contain</code> resize mode for the add-installation images so they are no longer cropped <span class="tkey">(QPD-15310 <span class="team">App</span>)</span>; stretch the thermostat card to match the Chill card height <span class="tkey">(QPD-15311 <span class="team">App</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for CS:</b> the security fixes are backend-only and need no customer action. QPD-14955 is customer-visible (see the Customer tab); QPD-14778 affects the <b>installer app only</b>, not customers. The two app layout fixes are cosmetic.</div>
+      <div class="impact"><b>Impact for CS:</b> the security fixes are backend-only and need no customer action. QPD-14955 is customer-visible (see the Customer tab); QPD-14778 affects the <b>installer app only</b>, not customers.</div>
     </div>
 
     <div class="theme-card tech-debt-group">
-      <h3 class="group-title">Technical Debt <span class="epic">3 Epics &middot; 25 tickets</span></h3>
+      <h3 class="group-title">Technical Debt <span class="epic">3 Epics &middot; 14 tickets</span></h3>
 
       <div class="subcard">
-        <h4><a href="https://quatt-team.atlassian.net/browse/QPD-7154" target="_blank">QPD-7154</a> &middot; SW&amp;I Technical Debt <span class="epic">23 tickets</span></h4>
-        <p class="epic-desc">The SW&amp;Infra technical-debt Epic (app + backend). This wave is almost entirely <strong>app modernization</strong> plus the Insights V2 chart rebuild. App v1.60.0 completes the modernization sweep and <strong>flips on Insights V2</strong> by removing its feature flag and deleting the legacy code.</p>
+        <h4><a href="https://quatt-team.atlassian.net/browse/QPD-7154" target="_blank">QPD-7154</a> &middot; SW&amp;I Technical Debt <span class="epic">12 tickets</span></h4>
+        <p class="epic-desc">The SW&amp;Infra technical-debt Epic (app + backend). This wave is almost entirely <strong>app modernization</strong> plus the Insights V2 chart rebuild.</p>
         <ul>
-          <li><b>Retire legacy app layers (v1.59.0):</b> remove the MobX store <span class="tkey">(QPD-14769 <span class="team">App</span>)</span>; migrate <code>legacy/api</code> to the generated OpenAPI client <span class="tkey">(QPD-14770 <span class="team">App</span>)</span>, plus the unauthenticated app-compatibility check <span class="tkey">(QPD-14771 <span class="team">App</span>)</span>, the RegistrationInstallerId screen <span class="tkey">(QPD-14772 <span class="team">App</span>)</span> and DevtoolsStack <span class="tkey">(QPD-15004 <span class="team">App</span>)</span>; explicit splash-driven AppPhase startup/auth state machine <span class="tkey">(QPD-14408 <span class="team">App</span>)</span>; victory-native XL bump <span class="tkey">(QPD-14703 <span class="team">App</span>)</span></li>
-          <li><b>Insights V2 chart rebuild &mdash; now enabled:</b> charts rebuilt on victory-native XL <span class="tkey">(QPD-14773 <span class="team">App</span>)</span>, shared presenter dissolved into suspense queries <span class="tkey">(QPD-14880 <span class="team">App</span>)</span>, legacy cards + banner ported <span class="tkey">(QPD-14881 <span class="team">App</span>)</span>, translation keys consolidated <span class="tkey">(QPD-14945 <span class="team">App</span>)</span>; app v1.60.0 then <b>removes the <code>insights_v2</code> flag and deletes the legacy Insights code</b> <span class="tkey">(QPD-14883 <span class="team">App</span>)</span></li>
-          <li><b>App modernization completed (v1.60.0):</b> relocate the last legacy components/utils/assets and delete <code>src/legacy</code> <span class="tkey">(QPD-14774 <span class="team">App</span>)</span>; enable the React Compiler app-wide <span class="tkey">(QPD-11699 <span class="team">App</span>)</span>; remove <code>react-native-elements</code> <span class="tkey">(QPD-15104 <span class="team">App</span>)</span> and the deprecated DateTimePickerModal <span class="tkey">(QPD-13096 <span class="team">App</span>)</span>; migrate sliders to the shared component and drop <code>@react-native-assets/slider</code> <span class="tkey">(QPD-15261 <span class="team">App</span>)</span>; import TanStack Query hooks directly <span class="tkey">(QPD-15287 <span class="team">App</span>)</span>; flatten Welcome/Home stacks into the RootStack <span class="tkey">(QPD-15318 <span class="team">App</span>)</span>; optimize image assets to WebP <span class="tkey">(QPD-14941 <span class="team">App</span>)</span> with an image-optimization CI workflow <span class="tkey">(QPD-15254 <span class="team">App</span>)</span>; report feature-flag evaluations to Sentry <span class="tkey">(QPD-11845 <span class="team">App</span>)</span></li>
+          <li><b>Retire legacy app layers:</b> remove the MobX store <span class="tkey">(QPD-14769 <span class="team">App</span>)</span>; migrate <code>legacy/api</code> to the generated OpenAPI client <span class="tkey">(QPD-14770 <span class="team">App</span>)</span>, plus the unauthenticated app-compatibility check <span class="tkey">(QPD-14771 <span class="team">App</span>)</span>, the RegistrationInstallerId screen <span class="tkey">(QPD-14772 <span class="team">App</span>)</span> and DevtoolsStack <span class="tkey">(QPD-15004 <span class="team">App</span>)</span>; explicit splash-driven AppPhase startup/auth state machine <span class="tkey">(QPD-14408 <span class="team">App</span>)</span>; victory-native XL bump <span class="tkey">(QPD-14703 <span class="team">App</span>)</span></li>
+          <li><b>Insights V2 chart rebuild</b> (behind the <code>insights_v2</code> flag): charts rebuilt on victory-native XL <span class="tkey">(QPD-14773 <span class="team">App</span>)</span>, shared presenter dissolved into suspense queries <span class="tkey">(QPD-14880 <span class="team">App</span>)</span>, legacy cards + banner ported <span class="tkey">(QPD-14881 <span class="team">App</span>)</span>, translation keys consolidated <span class="tkey">(QPD-14945 <span class="team">App</span>)</span></li>
           <li>Backend dependency update sweep <span class="tkey">(QPD-14097 <span class="team">Cloud / Backend</span>)</span></li>
         </ul>
-        <div class="impact"><b>Impact for ops:</b> mostly internal refactoring with no field action. Note that app v1.60.0 <b>enables Insights V2 for all customers</b> (the flag and legacy code are gone) &mdash; the rebuilt energy-insights screens are now the only ones customers see.</div>
+        <div class="callout-warn"><b>Shipped but DISABLED &mdash; do not communicate:</b> the Insights V2 rebuild ships behind the <code>insights_v2</code> flag (off for the fleet). Customers cannot reach the new Insights screens yet.</div>
+        <div class="impact"><b>Impact for ops:</b> internal refactoring &mdash; no field action, aside from the flagged-off Insights V2 work above.</div>
       </div>
 
       <div class="subcard">
@@ -197,17 +185,17 @@
     </div>
 
     <div class="theme-card">
-      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11732" target="_blank">QPD-11732</a> &middot; All-E | Boost Mode Feature <span class="epic">14 tickets</span></h3>
-      <p class="epic-desc">Boost Mode lets an All-Electric system quickly restore hot water for at least one shower (within ~15 min) when the HeatBattery is depleted &mdash; heating speed over efficiency. This wave refines the round-trip UX, adds a security fix, lands controller-side reporting, and &mdash; with the newly-paired app v1.60.0 &mdash; <strong>turns the feature on</strong> by removing the app-side gate.</p>
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11732" target="_blank">QPD-11732</a> &middot; All-E | Boost Mode Feature <span class="epic">11 tickets</span></h3>
+      <p class="epic-desc">Boost Mode lets an All-Electric system quickly restore hot water for at least one shower (within ~15 min) when the HeatBattery is depleted &mdash; heating speed over efficiency. This wave refines the round-trip UX, adds a security fix, and lands controller-side reporting.</p>
       <ul>
         <li><b>Round-trip UX (backend, Cloud v2.42.0):</b> optimistic Boost/Leave-Boost status <span class="tkey">(QPD-14742 <span class="team">Cloud / Backend</span>)</span>, live All-Electric fields surfaced in the boost response <span class="tkey">(QPD-14222 <span class="team">Cloud / Backend</span>)</span>, Live View on START/CANCEL <span class="tkey">(QPD-14788 <span class="team">Cloud / Backend</span>)</span>, outcome tombstoning against a stale exitReason <span class="tkey">(QPD-14817 <span class="team">Cloud / Backend</span>)</span>, time-based shower-minutes bonus while the tank sensor lags <span class="tkey">(QPD-14747 <span class="team">Cloud / Backend</span>)</span></li>
         <li><b>App + spec:</b> read live All-E fields from the boost response instead of polling the CiC <span class="tkey">(QPD-14223 <span class="team">App</span>)</span>; remove the never-emitted DEGRADED status across app, message spec and backend <span class="tkey">(QPD-14892 <span class="team">App</span>, QPD-14299 <span class="team">Cloud / Backend</span>)</span></li>
         <li><b>Controller:</b> complete boost-mode exit-reason and recoverable-condition reporting <span class="tkey">(QPD-15024 <span class="team">Systems Control</span>)</span></li>
         <li><b>Security:</b> enforce CiC ownership on the <code>/me</code> boost action route <span class="tkey">(QPD-14740 <span class="team">Cloud / Backend</span>)</span></li>
         <li><b>Rollout:</b> production minimum CiC version for boost stays at 4.9.0 &mdash; a bump to 4.10.0 was raised and reverted <span class="tkey">(QPD-15022 <span class="team">Cloud / Backend</span>)</span></li>
-        <li><b>Enabled in app v1.60.0:</b> remove the <code>all_e_boost_mode</code> gate and delete the legacy V1 HeatBattery screen so the Boost / HeatBattery V2 screen is the only one <span class="tkey">(QPD-14724 <span class="team">App</span>)</span>; handle the AWAITING_CIC_STATE state and show a delayed-start banner on STARTING <span class="tkey">(QPD-15257 <span class="team">App</span>)</span>; soften the &ldquo;bottom tank still hot&rdquo; banner (copy + no icon) <span class="tkey">(QPD-15322 <span class="team">App</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for CS:</b> All-Electric Boost Mode is <b>now live</b> &mdash; app v1.60.0 removes the <code>all_e_boost_mode</code> gate and the backend minimum CiC version (4.9.0) is met on the 4.10.0 line, so All-Electric customers on 4.9.0+ can now use Boost. The <code>/me</code> boost security fix <span class="tkey">(QPD-14740)</span> is backend-only.</div>
+      <div class="callout-warn"><b>Shipped but DISABLED &mdash; do not communicate:</b> All-Electric Boost Mode is gated off fleet-wide behind <code>all_e_boost_mode</code>. The code is in app v1.59.0 and Cloud v2.42.0, but customers cannot reach it yet.</div>
+      <div class="impact"><b>Impact for CS:</b> no customer action &mdash; Boost Mode is not live. The <code>/me</code> boost security fix <span class="tkey">(QPD-14740)</span> is backend-only.</div>
     </div>
 
     <div class="theme-card">
@@ -321,15 +309,13 @@
     </div>
 
     <div class="theme-card">
-      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-138" target="_blank">QPD-138</a> &middot; Quatt App ideas &amp; improvements <span class="epic">4 tickets</span></h3>
-      <p class="epic-desc">The app ideas-and-improvements backlog. This wave&rsquo;s headline (app v1.60.0) is the redesigned Sound settings screen with separate day and night modes &mdash; the customer-facing landing of the custom day/night sound schedule.</p>
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-138" target="_blank">QPD-138</a> &middot; Quatt App ideas &amp; improvements <span class="epic">1 ticket</span></h3>
+      <p class="epic-desc">The app ideas-and-improvements backlog.</p>
       <ul>
-        <li><b>Custom day/night sound schedule (v1.60.0):</b> redesign the Sound settings screen with stacked day/night sliders, labelled Day mode and Night mode <span class="tkey">(QPD-15101 <span class="team">App</span>)</span></li>
-        <li>Touch tooltips for advanced insights + unified press gestures on the Insights charts <span class="tkey">(QPD-14975 <span class="team">App</span>)</span> &mdash; part of Insights V2, now enabled in v1.60.0</li>
-        <li>Prevent the Home layout jumping when Chills load &mdash; render the loader instantly and animate only on exit <span class="tkey">(QPD-15307 <span class="team">App</span>)</span></li>
-        <li>Use a hi-res WebP for the HeatBattery product image <span class="tkey">(QPD-15309 <span class="team">App</span>)</span></li>
+        <li>Touch tooltips for advanced insights + unified press gestures on the Insights charts <span class="tkey">(QPD-14975 <span class="team">App</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for CS:</b> the custom day/night sound schedule is <b>now live</b> in app v1.60.0 (backend shipped in Cloud v2.42.0); customers can set separate day and night sound modes. The Insights touch-gesture work is part of the now-enabled Insights V2.</div>
+      <div class="callout-warn"><b>Shipped but DISABLED &mdash; do not communicate:</b> part of the flag-gated Insights V2 work (<code>insights_v2</code>); not reachable by customers yet.</div>
+      <div class="impact"><b>Impact for CS:</b> none while Insights V2 is flagged off.</div>
     </div>
 
     <div class="theme-card">
@@ -340,15 +326,6 @@
       </ul>
       <div class="callout-warn"><b>Shipped but not live:</b> MPC predictive heating is not enabled for the fleet and does not change how any customer&rsquo;s system heats today.</div>
       <div class="impact"><b>Impact for CS:</b> no customer-visible change.</div>
-    </div>
-
-    <div class="theme-card">
-      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-14553" target="_blank">QPD-14553</a> &middot; ALL-E | Charging tank with Chill validation (Charge Cool) <span class="epic">1 ticket</span></h3>
-      <p class="epic-desc">Validation work for the All-Electric &ldquo;Charge Cool&rdquo; path (using heat extracted by the Chill to charge the HeatBattery). This wave carries only an app-display item.</p>
-      <ul>
-        <li>Show the heat-battery charging reason on the HeatBattery screen (app v1.60.0) <span class="tkey">(QPD-15330 <span class="team">App</span>)</span></li>
-      </ul>
-      <div class="impact"><b>Impact for CS:</b> the HeatBattery screen (visible in app v1.60.0) now explains why the battery is charging. The underlying Charge Cool control path is not presented as live &mdash; this is a display improvement only.</div>
     </div>
 
     <div class="theme-card">
@@ -403,10 +380,8 @@
       changelogs from each repo&rsquo;s tag-to-tag compare), cross-referenced with Jira for ticket type / priority / status.
       Bundled firmware moved Controller 6.10.2 → 6.11.2, Thread FW 2.12.0 → 2.13.0 and HeatCharger FW
       1.2.2 → 1.3.0; embedded apps 1.32.0 → 1.33.0, message spec 2.78.0 → 2.80.0, Python libs 0.14.2 → 0.15.0. Paired app
-      <b>v1.59.0 + v1.60.0</b> (v1.60.0 was paired to this wave per reviewer request and adds its 20 rows: the v1.59.0→v1.60.0 compare);
-      paired backend <b>Cloud v2.42.0</b> (v2.41.2 → v2.42.0), which contributes 31 of the 98 rows.
-      The 4.10.0 stable tag points at the <b>same commit</b> as 4.10.0-beta.0, so the CiC / firmware content has no build delta over the beta entry;
-      the added rows and the enablements above come entirely from the paired app v1.60.0.
+      v1.59.0; paired backend <b>Cloud v2.42.0</b> (v2.41.2 → v2.42.0), which contributes 31 of the 78 rows.
+      The 4.10.0 stable tag points at the <b>same commit</b> as 4.10.0-beta.0, so this stable revision has no build delta over the beta entry.
       <b>Grouping:</b> rows group by <b>Jira parent Epic</b> (a column-header sort flattens the table); the former <b>Wireless</b> product
       column is renamed <b>Thread</b> (the <code>quatt-dongle</code> / Thread FW repo) and now holds only the dongle row, while
       <b>HeatCharger firmware</b> (<code>quatt-heatcharger-firmware</code>) rows are folded into the <b>CiC</b> category.
@@ -534,27 +509,6 @@ const T = [
  ["App",14778,"Bug","Medium","","Signal strength 'Fair' mistranslated in NL/DE/SK"],
  ["App",14955,"Bug","Medium","","Measurement values follow device locale while currencies follow app language"],
  ["App",15019,"Bug","Medium","","Hybrid-beta E2E commissioning always searches the 8kW address, regardless of target CiC"],
- // ---- App v1.60.0 (paired to this wave per reviewer request; removes the insights_v2 + all_e_boost_mode gates) ----
- ["App",14883,"Task","Medium","","Remove the insights_v2 flag, legacy Insights code and victory-native-legacy (Insights V2 becomes the only implementation)"],
- ["App",14724,"Task","Medium","","Remove the all_e_boost_mode flag and the legacy V1 HeatBattery screen (Boost / HeatBattery V2 becomes the only screen)"],
- ["App",15101,"Task","Medium","","Redesign the Sound settings screen with stacked day/night sliders (Day mode / Night mode)"],
- ["App",15257,"Task","Medium","","Boost: handle AWAITING_CIC_STATE and show a delayed-start banner on STARTING"],
- ["App",15322,"Task","Medium","","Boost: soften the bottom-tank-hot banner (copy + no icon)"],
- ["App",15330,"Task","Medium","","Show the heat-battery charging reason on the HeatBattery screen"],
- ["App",15307,"Task","Medium","","Prevent the Home layout jumping when Chills load (render the loader instantly)"],
- ["App",15309,"Bug","Medium","","Use a hi-res WebP for the HeatBattery product image"],
- ["App",15310,"Bug","Medium","","Use contain resizeMode for the add-installation images"],
- ["App",15311,"Bug","Medium","","Stretch the thermostat card to match the Chill card height"],
- ["App",11699,"Task","Medium","","Enable the React Compiler app-wide (build-time memoization)"],
- ["App",11845,"Task","Medium","","Report feature-flag evaluations to Sentry"],
- ["App",13096,"Task","Medium","","Remove the deprecated DateTimePickerModal"],
- ["App",14774,"Task","Low","","Relocate the remaining legacy components/utils/assets and delete src/legacy"],
- ["App",14941,"Task","Medium","","Optimize image assets (WebP; drop redundant @2x/@3x tiers)"],
- ["App",15254,"Task","Medium","","Add an image-actions CI workflow to auto-optimize PR images"],
- ["App",15104,"Task","Medium","","Replace remaining react-native-elements usages and remove the dependency"],
- ["App",15261,"Task","Medium","","Migrate sliders to the shared Slider, quantize values and drop @react-native-assets/slider"],
- ["App",15287,"Task","Medium","","Import TanStack Query hooks directly instead of via useApi()"],
- ["App",15318,"Task","Medium","","Flatten WelcomeStack and HomeStack into the RootStack"],
  // ---- Thread (quatt-dongle / Thread FW) ----
  ["Thread",14888,"Task","Medium","","Dongle FW 2.13.0: expose temp/humidity over the Spinel vendor property in RCP mode"]
 ];
@@ -580,7 +534,6 @@ const EPICS = [
   [7133,  "Dongle | SW Improvements"],
   [138,   "Quatt App ideas &amp; improvements"],
   [148,   "MPC predictive heating"],
-  [14553, "ALL-E | Charging tank with Chill validation (Charge Cool)"],
   [11879, "26.Q1 Embedded Technical Debt"],
   [12488, "Technical Debt and Continuous Improvement"],
   [0,     "No parent Epic"]
@@ -599,11 +552,7 @@ const EPIC_OF = {
   14097:7154, 14408:7154, 14703:7154, 14769:7154, 14770:7154, 14771:7154, 14772:7154,
   14773:7154, 14880:7154, 14881:7154, 14945:7154, 15004:7154,
   7507:7060, 7509:7060, 14223:11732, 14403:14022, 14468:10390, 14902:14022, 14892:11732,
-  14975:138, 14381:10387, 15007:165, 15019:165,
-  // ---- App v1.60.0 ----
-  14883:7154, 14724:11732, 15101:138, 15257:11732, 15322:11732, 15330:14553,
-  15307:138, 15309:138, 15310:152, 15311:152, 11699:7154, 11845:7154, 13096:7154,
-  14774:7154, 14941:7154, 15254:7154, 15104:7154, 15261:7154, 15287:7154, 15318:7154
+  14975:138, 14381:10387, 15007:165, 15019:165
 };
 
 /* ---------- filters & sorting ---------- */
