@@ -49,11 +49,15 @@ lessons should eventually be folded into `SKILL.md` via a reviewed PR and pruned
 - **Root cause**: Ops-facing text carried engineering internals (`/data` overlay paths, a repo CLAUDE.md whitelisting rule) — depth that belongs in Tier 3 / Jira, not in ops guidance.
 - **Rule**: Tier 2 "impact for ops" text describes the operational effect in plain language: what ops/CS will observe and what (if anything) to do. No internal file paths, repo-doc references, or developer-workflow details — cite the ticket for depth.
 
-### 2026-07-06 — Tier 1 section headings are fixed (EN + NL)
+### 2026-07-06 — Tier 1 section headings are fixed, in a fixed order (EN + NL)
 - **Category**: formatting
-- **Trigger**: PR #14 — "previous releases' sections were named differently. Keep consistency in the two sections and always name them …" (alex-aristotelous)
-- **Root cause**: The Customer tab used bespoke per-release section titles ("What this update is preparing") instead of the canonical heading set used by previous releases.
-- **Rule**: The Customer (Tier 1) tab always uses exactly two content sections with these exact headings — EN: "Heating performance and reliability" and "Bug fixes and maintenance"; NL: "Verwarmingsprestaties en betrouwbaarheid" and "Foutoplossingen en onderhoud" — regardless of release content. Phase disclaimers/callouts (e.g. a beta notice) may precede them, but never replace them.
+- **Trigger**: PR #14 — "previous releases' sections were named differently. Keep consistency in the two sections and always name them …" (alex-aristotelous); PR #28 — "for tier1, for both EN and NL, let's introduce a \"New Features\" section, to complement \"Heating performance and reliability\" and \"Bug fixes and maintenance\". This \"New Features\" section should come first. … It's ok for this new section to also exist with an empty body." (alex-aristotelous)
+- **Root cause**: (PR #14) The Customer tab used bespoke per-release section titles ("What this update is preparing") instead of a canonical heading set. (PR #28) There was no dedicated "New Features" section, so genuinely new customer-facing features (the SoundSlider redesign, custom night hours, the richer HeatBattery screen) were misfiled under "Bug fixes and maintenance" — the wrong altitude for a new feature.
+- **Rule**: The Customer (Tier 1) tab always uses exactly **three** content sections, in this exact order, with these exact headings — regardless of release content:
+  1. EN "New Features" / NL "Nieuwe functies" (**first**)
+  2. EN "Heating performance and reliability" / NL "Verwarmingsprestaties en betrouwbaarheid"
+  3. EN "Bug fixes and maintenance" / NL "Foutoplossingen en onderhoud"
+  All three sections must always be present even when a section has no items — render the "New Features" section with an empty body (no `<li>`s) rather than dropping it. New customer-facing capabilities go under "New Features", never under "Bug fixes and maintenance" (which is for fixes, visual polish and general maintenance). Phase disclaimers/callouts (e.g. a beta notice) may precede the three sections, but never replace or reorder them.
 
 ### 2026-07-21 — App changes in the installer/commissioning surface are not customer-facing
 - **Category**: tier-placement
