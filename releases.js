@@ -11,12 +11,12 @@ window.SUMMARY = [
 
 window.RELEASES = [
   {
-    date: "2026-07-29",
-    title: "Quatt Ecosystem Release 29.07.2026",
-    badge: { cls: "alpha", label: "alpha" },
-    page: "releases/2026-07-29.html",
+    date: "2026-08-03",
+    title: "Quatt Ecosystem Release 03.08.2026",
+    badge: { cls: "beta", label: "beta" },
+    page: "releases/2026-08-03.html",
     chips: [
-      { cls: "cic",   label: "CiC 4.11.0-alpha.0" },
+      { cls: "cic",   label: "CiC 4.11.0-beta.0" },
       { cls: "cloud", label: "Cloud v2.43.0" },
       { cls: "app",   label: "App v1.60.0" },
       { cls: "fw",    label: "Controller 6.12.0" },
@@ -29,7 +29,7 @@ window.RELEASES = [
       { b: "47", t: "ticket entries" },
       { b: "Cloud v2.43.0", t: "backend paired" },
       { b: "Charge Cool", t: "refined but gated off" },
-      { b: "alpha", t: "internal test track" }
+      { b: "beta", t: "beta test track" }
     ]
   },
   {

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quatt Ecosystem Release 29.07.2026</title>
+<title>Quatt Ecosystem Release 03.08.2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -23,12 +23,12 @@
 </header>
 
 <main class="wrap">
-  <div class="crumb"><a href="../index.html">Releases</a> / 29.07.2026</div>
+  <div class="crumb"><a href="../index.html">Releases</a> / 03.08.2026</div>
   <div class="page-head">
-    <div class="kicker">CiC diffed 4.10.0 &rarr; 4.11.0-alpha.0 &middot; alpha</div>
-    <h1>Quatt Ecosystem Release <span class="dim">29.07.2026</span></h1>
+    <div class="kicker">CiC diffed 4.10.0 &rarr; 4.11.0-beta.0 &middot; beta</div>
+    <h1>Quatt Ecosystem Release <span class="dim">03.08.2026</span></h1>
     <div class="sub">
-      <span class="chip cic">CiC 4.11.0-alpha.0</span>
+      <span class="chip cic">CiC 4.11.0-beta.0</span>
       <span class="chip cloud">Cloud v2.43.0</span>
       <span class="chip app">App v1.60.0</span>
       <span class="chip fw">Controller 6.12.0</span>
@@ -42,7 +42,13 @@
   <div class="review-only"><div class="review-panel">
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview — hidden in production.</p>
-    <p class="none">New release notes — first published revision.</p>
+    <ul>
+      <li><b>Phase promoted alpha &rarr; beta.</b> CiC <code>4.11.0-alpha.0</code> and <code>4.11.0-beta.0</code> point to the <b>same commit</b> (GitHub: &ldquo;no changes between these two tags&rdquo;), so the ticket set, all three tiers and the bundled / paired versions are unchanged from the alpha revision.</li>
+      <li><b>Headline date</b> updated 29.07.2026 &rarr; <b>03.08.2026</b> (the beta.0 GitHub Release <code>published_at</code>); the page has been renamed to <code>2026-08-03.html</code> accordingly.</li>
+      <li><b>Paired versions:</b> no bumps &mdash; App v1.60.0 and Cloud v2.43.0 are still the latest in the window; Thread FW 2.13.0 unchanged.</li>
+      <li><b>Tickets:</b> none added or removed; <b>nothing reverted.</b></li>
+    </ul>
+    <p class="sub">This wave has no prior revision published to production yet &mdash; it is still under review in this PR.</p>
   </div></div>
 
   <section class="timeline-wrap" id="release-timeline" hidden>
@@ -67,7 +73,7 @@
 
     <div class="lang-pane" id="tier1-en">
       <div class="callout-warn">
-        This ecosystem update centres on a CiC 4.11.0 <b>alpha</b> firmware build, which goes to a limited internal test group and is
+        This ecosystem update centres on a CiC 4.11.0 <b>beta</b> firmware build, which goes to the beta test group and is
         not yet installed on the wider customer fleet. The customer-visible changes below arrive with the Quatt app update (version 1.60.0).
       </div>
       <div class="theme-card">
@@ -97,7 +103,7 @@
 
     <div class="lang-pane" id="tier1-nl" hidden>
       <div class="callout-warn">
-        Deze ecosysteem-update draait om een CiC 4.11.0 <b>alpha</b> firmware-build die naar een beperkte interne testgroep gaat en nog niet
+        Deze ecosysteem-update draait om een CiC 4.11.0 <b>beta</b> firmware-build die naar de beta-testgroep gaat en nog niet
         op de bredere klantenvloot staat. De hieronder genoemde zichtbare wijzigingen komen met de Quatt app-update (versie 1.60.0).
       </div>
       <div class="theme-card">
@@ -132,15 +138,15 @@
 
     <div class="callout-warn scope-banner">
       <p>
-        <span class="lead">Scope &mdash; CiC 4.11.0-alpha.0 (alpha / internal test track, not the general fleet)</span>
-        Diffed 4.10.0 &rarr; 4.11.0-alpha.0. Bundled firmware: Controller <strong>6.11.2 &rarr; 6.12.0</strong>;
+        <span class="lead">Scope &mdash; CiC 4.11.0-beta.0 (beta test track, not the general fleet)</span>
+        Diffed 4.10.0 &rarr; 4.11.0-beta.0. Bundled firmware: Controller <strong>6.11.2 &rarr; 6.12.0</strong>;
         Thread FW 2.13.0, HeatCharger FW 1.3.0, Chill control-board FW 2.0.0 and ODU FW 2.1 all <strong>unchanged</strong>.
         Paired app <strong>v1.60.0</strong> (2026-07-24); paired backend <strong>Cloud v2.43.0</strong> (2026-07-27).
-        Headline date 2026-07-29 = the alpha.0 GitHub Release&rsquo;s <code>published_at</code> date.
+        Headline date 2026-08-03 = the beta.0 GitHub Release&rsquo;s <code>published_at</code> date.
       </p>
       <p>
-        <span class="lead">Wave phase &mdash; alpha (first build of the 4.11.0 wave)</span>
-        This is fresh content diffed off 4.10.0, not a same-commit promotion. It ships to the internal / alpha test track only.
+        <span class="lead">Wave phase &mdash; beta (promoted from the 4.11.0 alpha, same build)</span>
+        4.11.0-beta.0 points to the same commit as 4.11.0-alpha.0, so the content below is unchanged from the alpha revision &mdash; only the phase, version label and headline date move. It ships to the beta test track, still not the general fleet.
       </p>
       <p><span class="lead">Enablement sweep &mdash; what actually goes live this wave</span></p>
       <ul>
@@ -149,7 +155,7 @@
         <li><strong>EEX gas-pricing datasource</strong> migrated from sFTP to EEX File Cloud and <strong>enabled on production</strong> in Cloud v2.43.0 &mdash; QPD-14336.</li>
         <li><strong>Legacy hybrid-commissioning teardown</strong> continues in the backend: legacy endpoints deprecated/gated and legacy commissionings backfilled into the new table &mdash; internal only. Epic QPD-7060.</li>
       </ul>
-      <p><b>The alpha CiC firmware goes only to the internal / alpha test track &mdash; do not communicate its behaviour to the wider customer base or installers.</b></p>
+      <p><b>The beta CiC firmware goes only to the beta test track &mdash; do not communicate its behaviour to the wider customer base or installers.</b></p>
     </div>
 
     <div class="theme-card tech-debt-group">
@@ -328,7 +334,7 @@
       <tbody id="rows"></tbody>
     </table>
     <p class="footer-note">
-      Built from GitHub tag diffs (source of truth: CiC 4.10.0 → 4.11.0-alpha.0 via <code>quatt-revisions.inc</code>; component
+      Built from GitHub tag diffs (source of truth: CiC 4.10.0 → 4.11.0-beta.0 via <code>quatt-revisions.inc</code>; component
       changelogs and commit walks from each repo&rsquo;s tag-to-tag range), cross-referenced with Jira for ticket type / priority / parent Epic.
       Bundled firmware moved <b>Controller 6.11.2 → 6.12.0</b>; embedded apps <b>1.33.0 → 1.34.0</b> and the <code>quatt-src</code> modem stack
       <b>2.0.0 → 2.0.1</b>. Thread FW (2.13.0), HeatCharger FW (1.3.0), Chill control-board FW (2.0.0), ODU FW (2.1), message spec (2.80.0)
@@ -564,7 +570,7 @@ document.querySelectorAll('#panel-internal h3, #panel-internal h4').forEach(h =>
 
 /* ---------- Release timeline (live from /api/calendar, scoped to this version) ---------- */
 (function () {
-  const RELEASE_DATE = '2026-07-29';   // this page's headline date (fallback windowing)
+  const RELEASE_DATE = '2026-08-03';   // this page's headline date (fallback windowing)
   const RELEASE_VERSION = '4.11.0';    // milestones whose title contains this belong to this release's cycle
   const sec = document.getElementById('release-timeline');
   const list = document.getElementById('tl-list');
