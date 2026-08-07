@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quatt Ecosystem Release 03.08.2026</title>
+<title>Quatt Ecosystem Release 07.08.2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -23,13 +23,13 @@
 </header>
 
 <main class="wrap">
-  <div class="crumb"><a href="../index.html">Releases</a> / 03.08.2026</div>
+  <div class="crumb"><a href="../index.html">Releases</a> / 07.08.2026</div>
   <div class="page-head">
-    <div class="kicker">CiC diffed 4.10.0 &rarr; 4.11.0-beta.0 &middot; beta</div>
-    <h1>Quatt Ecosystem Release <span class="dim">03.08.2026</span></h1>
+    <div class="kicker">CiC diffed 4.10.0 &rarr; 4.11.0-beta.1 &middot; beta</div>
+    <h1>Quatt Ecosystem Release <span class="dim">07.08.2026</span></h1>
     <div class="sub">
-      <span class="chip cic">CiC 4.11.0-beta.0</span>
-      <span class="chip cloud">Cloud v2.43.0</span>
+      <span class="chip cic">CiC 4.11.0-beta.1</span>
+      <span class="chip cloud">Cloud v2.43.0&ndash;v2.43.1</span>
       <span class="chip app">App v1.60.0</span>
       <span class="chip fw">Controller 6.12.0</span>
       <span class="chip fw">Thread FW 2.13.0</span>
@@ -41,14 +41,22 @@
 
   <div class="review-only"><div class="review-panel">
     <h3>What changed in this revision</h3>
-    <p class="sub">Shown only on the staging preview — hidden in production.</p>
+    <p class="sub">Shown only on the staging preview — hidden in production. Delta vs the published <code>2026-08-03</code> (CiC 4.11.0-beta.0) entry on <code>main</code> &mdash; i.e. the beta.0 &rarr; beta.1 delta a reviewer merges.</p>
     <ul>
-      <li><b>Phase promoted alpha &rarr; beta.</b> CiC <code>4.11.0-alpha.0</code> and <code>4.11.0-beta.0</code> point to the <b>same commit</b> (GitHub: &ldquo;no changes between these two tags&rdquo;), so the ticket set, all three tiers and the bundled / paired versions are unchanged from the alpha revision.</li>
-      <li><b>Headline date</b> updated 29.07.2026 &rarr; <b>03.08.2026</b> (the beta.0 GitHub Release <code>published_at</code>); the page has been renamed to <code>2026-08-03.html</code> accordingly.</li>
-      <li><b>Paired versions:</b> no bumps &mdash; App v1.60.0 and Cloud v2.43.0 are still the latest in the window; Thread FW 2.13.0 unchanged.</li>
-      <li><b>Tickets:</b> none added or removed; <b>nothing reverted.</b></li>
+      <li><b>No phase change &mdash; one fix-forward within beta.</b> CiC <code>4.11.0-beta.0</code> &rarr; <code>4.11.0-beta.1</code>, still on the beta test track. Badge stays <b>beta</b>. <em>(A <code>4.11.0-beta.2</code> GitHub Release exists but is still a <b>draft</b> with no git tag &mdash; it has not shipped, so this entry documents the latest <b>published</b> tag, beta.1. beta.1&rsquo;s tag <code>8fce3f8</code> already contains both OpenTherm commits below.)</em></li>
+      <li><b>Headline date</b> 03.08.2026 &rarr; <b>07.08.2026</b> = the beta.1 GitHub Release&rsquo;s publish date (2026-08-07 09:20&nbsp;UTC). The page is renamed <code>2026-08-03.html</code> &rarr; <code>2026-08-07.html</code>.</li>
+      <li><b>Newly-added tickets since beta.0 (3), all in the shipped beta.1:</b>
+        <ul>
+          <li><b>QPD-15498</b> (CiC, Bug, High &mdash; beta.1) &mdash; fix the A926 OpenTherm Smart Power room-thermostat connectivity regression the offload caused on beta.0 (Honeywell / Remeha thermostats): handshake + ladder windows, diagnostics, recovery knobs. <b>This is why beta.1 exists.</b></li>
+          <li><b>QPD-15434</b> (CiC, Task, Medium &mdash; beta.1) &mdash; count silently-dropped OpenTherm frames (out-of-spec fast timing) in the A926 engine as a non-error <code>rx_dropped</code> counter, surfaced in the once-a-minute <code>engine_stats</code> line. Pure fleet-diagnostics for the offload this wave introduces; deliberately kept out of the error path to avoid Axiom noise on ~20k devices. Landed in beta.1 alongside the fix. No parent Epic in Jira, so it lands in the &ldquo;No parent Epic&rdquo; group (Tier 2 &amp; Tier 3).</li>
+          <li><b>QPD-15520</b> (Cloud, Task, Medium &mdash; with beta.1) &mdash; backend rejects custom night windows leaving &lt; 6h of day (400 <code>DAY_TOO_SHORT</code>) so anti-legionella runs still fit. Shipped in the paired Cloud v2.43.1 (2026-08-06).</li>
+        </ul>
+      </li>
+      <li><b>Paired-version bumps:</b> <b>Cloud v2.43.0 &rarr; +v2.43.1</b> (patch on the already-paired v2.43.x line: QPD-15520 above + OTel observability infra, no customer-facing app change). App stays <b>v1.60.0</b>; bundled firmware (Controller 6.12.0, Thread FW 2.13.0, HeatCharger 1.3.0, Chill CB 2.0.0, ODU 2.1) <b>unchanged</b> &mdash; neither beta.1 commit touched <code>quatt-revisions.inc</code>.</li>
+      <li><b>Deliberately NOT folded in: App v1.61.0</b> (tagged 2026-08-06, 15 tickets &mdash; push-notifications foundation, RN 0.86 upgrade, MyQuatt rebuild, deep links). It is a fresh app minor opening the next dev cycle, not a fix related to this CiC promotion, so it is held for the next wave. Flagged for review &mdash; comment <code>@Claude</code> to pull it into 4.11 if that is wrong.</li>
+      <li><b>Customer tab (Tier 1):</b> unchanged &mdash; the beta.1 thermostat fix and the diagnostic counter both concern only the beta cohort / fleet observability (never a customer-visible behaviour), and QPD-15520&rsquo;s app-side dial limit is a separate ticket not in the paired app v1.60.0.</li>
+      <li><b>Reverted/removed:</b> nothing.</li>
     </ul>
-    <p class="sub">This wave has no prior revision published to production yet &mdash; it is still under review in this PR.</p>
   </div></div>
 
   <section class="timeline-wrap" id="release-timeline" hidden>
@@ -138,18 +146,21 @@
 
     <div class="callout-warn scope-banner">
       <p>
-        <span class="lead">Scope &mdash; CiC 4.11.0-beta.0 (beta test track, not the general fleet)</span>
-        Diffed 4.10.0 &rarr; 4.11.0-beta.0. Bundled firmware: Controller <strong>6.11.2 &rarr; 6.12.0</strong>;
+        <span class="lead">Scope &mdash; CiC 4.11.0-beta.1 (beta test track, not the general fleet)</span>
+        Diffed 4.10.0 &rarr; 4.11.0-beta.1. Bundled firmware: Controller <strong>6.11.2 &rarr; 6.12.0</strong>;
         Thread FW 2.13.0, HeatCharger FW 1.3.0, Chill control-board FW 2.0.0 and ODU FW 2.1 all <strong>unchanged</strong>.
-        Paired app <strong>v1.60.0</strong> (2026-07-24); paired backend <strong>Cloud v2.43.0</strong> (2026-07-27).
-        Headline date 2026-08-03 = the beta.0 GitHub Release&rsquo;s <code>published_at</code> date.
+        Paired app <strong>v1.60.0</strong> (2026-07-24); paired backend <strong>Cloud v2.43.0&ndash;v2.43.1</strong> (v2.43.1 on 2026-08-06).
+        Headline date 2026-08-07 = the beta.1 GitHub Release&rsquo;s publish date (published 2026-08-07 09:20&nbsp;UTC). A <code>4.11.0-beta.2</code> build is still an unpublished draft (no git tag), so it is not documented here.
       </p>
       <p>
-        <span class="lead">Wave phase &mdash; beta (promoted from the 4.11.0 alpha, same build)</span>
-        4.11.0-beta.0 points to the same commit as 4.11.0-alpha.0, so the content below is unchanged from the alpha revision &mdash; only the phase, version label and headline date move. It ships to the beta test track, still not the general fleet.
+        <span class="lead">Wave phase &mdash; beta, one fix-forward (beta.0 &rarr; beta.1)</span>
+        The A926 OpenTherm Smart Power offload this wave introduces regressed room-thermostat connectivity on the beta cohort; <strong>beta.1</strong> both fixes it (QPD-15498) and adds a fleet-diagnostics counter for silently-dropped OpenTherm frames on that same offload (QPD-15434) &mdash; both in the Bug Fixing &amp; Fleet Diagnostics / diagnostics work below. Everything else is carried forward unchanged from beta.0. It ships to the beta test track, still not the general fleet.
       </p>
       <p><span class="lead">Enablement sweep &mdash; what actually goes live this wave</span></p>
       <ul>
+        <li><strong>OpenTherm room-thermostat fix (beta.1):</strong> the fix for the beta.0 A926-offload thermostat-connectivity regression (Honeywell / Remeha units) &mdash; QPD-15498. Wider 4.11 promotion was held on the regression; verify the fix on Honeywell + Remeha rigs before promoting further.</li>
+        <li><strong>OpenTherm dropped-frame diagnostic (beta.1):</strong> the A926 engine now counts frames it silently discards on out-of-spec fast bit timing as a non-error <code>rx_dropped</code> stat (in the once-a-minute <code>engine_stats</code> line), so a boiler with bad OpenTherm timing is no longer invisible in telemetry &mdash; QPD-15434. Diagnostics only; no behavioural change and no new log volume. Land it before the fleet meets the offload, so the first fleet exposure is observable.</li>
+        <li><strong>Custom night-window guard</strong> is <strong>live on production</strong> in Cloud v2.43.1: the backend now rejects a custom night window that leaves less than 6&nbsp;hours of day (<code>400 DAY_TOO_SHORT</code>) so anti-legionella runs still fit &mdash; QPD-15520. The matching in-app dial limit is a separate app ticket (not in the paired app v1.60.0).</li>
         <li><strong>Chill &ldquo;Charge Cool&rdquo;</strong> (charge the HeatBattery from Chill cooling waste heat) controller logic is refined &mdash; stop on hot-water draw-off, align with the anti-legionella check, prioritise over other charging &mdash; but the feature stays <strong>gated off fleet-wide</strong>. Do not communicate. Epic QPD-14497.</li>
         <li><strong>All-Electric Boost Mode:</strong> the app removes the <code>all_e_boost_mode</code> feature flag (v1.60.0) and the backend adds an <code>AWAITING_CIC_STATE</code> status and a HeatBattery charging-reason. The rollout is being finalised &mdash; <strong>confirm the production minimum-CiC-version gate before communicating</strong>. Epic QPD-11732.</li>
         <li><strong>EEX gas-pricing datasource</strong> migrated from sFTP to EEX File Cloud and <strong>enabled on production</strong> in Cloud v2.43.0 &mdash; QPD-14336.</li>
@@ -257,13 +268,14 @@
     </div>
 
     <div class="theme-card">
-      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11880" target="_blank">QPD-11880</a> &middot; Bug Fixing &amp; Fleet Diagnostics <span class="epic">2 tickets</span></h3>
-      <p class="epic-desc">The controls / embedded rolling bug-fixing and fleet-diagnostics Epic. This wave: a controller protection fix and faster LTE-modem recovery.</p>
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11880" target="_blank">QPD-11880</a> &middot; Bug Fixing &amp; Fleet Diagnostics <span class="epic">3 tickets</span></h3>
+      <p class="epic-desc">The controls / embedded rolling bug-fixing and fleet-diagnostics Epic. This wave: the beta.1 OpenTherm room-thermostat fix, a controller protection fix and faster LTE-modem recovery.</p>
       <ul>
+        <li><b>beta.1 fix &mdash;</b> the A926 OpenTherm Smart Power offload introduced this wave regressed room-thermostat connectivity on the beta cohort: 11 of 89 beta CICs with a Honeywell or Remeha thermostat lost thermostat communication on beta.0. beta.1 reworks the Smart Power handshake and bit-timing (&ldquo;ladder&rdquo;) windows on the room-thermostat bus and adds diagnostics and recovery knobs to fix it. The boiler side was never affected. <span class="tkey">(QPD-15498 <span class="team">Embedded Systems</span>)</span></li>
         <li>The controller now reacts to the AT (high / low) pressure-switch protection flags via new watchdog code <span class="tkey">(QPD-14976 <span class="team">Systems Control</span>)</span></li>
         <li>Drive the modem&rsquo;s BOOT_CFG pin to recover a faulty modem, with dedicated MODEM-RECOVERY logs and a faster recovery timeout (a stuck modem now resets in ~40&nbsp;s instead of several minutes) <span class="tkey">(QPD-15120 <span class="team">Embedded Systems</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for CS:</b> the controller now responds to a pressure-switch protection trip, and CICs recover a stuck LTE modem faster. The recovery event is greppable in Axiom (search for MODEM-RECOVERY).</div>
+      <div class="impact"><b>Impact for CS / installers:</b> on the beta track only &mdash; a beta.0 build could drop the room-thermostat connection on Honeywell / Remeha thermostats, and beta.1 fixes it; the general fleet on 4.10 was never affected. Do not promote 4.11 further until the fix is confirmed on Honeywell + Remeha rigs. The controller also now responds to a pressure-switch protection trip, and CICs recover a stuck LTE modem faster (greppable in Axiom: MODEM-RECOVERY).</div>
     </div>
 
     <div class="theme-card">
@@ -278,6 +290,15 @@
     </div>
 
     <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-186" target="_blank">QPD-186</a> &middot; All-E | Systems Engineering &amp; Hardware Development <span class="epic">1 ticket</span></h3>
+      <p class="epic-desc">All-Electric systems-engineering Epic. This wave: a backend guardrail on the custom night window, shipped in Cloud v2.43.1.</p>
+      <ul>
+        <li>Reject a custom night window that leaves less than 6&nbsp;hours of day, so the anti-legionella cycle (which is skipped during the night window) still has room to run. The backend now returns <code>400 DAY_TOO_SHORT</code> on such a window; existing stored windows are left untouched <span class="tkey">(QPD-15520 <span class="team">Cloud / Backend</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for CS:</b> a customer setting an over-long night window (leaving under 6&nbsp;h of day) now gets a clear rejection instead of silently starving the anti-legionella cycle. The matching in-app dial limit ships in a later app version.</div>
+    </div>
+
+    <div class="theme-card">
       <h3><a href="https://quatt-team.atlassian.net/browse/QPD-12956" target="_blank">QPD-12956</a> &middot; CHILL/DONGLE | Apply for Thread Certification <span class="epic">1 ticket</span></h3>
       <p class="epic-desc">Bringing the CiC&rsquo;s Thread stack up to Thread-certification requirements.</p>
       <ul>
@@ -287,13 +308,14 @@
     </div>
 
     <div class="theme-card">
-      <h3>No parent Epic <span class="epic">4 tickets</span></h3>
-      <p class="epic-desc">Four tickets carry <b>no parent Epic</b> in Jira, so a strict epic grouping cannot place them &mdash; they land in this fallback bucket. Three are backend RDS-infrastructure deploy fixes; one is a Thread log-noise investigation.</p>
+      <h3>No parent Epic <span class="epic">5 tickets</span></h3>
+      <p class="epic-desc">Five tickets carry <b>no parent Epic</b> in Jira, so a strict epic grouping cannot place them &mdash; they land in this fallback bucket. Three are backend RDS-infrastructure deploy fixes; one is a Thread log-noise investigation; one is the beta.1 OpenTherm fleet-diagnostics counter.</p>
       <ul>
         <li>Fix a production RDS read-replica gp3 migration that was missing an explicit <code>iops</code> value, and the follow-on <code>pulumi-up</code> failures for gp3 MySQL under 400&nbsp;GiB (prod + develop) <span class="tkey">(QPD-15292 <span class="team">no team set</span>, QPD-15323 <span class="team">no team set</span>, QPD-15329 <span class="team">no team set</span>)</span></li>
         <li>Investigate a message-volume spike from <code>cic-thread-network-manager</code> &mdash; resolved by demoting a missing-RCP-config wait log from error to trace <span class="tkey">(QPD-15316 <span class="team">Embedded Systems</span>)</span></li>
+        <li><b>beta.1 diagnostic &mdash;</b> the A926 OpenTherm engine now counts frames it silently discards on out-of-spec fast bit timing as a dedicated non-error <code>rx_dropped</code> counter, surfaced in the once-a-minute <code>engine_stats</code> telemetry line (kept out of the error path so it adds no Axiom noise). A boiler with bad OpenTherm timing was previously invisible &mdash; only &ldquo;Boiler disconnected&rdquo; with no cause &mdash; and this restores a diagnostic the in-kernel path used to provide <span class="tkey">(QPD-15434 <span class="team">no team set</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for ops:</b> a backend RDS read-replica migration needed several deploy fixes (now resolved); the Thread message-volume spike was log noise. No field action.</div>
+      <div class="impact"><b>Impact for ops:</b> a backend RDS read-replica migration needed several deploy fixes (now resolved); the Thread message-volume spike was log noise. The new OpenTherm <code>rx_dropped</code> counter gives prod-monitoring a direct signal for boilers with bad OpenTherm timing instead of inferring it from repeated &ldquo;Boiler disconnected&rdquo; with no engine errors. No field action.</div>
     </div>
   </section>
 
@@ -334,12 +356,14 @@
       <tbody id="rows"></tbody>
     </table>
     <p class="footer-note">
-      Built from GitHub tag diffs (source of truth: CiC 4.10.0 → 4.11.0-beta.0 via <code>quatt-revisions.inc</code>; component
+      Built from GitHub tag diffs (source of truth: CiC 4.10.0 → 4.11.0-beta.1 via <code>quatt-revisions.inc</code>; component
       changelogs and commit walks from each repo&rsquo;s tag-to-tag range), cross-referenced with Jira for ticket type / priority / parent Epic.
-      Bundled firmware moved <b>Controller 6.11.2 → 6.12.0</b>; embedded apps <b>1.33.0 → 1.34.0</b> and the <code>quatt-src</code> modem stack
+      <b>beta.0 → beta.1</b> adds two CiC commits (QPD-15498, then QPD-15434) &mdash; neither touched <code>quatt-revisions.inc</code>, so all bundled
+      firmware is unchanged from beta.0. (A <code>4.11.0-beta.2</code> build is still an unpublished draft with no git tag, so it is not documented.) Bundled firmware moved <b>Controller 6.11.2 → 6.12.0</b>; embedded apps <b>1.33.0 → 1.34.0</b> and the <code>quatt-src</code> modem stack
       <b>2.0.0 → 2.0.1</b>. Thread FW (2.13.0), HeatCharger FW (1.3.0), Chill control-board FW (2.0.0), ODU FW (2.1), message spec (2.80.0)
-      and Python libs (0.15.0) are all unchanged from 4.10.0. Paired app <b>v1.60.0</b> (2026-07-24); paired backend <b>Cloud v2.43.0</b>
-      (2026-07-27), which contributes 16 of the 47 rows.
+      and Python libs (0.15.0) are all unchanged from 4.10.0. Paired app <b>v1.60.0</b> (2026-07-24); paired backend <b>Cloud v2.43.0&ndash;v2.43.1</b>
+      (v2.43.1 on 2026-08-06), which contributes 17 of the 50 rows. App <b>v1.61.0</b> (2026-08-06) is a fresh app minor (push notifications, RN 0.86, MyQuatt rebuild)
+      held for the next wave &mdash; not folded into 4.11.
       <b>Grouping:</b> rows are grouped by Jira parent Epic. The <b>Thread</b> product column holds only <code>quatt-dongle</code> / Thread-FW rows
       &mdash; there is no new Thread-FW release this wave, so that column is empty; the CiC-side Thread work (<code>cic-thread-network-manager</code>)
       is under <b>CiC</b>, and HeatCharger firmware would fold into <b>CiC</b> too.
@@ -385,6 +409,8 @@ document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () =>
 /* [product, key, type, priority, status (blank = Done), summary, parentEpicKey] */
 const T = [
  // ---- CiC (cic-controller 6.12.0, embedded-cpp-apps 1.34.0, quatt-src 2.0.1) ----
+ ["CiC",15498,"Bug","High","","cic-yocto-builder 4.11.0-beta.1: fix A926 OpenTherm Smart Power room-thermostat connectivity regression (Honeywell/Remeha) — handshake + ladder windows, diagnostics, recovery knobs",11880],
+ ["CiC",15434,"Task","Medium","","cic-yocto-builder 4.11.0-beta.1: count silently-dropped OpenTherm frames (out-of-spec fast timing) in the A926 engine as a non-error rx_dropped stat in the engine_stats line",0],
  ["CiC",14976,"Bug","High","","cic-controller 6.12.0: controller reacts to AT high/low pressure-switch protection flags (new watchdog)",11880],
  ["CiC",14981,"Bug","High","","cic-controller: Charge Cool must stop on hot-water draw-off (shipped, gated off)",14497],
  ["CiC",15105,"Task","Medium","","cic-controller: align Charge Cool end with anti-legionella check + sensor-defect robustness (shipped, gated off)",14497],
@@ -413,6 +439,7 @@ const T = [
  ["Cloud",15292,"Bug","Medium","","[PROD] v2.42.0 deploy fix: RDS read replica gp3 migration missing iops",0],
  ["Cloud",15323,"Bug","Medium","","[PROD] pulumi-up fix: RDS read replica iops invalid for gp3 mysql < 400 GiB",0],
  ["Cloud",15329,"Bug","Medium","","[DEVELOP] pulumi-up fix: RDS read-replica iops/storageThroughput invalid at storage < 400 GiB",0],
+ ["Cloud",15520,"Task","Medium","","Cloud v2.43.1: reject custom night windows leaving < 6h of day (400 DAY_TOO_SHORT) so anti-legionella runs still fit; in-app dial mirror is a separate ticket",186],
  // ---- App v1.60.0 (paired) ----
  ["App",11699,"Task","Medium","","Adopt the React Compiler (enablement + gradual migration)",7154],
  ["App",11845,"Task","Medium","","Sentry feature-flag integration (report flag evaluations)",7154],
@@ -450,9 +477,10 @@ const EPIC_MAP = {
  11879: ["QPD-11879", "26.Q1 Embedded Technical Debt"],
  12488: ["QPD-12488", "Technical Debt and Continuous Improvement"],
  12956: ["QPD-12956", "CHILL/DONGLE | Apply for Thread Certification"],
+ 186:   ["QPD-186",   "All-E | Systems Engineering &amp; Hardware Development"],
  0:     [null,        "No parent Epic"]
 };
-const EPIC_ORDER = [7154, 152, 7060, 11732, 138, 14497, 11795, 11880, 14553, 11879, 12488, 12956, 0];
+const EPIC_ORDER = [7154, 152, 7060, 11732, 138, 14497, 11880, 11795, 14553, 186, 11879, 12488, 12956, 0];
 
 /* ---------- filters & sorting ---------- */
 const state = { product: '*', type: '*', pr: '*', q: '', sortCol: null, sortDir: 1 };
@@ -570,7 +598,7 @@ document.querySelectorAll('#panel-internal h3, #panel-internal h4').forEach(h =>
 
 /* ---------- Release timeline (live from /api/calendar, scoped to this version) ---------- */
 (function () {
-  const RELEASE_DATE = '2026-08-03';   // this page's headline date (fallback windowing)
+  const RELEASE_DATE = '2026-08-07';   // this page's headline date (fallback windowing)
   const RELEASE_VERSION = '4.11.0';    // milestones whose title contains this belong to this release's cycle
   const sec = document.getElementById('release-timeline');
   const list = document.getElementById('tl-list');

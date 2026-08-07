@@ -4,20 +4,20 @@
 
 window.SUMMARY = [
   { n: "8",  l: "Release waves documented" },
-  { n: "47", l: "Tickets in latest wave" },
+  { n: "50", l: "Tickets in latest wave" },
   { n: "3",  l: "Products in latest wave" },
-  { n: "2",  l: "Open follow-ups flagged" }
+  { n: "1",  l: "Open follow-ups flagged" }
 ];
 
 window.RELEASES = [
   {
-    date: "2026-08-03",
-    title: "Quatt Ecosystem Release 03.08.2026",
+    date: "2026-08-07",
+    title: "Quatt Ecosystem Release 07.08.2026",
     badge: { cls: "beta", label: "beta" },
-    page: "releases/2026-08-03.html",
+    page: "releases/2026-08-07.html",
     chips: [
-      { cls: "cic",   label: "CiC 4.11.0-beta.0" },
-      { cls: "cloud", label: "Cloud v2.43.0" },
+      { cls: "cic",   label: "CiC 4.11.0-beta.1" },
+      { cls: "cloud", label: "Cloud v2.43.0–v2.43.1" },
       { cls: "app",   label: "App v1.60.0" },
       { cls: "fw",    label: "Controller 6.12.0" },
       { cls: "fw",    label: "Thread FW 2.13.0" },
@@ -26,9 +26,9 @@ window.RELEASES = [
       { cls: "fw",    label: "ODU FW 2.1" }
     ],
     stats: [
-      { b: "47", t: "ticket entries" },
-      { b: "Cloud v2.43.0", t: "backend paired" },
-      { b: "Charge Cool", t: "refined but gated off" },
+      { b: "50", t: "ticket entries" },
+      { b: "Cloud v2.43.0–v2.43.1", t: "backend paired" },
+      { b: "QPD-15498", t: "OpenTherm room-thermostat fix (beta.1)" },
       { b: "beta", t: "beta test track" }
     ]
   },
