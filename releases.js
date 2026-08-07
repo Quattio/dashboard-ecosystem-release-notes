@@ -4,19 +4,19 @@
 
 window.SUMMARY = [
   { n: "8",  l: "Release waves documented" },
-  { n: "49", l: "Tickets in latest wave" },
+  { n: "50", l: "Tickets in latest wave" },
   { n: "3",  l: "Products in latest wave" },
   { n: "1",  l: "Open follow-ups flagged" }
 ];
 
 window.RELEASES = [
   {
-    date: "2026-08-06",
-    title: "Quatt Ecosystem Release 06.08.2026",
+    date: "2026-08-07",
+    title: "Quatt Ecosystem Release 07.08.2026",
     badge: { cls: "beta", label: "beta" },
-    page: "releases/2026-08-06.html",
+    page: "releases/2026-08-07.html",
     chips: [
-      { cls: "cic",   label: "CiC 4.11.0-beta.1" },
+      { cls: "cic",   label: "CiC 4.11.0-beta.2" },
       { cls: "cloud", label: "Cloud v2.43.0–v2.43.1" },
       { cls: "app",   label: "App v1.60.0" },
       { cls: "fw",    label: "Controller 6.12.0" },
@@ -26,9 +26,9 @@ window.RELEASES = [
       { cls: "fw",    label: "ODU FW 2.1" }
     ],
     stats: [
-      { b: "49", t: "ticket entries" },
+      { b: "50", t: "ticket entries" },
       { b: "Cloud v2.43.0–v2.43.1", t: "backend paired" },
-      { b: "QPD-15498", t: "OpenTherm thermostat fix (beta.1)" },
+      { b: "QPD-15434", t: "OpenTherm dropped-frame diagnostic (beta.2)" },
       { b: "beta", t: "beta test track" }
     ]
   },
