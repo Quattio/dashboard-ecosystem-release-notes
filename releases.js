@@ -16,7 +16,7 @@ window.RELEASES = [
     badge: { cls: "beta", label: "beta" },
     page: "releases/2026-08-07.html",
     chips: [
-      { cls: "cic",   label: "CiC 4.11.0-beta.2" },
+      { cls: "cic",   label: "CiC 4.11.0-beta.1" },
       { cls: "cloud", label: "Cloud v2.43.0–v2.43.1" },
       { cls: "app",   label: "App v1.60.0" },
       { cls: "fw",    label: "Controller 6.12.0" },
@@ -28,7 +28,7 @@ window.RELEASES = [
     stats: [
       { b: "50", t: "ticket entries" },
       { b: "Cloud v2.43.0–v2.43.1", t: "backend paired" },
-      { b: "QPD-15434", t: "OpenTherm dropped-frame diagnostic (beta.2)" },
+      { b: "QPD-15498", t: "OpenTherm room-thermostat fix (beta.1)" },
       { b: "beta", t: "beta test track" }
     ]
   },
