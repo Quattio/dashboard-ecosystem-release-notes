@@ -13,10 +13,10 @@ window.RELEASES = [
   {
     date: "2026-08-07",
     title: "Quatt Ecosystem Release 07.08.2026",
-    badge: { cls: "beta", label: "beta" },
+    badge: { cls: "stable", label: "stable (GA)" },
     page: "releases/2026-08-07.html",
     chips: [
-      { cls: "cic",   label: "CiC 4.11.0-beta.1" },
+      { cls: "cic",   label: "CiC 4.11.0" },
       { cls: "cloud", label: "Cloud v2.43.0–v2.43.1" },
       { cls: "app",   label: "App v1.60.0" },
       { cls: "fw",    label: "Controller 6.12.0" },
@@ -28,8 +28,8 @@ window.RELEASES = [
     stats: [
       { b: "50", t: "ticket entries" },
       { b: "Cloud v2.43.0–v2.43.1", t: "backend paired" },
-      { b: "QPD-15498", t: "OpenTherm room-thermostat fix (beta.1)" },
-      { b: "beta", t: "beta test track" }
+      { b: "OpenTherm Smart Power", t: "A926 offload ships GA" },
+      { b: "stable", t: "GA — promoted from beta (same build)" }
     ]
   },
   {
