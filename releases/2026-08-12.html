@@ -351,7 +351,6 @@ document.querySelectorAll('#panel-internal h3, #panel-internal h4').forEach(h =>
 
 /* ---------- Release timeline (live from /api/calendar, scoped to this version, with durations) ---------- */
 (function () {
-  const RELEASE_DATE = '2026-08-12';   // this page's headline date (fallback windowing)
   const RELEASE_VERSION = '4.11.1';    // milestones whose title contains this belong to this release's cycle
   const sec = document.getElementById('release-timeline');
   const list = document.getElementById('tl-list');
@@ -383,13 +382,11 @@ document.querySelectorAll('#panel-internal h3, #panel-internal h4').forEach(h =>
     .then(r => (r.ok ? r.json() : null))
     .then(data => {
       if (!data || !data.ok || !Array.isArray(data.events)) return;   // stay hidden
-      let evs = data.events.filter(ev => (ev.title || '').includes(RELEASE_VERSION));
-      if (!evs.length) {
-        // Untagged release → fall back to concrete milestones within ~6 weeks of the headline date.
-        const base = toDate(RELEASE_DATE).getTime(), lo = base - 7 * DAY, hi = base + 42 * DAY;
-        evs = data.events.filter(ev => { const t = toDate(ev.start).getTime(); return t >= lo && t <= hi; });
-      }
-      if (!evs.length) return;   // nothing relevant → stay hidden
+      // Only show milestones explicitly tagged for THIS release ("... | CiC 4.11.1").
+      // No date-window fallback: an untagged release must stay hidden rather than
+      // surface other releases' cadence milestones from the shared calendar.
+      const evs = data.events.filter(ev => (ev.title || '').includes(RELEASE_VERSION));
+      if (!evs.length) return;   // nothing tagged for this release → stay hidden
 
       list.innerHTML = evs.map(ev => {
         const sp = span(ev);
