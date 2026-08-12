@@ -3,13 +3,33 @@
    Newest release first. */
 
 window.SUMMARY = [
-  { n: "8",  l: "Release waves documented" },
-  { n: "50", l: "Tickets in latest wave" },
-  { n: "3",  l: "Products in latest wave" },
+  { n: "9",  l: "Release waves documented" },
+  { n: "1",  l: "Tickets in latest wave" },
+  { n: "1",  l: "Products in latest wave" },
   { n: "1",  l: "Open follow-ups flagged" }
 ];
 
 window.RELEASES = [
+  {
+    date: "2026-08-12",
+    title: "Quatt Ecosystem Release 12.08.2026",
+    badge: { cls: "hotfix", label: "hotfix" },
+    page: "releases/2026-08-12.html",
+    chips: [
+      { cls: "cic", label: "CiC 4.11.1" },
+      { cls: "fw",  label: "Controller 6.12.0" },
+      { cls: "fw",  label: "Thread FW 2.13.0" },
+      { cls: "fw",  label: "HeatCharger FW 1.3.0" },
+      { cls: "fw",  label: "Chill CB FW 2.0.0" },
+      { cls: "fw",  label: "ODU FW 2.1" }
+    ],
+    stats: [
+      { b: "1", t: "ticket" },
+      { b: "QPD-15294", t: "HeatCharger data revert" },
+      { b: "embedded apps 1.34.1", t: "single-commit bump" },
+      { b: "hotfix", t: "stable — to the fleet" }
+    ]
+  },
   {
     date: "2026-08-07",
     title: "Quatt Ecosystem Release 07.08.2026",

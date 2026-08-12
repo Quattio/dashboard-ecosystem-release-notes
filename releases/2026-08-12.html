@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quatt Ecosystem Release 12.08.2026 — hotfix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css?v=3">
+<script src="../env-banner.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="logo"><span class="mark">Q</span> Quatt <span class="sys">Release notes</span></span>
+    <nav>
+      <a href="../index.html">Releases</a>
+      <a href="2026-08-07.html">Latest (live page)</a>
+      <button class="theme-toggle" onclick="toggleTheme()">Dark mode</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="crumb"><a href="../index.html">Releases</a> / 12.08.2026</div>
+  <div class="page-head">
+    <div class="kicker">CiC diffed 4.11.0 &rarr; 4.11.1 &middot; hotfix</div>
+    <h1>Quatt Ecosystem Release <span class="dim">12.08.2026</span></h1>
+    <div class="sub">
+      <span class="chip cic">CiC 4.11.1</span>
+      <span class="chip fw">Controller 6.12.0</span>
+      <span class="chip fw">Thread FW 2.13.0</span>
+      <span class="chip fw">HeatCharger FW 1.3.0</span>
+      <span class="chip fw">Chill CB FW 2.0.0</span>
+      <span class="chip fw">ODU FW 2.1</span>
+    </div>
+  </div>
+
+  <div class="review-only"><div class="review-panel">
+    <h3>What changed in this revision</h3>
+    <p class="sub">Shown only on the staging preview — hidden in production.</p>
+    <p class="none">New release notes — first published revision.</p>
+    <p class="sub"><b>Note for reviewers:</b> CiC <b>4.11.1</b> is a single-commit <b>hotfix</b> on top of 4.11.0 (GA) — it bumps the embedded C++ apps <b>1.34.0 &rarr; 1.34.1</b>, reverting <span class="tkey">QPD-15294</span>. It is a new release wave, so it gets its own page (<code>2026-08-12.html</code>) rather than promoting the 4.11.0 entry. <b>No App or backend build is paired</b>, and all bundled firmware (Controller 6.12.0, Thread 2.13.0, HeatCharger 1.3.0, Chill CB 2.0.0, ODU 2.1) is unchanged from 4.11.0. The restored HeatCharger data-collection fix is surfaced in <b>Tier 1</b> because this build goes to the production fleet and the data gap was homeowner-visible on affected All-Electric systems. Headline date 2026-08-12 = the 4.11.1 tag commit&rsquo;s committer date (no GitHub Release published yet).</p>
+  </div></div>
+
+  <section class="timeline-wrap" id="release-timeline" hidden>
+    <h2>Release timeline</h2>
+    <p class="tl-sub">Live from the shared Quatt release calendar.</p>
+    <ol class="timeline" id="tl-list"></ol>
+  </section>
+
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-panel="customer">Customer</button>
+    <button class="tab" data-panel="internal">Internal (ops / CS)</button>
+    <button class="tab" data-panel="engineering">Engineering</button>
+  </div>
+
+  <!-- ============ TIER 1 ============ -->
+  <section class="tab-panel tier1 active" id="panel-customer">
+
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button class="fbtn lang-btn on" data-lang="en">English</button>
+      <button class="fbtn lang-btn" data-lang="nl">Nederlands</button>
+    </div>
+
+    <div class="lang-pane" id="tier1-en">
+      <div class="callout-warn">
+        This is a maintenance hotfix on top of the 4.11.0 release. It contains a single fix and does not change everyday
+        heating, cooling or comfort behaviour.
+      </div>
+      <div class="theme-card">
+        <h3>New functions</h3>
+        <ul>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Heating performance and reliability</h3>
+        <ul>
+          <li>Everyday heating and comfort behaviour is unchanged in this hotfix.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Bug fixes and maintenance</h3>
+        <ul>
+          <li>Fixed an issue where, on some All-Electric systems, the CiC could stop collecting data from the HeatCharger, which could leave HeatBattery and energy information in the app incomplete. Data collection now runs normally again.</li>
+          <li>General reliability and maintenance improvements.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lang-pane" id="tier1-nl" hidden>
+      <div class="callout-warn">
+        Dit is een onderhouds-hotfix bovenop de 4.11.0-release. Deze bevat één oplossing en verandert niets aan het dagelijkse
+        verwarmings-, koel- of comfortgedrag.
+      </div>
+      <div class="theme-card">
+        <h3>Nieuwe functies</h3>
+        <ul>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Verwarmingsprestaties en betrouwbaarheid</h3>
+        <ul>
+          <li>Het dagelijkse verwarmings- en comfortgedrag verandert niet in deze hotfix.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Foutoplossingen en onderhoud</h3>
+        <ul>
+          <li>Een probleem opgelost waarbij de CiC op sommige All-Electric-systemen kon stoppen met het uitlezen van gegevens van de HeatCharger, waardoor de HeatBattery- en energie-informatie in de app onvolledig kon zijn. Het verzamelen van gegevens werkt nu weer normaal.</li>
+          <li>Algemene verbeteringen op het gebied van betrouwbaarheid en onderhoud.</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ TIER 2 ============ -->
+  <section class="tab-panel" id="panel-internal">
+
+    <div class="callout-warn scope-banner">
+      <p>
+        <span class="lead">Scope &mdash; CiC 4.11.1 (hotfix on top of 4.11.0 GA, to the fleet)</span>
+        Diffed 4.11.0 &rarr; 4.11.1. The single change in this build is an <strong>embedded C++ apps bump 1.34.0 &rarr; 1.34.1</strong>,
+        which reverts one earlier change (QPD-15294). <strong>No other component bumps</strong>: Controller 6.12.0, Thread FW 2.13.0,
+        HeatCharger FW 1.3.0, Chill control-board FW 2.0.0 and ODU FW 2.1 are all unchanged from 4.11.0, and <strong>no App or backend
+        build is paired</strong>. Headline date 2026-08-12 = the 4.11.1 tag commit&rsquo;s committer date (no GitHub Release yet).
+      </p>
+      <p>
+        <span class="lead">Wave phase &mdash; hotfix</span>
+        4.11.1 re-spins the 4.11.0 image with a single revert to restore HeatCharger data collection on affected All-Electric systems.
+      </p>
+      <p><span class="lead">Enablement sweep &mdash; what actually goes live this wave</span></p>
+      <ul>
+        <li>Nothing new is enabled: no feature flags flipped and no rollout/backend tickets accompany this wave. The only behavioural change is that the CiC resumes reading the HeatCharger on All-Electric systems that had stopped (see the epic below).</li>
+      </ul>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11879" target="_blank">QPD-11879</a> &middot; 26.Q1 Embedded Technical Debt <span class="epic">1 ticket</span></h3>
+      <p class="epic-desc">The Q1-2026 embedded technical-debt Epic. In the 4.11.0 wave, QPD-15294 taught the HeatCharger Modbus driver to stop polling (park itself) on systems the configuration reports as having no heat charger, to save CPU on Hybrid/DUO systems. This hotfix reverts that behaviour after it misfired in production.</p>
+      <ul>
+        <li><b>Revert &ldquo;park the HeatCharger Modbus driver when the system reports no heat charger&rdquo;:</b> some production All-Electric systems were configured as having no HeatCharger (<code>hasHeatcharger: false</code>) even though one was present, so the CiC stopped polling it and All-Electric data stopped being collected. The parking condition is removed, so the driver always polls the HeatCharger again <span class="tkey">(QPD-15294 <span class="team">Embedded Systems</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for CS / ops:</b> All-Electric installations that were incorrectly configured as having no HeatCharger had stopped reporting HeatCharger and All-Electric data to the cloud &mdash; visible as gaps in HeatBattery and energy data in the app and dashboards. After they receive 4.11.1 they collect and report this data normally again. If a customer or CS reported missing HeatBattery/energy data on an All-Electric system on 4.11.0, this hotfix resolves it. The backend team is separately investigating the configuration that caused the mismatch; the small CPU saving on genuine no-HeatCharger systems is given up in the meantime.</div>
+    </div>
+  </section>
+
+  <!-- ============ TIER 3 ============ -->
+  <section class="tab-panel" id="panel-engineering">
+    <div class="filters">
+      <span class="fgroup" id="f-product">
+        <span class="flabel">Product</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="CiC">CiC</button>
+      </span>
+      <span class="fgroup" id="f-type">
+        <span class="flabel">Type</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="Task">Tasks</button>
+        <button class="fbtn" data-v="Bug">Bugs</button>
+      </span>
+      <span class="fgroup" id="f-pr">
+        <span class="flabel">Priority</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="Urgent">Urgent</button>
+        <button class="fbtn" data-v="High">High+</button>
+      </span>
+      <input class="search" id="f-q" type="search" placeholder="Search summary or QPD key…">
+    </div>
+    <div class="count" id="count"></div>
+    <table class="tickets">
+      <thead><tr>
+        <th class="sortable" data-col="key">Key</th>
+        <th class="sortable" data-col="product">Product</th>
+        <th class="sortable" data-col="type">Type</th>
+        <th class="sortable" data-col="priority">Priority</th>
+        <th class="sortable" data-col="summary">Summary</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p class="footer-note">
+      Built from the GitHub tag diff (source of truth: CiC 4.11.0 &rarr; 4.11.1, a single commit bumping the embedded C++ apps
+      1.34.0 &rarr; 1.34.1). That bump is a straight revert of QPD-15294&rsquo;s &ldquo;park cic-modbus-heatcharger when the system
+      has no heat charger&rdquo; change; the ticket itself was delivered in the 4.11.0 wave and is listed here as reverted. No other
+      component changed and no App/Cloud build is paired. Headline date 2026-08-12 = the 4.11.1 tag commit&rsquo;s committer date
+      (no GitHub Release published yet). Use the <code>release-auditor</code> skill for commit-level traceability.
+    </p>
+  </section>
+
+</main>
+
+<script>
+/* ---------- theme ---------- */
+function toggleTheme() {
+  const r = document.documentElement;
+  const cur = r.getAttribute('data-theme') || 'dark';   // console is dark by default
+  const next = cur === 'dark' ? 'light' : 'dark';
+  r.setAttribute('data-theme', next);
+  localStorage.setItem('qrn-theme', next);
+}
+const saved = localStorage.getItem('qrn-theme');
+if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+/* ---------- Tier 1 language toggle (EN/NL) ---------- */
+function setLang(lang) {
+  document.getElementById('tier1-en').hidden = lang !== 'en';
+  document.getElementById('tier1-nl').hidden = lang !== 'nl';
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('on', b.dataset.lang === lang));
+  localStorage.setItem('qrn-tier1-lang', lang);
+}
+document.querySelectorAll('.lang-btn').forEach(b =>
+  b.addEventListener('click', () => setLang(b.dataset.lang)));
+setLang(localStorage.getItem('qrn-tier1-lang') || 'en');
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === t));
+  document.querySelectorAll('.tab-panel').forEach(p =>
+    p.classList.toggle('active', p.id === 'panel-' + t.dataset.panel));
+}));
+
+/* ---------- ticket data (generated by the /release-notes pipeline) ---------- */
+const T = [
+ // product, key, type, priority, status (if not Done), summary
+ ["CiC",15294,"Bug","Medium","","Revert “Park cic-modbus-heatcharger when the system has no heat charger” (embedded apps 1.34.0→1.34.1): restore HeatCharger polling on All-Electric systems mis-flagged hasHeatcharger=false"]
+];
+
+/* ---------- filters & sorting ---------- */
+const state = { product: '*', type: '*', pr: '*', q: '', sortCol: null, sortDir: 1 };
+const PRIO_RANK = { 'Urgent': 4, 'High': 3, 'Medium': 2, 'Low': 1 };
+const COL_IDX = { product: 0, key: 1, type: 2, priority: 3, summary: 5 };
+
+document.querySelectorAll('th.sortable').forEach(th => th.addEventListener('click', () => {
+  const col = th.dataset.col;
+  if (state.sortCol === col) {
+    state.sortDir = -state.sortDir;          // second click: reverse
+  } else {
+    state.sortCol = col;
+    state.sortDir = col === 'priority' ? -1 : 1;  // priority defaults to Urgent-first
+  }
+  document.querySelectorAll('th.sortable').forEach(x => {
+    x.classList.toggle('sorted', x === th);
+    x.dataset.arrow = x === th ? (state.sortDir === 1 ? '▲' : '▼') : '';
+  });
+  render();
+}));
+
+function cmp(a, b) {
+  const col = state.sortCol, i = COL_IDX[col];
+  let va = a[i], vb = b[i];
+  if (col === 'priority') { va = PRIO_RANK[va] || 0; vb = PRIO_RANK[vb] || 0; }
+  if (va < vb) return -1 * state.sortDir;
+  if (va > vb) return  1 * state.sortDir;
+  // tiebreakers: priority desc, then key asc — keeps grouped output stable
+  const pa = PRIO_RANK[a[3]] || 0, pb = PRIO_RANK[b[3]] || 0;
+  if (pa !== pb) return pb - pa;
+  return a[1] - b[1];
+}
+function bindGroup(id, key) {
+  document.querySelectorAll('#' + id + ' .fbtn').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('#' + id + ' .fbtn').forEach(x => x.classList.toggle('on', x === b));
+    state[key] = b.dataset.v;
+    render();
+  }));
+}
+bindGroup('f-product', 'product');
+bindGroup('f-type', 'type');
+bindGroup('f-pr', 'pr');
+document.getElementById('f-q').addEventListener('input', e => { state.q = e.target.value.toLowerCase(); render(); });
+
+/* Epic grouping for the Engineering table. This hotfix carries a single ticket
+   under one parent Epic, so the group map is trivial (everything -> epic 0). */
+const EPICS = [
+  [11879, "26.Q1 Embedded Technical Debt"]
+];
+const epicIndexOf = () => 0;
+
+function rowHTML([p, k, ty, pr, st, d], epicCls) {
+  const prBadge = pr === 'Urgent' ? '<span class="badge urgent">Urgent</span>'
+                : pr === 'High' ? '<span class="badge high">High</span>'
+                : '<span style="color:var(--text-muted);font-size:12px">' + pr + '</span>';
+  const stBadge = st ? ' <span class="badge open">' + st + '</span>' : '';
+  const cls = p === 'CiC' ? 'cic' : p === 'Cloud' ? 'cloud' : p === 'App' ? 'app' : 'fw';
+  const trClass = epicCls ? ' class="tk ' + epicCls + '"' : '';   // grouped rows get the rail; flat rows don't
+  return '<tr' + trClass + '>' +
+    '<td class="key"><a href="https://quatt-team.atlassian.net/browse/QPD-' + k + '" target="_blank">QPD-' + k + '</a></td>' +
+    '<td><span class="chip ' + cls + '">' + p + '</span></td>' +
+    '<td><span class="badge ' + ty.toLowerCase() + '">' + ty + '</span></td>' +
+    '<td>' + prBadge + '</td>' +
+    '<td>' + d + stBadge + '</td></tr>';
+}
+
+function render() {
+  let rows = T.filter(([p, k, ty, pr, st, d]) =>
+    (state.product === '*' || p === state.product) &&
+    (state.type === '*' || ty === state.type) &&
+    (state.pr === '*' || (state.pr === 'Urgent' ? pr === 'Urgent' : (pr === 'Urgent' || pr === 'High'))) &&
+    (!state.q || d.toLowerCase().includes(state.q) || ('qpd-' + k).includes(state.q))
+  );
+  document.getElementById('count').textContent =
+    rows.length + ' of ' + T.length + ' ticket entries';
+
+  let html;
+  if (state.sortCol) {
+    // A column sort flattens the table and clears the epic grouping (no rails).
+    html = rows.slice().sort(cmp).map(r => rowHTML(r, null)).join('');
+  } else {
+    // Default view: group by Jira Epic. Each group gets a colour class (epic-c0..4)
+    // on its header row and its ticket rows. Empty groups (after filtering) are skipped.
+    html = EPICS.map(([ek, etitle], gi) => {
+      const grp = rows.filter(r => epicIndexOf(r[1]) === gi);
+      if (!grp.length) return '';
+      const c = 'epic-c' + gi;
+      const header = '<tr class="epic-row ' + c + '"><td colspan="5">' +
+        '<a href="https://quatt-team.atlassian.net/browse/QPD-' + ek + '" target="_blank">' + etitle + '</a>' +
+        '<span class="ecount">' + grp.length + ' ticket' + (grp.length === 1 ? '' : 's') + '</span></td></tr>';
+      return header + grp.map(r => rowHTML(r, c)).join('');
+    }).join('');
+  }
+  document.getElementById('rows').innerHTML = html;
+}
+render();
+
+/* ---------- Internal tab: make the WHOLE epic title the link (drop the "QPD-XXX ·" prefix) ---------- */
+document.querySelectorAll('#panel-internal h3, #panel-internal h4').forEach(h => {
+  const a = h.querySelector(':scope > a');
+  if (!a) return;                                                     // "Technical Debt" group / "No parent Epic" — no link, leave plain
+  const sib = a.nextSibling;
+  if (!sib || sib.nodeType !== 3 || sib.textContent.indexOf('·') === -1) return;   // needs the " · <title>" text node
+  const title = sib.textContent.replace(/^\s*·\s*/, '').replace(/\s+$/, '');
+  if (!title) return;
+  a.textContent = title;                                             // whole title becomes the link
+  sib.textContent = ' ';                                             // drop the old "QPD-XXX · " prefix text
+});
+
+/* ---------- Internal tab: colour-code the per-ticket Team bubbles ---------- */
+(function () {
+  const map = {
+    'App': 'team-app', 'Cloud / Backend': 'team-cloud', 'Embedded Systems': 'team-embedded',
+    'Systems Control': 'team-control', 'SW&I': 'team-swi', 'no team set': 'team-none'
+  };
+  document.querySelectorAll('#panel-internal .team').forEach(el => {
+    const c = map[el.textContent.trim()];
+    if (c) el.classList.add(c);
+  });
+})();
+
+/* ---------- Release timeline (live from /api/calendar, scoped to this version, with durations) ---------- */
+(function () {
+  const RELEASE_DATE = '2026-08-12';   // this page's headline date (fallback windowing)
+  const RELEASE_VERSION = '4.11.1';    // milestones whose title contains this belong to this release's cycle
+  const sec = document.getElementById('release-timeline');
+  const list = document.getElementById('tl-list');
+  const sub = document.querySelector('#release-timeline .tl-sub');
+  if (!sec || !list) return;
+
+  const DAY = 86400000;
+  const esc = s => (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const toDate = iso => new Date((iso || '').length === 10 ? iso + 'T00:00:00Z' : iso);
+  const optMD = { day: 'numeric', month: 'short', timeZone: 'UTC' };
+  const optMDY = { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' };
+
+  // For all-day events Google's end date is EXCLUSIVE (the day after the last day).
+  function span(ev) {
+    const s = toDate(ev.start);
+    if (ev.end) {
+      const e = toDate(ev.end);
+      const days = Math.max(1, Math.round((e - s) / DAY));
+      const last = ev.allDay ? new Date(e - DAY) : e;   // inclusive last day for all-day
+      return { days, startD: s, lastD: last, single: days <= 1 };
+    }
+    return { days: 1, startD: s, lastD: s, single: true };
+  }
+  const rangeText = sp => sp.single
+    ? sp.startD.toLocaleDateString('en-GB', optMDY)
+    : sp.startD.toLocaleDateString('en-GB', optMD) + ' – ' + sp.lastD.toLocaleDateString('en-GB', optMDY);
+
+  fetch('/api/calendar', { credentials: 'include' })
+    .then(r => (r.ok ? r.json() : null))
+    .then(data => {
+      if (!data || !data.ok || !Array.isArray(data.events)) return;   // stay hidden
+      let evs = data.events.filter(ev => (ev.title || '').includes(RELEASE_VERSION));
+      if (!evs.length) {
+        // Untagged release → fall back to concrete milestones within ~6 weeks of the headline date.
+        const base = toDate(RELEASE_DATE).getTime(), lo = base - 7 * DAY, hi = base + 42 * DAY;
+        evs = data.events.filter(ev => { const t = toDate(ev.start).getTime(); return t >= lo && t <= hi; });
+      }
+      if (!evs.length) return;   // nothing relevant → stay hidden
+
+      list.innerHTML = evs.map(ev => {
+        const sp = span(ev);
+        const title = (ev.title || 'Untitled').replace(/\s*\|\s*CiC\b.*$/i, '').trim();   // drop the "| CiC x.y.z" suffix
+        return '<li class="tl-item">' +
+          '<div class="tl-date">' + esc(rangeText(sp)) + '</div>' +
+          '<div class="tl-title">' + esc(title) + '</div>' +
+          '</li>';
+      }).join('');
+      if (sub) sub.textContent = 'CiC ' + RELEASE_VERSION + ' · live from the shared release calendar';
+      sec.hidden = false;   // only reveal once we actually have events
+    })
+    .catch(() => {});       // endpoint missing / network error → section stays hidden, no breakage
+})();
+</script>
+
+</body>
+</html>
