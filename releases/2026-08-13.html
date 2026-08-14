@@ -25,10 +25,10 @@
 <main class="wrap">
   <div class="crumb"><a href="../index.html">Releases</a> / 13.08.2026</div>
   <div class="page-head">
-    <div class="kicker">CiC diffed 4.11.1 &rarr; 4.12.0-alpha.0 &middot; alpha</div>
+    <div class="kicker">CiC diffed 4.11.1 &rarr; 4.12.0-beta.0 &middot; beta</div>
     <h1>Quatt Ecosystem Release <span class="dim">13.08.2026</span></h1>
     <div class="sub">
-      <span class="chip cic">CiC 4.12.0-alpha.0</span>
+      <span class="chip cic">CiC 4.12.0-beta.0</span>
       <span class="chip cloud">Cloud v2.44.0</span>
       <span class="chip app">App v1.61.0</span>
       <span class="chip fw">Controller 6.13.0</span>
@@ -42,9 +42,16 @@
   <div class="review-only"><div class="review-panel">
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview &mdash; hidden in production.</p>
-    <p class="none">New release notes &mdash; first published revision.</p>
-    <p class="sub"><b>Note for reviewers:</b> CiC <b>4.12.0-alpha.0</b> is the first tag on the 4.12 line &mdash; an <b>alpha</b> that goes to the alpha-tester track, not the general fleet. It is a new release wave, so it gets its own page (<code>2026-08-13.html</code>). Diffed <b>4.11.1 &rarr; 4.12.0-alpha.0</b>. Headline date 2026-08-13 = the 4.12.0-alpha.0 tag commit&rsquo;s committer date (no GitHub Release published yet). The customer-visible surface this wave comes from the paired <b>App v1.61.0</b> and <b>Cloud v2.44.0</b> (push notifications are now enabled in production), <b>not</b> from the alpha CiC firmware.</p>
-    <p class="sub"><b>Pairing call (please confirm):</b> App v1.61.0 (2026-08-06) and Cloud v2.44.0 (2026-08-07) shipped a few days before this alpha and just outside the strict 4.11.1&rarr;4.12.0 window. They are paired here because the 4.11.0 wave documented only through App v1.60.0 / Cloud v2.43.1, which leaves these two &mdash; carrying the push-notifications rollout and a large App/backend batch &mdash; otherwise undocumented. A reviewer may prefer to attribute them to the 4.11.x line instead.</p>
+    <p class="sub"><b>Revision:</b> alpha &rarr; <b>beta</b> promotion of the 4.12.0 wave. This is the same page (<code>2026-08-13.html</code>), updated in place &mdash; not a new wave.</p>
+    <ul class="sub">
+      <li><b>Phase transition:</b> alpha &rarr; <b>beta</b>. Badge, kicker, chip and all in-page phase wording move from &ldquo;alpha / alpha-tester track&rdquo; to &ldquo;beta / beta-tester track&rdquo;. Still not the general fleet.</li>
+      <li><b>Build:</b> unchanged. <code>4.12.0-beta.0</code> points at the <b>identical commit</b> (<code>48b547e</code>) as <code>4.12.0-alpha.0</code> &mdash; a same-commit promotion, so there is no code delta.</li>
+      <li><b>Paired-product versions:</b> unchanged &mdash; App v1.61.0, Cloud v2.44.0, Controller 6.13.0, Thread FW 2.13.0, HeatCharger FW 1.3.0, Chill CB FW 2.0.0, ODU FW 2.1.</li>
+      <li><b>Tickets:</b> none added, none removed (same commit). Count stays 61 rows / 62 unique.</li>
+      <li><b>Customer tab:</b> the phase/fleet-status disclaimer callout was removed from Tier 1 (EN + NL) to comply with the &ldquo;no release-engineering internals in Tier 1&rdquo; rule; the three content sections (push notifications, heating unchanged, bug fixes) are otherwise unchanged.</li>
+    </ul>
+    <p class="sub"><b>Headline date:</b> 2026-08-13 = the 4.12.0-beta.0 tag commit&rsquo;s committer date (no GitHub Release published yet; the beta tag is the same commit as the alpha, dated 2026-08-13).</p>
+    <p class="sub"><b>Pairing call (please confirm):</b> App v1.61.0 (2026-08-06) and Cloud v2.44.0 (2026-08-07) shipped a few days before this wave and just outside the strict 4.11.1&rarr;4.12.0 window. They are paired here because the 4.11.0 wave documented only through App v1.60.0 / Cloud v2.43.1, which leaves these two &mdash; carrying the push-notifications rollout and a large App/backend batch &mdash; otherwise undocumented. A reviewer may prefer to attribute them to the 4.11.x line instead.</p>
   </div></div>
 
   <section class="timeline-wrap" id="release-timeline" hidden>
@@ -68,11 +75,6 @@
     </div>
 
     <div class="lang-pane" id="tier1-en">
-      <div class="callout-warn">
-        This ecosystem update centres on a CiC 4.12.0 <b>alpha</b> firmware build, which goes to a small internal test group and is
-        not installed on the customer fleet. The customer-visible changes below arrive with the Quatt app update (version 1.61.0),
-        which is available to everyone.
-      </div>
       <div class="theme-card">
         <h3>New functions</h3>
         <ul>
@@ -96,11 +98,6 @@
     </div>
 
     <div class="lang-pane" id="tier1-nl" hidden>
-      <div class="callout-warn">
-        Deze ecosysteem-update draait om een CiC 4.12.0 <b>alpha</b> firmware-build die naar een kleine interne testgroep gaat en nog
-        niet op de klantenvloot is ge&iuml;nstalleerd. De hieronder genoemde zichtbare wijzigingen komen met de Quatt app-update
-        (versie 1.61.0), die voor iedereen beschikbaar is.
-      </div>
       <div class="theme-card">
         <h3>Nieuwe functies</h3>
         <ul>
@@ -130,29 +127,29 @@
 
     <div class="callout-warn scope-banner">
       <p>
-        <span class="lead">Scope &mdash; CiC 4.12.0-alpha.0 (alpha-tester track, not the general fleet)</span>
-        Diffed 4.11.1 &rarr; 4.12.0-alpha.0. Bundled component bumps: Controller <strong>6.12.0 &rarr; 6.13.0</strong>,
+        <span class="lead">Scope &mdash; CiC 4.12.0-beta.0 (beta-tester track, not the general fleet)</span>
+        Diffed 4.11.1 &rarr; 4.12.0-beta.0. Bundled component bumps: Controller <strong>6.12.0 &rarr; 6.13.0</strong>,
         embedded C++ apps <strong>1.34.1 &rarr; 1.35.0</strong>, message spec <strong>2.80.0 &rarr; 2.83.0</strong>,
         Python libs <strong>0.15.0 &rarr; 0.16.0</strong>, controller-manager <strong>3.18.4 &rarr; 3.19.0</strong>,
         network-monitoring <strong>1.3.3 &rarr; 1.3.4</strong>, modem/status apps <strong>2.0.1 &rarr; 2.0.2</strong>.
         Thread FW 2.13.0, HeatCharger FW 1.3.0, Chill control-board FW 2.0.0 and ODU FW 2.1 are unchanged.
         Paired app <strong>v1.61.0</strong> (2026-08-06); paired backend <strong>Cloud v2.44.0</strong> (2026-08-07).
-        Headline date 2026-08-13 = the alpha.0 tag commit&rsquo;s committer date (no GitHub Release yet).
+        Headline date 2026-08-13 = the beta.0 tag commit&rsquo;s committer date (no GitHub Release yet); 4.12.0-beta.0 is the same commit as 4.12.0-alpha.0.
       </p>
       <p>
-        <span class="lead">Wave phase &mdash; alpha</span>
-        4.12.0-alpha.0 is the first tag on the 4.12 line and goes to alpha testers only. The customer-live changes this wave
-        come from the paired App v1.61.0 and Cloud v2.44.0, not from the alpha CiC firmware &mdash; whose control refinements
-        ride along for internal testing.
+        <span class="lead">Wave phase &mdash; beta</span>
+        4.12.0-beta.0 promotes the 4.12.0-alpha.0 build unchanged (identical commit) to the beta-tester track &mdash; still not the
+        general fleet. The customer-live changes this wave come from the paired App v1.61.0 and Cloud v2.44.0, not from the beta CiC
+        firmware &mdash; whose control refinements ride along for beta testing.
       </p>
       <p><span class="lead">Enablement sweep &mdash; what actually goes live this wave</span></p>
       <ul>
         <li><strong>Push notifications go live.</strong> The backend enables push in production <span class="tkey">(QPD-15372)</span>; the first trigger is a <strong>Chill tank-full alert</strong> on the high-water-level switch <span class="tkey">(QPD-15368)</span>; the app-side UI (permission flow, notification settings, Chill enable-CTA, deep links) ships in v1.61.0. <b>Customer-visible &mdash; see the Customer tab.</b></li>
         <li><strong>Custom night hours fully rolled out.</strong> The app removes the <code>custom_night_window</code> feature flag <span class="tkey">(QPD-15057)</span>, and a server-side guard now rejects night windows that leave less than 6&nbsp;h of day so anti-legionella still fits <span class="tkey">(QPD-15520, QPD-15521)</span>. The feature itself was already announced with app v1.60.0 in the 4.11.0 wave &mdash; not a new customer feature here.</li>
         <li><strong>Weather platform V1 (backend groundwork).</strong> Cloud v2.44.0 plus controller-manager 3.19.0 add KNMI forecast import, per-postcode retained MQTT delivery to the CiC, and forecast forward-fill on the insights temperature graph &mdash; foundation for predictive heating and solar optimisation, not surfaced as a standalone customer feature yet.</li>
-        <li>The <strong>alpha CiC firmware</strong> (control-mode-switch fix, boost-mode hardening, ODU OTA robustness, dynamic stats interval) goes to <strong>alpha testers only</strong> &mdash; do not communicate its behaviour to the wider customer base or installers.</li>
+        <li>The <strong>beta CiC firmware</strong> (control-mode-switch fix, boost-mode hardening, ODU OTA robustness, dynamic stats interval) goes to <strong>beta testers only</strong> &mdash; do not communicate its behaviour to the wider customer base or installers.</li>
       </ul>
-      <p><b>The alpha CiC firmware goes only to alpha testers &mdash; do not present its control changes as live for customers or installers.</b></p>
+      <p><b>The beta CiC firmware goes only to beta testers &mdash; do not present its control changes as live for customers or installers.</b></p>
     </div>
 
     <div class="theme-card">
@@ -192,12 +189,12 @@
 
     <div class="theme-card">
       <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11880" target="_blank">QPD-11880</a> &middot; Bug Fixing &amp; Fleet Diagnostics <span class="epic">7 tickets</span></h3>
-      <p class="epic-desc">The controls and embedded teams&rsquo; rolling bug-fixing and fleet-diagnostics Epic. This wave&rsquo;s controller work lands in the CiC 4.12.0 <b>alpha</b> firmware (alpha-tester track only).</p>
+      <p class="epic-desc">The controls and embedded teams&rsquo; rolling bug-fixing and fleet-diagnostics Epic. This wave&rsquo;s controller work lands in the CiC 4.12.0 <b>beta</b> firmware (beta-tester track only).</p>
       <ul>
-        <li><b>Control stability (alpha firmware):</b> fix rapid supervisor control-mode switching on single-ODU systems <span class="tkey">(QPD-15358 <span class="team">Systems Control</span>)</span>; keep counting central-heating power/energy when the HeatCharger is disconnected <span class="tkey">(QPD-15357 <span class="team">Systems Control</span>)</span>; handle ODU state transitions gracefully on noisy room-temperature readings <span class="tkey">(QPD-15361 <span class="team">Systems Control</span>)</span>; harden All-Electric boost mode against a faulty/missing discharge saturation temperature <span class="tkey">(QPD-15413 <span class="team">Systems Control</span>)</span></li>
-        <li><b>Connectivity &amp; OTA (alpha firmware):</b> recover ODU firmware transfer over a noisy Modbus bus <span class="tkey">(QPD-14690 <span class="team">Embedded Systems</span>)</span>; validate/sanitise the modem identity before publishing it to Redis <span class="tkey">(QPD-15315 <span class="team">Embedded Systems</span>)</span>; stop the modem emitting network-time URCs <span class="tkey">(QPD-15426 <span class="team">Embedded Systems</span>)</span></li>
+        <li><b>Control stability (beta firmware):</b> fix rapid supervisor control-mode switching on single-ODU systems <span class="tkey">(QPD-15358 <span class="team">Systems Control</span>)</span>; keep counting central-heating power/energy when the HeatCharger is disconnected <span class="tkey">(QPD-15357 <span class="team">Systems Control</span>)</span>; handle ODU state transitions gracefully on noisy room-temperature readings <span class="tkey">(QPD-15361 <span class="team">Systems Control</span>)</span>; harden All-Electric boost mode against a faulty/missing discharge saturation temperature <span class="tkey">(QPD-15413 <span class="team">Systems Control</span>)</span></li>
+        <li><b>Connectivity &amp; OTA (beta firmware):</b> recover ODU firmware transfer over a noisy Modbus bus <span class="tkey">(QPD-14690 <span class="team">Embedded Systems</span>)</span>; validate/sanitise the modem identity before publishing it to Redis <span class="tkey">(QPD-15315 <span class="team">Embedded Systems</span>)</span>; stop the modem emitting network-time URCs <span class="tkey">(QPD-15426 <span class="team">Embedded Systems</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for CS / ops:</b> these are controller and connectivity improvements in the alpha CiC firmware &mdash; they are on the alpha-tester track and not yet on the customer fleet, so present none of them as live customer behaviour. The single-ODU mode-switch and noisy-room-temperature fixes are the ones to watch when the 4.12 line later promotes to the fleet.</div>
+      <div class="impact"><b>Impact for CS / ops:</b> these are controller and connectivity improvements in the beta CiC firmware &mdash; they are on the beta-tester track and not yet on the customer fleet, so present none of them as live customer behaviour. The single-ODU mode-switch and noisy-room-temperature fixes are the ones to watch when the 4.12 line later promotes to the fleet.</div>
     </div>
 
     <div class="theme-card tech-debt-group">
@@ -246,10 +243,10 @@
       <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11732" target="_blank">QPD-11732</a> &middot; All-E | Boost Mode Feature <span class="epic">4 tickets</span></h3>
       <p class="epic-desc">Boost Mode lets an All-Electric system quickly restore hot water for at least one shower when the HeatBattery is depleted. This wave refines its reporting across the controller, backend and app.</p>
       <ul>
-        <li><b>Controller (alpha firmware):</b> improved, energy-based shower-minutes estimation <span class="tkey">(QPD-14716 <span class="team">Systems Control</span>)</span>; complete boost exit-reason and recoverable-condition reporting <span class="tkey">(QPD-15024 <span class="team">Systems Control</span>)</span></li>
+        <li><b>Controller (beta firmware):</b> improved, energy-based shower-minutes estimation <span class="tkey">(QPD-14716 <span class="team">Systems Control</span>)</span>; complete boost exit-reason and recoverable-condition reporting <span class="tkey">(QPD-15024 <span class="team">Systems Control</span>)</span></li>
         <li><b>Backend + app:</b> map boost exit-reason 11 (three-way valve unavailable) so the app can show a 3-way-valve banner on a failed boost <span class="tkey">(QPD-15263 <span class="team">Cloud / Backend</span> / <span class="team">APP</span>)</span>; version-gate the temporary shower-minutes bonus behind the new energy-based CIC floor <span class="tkey">(QPD-15405 <span class="team">Cloud / Backend</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for CS:</b> the controller-side improvements ride in the alpha CiC firmware (alpha testers only). The 3-way-valve banner gives a clearer reason when a boost cannot complete because of the valve &mdash; relevant on All-Electric systems where Boost Mode is enabled.</div>
+      <div class="impact"><b>Impact for CS:</b> the controller-side improvements ride in the beta CiC firmware (beta testers only). The 3-way-valve banner gives a clearer reason when a boost cannot complete because of the valve &mdash; relevant on All-Electric systems where Boost Mode is enabled.</div>
     </div>
 
     <div class="theme-card">
@@ -269,7 +266,7 @@
       <ul>
         <li>Gate HeatCharger register reads on the reported firmware version so older firmware isn&rsquo;t polled for registers it doesn&rsquo;t support <span class="tkey">(QPD-15425 <span class="team">Embedded Systems</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for installers / CS:</b> more reliable HeatCharger register reads on All-Electric systems; the change rides in the alpha CiC firmware.</div>
+      <div class="impact"><b>Impact for installers / CS:</b> more reliable HeatCharger register reads on All-Electric systems; the change rides in the beta CiC firmware.</div>
     </div>
 
     <div class="theme-card">
@@ -385,7 +382,7 @@
       <tbody id="rows"></tbody>
     </table>
     <p class="footer-note">
-      Built from GitHub tag diffs (source of truth: CiC 4.11.1 &rarr; 4.12.0-alpha.0 via <code>quatt-revisions.inc</code>; component
+      Built from GitHub tag diffs (source of truth: CiC 4.11.1 &rarr; 4.12.0-beta.0 via <code>quatt-revisions.inc</code>; component
       changelogs from each repo&rsquo;s tag-to-tag compare), cross-referenced with Jira for ticket type / priority / parent epic.
       Bundled component bumps: Controller 6.12.0 &rarr; 6.13.0, embedded apps 1.34.1 &rarr; 1.35.0, message spec 2.80.0 &rarr; 2.83.0,
       Python libs 0.15.0 &rarr; 0.16.0, controller-manager 3.18.4 &rarr; 3.19.0, network-monitoring 1.3.3 &rarr; 1.3.4, modem/status apps
