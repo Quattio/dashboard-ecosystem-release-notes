@@ -264,13 +264,12 @@
     </div>
 
     <div class="theme-card">
-      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-7079" target="_blank">QPD-7079</a> &middot; Heatcharger | FW Improvements <span class="epic">2 tickets</span></h3>
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-7079" target="_blank">QPD-7079</a> &middot; Heatcharger | FW Improvements <span class="epic">1 ticket</span></h3>
       <p class="epic-desc">General HeatCharger firmware / integration improvements for All-Electric systems (CiC side this wave &mdash; HeatCharger firmware itself is unchanged at 1.3.0).</p>
       <ul>
-        <li>Word/block flash programming in the NVMEM driver &mdash; faster HeatCharger updates, less flash wear <span class="tkey">(QPD-14524 <span class="team">Embedded Systems</span>)</span></li>
         <li>Gate HeatCharger register reads on the reported firmware version so older firmware isn&rsquo;t polled for registers it doesn&rsquo;t support <span class="tkey">(QPD-15425 <span class="team">Embedded Systems</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for installers / CS:</b> more reliable HeatCharger updates and reads on All-Electric systems; changes ride in the alpha CiC firmware.</div>
+      <div class="impact"><b>Impact for installers / CS:</b> more reliable HeatCharger register reads on All-Electric systems; the change rides in the alpha CiC firmware.</div>
     </div>
 
     <div class="theme-card">
@@ -437,7 +436,6 @@ document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () =>
 const T = [
  // ---- CiC (cic-controller 6.13.0, embedded-cpp-apps 1.35.0, message spec 2.83.0, pylibs 0.16.0, quatt-src 2.0.2, controller-manager 3.19.0, network-monitoring 1.3.4) ----
  ["CiC",13864,"Task","Medium","","Heatcharger | Allengra DN15 Modbus flow-sensor telemetry registers",14022],
- ["CiC",14524,"Task","Medium","","HeatCharger register access: word/block flash programming in NVMEM driver (faster updates, less wear)",7079],
  ["CiC",14602,"Task","Medium","","Message spec: rename Chill water-flow switch 3x → 10x (backward compatible)",11795],
  ["CiC",14690,"Task","Medium","","cic-modbus-odu: recover ODU firmware transfer over a noisy Modbus bus (OTA)",11880],
  ["CiC",14716,"Task","Medium","","cic-controller: improved energy-based shower-minutes estimation for boost mode",11732],

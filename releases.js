@@ -26,7 +26,7 @@ window.RELEASES = [
       { cls: "fw",    label: "ODU FW 2.1" }
     ],
     stats: [
-      { b: "62", t: "ticket entries" },
+      { b: "61", t: "ticket entries" },
       { b: "App v1.61.0 + Cloud v2.44.0", t: "paired backend / app" },
       { b: "Push notifications", t: "enabled in production" },
       { b: "alpha", t: "CiC alpha-tester track" }
