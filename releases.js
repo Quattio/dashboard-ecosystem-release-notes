@@ -3,13 +3,35 @@
    Newest release first. */
 
 window.SUMMARY = [
-  { n: "9",  l: "Release waves documented" },
-  { n: "1",  l: "Tickets in latest wave" },
-  { n: "1",  l: "Products in latest wave" },
-  { n: "1",  l: "Open follow-ups flagged" }
+  { n: "10", l: "Release waves documented" },
+  { n: "61", l: "Tickets in latest wave" },
+  { n: "3",  l: "Products in latest wave" },
+  { n: "3",  l: "Open follow-ups flagged" }
 ];
 
 window.RELEASES = [
+  {
+    date: "2026-08-13",
+    title: "Quatt Ecosystem Release 13.08.2026",
+    badge: { cls: "beta", label: "beta" },
+    page: "releases/2026-08-13.html",
+    chips: [
+      { cls: "cic",   label: "CiC 4.12.0-beta.0" },
+      { cls: "cloud", label: "Cloud v2.44.0" },
+      { cls: "app",   label: "App v1.61.0" },
+      { cls: "fw",    label: "Controller 6.13.0" },
+      { cls: "fw",    label: "Thread FW 2.13.0" },
+      { cls: "fw",    label: "HeatCharger FW 1.3.0" },
+      { cls: "fw",    label: "Chill CB FW 2.0.0" },
+      { cls: "fw",    label: "ODU FW 2.1" }
+    ],
+    stats: [
+      { b: "61", t: "ticket entries" },
+      { b: "App v1.61.0 + Cloud v2.44.0", t: "paired backend / app" },
+      { b: "Push notifications", t: "enabled in production" },
+      { b: "beta", t: "CiC beta-tester track (same build as alpha.0)" }
+    ]
+  },
   {
     date: "2026-08-12",
     title: "Quatt Ecosystem Release 12.08.2026",
