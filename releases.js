@@ -4,7 +4,7 @@
 
 window.SUMMARY = [
   { n: "10", l: "Release waves documented" },
-  { n: "62", l: "Tickets in latest wave" },
+  { n: "61", l: "Tickets in latest wave" },
   { n: "3",  l: "Products in latest wave" },
   { n: "3",  l: "Open follow-ups flagged" }
 ];
