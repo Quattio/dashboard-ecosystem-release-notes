@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quatt Ecosystem Release 26.08.2026 — beta</title>
+<title>Quatt Ecosystem Release 26.08.2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,7 +25,7 @@
 <main class="wrap">
   <div class="crumb"><a href="../index.html">Releases</a> / 26.08.2026</div>
   <div class="page-head">
-    <div class="kicker">CiC diffed 4.12.0 &rarr; 4.13.0-beta.0 &middot; beta</div>
+    <div class="kicker">CiC diffed 4.12.0 &rarr; 4.13.0-beta.0</div>
     <h1>Quatt Ecosystem Release <span class="dim">26.08.2026</span></h1>
     <div class="sub">
       <span class="chip cic">CiC 4.13.0-beta.0</span>
@@ -41,13 +41,13 @@
 
   <div class="review-only"><div class="review-panel">
     <h3>What changed in this revision</h3>
-    <p class="sub">Shown only on the staging preview — hidden in production.</p>
+    <p class="sub">Shown only on the staging preview &mdash; hidden in production. Second-opinion review, verified against the tag diffs: cic-yocto-builder 4.12.0 &rarr; 4.13.0-beta.0, app v1.61.0 &rarr; v1.62.0, cloud v2.44.0 &rarr; v2.45.0.</p>
     <ul>
-      <li><b>Phase promoted alpha &rarr; beta.</b> The CiC build is unchanged: <code>4.13.0-beta.0</code> points at the same commit as <code>4.13.0-alpha.0</code> (<code>149377d</code>), so all CiC / Controller / firmware content is identical to the alpha revision.</li>
-      <li><b>App v1.62.0 newly paired</b> (v1.61.0 &rarr; v1.62.0, released 2026-08-28) &mdash; it landed in the alpha&rarr;beta window and adds App content that was not in the alpha revision.</li>
-      <li><b>New customer-facing items (Tier 1):</b> clearer Chill fault messages (QPD-14647) and an All-Electric night-window display fix (QPD-15597).</li>
-      <li><b>New engineering rows (+16 App tickets, 26 &rarr; 42):</b> QPD-14647, QPD-15597, QPD-15538, QPD-15607, QPD-15608, QPD-15697, QPD-15699, QPD-15696, QPD-15495, QPD-15570, QPD-15632, QPD-15633, QPD-15637, QPD-15685, QPD-15333, QPD-11430.</li>
-      <li><b>Cloud pairing unchanged</b> at v2.45.0; no firmware version bumps versus the alpha revision; nothing removed.</li>
+      <li><b>Heating performance and reliability:</b> &ldquo;unchanged&rdquo; is wrong &mdash; cic-controller 6.14.0 changes heating behaviour in this release. Added: room-temperature filtering stops needless outdoor-unit cycling (QPD-15361) and the anti-legionella cycle completes with custom night hours (QPD-15531). Written without an audience preamble &mdash; the same notes go to every reader, rollout phasing is not the document&rsquo;s concern.</li>
+      <li><b>Bug fixes and maintenance:</b> added three live, unflagged, customer-visible fixes that made the release but not the chapter: forgotten Wi-Fi network reappears in the scan list (QPD-15608), connected Wi-Fi row no longer flashes empty after a forget (QPD-15697), and the All-Electric Boost button no longer stays enabled after a mid-boost exit (QPD-15470 &mdash; Cloud, live in production, unlike its CiC-side twin QPD-14818).</li>
+      <li><b>Tier 2 correction:</b> the reworked Wi-Fi connect flow (QPD-15538) ships behind the <code>wifi_connect_feedback</code> remote-config flag with <code>defaultValue: false</code> &mdash; it is dark-launched, not live, unless the flag is flipped in Firebase. Caveat added to the enablement sweep.</li>
+      <li><b>New functions:</b> the Chill fault-message item (QPD-14647, verified live and unflagged) is an improvement to existing behaviour, not a new function &mdash; moved to Bug fixes and maintenance; the emptied New functions card is removed entirely (EN and NL).</li>
+      <li><b>Not changed:</b> the ticket table (complete against every repo diff) and QPD-15607 (defensible as installer-facing).</li>
     </ul>
   </div></div>
 
@@ -73,42 +73,40 @@
 
     <div class="lang-pane" id="tier1-en">
       <div class="theme-card">
-        <h3>New functions</h3>
-        <ul>
-          <li>Clearer fault messages for your Chill: instead of a single generic error, the app now explains the specific issue and gives simple steps you can check yourself before contacting support.</li>
-        </ul>
-      </div>
-      <div class="theme-card">
         <h3>Heating performance and reliability</h3>
         <ul>
-          <li>Everyday heating and comfort behaviour is unchanged in this release.</li>
+          <li>The heat pump now smooths out noisy room-temperature readings so the outdoor unit no longer switches on and off needlessly when the sensor signal jitters.</li>
+          <li>The anti-legionella hot-water safety cycle now also completes reliably when you have set your own night-time hours.</li>
         </ul>
       </div>
       <div class="theme-card">
         <h3>Bug fixes and maintenance</h3>
         <ul>
+          <li>Clearer fault messages for your Chill: instead of a single generic error the app now explains the specific issue and gives simple steps you can check yourself before contacting support.</li>
           <li>The All-Electric settings screen now shows your new night-time window straight away after you save it, instead of the old window until you leave and reopen the screen.</li>
+          <li>A Wi-Fi network you remove in the app now shows up again in the scan list straight away so you can reconnect to it without restarting the app.</li>
+          <li>The Wi-Fi settings screen no longer briefly shows a blank connected-network row right after you remove a network &mdash; the row is now hidden until there is a network to show.</li>
+          <li>The Boost button on All-Electric systems no longer stays enabled for up to 30 minutes after a boost stops early while boosting is temporarily blocked (for example while hot water is being drawn) &mdash; it now shows as unavailable with the reason.</li>
         </ul>
       </div>
     </div>
 
     <div class="lang-pane" id="tier1-nl" hidden>
       <div class="theme-card">
-        <h3>Nieuwe functies</h3>
-        <ul>
-          <li>Duidelijkere storingsmeldingen voor je Chill: in plaats van één algemene foutmelding legt de app nu uit wat er precies aan de hand is en geeft eenvoudige stappen die je zelf kunt controleren voordat je contact opneemt met de klantenservice.</li>
-        </ul>
-      </div>
-      <div class="theme-card">
         <h3>Verwarmingsprestaties en betrouwbaarheid</h3>
         <ul>
-          <li>Het dagelijkse verwarmings- en comfortgedrag is ongewijzigd in deze release.</li>
+          <li>De warmtepomp filtert nu ruis uit de kamertemperatuurmetingen zodat de buitenunit niet meer onnodig aan- en uitschakelt bij een onrustig sensorsignaal.</li>
+          <li>De anti-legionella-veiligheidscyclus voor warm water wordt nu ook betrouwbaar afgerond wanneer je eigen nachturen hebt ingesteld.</li>
         </ul>
       </div>
       <div class="theme-card">
         <h3>Foutoplossingen en onderhoud</h3>
         <ul>
+          <li>Duidelijkere storingsmeldingen voor je Chill: in plaats van één algemene foutmelding legt de app nu uit wat er precies aan de hand is en geeft eenvoudige stappen die je zelf kunt controleren voordat je contact opneemt met de klantenservice.</li>
           <li>Het All-Electric-instellingenscherm toont nu direct je nieuwe nachtvenster nadat je het opslaat, in plaats van het oude venster totdat je het scherm verlaat en opnieuw opent.</li>
+          <li>Een wifi-netwerk dat je in de app verwijdert verschijnt nu direct weer in de scanlijst zodat je opnieuw kunt verbinden zonder de app te herstarten.</li>
+          <li>Het wifi-instellingenscherm toont niet meer kort een lege regel voor het verbonden netwerk direct nadat je een netwerk hebt verwijderd &mdash; de regel blijft nu verborgen totdat er een netwerk te tonen is.</li>
+          <li>De Boost-knop op All-Electric-systemen blijft niet langer tot 30 minuten actief nadat een boost voortijdig stopt terwijl boosten tijdelijk niet kan (bijvoorbeeld terwijl er warm water wordt getapt) &mdash; de knop toont nu dat deze niet beschikbaar is met de reden erbij.</li>
         </ul>
       </div>
     </div>
@@ -120,27 +118,21 @@
 
     <div class="callout-warn scope-banner">
       <p>
-        <span class="lead">Scope &mdash; CiC 4.13.0-beta.0 (beta track, not the general fleet)</span>
+        <span class="lead">Scope &mdash; CiC 4.13.0-beta.0</span>
         Diffed 4.12.0 &rarr; 4.13.0-beta.0. The CiC build is identical to 4.13.0-alpha.0: the beta.0 tag points at the same commit, so the Yocto image is repackaged, not rebuilt.
         Bundled component versions: Controller <strong>6.13.0 &rarr; 6.14.0</strong>,
         embedded apps <strong>1.35.0 &rarr; 1.36.0</strong>, message spec <strong>2.83.0 &rarr; 2.84.0</strong>,
         Python libs <strong>0.16.0 &rarr; 0.17.0</strong>, network-monitoring <strong>1.3.4 &rarr; 1.4.0</strong>,
         modem / platform tools <strong>2.0.2 &rarr; 2.1.0</strong>.
         Thread FW 2.13.0, HeatCharger FW 1.3.0, Chill control-board FW 2.0.0 and ODU FW 2.1 are all unchanged.
-        Paired backend <strong>Cloud v2.45.0</strong> (2026-08-25). Paired app <strong>v1.62.0</strong> (v1.61.0 &rarr; v1.62.0, released 2026-08-28, landed in the alpha&rarr;beta window).
+        Paired backend <strong>Cloud v2.45.0</strong> (2026-08-25). Paired app <strong>v1.62.0</strong> (v1.61.0 &rarr; v1.62.0, released 2026-08-28).
         Headline date 2026-08-26 = the tag commit&rsquo;s committer date (no GitHub Release for the tag).
-      </p>
-      <p>
-        <span class="lead">Wave phase &mdash; beta cut of the 4.13.0 wave (beta.0)</span>
-        The CiC firmware in this wave goes to the beta track only. It is not on the customer fleet, so its behaviour does not change any customer&rsquo;s system today. The paired app and backend releases do ship to customers.
       </p>
       <p><span class="lead">Enablement sweep &mdash; what actually goes live this wave</span></p>
       <ul>
-        <li><strong>App v1.62.0 ships to customers:</strong> clearer Chill fault messages on the customer Chill screens, an All-Electric night-window display fix, and commissioning Wi-Fi reliability fixes (connect feedback, forget / rescan behaviour).</li>
+        <li><strong>App v1.62.0 ships to customers:</strong> clearer Chill fault messages on the customer Chill screens, an All-Electric night-window display fix, and commissioning Wi-Fi reliability fixes (forget / rescan behaviour). The reworked Wi-Fi connect feedback flow (QPD-15538) is dark-launched behind the <code>wifi_connect_feedback</code> remote-config flag (default off) &mdash; do not communicate it as live until the flag is confirmed enabled in Firebase.</li>
         <li><strong>Cloud v2.45.0 deploys to production:</strong> commissioning reliability (Wi-Fi connect feedback, auto-complete after the final step, identification no longer blocking, HeatCharger config published before identification), EMS / HomeBattery data onboarding for specific battery buildings, an admin installation-deletion allowlist, and backend logging / telemetry hardening.</li>
-        <li><strong>No fleet firmware rollout</strong> this wave; the CiC-side changes reach only the beta track.</li>
       </ul>
-      <p><b>The beta CiC firmware goes only to beta testers &mdash; do not communicate its behaviour to the wider customer base or installers. The paired App v1.62.0 and Cloud v2.45.0 changes are live for customers.</b></p>
     </div>
 
     <div class="theme-card">
@@ -169,7 +161,7 @@
         <li><b>Heating control:</b> noisy room-temperature readings are handled gracefully so sensor noise no longer makes the outdoor unit switch needlessly between states <span class="tkey">(QPD-15361 <span class="team">Systems Control</span>)</span></li>
         <li><b>Commissioning:</b> the HeatCharger config is now published before identification, so HeatCharger discovery no longer deadlocks on flag-gated CiC firmware <span class="tkey">(QPD-15592 <span class="team">Cloud / Backend</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for ops / CS:</b> substantially better fleet connectivity and diagnostics &mdash; stuck cellular modems can recover on their own, update polling is restored, and All-Electric HeatCharger discovery no longer stalls. The CiC-side items reach only the beta track this wave; the HeatCharger-config fix (Cloud) is live.</div>
+      <div class="impact"><b>Impact for ops / CS:</b> substantially better fleet connectivity and diagnostics &mdash; stuck cellular modems can recover on their own, update polling is restored, and All-Electric HeatCharger discovery no longer stalls.</div>
     </div>
 
     <div class="theme-card">
@@ -179,7 +171,7 @@
         <li>The first boost status no longer reports an end time from an unsynced local clock, so the app no longer briefly shows a countdown above 30:00 <span class="tkey">(QPD-14818 <span class="team">Embedded Systems</span>)</span></li>
         <li>A cached failed outcome no longer masks a disabled state, so the boost button no longer stays enabled after a mid-boost exit <span class="tkey">(QPD-15470 <span class="team">Cloud / Backend</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for CS:</b> more accurate boost countdown and button behaviour for All-Electric customers where Boost Mode is enabled. The CiC-side fix ships on the beta track this wave.</div>
+      <div class="impact"><b>Impact for CS:</b> more accurate boost countdown and button behaviour for All-Electric customers where Boost Mode is enabled.</div>
     </div>
 
     <div class="theme-card">
@@ -211,7 +203,7 @@
         <ul>
           <li>Smarter cellular (LTE) failover: LTE is never disabled while no Wi-Fi or Ethernet path is working, is enabled faster when there is no alternative, and an interface is marked unreachable only after three consecutive failed checks so a single blip no longer reshuffles routes or drops connections <span class="tkey">(QPD-11692 <span class="team">Embedded Systems</span>)</span></li>
         </ul>
-        <div class="impact"><b>Impact for CS:</b> fewer needless connectivity switch-overs and faster fallback to cellular when a home loses Wi-Fi or Ethernet. Reaches only the beta track this wave.</div>
+        <div class="impact"><b>Impact for CS:</b> Faster switch-overs and fallback to cellular when CiC loses Wi-Fi or Ethernet.</div>
       </div>
 
       <div class="subcard">
@@ -233,7 +225,7 @@
       <ul>
         <li>Make the anti-legionella cycle robust against custom night-time hours, so the hot-water safety cycle still completes when a customer sets their own night window <span class="tkey">(QPD-15531 <span class="team">Systems Control</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for CS:</b> anti-legionella protection stays reliable with custom night hours. Reaches only the beta track this wave.</div>
+      <div class="impact"><b>Impact for CS:</b> anti-legionella protection stays reliable with custom night hours.</div>
     </div>
 
     <div class="theme-card">
@@ -304,8 +296,8 @@
     <p class="footer-note">
       Built from GitHub tag diffs (source of truth: CiC 4.12.0 &rarr; 4.13.0-beta.0 via <code>quatt-revisions.inc</code>;
       component changelogs from each repo&rsquo;s tag-to-tag compare), cross-referenced with Jira for ticket type / priority / status.
-      The CiC build is identical to 4.13.0-alpha.0 (the beta.0 tag points at the same commit), so this beta adds no CiC-side commits;
-      the new rows this revision are all App v1.62.0 (v1.61.0 &rarr; v1.62.0, 2026-08-28), which landed in the alpha&rarr;beta window.
+      The CiC build is identical to 4.13.0-alpha.0 (the beta.0 tag points at the same commit), so this revision adds no CiC-side commits;
+      the new rows this revision are all App v1.62.0 (v1.61.0 &rarr; v1.62.0, 2026-08-28).
       Bundled component versions moved: Controller 6.13.0 &rarr; 6.14.0, embedded apps 1.35.0 &rarr; 1.36.0, message spec
       2.83.0 &rarr; 2.84.0, Python libs 0.16.0 &rarr; 0.17.0, network-monitoring 1.3.4 &rarr; 1.4.0, modem / platform tools
       2.0.2 &rarr; 2.1.0. Thread FW 2.13.0, HeatCharger FW 1.3.0, Chill control-board FW 2.0.0 and ODU FW 2.1 are
