@@ -4,8 +4,8 @@
 
 window.SUMMARY = [
   { n: "11", l: "Release waves documented" },
-  { n: "26", l: "Tickets in latest wave" },
-  { n: "2",  l: "Products in latest wave" },
+  { n: "42", l: "Tickets in latest wave" },
+  { n: "3",  l: "Products in latest wave" },
   { n: "1",  l: "Open follow-ups flagged" }
 ];
 
@@ -13,11 +13,12 @@ window.RELEASES = [
   {
     date: "2026-08-26",
     title: "Quatt Ecosystem Release 26.08.2026",
-    badge: { cls: "alpha", label: "alpha" },
+    badge: { cls: "beta", label: "beta" },
     page: "releases/2026-08-26.html",
     chips: [
-      { cls: "cic",   label: "CiC 4.13.0-alpha.0" },
+      { cls: "cic",   label: "CiC 4.13.0-beta.0" },
       { cls: "cloud", label: "Cloud v2.45.0" },
+      { cls: "app",   label: "App v1.62.0" },
       { cls: "fw",    label: "Controller 6.14.0" },
       { cls: "fw",    label: "Thread FW 2.13.0" },
       { cls: "fw",    label: "HeatCharger FW 1.3.0" },
@@ -25,10 +26,10 @@ window.RELEASES = [
       { cls: "fw",    label: "ODU FW 2.1" }
     ],
     stats: [
-      { b: "26", t: "ticket entries" },
-      { b: "Cloud v2.45.0", t: "backend paired" },
+      { b: "42", t: "ticket entries" },
+      { b: "App v1.62.0 + Cloud v2.45.0", t: "paired app / backend" },
       { b: "Modem EDL recovery", t: "~887 stuck CiCs self-heal" },
-      { b: "alpha", t: "4.13.0 alpha track — not the fleet" }
+      { b: "beta", t: "4.13.0 beta track — not the fleet" }
     ]
   },
   {

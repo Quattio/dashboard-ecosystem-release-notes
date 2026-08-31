@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quatt Ecosystem Release 26.08.2026 — alpha</title>
+<title>Quatt Ecosystem Release 26.08.2026 — beta</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,11 +25,12 @@
 <main class="wrap">
   <div class="crumb"><a href="../index.html">Releases</a> / 26.08.2026</div>
   <div class="page-head">
-    <div class="kicker">CiC diffed 4.12.0 &rarr; 4.13.0-alpha.0 &middot; alpha</div>
+    <div class="kicker">CiC diffed 4.12.0 &rarr; 4.13.0-beta.0 &middot; beta</div>
     <h1>Quatt Ecosystem Release <span class="dim">26.08.2026</span></h1>
     <div class="sub">
-      <span class="chip cic">CiC 4.13.0-alpha.0</span>
+      <span class="chip cic">CiC 4.13.0-beta.0</span>
       <span class="chip cloud">Cloud v2.45.0</span>
+      <span class="chip app">App v1.62.0</span>
       <span class="chip fw">Controller 6.14.0</span>
       <span class="chip fw">Thread FW 2.13.0</span>
       <span class="chip fw">HeatCharger FW 1.3.0</span>
@@ -41,7 +42,13 @@
   <div class="review-only"><div class="review-panel">
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview — hidden in production.</p>
-    <p class="none">New release notes — first published revision.</p>
+    <ul>
+      <li><b>Phase promoted alpha &rarr; beta.</b> The CiC build is unchanged: <code>4.13.0-beta.0</code> points at the same commit as <code>4.13.0-alpha.0</code> (<code>149377d</code>), so all CiC / Controller / firmware content is identical to the alpha revision.</li>
+      <li><b>App v1.62.0 newly paired</b> (v1.61.0 &rarr; v1.62.0, released 2026-08-28) &mdash; it landed in the alpha&rarr;beta window and adds App content that was not in the alpha revision.</li>
+      <li><b>New customer-facing items (Tier 1):</b> clearer Chill fault messages (QPD-14647) and an All-Electric night-window display fix (QPD-15597).</li>
+      <li><b>New engineering rows (+16 App tickets, 26 &rarr; 42):</b> QPD-14647, QPD-15597, QPD-15538, QPD-15607, QPD-15608, QPD-15697, QPD-15699, QPD-15696, QPD-15495, QPD-15570, QPD-15632, QPD-15633, QPD-15637, QPD-15685, QPD-15333, QPD-11430.</li>
+      <li><b>Cloud pairing unchanged</b> at v2.45.0; no firmware version bumps versus the alpha revision; nothing removed.</li>
+    </ul>
   </div></div>
 
   <section class="timeline-wrap" id="release-timeline" hidden>
@@ -67,7 +74,9 @@
     <div class="lang-pane" id="tier1-en">
       <div class="theme-card">
         <h3>New functions</h3>
-        <ul></ul>
+        <ul>
+          <li>Clearer fault messages for your Chill: instead of a single generic error, the app now explains the specific issue and gives simple steps you can check yourself before contacting support.</li>
+        </ul>
       </div>
       <div class="theme-card">
         <h3>Heating performance and reliability</h3>
@@ -78,7 +87,7 @@
       <div class="theme-card">
         <h3>Bug fixes and maintenance</h3>
         <ul>
-          <li>There are no changes to how you use the Quatt app in this release.</li>
+          <li>The All-Electric settings screen now shows your new night-time window straight away after you save it, instead of the old window until you leave and reopen the screen.</li>
         </ul>
       </div>
     </div>
@@ -86,7 +95,9 @@
     <div class="lang-pane" id="tier1-nl" hidden>
       <div class="theme-card">
         <h3>Nieuwe functies</h3>
-        <ul></ul>
+        <ul>
+          <li>Duidelijkere storingsmeldingen voor je Chill: in plaats van één algemene foutmelding legt de app nu uit wat er precies aan de hand is en geeft eenvoudige stappen die je zelf kunt controleren voordat je contact opneemt met de klantenservice.</li>
+        </ul>
       </div>
       <div class="theme-card">
         <h3>Verwarmingsprestaties en betrouwbaarheid</h3>
@@ -97,7 +108,7 @@
       <div class="theme-card">
         <h3>Foutoplossingen en onderhoud</h3>
         <ul>
-          <li>Er zijn in deze release geen wijzigingen in hoe je de Quatt-app gebruikt.</li>
+          <li>Het All-Electric-instellingenscherm toont nu direct je nieuwe nachtvenster nadat je het opslaat, in plaats van het oude venster totdat je het scherm verlaat en opnieuw opent.</li>
         </ul>
       </div>
     </div>
@@ -109,38 +120,43 @@
 
     <div class="callout-warn scope-banner">
       <p>
-        <span class="lead">Scope &mdash; CiC 4.13.0-alpha.0 (alpha track, not the general fleet)</span>
-        Diffed 4.12.0 &rarr; 4.13.0-alpha.0. Bundled component versions: Controller <strong>6.13.0 &rarr; 6.14.0</strong>,
+        <span class="lead">Scope &mdash; CiC 4.13.0-beta.0 (beta track, not the general fleet)</span>
+        Diffed 4.12.0 &rarr; 4.13.0-beta.0. The CiC build is identical to 4.13.0-alpha.0: the beta.0 tag points at the same commit, so the Yocto image is repackaged, not rebuilt.
+        Bundled component versions: Controller <strong>6.13.0 &rarr; 6.14.0</strong>,
         embedded apps <strong>1.35.0 &rarr; 1.36.0</strong>, message spec <strong>2.83.0 &rarr; 2.84.0</strong>,
         Python libs <strong>0.16.0 &rarr; 0.17.0</strong>, network-monitoring <strong>1.3.4 &rarr; 1.4.0</strong>,
         modem / platform tools <strong>2.0.2 &rarr; 2.1.0</strong>.
         Thread FW 2.13.0, HeatCharger FW 1.3.0, Chill control-board FW 2.0.0 and ODU FW 2.1 are all unchanged.
-        Paired backend <strong>Cloud v2.45.0</strong> (2026-08-25). App unchanged at <strong>v1.61.0</strong> &mdash; no app release in this window.
-        Headline date 2026-08-26 = the alpha.0 tag commit&rsquo;s committer date (no GitHub Release yet).
+        Paired backend <strong>Cloud v2.45.0</strong> (2026-08-25). Paired app <strong>v1.62.0</strong> (v1.61.0 &rarr; v1.62.0, released 2026-08-28, landed in the alpha&rarr;beta window).
+        Headline date 2026-08-26 = the tag commit&rsquo;s committer date (no GitHub Release for the tag).
       </p>
       <p>
-        <span class="lead">Wave phase &mdash; first cut of the 4.13.0 wave (alpha.0)</span>
-        The CiC firmware in this wave goes to the alpha track only. It is not on the customer fleet, so its behaviour does not change any customer&rsquo;s system today.
+        <span class="lead">Wave phase &mdash; beta cut of the 4.13.0 wave (beta.0)</span>
+        The CiC firmware in this wave goes to the beta track only. It is not on the customer fleet, so its behaviour does not change any customer&rsquo;s system today. The paired app and backend releases do ship to customers.
       </p>
       <p><span class="lead">Enablement sweep &mdash; what actually goes live this wave</span></p>
       <ul>
+        <li><strong>App v1.62.0 ships to customers:</strong> clearer Chill fault messages on the customer Chill screens, an All-Electric night-window display fix, and commissioning Wi-Fi reliability fixes (connect feedback, forget / rescan behaviour).</li>
         <li><strong>Cloud v2.45.0 deploys to production:</strong> commissioning reliability (Wi-Fi connect feedback, auto-complete after the final step, identification no longer blocking, HeatCharger config published before identification), EMS / HomeBattery data onboarding for specific battery buildings, an admin installation-deletion allowlist, and backend logging / telemetry hardening.</li>
-        <li><strong>No new customer-facing app feature</strong> and <strong>no fleet firmware rollout</strong> this wave; the CiC-side changes reach only the alpha track.</li>
+        <li><strong>No fleet firmware rollout</strong> this wave; the CiC-side changes reach only the beta track.</li>
       </ul>
-      <p><b>The alpha CiC firmware goes only to alpha testers &mdash; do not communicate its behaviour to the wider customer base or installers.</b></p>
+      <p><b>The beta CiC firmware goes only to beta testers &mdash; do not communicate its behaviour to the wider customer base or installers. The paired App v1.62.0 and Cloud v2.45.0 changes are live for customers.</b></p>
     </div>
 
     <div class="theme-card">
-      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-152" target="_blank">QPD-152</a> &middot; Production Incidents / Continuous Improvements &mdash; App / Backend <span class="epic">9 tickets</span></h3>
-      <p class="epic-desc">Quatt&rsquo;s rolling production-incident and continuous-improvement Epic for app and backend. This wave it carries commissioning reliability fixes, EMS / HomeBattery data onboarding, an admin-tooling change, and backend / telemetry hardening &mdash; all shipped in Cloud v2.45.0.</p>
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-152" target="_blank">QPD-152</a> &middot; Production Incidents / Continuous Improvements &mdash; App / Backend <span class="epic">15 tickets</span></h3>
+      <p class="epic-desc">Quatt&rsquo;s rolling production-incident and continuous-improvement Epic for app and backend. This wave it carries commissioning reliability fixes, EMS / HomeBattery data onboarding, an admin-tooling change, and backend / telemetry hardening (Cloud v2.45.0), plus a batch of App v1.62.0 changes: a customer-visible All-Electric fix, Wi-Fi commissioning reliability, and app tooling.</p>
       <ul>
         <li><b>Commissioning reliability:</b> the &ldquo;Verbind CiC&rdquo; Wi-Fi connect step now shows clear progress and failure feedback instead of a silent 60&ndash;90s wait, and repeated presses no longer fire duplicate requests <span class="tkey">(QPD-14487 <span class="team">Cloud / Backend</span>)</span>; the CiC identification step no longer intermittently blocks commissioning <span class="tkey">(QPD-15283 <span class="team">Cloud / Backend</span>)</span></li>
         <li><b>EMS / HomeBattery onboarding:</b> solar and battery data synced for specific HomeBattery buildings on the AlphaESS portal <span class="tkey">(QPD-15561 <span class="team">Cloud / Backend</span>, QPD-15669 <span class="team">Cloud / Backend</span>)</span></li>
         <li><b>Admin tooling:</b> installation deletion enabled in production for an allowlist of users <span class="tkey">(QPD-15605 <span class="team">Cloud / Backend</span>)</span></li>
         <li><b>Backend hardening:</b> the weather config no longer sends a dead weather topic for an unresolvable postcode <span class="tkey">(QPD-15500 <span class="team">Cloud / Backend</span>)</span>; permission-denied responses now log as warnings with the user id and a static message <span class="tkey">(QPD-15584 <span class="team">Cloud / Backend</span>)</span>; the filtered room and ambient temperatures are ingested into ClickHouse for analysis <span class="tkey">(QPD-15609 <span class="team">Cloud / Backend</span>)</span>; unit-test CI sped up <span class="tkey">(QPD-15551 <span class="team">Cloud / Backend</span>)</span></li>
         <li><b>Backend infrastructure (no ticket):</b> telemetry storage moved to Athena / S3 tiering with daily firehose compaction.</li>
+        <li><b>App &mdash; customer-visible fix (App v1.62.0):</b> the All-Electric settings screen now shows a newly saved night window immediately, instead of the old one until the screen is reopened <span class="tkey">(QPD-15597 <span class="team">App</span>)</span> &mdash; see the Customer tab</li>
+        <li><b>App &mdash; commissioning Wi-Fi (App v1.62.0):</b> the Wi-Fi connect step now shows a spinner, disables the button while in-flight and renders connecting / verifying plus failure reasons <span class="tkey">(QPD-15538 <span class="team">App</span>)</span>; Forget Wi-Fi no longer fails during commissioning because the acting role was derived from the navigation stack <span class="tkey">(QPD-15607 <span class="team">App</span>)</span>; a forgotten network reappears in the scan list <span class="tkey">(QPD-15608 <span class="team">App</span>)</span>; and the connected-Wi-Fi row no longer flashes empty right after a forget <span class="tkey">(QPD-15697 <span class="team">App</span>)</span></li>
+        <li><b>App tooling:</b> an App Lead playbook / skill for the team <span class="tkey">(QPD-15333 <span class="team">App</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for ops / CS:</b> the commissioning fixes improve installer success, and the data syncs onboard specific HomeBattery installations. The remaining items are backend-only and need no customer action.</div>
+      <div class="impact"><b>Impact for ops / CS:</b> the commissioning fixes improve installer success, and the data syncs onboard specific HomeBattery installations. The All-Electric night-window fix is customer-visible and live in App v1.62.0. The remaining items are backend- or app-internal and need no customer action.</div>
     </div>
 
     <div class="theme-card">
@@ -153,7 +169,7 @@
         <li><b>Heating control:</b> noisy room-temperature readings are handled gracefully so sensor noise no longer makes the outdoor unit switch needlessly between states <span class="tkey">(QPD-15361 <span class="team">Systems Control</span>)</span></li>
         <li><b>Commissioning:</b> the HeatCharger config is now published before identification, so HeatCharger discovery no longer deadlocks on flag-gated CiC firmware <span class="tkey">(QPD-15592 <span class="team">Cloud / Backend</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for ops / CS:</b> substantially better fleet connectivity and diagnostics &mdash; stuck cellular modems can recover on their own, update polling is restored, and All-Electric HeatCharger discovery no longer stalls. The CiC-side items reach only the alpha track this wave; the HeatCharger-config fix (Cloud) is live.</div>
+      <div class="impact"><b>Impact for ops / CS:</b> substantially better fleet connectivity and diagnostics &mdash; stuck cellular modems can recover on their own, update polling is restored, and All-Electric HeatCharger discovery no longer stalls. The CiC-side items reach only the beta track this wave; the HeatCharger-config fix (Cloud) is live.</div>
     </div>
 
     <div class="theme-card">
@@ -163,7 +179,7 @@
         <li>The first boost status no longer reports an end time from an unsynced local clock, so the app no longer briefly shows a countdown above 30:00 <span class="tkey">(QPD-14818 <span class="team">Embedded Systems</span>)</span></li>
         <li>A cached failed outcome no longer masks a disabled state, so the boost button no longer stays enabled after a mid-boost exit <span class="tkey">(QPD-15470 <span class="team">Cloud / Backend</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for CS:</b> more accurate boost countdown and button behaviour for All-Electric customers where Boost Mode is enabled. The CiC-side fix ships on the alpha track this wave.</div>
+      <div class="impact"><b>Impact for CS:</b> more accurate boost countdown and button behaviour for All-Electric customers where Boost Mode is enabled. The CiC-side fix ships on the beta track this wave.</div>
     </div>
 
     <div class="theme-card">
@@ -187,7 +203,7 @@
     </div>
 
     <div class="theme-card tech-debt-group">
-      <h3 class="group-title">Technical Debt <span class="epic">2 Epics &middot; 2 tickets</span></h3>
+      <h3 class="group-title">Technical Debt <span class="epic">2 Epics &middot; 11 tickets</span></h3>
 
       <div class="subcard">
         <h4><a href="https://quatt-team.atlassian.net/browse/QPD-149" target="_blank">QPD-149</a> &middot; Embedded Technical Debt <span class="epic">1 ticket</span></h4>
@@ -195,16 +211,19 @@
         <ul>
           <li>Smarter cellular (LTE) failover: LTE is never disabled while no Wi-Fi or Ethernet path is working, is enabled faster when there is no alternative, and an interface is marked unreachable only after three consecutive failed checks so a single blip no longer reshuffles routes or drops connections <span class="tkey">(QPD-11692 <span class="team">Embedded Systems</span>)</span></li>
         </ul>
-        <div class="impact"><b>Impact for CS:</b> fewer needless connectivity switch-overs and faster fallback to cellular when a home loses Wi-Fi or Ethernet. Reaches only the alpha track this wave.</div>
+        <div class="impact"><b>Impact for CS:</b> fewer needless connectivity switch-overs and faster fallback to cellular when a home loses Wi-Fi or Ethernet. Reaches only the beta track this wave.</div>
       </div>
 
       <div class="subcard">
-        <h4><a href="https://quatt-team.atlassian.net/browse/QPD-7154" target="_blank">QPD-7154</a> &middot; SW&amp;I Technical Debt <span class="epic">1 ticket</span></h4>
-        <p class="epic-desc">The SW&amp;Infra technical-debt Epic.</p>
+        <h4><a href="https://quatt-team.atlassian.net/browse/QPD-7154" target="_blank">QPD-7154</a> &middot; SW&amp;I Technical Debt <span class="epic">10 tickets</span></h4>
+        <p class="epic-desc">The SW&amp;Infra technical-debt Epic. This wave it carries factory-test reliability plus a batch of App v1.62.0 test-harness and contract cleanup.</p>
         <ul>
           <li>Fix a factory test that could hang when provisioning waited for end-of-line files the USB install had already removed <span class="tkey">(QPD-15644 <span class="team">App</span>)</span></li>
+          <li>Nightly E2E hardening and flake fixes: harness robustness, ordering / seeding, and several test-side defects across pairing, insights and referral flows <span class="tkey">(QPD-15495 <span class="team">App</span>, QPD-15570 <span class="team">App</span>, QPD-15632 <span class="team">App</span>, QPD-15633 <span class="team">App</span>, QPD-15637 <span class="team">App</span>, QPD-15685 <span class="team">App</span>)</span></li>
+          <li>Commissioning contract cleanup: one source of truth for the acting role (installer vs customer) in CIC API calls, and removal of the unused <code>supportsForgetWifi</code> flag <span class="tkey">(QPD-15699 <span class="team">App</span>, QPD-15696 <span class="team">App</span>)</span></li>
+          <li>Refine the Static Stacks (React Navigation) migration into actionable steps <span class="tkey">(QPD-11430 <span class="team">App</span>)</span></li>
         </ul>
-        <div class="impact"><b>Impact for ops:</b> factory / provisioning reliability &mdash; no field impact.</div>
+        <div class="impact"><b>Impact for ops:</b> factory / provisioning reliability and app test-suite stability &mdash; no field impact.</div>
       </div>
     </div>
 
@@ -214,7 +233,7 @@
       <ul>
         <li>Make the anti-legionella cycle robust against custom night-time hours, so the hot-water safety cycle still completes when a customer sets their own night window <span class="tkey">(QPD-15531 <span class="team">Systems Control</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for CS:</b> anti-legionella protection stays reliable with custom night hours. Reaches only the alpha track this wave.</div>
+      <div class="impact"><b>Impact for CS:</b> anti-legionella protection stays reliable with custom night hours. Reaches only the beta track this wave.</div>
     </div>
 
     <div class="theme-card">
@@ -227,12 +246,13 @@
     </div>
 
     <div class="theme-card">
-      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11795" target="_blank">QPD-11795</a> &middot; CHILL | Field Test Stability Improvement <span class="epic">1 ticket</span></h3>
-      <p class="epic-desc">Stability work for Chill field installations and commissioning.</p>
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11795" target="_blank">QPD-11795</a> &middot; CHILL | Field Test Stability Improvement <span class="epic">2 tickets</span></h3>
+      <p class="epic-desc">Stability work for Chill field installations and commissioning, plus a customer-facing improvement to how Chill faults are surfaced in the app.</p>
       <ul>
         <li>Commissioning now auto-completes after the successful final step instead of leaving the flow open <span class="tkey">(QPD-14698 <span class="team">Cloud / Backend</span>)</span></li>
+        <li>The app now shows specific Chill fault messages instead of one generic error, with basic self-troubleshooting steps per fault type &mdash; live in App v1.62.0 <span class="tkey">(QPD-14647 <span class="team">App</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for installers:</b> commissioning finishes cleanly after the final step.</div>
+      <div class="impact"><b>Impact for CS:</b> commissioning finishes cleanly after the final step, and Chill customers now see clearer, actionable fault messages in the app &mdash; see the Customer tab.</div>
     </div>
 
     <div class="theme-card">
@@ -282,13 +302,15 @@
       <tbody id="rows"></tbody>
     </table>
     <p class="footer-note">
-      Built from GitHub tag diffs (source of truth: CiC 4.12.0 &rarr; 4.13.0-alpha.0 via <code>quatt-revisions.inc</code>;
+      Built from GitHub tag diffs (source of truth: CiC 4.12.0 &rarr; 4.13.0-beta.0 via <code>quatt-revisions.inc</code>;
       component changelogs from each repo&rsquo;s tag-to-tag compare), cross-referenced with Jira for ticket type / priority / status.
+      The CiC build is identical to 4.13.0-alpha.0 (the beta.0 tag points at the same commit), so this beta adds no CiC-side commits;
+      the new rows this revision are all App v1.62.0 (v1.61.0 &rarr; v1.62.0, 2026-08-28), which landed in the alpha&rarr;beta window.
       Bundled component versions moved: Controller 6.13.0 &rarr; 6.14.0, embedded apps 1.35.0 &rarr; 1.36.0, message spec
       2.83.0 &rarr; 2.84.0, Python libs 0.16.0 &rarr; 0.17.0, network-monitoring 1.3.4 &rarr; 1.4.0, modem / platform tools
       2.0.2 &rarr; 2.1.0. Thread FW 2.13.0, HeatCharger FW 1.3.0, Chill control-board FW 2.0.0 and ODU FW 2.1 are
       <b>unchanged</b> &mdash; tickets whose only shipped work is in those firmwares are excluded. Paired backend
-      <b>Cloud v2.45.0</b> (v2.44.0 &rarr; v2.45.0). App unchanged at <b>v1.61.0</b> &mdash; no app release in this window.
+      <b>Cloud v2.45.0</b> (v2.44.0 &rarr; v2.45.0) and paired app <b>App v1.62.0</b>.
       <b>No cross-product duplicate tickets this wave.</b> Four tickets carry fixVersion <code>Cloud v2.45.0</code> but have no
       commit in the GitHub release and are excluded pending confirmation (QPD-15370, QPD-15525, QPD-15593, QPD-15670).
       Use the <code>release-auditor</code> skill for commit-level traceability.
@@ -356,7 +378,23 @@ const T = [
  ["CiC",15531,"Task","High","","cic-controller: make the anti-legionella cycle robust against custom night-time hours",120],
  ["Cloud",15636,"Task","High","","Create a dev HubSpot house for a lab HomeBattery to test commissioning on the new AlphaESS portal",15407],
  ["Cloud",14698,"Bug","Urgent","","Commissioning does not auto-complete after the successful final step",11795],
- ["CiC",15689,"Task","Medium","","Cut CiC release 4.13.0",11774]
+ ["CiC",15689,"Task","Medium","","Cut CiC release 4.13.0",11774],
+ ["App",14647,"Task","Medium","","Add more in-app messages for specific Chill faults (control screen)",11795],
+ ["App",15597,"Bug","Medium","","All-Electric settings shows a stale night window after saving night hours",152],
+ ["App",15538,"Task","Medium","","WiFi connect feedback: spinner on press, in-flight button disable, connecting/verifying + failure reasons",152],
+ ["App",15607,"Bug","Medium","","Forget WiFi fails during commissioning: acting role derived from the navigation stack",152],
+ ["App",15608,"Bug","Medium","","Forgotten WiFi network does not reappear in the scan list after forget",152],
+ ["App",15697,"Bug","High","","WiFiConnection flashes an empty connected row right after forgetting a network",152],
+ ["App",15699,"Task","High","","One source of truth for the acting role (installer vs customer) in CIC API calls",7154],
+ ["App",15696,"Task","Medium","","Remove the unused supportsForgetWifi flag from the CIC contract",7154],
+ ["App",15495,"Bug","Medium","","Nightly E2E: leaked HomeBattery pairing red-lines the daily-run suite",7154],
+ ["App",15570,"Bug","Medium","In validation","Nightly E2E: commissioning ordering, customer pairing and missing seed data",7154],
+ ["App",15632,"Bug","Medium","In validation","Nightly E2E: referral intro modal swallows the first tap after login",7154],
+ ["App",15633,"Bug","Medium","In validation","Nightly E2E: insights flows assert chart data the All-E rig does not produce",7154],
+ ["App",15637,"Bug","Medium","","Fix five xfail-tagged E2E flows that fail on test defects, not missing data",7154],
+ ["App",15685,"Bug","Medium","","Harden the nightly E2E harness: tariff seeding, promo-modal overlay, account isolation",7154],
+ ["App",15333,"Task","Medium","","App Lead Playbook / Skill",152],
+ ["App",11430,"Task","Medium","","Refine the Static Stacks migration (React Navigation) into actionable steps",7154]
 ];
 
 /* epic-key -> [title, colour index]; group order follows this map (by ticket count desc) */
