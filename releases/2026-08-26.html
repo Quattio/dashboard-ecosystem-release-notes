@@ -25,10 +25,10 @@
 <main class="wrap">
   <div class="crumb"><a href="../index.html">Releases</a> / 26.08.2026</div>
   <div class="page-head">
-    <div class="kicker">CiC diffed 4.12.0 &rarr; 4.13.0-beta.0</div>
+    <div class="kicker">CiC diffed 4.12.0 &rarr; 4.13.0</div>
     <h1>Quatt Ecosystem Release <span class="dim">26.08.2026</span></h1>
     <div class="sub">
-      <span class="chip cic">CiC 4.13.0-beta.0</span>
+      <span class="chip cic">CiC 4.13.0</span>
       <span class="chip cloud">Cloud v2.45.0</span>
       <span class="chip app">App v1.62.0</span>
       <span class="chip fw">Controller 6.14.0</span>
@@ -41,13 +41,15 @@
 
   <div class="review-only"><div class="review-panel">
     <h3>What changed in this revision</h3>
-    <p class="sub">Shown only on the staging preview &mdash; hidden in production. Second-opinion review, verified against the tag diffs: cic-yocto-builder 4.12.0 &rarr; 4.13.0-beta.0, app v1.61.0 &rarr; v1.62.0, cloud v2.44.0 &rarr; v2.45.0.</p>
+    <p class="sub">Shown only on the staging preview &mdash; hidden in production. This revision promotes the previously-published beta entry for this wave to stable (GA); the delta below is against that beta version on <code>main</code>.</p>
     <ul>
-      <li><b>Heating performance and reliability:</b> &ldquo;unchanged&rdquo; is wrong &mdash; cic-controller 6.14.0 changes heating behaviour in this release. Added: room-temperature filtering stops needless outdoor-unit cycling (QPD-15361) and the anti-legionella cycle completes with custom night hours (QPD-15531). Written without an audience preamble &mdash; the same notes go to every reader, rollout phasing is not the document&rsquo;s concern.</li>
-      <li><b>Bug fixes and maintenance:</b> added three live, unflagged, customer-visible fixes that made the release but not the chapter: forgotten Wi-Fi network reappears in the scan list (QPD-15608), connected Wi-Fi row no longer flashes empty after a forget (QPD-15697), and the All-Electric Boost button no longer stays enabled after a mid-boost exit (QPD-15470 &mdash; Cloud, live in production, unlike its CiC-side twin QPD-14818).</li>
-      <li><b>Tier 2 correction:</b> the reworked Wi-Fi connect flow (QPD-15538) ships behind the <code>wifi_connect_feedback</code> remote-config flag with <code>defaultValue: false</code> &mdash; it is dark-launched, not live, unless the flag is flipped in Firebase. Caveat added to the enablement sweep.</li>
-      <li><b>New functions:</b> the Chill fault-message item (QPD-14647, verified live and unflagged) is an improvement to existing behaviour, not a new function &mdash; moved to Bug fixes and maintenance; the emptied New functions card is removed entirely (EN and NL).</li>
-      <li><b>Not changed:</b> the ticket table (complete against every repo diff) and QPD-15607 (defensible as installer-facing).</li>
+      <li><b>Phase transition:</b> beta &rarr; <b>stable (GA)</b>. The badge, the CiC version chip (<code>4.13.0-beta.0</code> &rarr; <code>4.13.0</code>) and the GA framing in the scope banner and footer are updated. Phase follows the suffix-less target tag alone; a stable tag is production-ready by definition.</li>
+      <li><b>Same build, no content change:</b> the stable <code>4.13.0</code> tag points at the <b>same commit</b> (<code>149377d9</code>) as <code>4.13.0-beta.0</code> and <code>4.13.0-alpha.0</code>, so the CiC image is repackaged, not rebuilt. No CiC-side commits, no ticket added or removed, no epic card changed since the beta entry.</li>
+      <li><b>Paired-product versions:</b> unchanged &mdash; App <b>v1.62.0</b> and Cloud <b>v2.45.0</b>, exactly as in the beta entry. No new paired bumps folded in.</li>
+      <li><b>What GA adds operationally:</b> the 4.13.0 firmware now reaches the production fleet (the beta build was on the beta track, not the fleet). No new feature flags flip with this promotion; App v1.62.0 and Cloud v2.45.0 were already live from the beta wave. The <code>wifi_connect_feedback</code> flag (QPD-15538, default off) is still dark-launched.</li>
+      <li><b>Tier 1 compliance fix:</b> the beta entry had dropped the mandatory &ldquo;New functions&rdquo; card and used the NL heading &ldquo;Bugfixes en onderhoud&rdquo;. Restored the three fixed Customer-tab sections in order (empty &ldquo;New functions&rdquo; / &ldquo;Nieuwe functies&rdquo; first, EN + NL) and corrected the NL heading to &ldquo;Foutoplossingen en onderhoud&rdquo;, matching the prior stable page. No customer bullet content changed.</li>
+      <li><b>Reverted / removed:</b> nothing.</li>
+      <li><b>Open follow-up:</b> Cloud <b>v2.46.0</b> shipped 2026-08-31 (thermostat schedule, additive Chill fault field, battery result sharing, admin auto-provisioning). It post-dates the 4.13.0 build and the beta.0 tag and is <b>not</b> folded into this wave &mdash; it pairs with the next CiC release. Flag if it should instead be attributed here.</li>
     </ul>
   </div></div>
 
@@ -73,6 +75,10 @@
 
     <div class="lang-pane" id="tier1-en">
       <div class="theme-card">
+        <h3>New functions</h3>
+        <ul></ul>
+      </div>
+      <div class="theme-card">
         <h3>Heating performance and reliability</h3>
         <ul>
           <li>The heat pump now filters the room-temperature readings so the outdoor unit no longer switches on and off needlessly when the sensor signal jitters.</li>
@@ -93,6 +99,10 @@
 
     <div class="lang-pane" id="tier1-nl" hidden>
       <div class="theme-card">
+        <h3>Nieuwe functies</h3>
+        <ul></ul>
+      </div>
+      <div class="theme-card">
         <h3>Verwarmingsprestaties en betrouwbaarheid</h3>
         <ul>
           <li>De warmtepomp filtert nu de kamertemperatuurmetingen zodat de buitenunit niet meer onnodig aan- en uitschakelt bij een onrustig sensorsignaal.</li>
@@ -100,7 +110,7 @@
         </ul>
       </div>
       <div class="theme-card">
-        <h3>Bugfixes en onderhoud</h3>
+        <h3>Foutoplossingen en onderhoud</h3>
         <ul>
           <li>Duidelijkere meldingen bij een probleem met je Chill: in plaats van één algemene foutmelding legt de app nu uit wat er precies aan de hand is.</li>
           <li>Na het opslaan van nieuwe Nachturen toont het All-Electric-instellingenscherm nu direct de nieuwe tijden in plaats van na een refresh.</li>
@@ -118,8 +128,8 @@
 
     <div class="callout-warn scope-banner">
       <p>
-        <span class="lead">Scope &mdash; CiC 4.13.0-beta.0</span>
-        Diffed 4.12.0 &rarr; 4.13.0-beta.0. The CiC build is identical to 4.13.0-alpha.0: the beta.0 tag points at the same commit, so the Yocto image is repackaged, not rebuilt.
+        <span class="lead">Scope &mdash; CiC 4.13.0 (stable / GA)</span>
+        Diffed 4.12.0 &rarr; 4.13.0. Promoted from the beta track to the general release: the <code>4.13.0</code>, <code>4.13.0-beta.0</code> and <code>4.13.0-alpha.0</code> tags all point at the same commit, so the Yocto image is repackaged, not rebuilt &mdash; the GA build is byte-identical to the beta.
         Bundled component versions: Controller <strong>6.13.0 &rarr; 6.14.0</strong>,
         embedded apps <strong>1.35.0 &rarr; 1.36.0</strong>, message spec <strong>2.83.0 &rarr; 2.84.0</strong>,
         Python libs <strong>0.16.0 &rarr; 0.17.0</strong>, network-monitoring <strong>1.3.4 &rarr; 1.4.0</strong>,
@@ -130,6 +140,7 @@
       </p>
       <p><span class="lead">Enablement sweep &mdash; what actually goes live this wave</span></p>
       <ul>
+        <li><strong>CiC 4.13.0 firmware reaches the production fleet:</strong> with GA the 4.13.0 build (which on the beta track only reached beta CiCs) rolls out to customer devices &mdash; carrying the modem EDL recovery (~887 stuck CiCs can self-heal), restored Mender update polling, the room-temperature filter, and the anti-legionella custom-night-hours fix. No feature flags flip with the promotion itself; it is the same build reaching more devices.</li>
         <li><strong>App v1.62.0 ships to customers:</strong> clearer Chill fault messages on the customer Chill screens, an All-Electric night-window display fix, and commissioning Wi-Fi reliability fixes (forget / rescan behaviour). The reworked Wi-Fi connect feedback flow (QPD-15538) is dark-launched behind the <code>wifi_connect_feedback</code> remote-config flag (default off) &mdash; do not communicate it as live until the flag is confirmed enabled in Firebase.</li>
         <li><strong>Cloud v2.45.0 deploys to production:</strong> commissioning reliability (Wi-Fi connect feedback, auto-complete after the final step, identification no longer blocking, HeatCharger config published before identification), EMS / HomeBattery data onboarding for specific battery buildings, an admin installation-deletion allowlist, and backend logging / telemetry hardening.</li>
       </ul>
@@ -294,15 +305,15 @@
       <tbody id="rows"></tbody>
     </table>
     <p class="footer-note">
-      Built from GitHub tag diffs (source of truth: CiC 4.12.0 &rarr; 4.13.0-beta.0 via <code>quatt-revisions.inc</code>;
+      Built from GitHub tag diffs (source of truth: CiC 4.12.0 &rarr; 4.13.0 via <code>quatt-revisions.inc</code>;
       component changelogs from each repo&rsquo;s tag-to-tag compare), cross-referenced with Jira for ticket type / priority / status.
-      The CiC build is identical to 4.13.0-alpha.0 (the beta.0 tag points at the same commit), so this revision adds no CiC-side commits;
-      the new rows this revision are all App v1.62.0 (v1.61.0 &rarr; v1.62.0, 2026-08-28).
+      This is the stable (GA) promotion of the 4.13.0 wave: the <code>4.13.0</code>, <code>4.13.0-beta.0</code> and <code>4.13.0-alpha.0</code> tags all point at the same commit, so the ticket set is unchanged from the beta entry.
       Bundled component versions moved: Controller 6.13.0 &rarr; 6.14.0, embedded apps 1.35.0 &rarr; 1.36.0, message spec
       2.83.0 &rarr; 2.84.0, Python libs 0.16.0 &rarr; 0.17.0, network-monitoring 1.3.4 &rarr; 1.4.0, modem / platform tools
       2.0.2 &rarr; 2.1.0. Thread FW 2.13.0, HeatCharger FW 1.3.0, Chill control-board FW 2.0.0 and ODU FW 2.1 are
       <b>unchanged</b> &mdash; tickets whose only shipped work is in those firmwares are excluded. Paired backend
-      <b>Cloud v2.45.0</b> (v2.44.0 &rarr; v2.45.0) and paired app <b>App v1.62.0</b>.
+      <b>Cloud v2.45.0</b> (v2.44.0 &rarr; v2.45.0) and paired app <b>App v1.62.0</b>. Cloud v2.46.0 (2026-08-31) post-dates
+      this build and the beta tag and is attributed to the next wave, not this one.
       <b>No cross-product duplicate tickets this wave.</b> Four tickets carry fixVersion <code>Cloud v2.45.0</code> but have no
       commit in the GitHub release and are excluded pending confirmation (QPD-15370, QPD-15525, QPD-15593, QPD-15670).
       Use the <code>release-auditor</code> skill for commit-level traceability.
