@@ -43,6 +43,7 @@
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview — hidden in production.</p>
     <p class="none">New release notes — first published revision.</p>
+    <p>Review edit (PR #36, MaikVermeulen): the Charge Cool item is confirmed genuinely new this wave — it is the Cloud v2.47.0 production enablement (QPD-15793, <code>chillAllEChargeCoolEnabled</code> flipped fleet-wide), verified present in v2.47.0 and absent from v2.46.0. cic-controller is unchanged this wave (stays at Controller 6.14.0), as expected: the controller code has been in the field since CiC 4.11.0. Corrected the originating wave from the wrong "4.8.0" to CiC 4.11.0 (Controller 6.12.0) in the Internal enablement note and the Engineering footer.</p>
   </div></div>
 
   <section class="timeline-wrap" id="release-timeline" hidden>
@@ -133,7 +134,7 @@
         <li><strong>Charge Cool goes live fleet-wide.</strong> Cloud v2.47.0 sets <code>chillAllEChargeCoolEnabled</code>
           to true for the fleet <span class="tkey">(QPD-15793)</span>. On All-Electric systems with a Chill, the heat the
           Chill removes while cooling is now routed into the HeatBattery instead of being wasted. The controller code
-          shipped in the 4.8.0 wave and is already in the field; this is the production enablement, so it is
+          shipped in the CiC 4.11.0 wave (Controller 6.12.0) and is already in the field; this is the production enablement, so it is
           <b>customer-visible for All-E + Chill homes now</b> (see the Customer tab).</li>
         <li><strong>App minimum version raised to 1.60.0.</strong> Cloud now rejects installer apps below the floor at
           commissioning create/start with a 426 <span class="tkey">(QPD-15812, QPD-15795)</span>, and the update banner /
@@ -345,7 +346,7 @@
       Chill control-board FW 2.0.0 and ODU FW 2.1 are unchanged. Paired backend <b>Cloud v2.47.0</b> (v2.46.0 &rarr; v2.47.0);
       no new App release this wave (app stays v1.62.0).
       <b>Production enablement (no CiC commit):</b> Charge Cool is enabled fleet-wide via a Cloud config flag flip
-      (QPD-15793); the underlying controller code shipped in the 4.8.0 wave.
+      (QPD-15793); the underlying controller code shipped in CiC 4.11.0 (Controller 6.12.0).
       Use the <code>release-auditor</code> skill for commit-level traceability.
     </p>
   </section>
