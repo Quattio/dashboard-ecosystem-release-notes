@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quatt Ecosystem Release 10.09.2026 — alpha</title>
+<title>Quatt Ecosystem Release 11.09.2026 — alpha</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -23,12 +23,12 @@
 </header>
 
 <main class="wrap">
-  <div class="crumb"><a href="../index.html">Releases</a> / 10.09.2026</div>
+  <div class="crumb"><a href="../index.html">Releases</a> / 11.09.2026</div>
   <div class="page-head">
-    <div class="kicker">CiC diffed 4.13.0 &rarr; 4.14.0-alpha.0 &middot; alpha</div>
-    <h1>Quatt Ecosystem Release <span class="dim">10.09.2026</span></h1>
+    <div class="kicker">CiC diffed 4.13.0 &rarr; 4.14.0-alpha.1 &middot; alpha</div>
+    <h1>Quatt Ecosystem Release <span class="dim">11.09.2026</span></h1>
     <div class="sub">
-      <span class="chip cic">CiC 4.14.0-alpha.0</span>
+      <span class="chip cic">CiC 4.14.0-alpha.1</span>
       <span class="chip cloud">Cloud v2.47.0</span>
       <span class="chip app">App v1.62.0</span>
       <span class="chip fw">Controller 6.14.0</span>
@@ -42,8 +42,10 @@
   <div class="review-only"><div class="review-panel">
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview — hidden in production.</p>
-    <p class="none">New release notes — first published revision.</p>
-    <p>Review edit (PR #36, MaikVermeulen): the Charge Cool item is confirmed genuinely new this wave — it is the Cloud v2.47.0 production enablement (QPD-15793, <code>chillAllEChargeCoolEnabled</code> flipped fleet-wide), verified present in v2.47.0 and absent from v2.46.0. cic-controller is unchanged this wave (stays at Controller 6.14.0), as expected: the controller code has been in the field since CiC 4.11.0. Corrected the originating wave from the wrong "4.8.0" to CiC 4.11.0 (Controller 6.12.0) in the Internal enablement note and the Engineering footer.</p>
+    <p><b>Promotion:</b> alpha revision bump within the same 4.14.0 wave — CiC <b>4.14.0-alpha.0 &rarr; 4.14.0-alpha.1</b>. Phase stays <b>alpha</b> (no alpha&rarr;beta transition). Headline date moves 2026-09-10 &rarr; <b>2026-09-11</b> (the alpha.1 GitHub Release publish date); this page replaces the 2026-09-10 page for the wave (one page per wave).</p>
+    <p><b>Paired product versions:</b> unchanged — Cloud <b>v2.47.0</b>, App <b>v1.62.0</b>, Thread FW <b>2.14.0</b>, Controller 6.14.0, HeatCharger FW 1.3.0, Chill CB FW 2.0.0, ODU FW 2.1 all identical to alpha.0. No new Cloud or App release shipped between the two alpha tags.</p>
+    <p><b>New commits since alpha.0:</b> one — <code>cic-controller-manager</code> <b>3.19.0 &rarr; 3.19.1</b> under <span class="tkey">QPD-15841</span> (the 4.14.0 release ticket): a test-tooling fix, "skip JSON settings with no test value instead of failing". Test-only; no runtime or customer-facing behaviour change. QPD-15841 was already listed in the Engineering tab as the release ticket, so no new ticket rows or count changes.</p>
+    <p><b>Enablement sweep (carried forward):</b> Charge Cool remains live fleet-wide via Cloud v2.47.0 (QPD-15793, <code>chillAllEChargeCoolEnabled</code>); its controller code shipped in CiC 4.11.0 (Controller 6.12.0). No new enablements or reverts this revision.</p>
   </div></div>
 
   <section class="timeline-wrap" id="release-timeline" hidden>
@@ -115,13 +117,20 @@
 
     <div class="callout-warn scope-banner">
       <p>
-        <span class="lead">Scope &mdash; CiC 4.14.0-alpha.0 (alpha track, not the general fleet)</span>
-        Diffed 4.13.0 &rarr; 4.14.0-alpha.0. Paired backend <strong>Cloud v2.47.0</strong> (2026-09-10). No new App release
+        <span class="lead">Scope &mdash; CiC 4.14.0-alpha.1 (alpha track, not the general fleet)</span>
+        Diffed 4.13.0 &rarr; 4.14.0-alpha.1. Paired backend <strong>Cloud v2.47.0</strong> (2026-09-10). No new App release
         this wave &mdash; the app stays at <strong>v1.62.0</strong>. Bundled firmware moves Thread FW
         <strong>2.13.0 &rarr; 2.14.0</strong>; Controller 6.14.0, HeatCharger FW 1.3.0, Chill control-board FW 2.0.0 and
         ODU FW 2.1 are unchanged. Embedded apps <strong>1.36.0 &rarr; 1.37.0</strong>, message spec
         <strong>2.84.0 &rarr; 2.85.0</strong>, network-monitoring <strong>1.4.0 &rarr; 1.5.0</strong>.
-        Headline date 2026-09-10 = the 4.14.0-alpha.0 GitHub Release publish date.
+        Headline date 2026-09-11 = the 4.14.0-alpha.1 GitHub Release publish date.
+      </p>
+      <p>
+        <span class="lead">Revision &mdash; alpha.0 &rarr; alpha.1</span>
+        This page promotes the 4.14.0 wave from alpha.0 to alpha.1. The only new commit since alpha.0 bumps
+        <code>cic-controller-manager</code> <strong>3.19.0 &rarr; 3.19.1</strong> under <span class="tkey">QPD-15841</span>
+        (the 4.14.0 release ticket): a test-tooling fix that skips JSON settings with no test value instead of failing.
+        Test-only &mdash; no runtime or field behaviour change. Everything else below is carried forward unchanged from alpha.0.
       </p>
       <p>
         <span class="lead">Wave phase &mdash; alpha (new 4.14.0 minor)</span>
@@ -141,9 +150,9 @@
           admin APIs learn min and latest versions <span class="tkey">(QPD-15798, QPD-15797, QPD-15800)</span>.</li>
         <li><strong>Thread FW 2.14.0</strong> is bundled in the CiC image (dongle / Chill interface board). It carries an
           OTA brick-risk fix, a CoAP write-safety fix and Thread-certification work &mdash; it ships to whatever runs the
-          4.14.0-alpha.0 image, i.e. the alpha track only this wave.</li>
+          4.14.0-alpha.1 image, i.e. the alpha track only this wave.</li>
         <li><strong>CiC WiFi / connectivity reliability</strong> (WiFi firmware bump, kernel-side chip recovery, roaming,
-          network-switch timeout) is in the 4.14.0-alpha.0 build only &mdash; not yet on the customer fleet.</li>
+          network-switch timeout) is in the 4.14.0-alpha.1 build only &mdash; not yet on the customer fleet.</li>
       </ul>
       <p><b>The alpha CiC firmware goes only to the alpha-test track &mdash; do not communicate its behaviour to the wider customer base or installers.</b></p>
     </div>
@@ -163,7 +172,7 @@
 
     <div class="theme-card">
       <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11880" target="_blank">QPD-11880</a> &middot; Bug Fixing &amp; Fleet Diagnostics <span class="epic">5 tickets</span></h3>
-      <p class="epic-desc">The embedded team&rsquo;s rolling bug-fixing and fleet-diagnostics Epic. This wave&rsquo;s theme is WiFi and dongle connectivity reliability, landing in the CiC 4.14.0-alpha.0 build and bundled Thread FW 2.14.0.</p>
+      <p class="epic-desc">The embedded team&rsquo;s rolling bug-fixing and fleet-diagnostics Epic. This wave&rsquo;s theme is WiFi and dongle connectivity reliability, landing in the CiC 4.14.0-alpha.1 build and bundled Thread FW 2.14.0.</p>
       <ul>
         <li><b>WiFi chip crash fixed:</b> bump the SD8987 WiFi firmware (p69.3 &rarr; p142.3) so the chip self-recovers from the CSA-during-reassociation race that previously wedged it permanently <span class="tkey">(QPD-15660 <span class="team">Embedded Systems</span>)</span></li>
         <li><b>Thread stats freeze fixed:</b> resolve a lock-order deadlock in cic-thread-network-manager between the libcoap I/O thread and the device runners that froze all FTD stats at connected=true <span class="tkey">(QPD-15733 <span class="team">Embedded Systems</span>)</span></li>
@@ -171,7 +180,7 @@
         <li><b>Diagnostics:</b> publish per-device CoAP restart counts (last 1h / 24h / lastAt) in <code>thread_devices_stats</code> <span class="tkey">(QPD-15765 <span class="team">Embedded Systems</span>)</span></li>
         <li><b>Boiler control default:</b> change the OpenTherm thermostat domestic-hot-water enable (<code>ot_tb_dhw_enable</code>) to default on, evaluated for hybrid boiler setups <span class="tkey">(QPD-15124 <span class="team">Embedded Systems</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for ops:</b> these address real field failure modes (WiFi chips wedging offline, dongle OTA bricking, frozen Thread stats). They ride the CiC 4.14.0-alpha.0 build and bundled Thread FW 2.14.0, so they reach the alpha track first, not the general fleet, this wave.</div>
+      <div class="impact"><b>Impact for ops:</b> these address real field failure modes (WiFi chips wedging offline, dongle OTA bricking, frozen Thread stats). They ride the CiC 4.14.0-alpha.1 build and bundled Thread FW 2.14.0, so they reach the alpha track first, not the general fleet, this wave.</div>
     </div>
 
     <div class="theme-card tech-debt-group">
@@ -185,7 +194,7 @@
           <li>Re-enable WiFi background scanning and roaming after the WiFi firmware/driver bump, so a CiC moves to a stronger access point on multi-AP networks <span class="tkey">(QPD-15493 <span class="team">Embedded Systems</span>)</span></li>
           <li>Remove the unused <code>cic-heating-state-predictor</code> app from the image <span class="tkey">(QPD-15674 <span class="team">Embedded Systems</span>)</span></li>
         </ul>
-        <div class="impact"><b>Impact for ops:</b> further WiFi reliability hardening on the CiC 4.14.0-alpha.0 build; no field action.</div>
+        <div class="impact"><b>Impact for ops:</b> further WiFi reliability hardening on the CiC 4.14.0-alpha.1 build; no field action.</div>
       </div>
 
       <div class="subcard">
@@ -221,10 +230,10 @@
       <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11774" target="_blank">QPD-11774</a> &middot; Embedded Release Management <span class="epic">2 tickets</span></h3>
       <p class="epic-desc">Release plumbing for the embedded products.</p>
       <ul>
-        <li>Cut the CiC 4.14.0 release <span class="tkey">(QPD-15841 <span class="team">Embedded Systems</span>)</span></li>
+        <li>Cut the CiC 4.14.0 release, now at revision <b>alpha.1</b>; this revision bumps <code>cic-controller-manager</code> 3.19.0 &rarr; 3.19.1 with a test-only tooling fix (skip JSON settings with no test value) <span class="tkey">(QPD-15841 <span class="team">Embedded Systems</span>)</span></li>
         <li>Cut the quatt-dongle 2.14.0 release (bundled as Thread FW 2.14.0) <span class="tkey">(QPD-15753 <span class="team">Embedded Systems</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for ops:</b> release management only &mdash; no field behaviour change of its own.</div>
+      <div class="impact"><b>Impact for ops:</b> release management only &mdash; no field behaviour change of its own. The alpha.0&rarr;alpha.1 revision is a test-tooling fix, not a runtime change.</div>
     </div>
 
     <div class="theme-card">
@@ -339,12 +348,14 @@
       <tbody id="rows"></tbody>
     </table>
     <p class="footer-note">
-      Built from GitHub tag diffs (source of truth: CiC 4.13.0 &rarr; 4.14.0-alpha.0 via <code>quatt-revisions.inc</code>;
+      Built from GitHub tag diffs (source of truth: CiC 4.13.0 &rarr; 4.14.0-alpha.1 via <code>quatt-revisions.inc</code>;
       component changelogs from each repo&rsquo;s tag-to-tag compare), cross-referenced with Jira for ticket type / priority.
       Bundled firmware moved Thread FW 2.13.0 &rarr; 2.14.0; embedded apps 1.36.0 &rarr; 1.37.0, message spec
       2.84.0 &rarr; 2.85.0, network-monitoring 1.4.0 &rarr; 1.5.0. Controller 6.14.0, HeatCharger FW 1.3.0,
       Chill control-board FW 2.0.0 and ODU FW 2.1 are unchanged. Paired backend <b>Cloud v2.47.0</b> (v2.46.0 &rarr; v2.47.0);
       no new App release this wave (app stays v1.62.0).
+      <b>alpha.0 &rarr; alpha.1 revision:</b> the sole new commit bumps <code>cic-controller-manager</code> 3.19.0 &rarr; 3.19.1
+      (QPD-15841) &mdash; a test-only tooling fix, no runtime change.
       <b>Production enablement (no CiC commit):</b> Charge Cool is enabled fleet-wide via a Cloud config flag flip
       (QPD-15793); the underlying controller code shipped in CiC 4.11.0 (Controller 6.12.0).
       Use the <code>release-auditor</code> skill for commit-level traceability.
@@ -405,7 +416,7 @@ const T = [
  ["Cloud",15747,"Task","Medium","","Expose weather forecast publish time (lastPublishedAt) on the admin installation",7154],
  ["Cloud",15805,"Task","Medium","","HomeBattery support dashboard: show customer name under House Details",14390],
  ["Cloud",15802,"Bug","Medium","","Prevent Chill settings rejection for unset timestamps",0],
- // ---- CiC 4.14.0-alpha.0 (yocto / embedded apps / network-monitoring) ----
+ // ---- CiC 4.14.0-alpha.1 (yocto / embedded apps / network-monitoring) ----
  ["CiC",15660,"Bug","High","","Bump SD8987 WiFi firmware (p69.3 -> p142.3) to self-recover from the CSA-during-reassociation chip wedge",11880],
  ["CiC",15733,"Bug","High","","cic-thread-network-manager: lock-order deadlock froze all FTD stats at connected=true (defer CoAP restarts)",11880],
  ["CiC",15765,"Task","Medium","In validation","Publish per-device CoAP restart counts (last1h/24h/lastAt) in thread_devices_stats",11880],
@@ -417,7 +428,7 @@ const T = [
  ["CiC",3458,"Task","Low","","Report associated WiFi network(s) + signal strength into Redis via NetworkManager D-Bus",164],
  ["CiC",14633,"Task","Medium","","Scope CVE scan to the prod image manifest; drop dev-only blanket accepts",7127],
  ["CiC",15122,"Story","Medium","","Virtual Quatt Phase 1: make the cic-cloud-proxy env-override hint parseable",15345],
- ["CiC",15841,"Task","Medium","In Progress","Create the CiC 4.14.0 release",11774],
+ ["CiC",15841,"Task","Medium","In Progress","Create the CiC 4.14.0 release (alpha.1: bump cic-controller-manager 3.19.0->3.19.1, test-only settings-skip fix)",11774],
  ["CiC",15518,"Bug","Medium","","A926 engine boiler-bus failsafe is dead code — remove the never-firing repeat-last-frame limb",0],
  ["CiC",13457,"Task","Medium","To Do","Build only the libraries when consumed via FetchContent (quattlibs)",0],
  // ---- Thread (quatt-dongle / Thread FW 2.14.0) ----
@@ -565,7 +576,7 @@ document.querySelectorAll('#panel-internal h3, #panel-internal h4').forEach(h =>
 
 /* ---------- Release timeline (live from /api/calendar, scoped to this version) ---------- */
 (function () {
-  const RELEASE_DATE = '2026-09-10';
+  const RELEASE_DATE = '2026-09-11';
   const RELEASE_VERSION = '4.14.0';
   const sec = document.getElementById('release-timeline');
   const list = document.getElementById('tl-list');
