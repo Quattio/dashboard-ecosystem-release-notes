@@ -46,6 +46,7 @@
     <p><b>Paired product versions:</b> unchanged — Cloud <b>v2.47.0</b>, App <b>v1.62.0</b>, Thread FW <b>2.14.0</b>, Controller 6.14.0, HeatCharger FW 1.3.0, Chill CB FW 2.0.0, ODU FW 2.1 all identical to alpha.0. No new Cloud or App release shipped between the two alpha tags.</p>
     <p><b>New commits since alpha.0:</b> one — <code>cic-controller-manager</code> <b>3.19.0 &rarr; 3.19.1</b> under <span class="tkey">QPD-15841</span> (the 4.14.0 release ticket): a test-tooling fix, "skip JSON settings with no test value instead of failing". Test-only; no runtime or customer-facing behaviour change. QPD-15841 was already listed in the Engineering tab as the release ticket, so no new ticket rows or count changes.</p>
     <p><b>Enablement sweep (carried forward):</b> Charge Cool remains live fleet-wide via Cloud v2.47.0 (QPD-15793, <code>chillAllEChargeCoolEnabled</code>); its controller code shipped in CiC 4.11.0 (Controller 6.12.0). No new enablements or reverts this revision.</p>
+    <p><b>Customer tab (reviewer edit):</b> the Charge Cool bullet under "New functions" (EN + NL) is removed — it was already communicated to customers in its originating release, so it is not re-listed here. The "New functions" section stays present with an empty body. No engineering ticket rows or counts change (QPD-15793 stays in Tier 2/Tier 3).</p>
   </div></div>
 
   <section class="timeline-wrap" id="release-timeline" hidden>
@@ -72,7 +73,6 @@
       <div class="theme-card">
         <h3>New functions</h3>
         <ul>
-          <li>All-Electric systems with a Chill: the heat your Chill removes from a room while cooling is now stored in your HeatBattery for hot water, instead of being lost. This happens automatically, and appears on the HeatBattery screen as charging from your Chill.</li>
         </ul>
       </div>
       <div class="theme-card">
@@ -93,7 +93,6 @@
       <div class="theme-card">
         <h3>Nieuwe functies</h3>
         <ul>
-          <li>All-Electric-systemen met een Chill: de warmte die je Chill tijdens het koelen uit een ruimte haalt, wordt nu opgeslagen in je HeatBattery voor warm water in plaats van verloren te gaan. Dit gebeurt automatisch en is zichtbaar op het HeatBattery-scherm als opladen met je Chill.</li>
         </ul>
       </div>
       <div class="theme-card">
@@ -144,7 +143,8 @@
           to true for the fleet <span class="tkey">(QPD-15793)</span>. On All-Electric systems with a Chill, the heat the
           Chill removes while cooling is now routed into the HeatBattery instead of being wasted. The controller code
           shipped in the CiC 4.11.0 wave (Controller 6.12.0) and is already in the field; this is the production enablement, so it is
-          <b>customer-visible for All-E + Chill homes now</b> (see the Customer tab).</li>
+          <b>customer-visible for All-E + Chill homes now</b>. It was already communicated to customers in its
+          originating release, so it is not re-listed in the Customer tab this wave.</li>
         <li><strong>App minimum version raised to 1.60.0.</strong> Cloud now rejects installer apps below the floor at
           commissioning create/start with a 426 <span class="tkey">(QPD-15812, QPD-15795)</span>, and the update banner /
           admin APIs learn min and latest versions <span class="tkey">(QPD-15798, QPD-15797, QPD-15800)</span>.</li>
@@ -242,7 +242,7 @@
       <ul>
         <li>Enable Charge Cool fleet-wide: set <code>chillAllEChargeCoolEnabled</code> to true in Cloud v2.47.0 <span class="tkey">(QPD-15793 <span class="team">Cloud / Backend</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for CS:</b> live for All-Electric installations that also have a Chill &mdash; those homes now charge their HeatBattery with the heat removed during cooling, visible on the app HeatBattery screen. This is customer-facing (see the Customer tab). It does not affect hybrid or non-Chill systems.</div>
+      <div class="impact"><b>Impact for CS:</b> live for All-Electric installations that also have a Chill &mdash; those homes now charge their HeatBattery with the heat removed during cooling, visible on the app HeatBattery screen. This is customer-facing, but was already communicated in its originating release, so it is not re-listed in the Customer tab this wave. It does not affect hybrid or non-Chill systems.</div>
     </div>
 
     <div class="theme-card">
