@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quatt Ecosystem Release 16.09.2026 — beta</title>
+<title>Quatt Ecosystem Release 16.09.2026 — stable</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,10 +25,10 @@
 <main class="wrap">
   <div class="crumb"><a href="../index.html">Releases</a> / 16.09.2026</div>
   <div class="page-head">
-    <div class="kicker">CiC diffed 4.13.0 &rarr; 4.14.0-beta.1 &middot; beta</div>
+    <div class="kicker">CiC diffed 4.13.0 &rarr; 4.14.0 &middot; stable (GA)</div>
     <h1>Quatt Ecosystem Release <span class="dim">16.09.2026</span></h1>
     <div class="sub">
-      <span class="chip cic">CiC 4.14.0-beta.1</span>
+      <span class="chip cic">CiC 4.14.0</span>
       <span class="chip cloud">Cloud v2.47.0</span>
       <span class="chip app">App v1.62.0</span>
       <span class="chip fw">Controller 6.14.0</span>
@@ -42,11 +42,12 @@
   <div class="review-only"><div class="review-panel">
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview — hidden in production.</p>
-    <p><b>Promotion — beta.0 &rarr; beta.1 (same 4.14.0 wave, no phase change).</b> The currently published entry on main is CiC <b>4.14.0-beta.0</b> (page 2026-09-11); this revision advances the wave to <b>4.14.0-beta.1</b>. The badge stays <b>beta</b>. Headline date is now <b>2026-09-16</b> — the 4.14.0-beta.1 GitHub Release's <code>published_at</code> (2026-09-16 11:40 UTC); the tag is now published, so the earlier commit-date fallback no longer applies. One page per wave: this page replaces the 2026-09-11 (beta.0) page, which is removed.</p>
-    <p><b>Paired product versions:</b> unchanged from beta.0 — Cloud <b>v2.47.0</b>, App <b>v1.62.0</b> (no new app), Thread FW <b>2.14.0</b>, Controller 6.14.0, HeatCharger FW 1.3.0, Chill CB FW 2.0.0, ODU FW 2.1. No new Cloud or App release shipped in the beta.0&rarr;beta.1 window (latest Cloud is v2.47.0, latest App is v1.62.0).</p>
-    <p><b>New commit since beta.0:</b> one — <code>quatt-messagespec</code> <b>2.85.0 &rarr; 2.85.1</b> (cic-shared-objects). It carries a schema fix <span class="tkey">QPD-15927</span> "allow a null <code>thermostatSchedule</code> in the settings schema" (a JSON-schema validation error on the thermostat schedule) plus an unkeyed spec change moving the predictive-heating-enabled field from config to setting. Message-spec / validation plumbing only; no runtime control or customer-facing behaviour change. <span class="new-tag">new</span> ticket row added to Engineering under epic QPD-11880, so the ticket count rises <b>35 &rarr; 36</b>.</p>
-    <p><b>Enablement sweep (carried forward):</b> Charge Cool remains live fleet-wide via Cloud v2.47.0 (QPD-15793, <code>chillAllEChargeCoolEnabled</code>); its controller code shipped in CiC 4.11.0 (Controller 6.12.0). No new enablements or reverts this revision.</p>
-    <p><b>Customer tab:</b> unchanged from beta.0. The Charge Cool bullet under "New functions" (EN + NL) stays removed — it was already communicated to customers in the CiC 4.11.0 wave (the HeatBattery screen "charging with Chill" / "opladen met Chill"), so it is not re-listed. The generic WiFi-driver bullet under "Bug fixes and maintenance" (EN + NL) is carried forward. The messagespec schema fix is not customer-visible, so no Tier 1 change.</p>
+    <p><b>Promotion — beta.1 &rarr; 4.14.0 (GA, same build).</b> The currently published entry on main is CiC <b>4.14.0-beta.1</b> (this same page); this revision promotes the wave to the general release <b>4.14.0</b>. The badge advances <b>beta &rarr; stable (GA)</b>. The <code>4.14.0</code> tag points at the <b>same commit</b> as <code>4.14.0-beta.1</code> (<code>40be5ee</code>), so this is a same-commit promotion: the build, the paired versions and every ticket are unchanged — only the phase, the CiC version label and the phase framing change. The GA firmware now goes to the general customer fleet, so the beta-track "not on the fleet" caveats are dropped.</p>
+    <p><b>Headline date unchanged — 2026-09-16.</b> The <code>4.14.0</code> tag has no published GitHub Release yet, so per the date rule the headline falls back to the tag commit's committer date, which is the same commit as beta.1 (2026-09-16 11:20 UTC). Same date, same page filename (<code>2026-09-16.html</code>), one page per wave.</p>
+    <p><b>Paired product versions:</b> unchanged from beta.1 — Cloud <b>v2.47.0</b>, App <b>v1.62.0</b> (no new app), Thread FW <b>2.14.0</b>, Controller 6.14.0, HeatCharger FW 1.3.0, Chill CB FW 2.0.0, ODU FW 2.1.</p>
+    <p><b>New tickets since beta.1:</b> none — same commit, so the Engineering table is unchanged at <b>36</b> ticket entries.</p>
+    <p><b>Enablement sweep (carried forward):</b> Charge Cool remains live fleet-wide via Cloud v2.47.0 (QPD-15793, <code>chillAllEChargeCoolEnabled</code>); its controller code shipped in CiC 4.11.0 (Controller 6.12.0). No new enablements or reverts on the GA promotion.</p>
+    <p><b>Customer tab:</b> unchanged. The Charge Cool bullet under "New functions" (EN + NL) stays removed — it was already communicated to customers in the CiC 4.11.0 wave (the HeatBattery screen "charging with Chill" / "opladen met Chill"), so it is not re-listed. The generic WiFi-driver bullet under "Bug fixes and maintenance" (EN + NL) is carried forward — now on the GA build it reaches the customer fleet. No release-engineering wording (alpha/beta/fleet) appears on the customer surface.</p>
   </div></div>
 
   <section class="timeline-wrap" id="release-timeline" hidden>
@@ -118,28 +119,27 @@
 
     <div class="callout-warn scope-banner">
       <p>
-        <span class="lead">Scope &mdash; CiC 4.14.0-beta.1 (beta track, not the general fleet)</span>
-        Diffed 4.13.0 &rarr; 4.14.0-beta.1. Paired backend <strong>Cloud v2.47.0</strong> (2026-09-10). No new App release
+        <span class="lead">Scope &mdash; CiC 4.14.0 (general release / GA)</span>
+        Diffed 4.13.0 &rarr; 4.14.0. Paired backend <strong>Cloud v2.47.0</strong> (2026-09-10). No new App release
         this wave &mdash; the app stays at <strong>v1.62.0</strong>. Bundled firmware moves Thread FW
         <strong>2.13.0 &rarr; 2.14.0</strong>; Controller 6.14.0, HeatCharger FW 1.3.0, Chill control-board FW 2.0.0 and
         ODU FW 2.1 are unchanged. Embedded apps <strong>1.36.0 &rarr; 1.37.0</strong>, message spec
         <strong>2.84.0 &rarr; 2.85.1</strong>, network-monitoring <strong>1.4.0 &rarr; 1.5.0</strong>.
-        Headline date 2026-09-16 = the 4.14.0-beta.1 GitHub Release's published date.
+        Headline date 2026-09-16 = the 4.14.0 tag commit's committer date (no GitHub Release published yet).
       </p>
       <p>
-        <span class="lead">Revision &mdash; beta.0 &rarr; beta.1 (same 4.14.0 wave)</span>
-        This page advances the 4.14.0 wave from beta.0 to <strong>beta.1</strong>, no phase change. The only new commit
-        since beta.0 bumps <code>quatt-messagespec</code> <strong>2.85.0 &rarr; 2.85.1</strong> (cic-shared-objects): a
-        schema fix under <span class="tkey">QPD-15927</span> allowing a null <code>thermostatSchedule</code> in the settings
-        schema, plus an unkeyed spec change moving the predictive-heating-enabled field from config to setting. Message-spec /
-        validation plumbing only &mdash; no runtime or field behaviour change. Everything else below is carried forward
-        unchanged from beta.0.
+        <span class="lead">Revision &mdash; beta.1 &rarr; 4.14.0 (GA promotion, same build)</span>
+        This page promotes the 4.14.0 wave from beta.1 to the general release <strong>4.14.0</strong>. The <code>4.14.0</code>
+        tag points at the <strong>same commit</strong> as <code>4.14.0-beta.1</code> (<code>40be5ee</code>): no new commits,
+        no new tickets, identical bundled firmware and paired versions. The change is purely the phase (beta &rarr; GA) and the
+        version label. The beta.1 revision's message-spec fix (<span class="tkey">QPD-15927</span>, null
+        <code>thermostatSchedule</code>, message spec 2.85.1) is part of this GA build.
       </p>
       <p>
-        <span class="lead">Wave phase &mdash; beta (new 4.14.0 minor)</span>
-        The CiC 4.14.0 firmware is a beta build on the beta-test track; it is not on the general customer fleet.
-        Its WiFi / connectivity reliability work therefore does not reach customers in this wave. Cloud v2.47.0 is a
-        normal production backend release and its changes are live fleet-wide.
+        <span class="lead">Wave phase &mdash; stable / GA (new 4.14.0 minor)</span>
+        CiC 4.14.0 is a general release: production-ready and rolling out to the customer fleet. The WiFi / connectivity
+        reliability work in this build now reaches customers as the fleet rollout proceeds. Cloud v2.47.0 is a normal
+        production backend release and its changes were already live fleet-wide.
       </p>
       <p><span class="lead">Enablement sweep &mdash; what actually goes live this wave</span></p>
       <ul>
@@ -154,11 +154,11 @@
           admin APIs learn min and latest versions <span class="tkey">(QPD-15798, QPD-15797, QPD-15800)</span>.</li>
         <li><strong>Thread FW 2.14.0</strong> is bundled in the CiC image (dongle / Chill interface board). It carries an
           OTA brick-risk fix, a CoAP write-safety fix and Thread-certification work &mdash; it ships to whatever runs the
-          4.14.0-beta.1 image, i.e. the beta track only this wave.</li>
+          4.14.0 image, i.e. the general fleet as the GA rollout proceeds.</li>
         <li><strong>CiC WiFi / connectivity reliability</strong> (WiFi firmware bump, kernel-side chip recovery, roaming,
-          network-switch timeout) is in the 4.14.0-beta.1 build only &mdash; not yet on the customer fleet.</li>
+          network-switch timeout) ships in the 4.14.0 GA build and reaches the customer fleet through the rollout.</li>
       </ul>
-      <p><b>The beta CiC firmware goes only to the beta-test track &mdash; do not communicate its behaviour to the wider customer base or installers.</b></p>
+      <p><b>CiC 4.14.0 is the general release &mdash; its firmware behaviour reaches the customer fleet as the rollout proceeds; CS and installers can treat it as live once a CiC is on 4.14.0.</b></p>
     </div>
 
     <div class="theme-card">
@@ -176,7 +176,7 @@
 
     <div class="theme-card">
       <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11880" target="_blank">QPD-11880</a> &middot; Bug Fixing &amp; Fleet Diagnostics <span class="epic">6 tickets</span></h3>
-      <p class="epic-desc">The embedded team&rsquo;s rolling bug-fixing and fleet-diagnostics Epic. This wave&rsquo;s theme is WiFi and dongle connectivity reliability, landing in the CiC 4.14.0-beta.1 build and bundled Thread FW 2.14.0.</p>
+      <p class="epic-desc">The embedded team&rsquo;s rolling bug-fixing and fleet-diagnostics Epic. This wave&rsquo;s theme is WiFi and dongle connectivity reliability, landing in the CiC 4.14.0 GA build and bundled Thread FW 2.14.0.</p>
       <ul>
         <li><b>WiFi chip crash fixed:</b> bump the SD8987 WiFi firmware (p69.3 &rarr; p142.3) so the chip self-recovers from the CSA-during-reassociation race that previously wedged it permanently <span class="tkey">(QPD-15660 <span class="team">Embedded Systems</span>)</span></li>
         <li><b>Thread stats freeze fixed:</b> resolve a lock-order deadlock in cic-thread-network-manager between the libcoap I/O thread and the device runners that froze all FTD stats at connected=true <span class="tkey">(QPD-15733 <span class="team">Embedded Systems</span>)</span></li>
@@ -185,7 +185,7 @@
         <li><b>Boiler control default:</b> change the OpenTherm thermostat domestic-hot-water enable (<code>ot_tb_dhw_enable</code>) to default on, evaluated for hybrid boiler setups <span class="tkey">(QPD-15124 <span class="team">Embedded Systems</span>)</span></li>
         <li><b>Thermostat schedule schema fix:</b> the cloud&rarr;CiC settings message now accepts a null <code>thermostatSchedule</code>, so settings updates that carry no schedule no longer trip a JSON-schema validation error (bundled message spec 2.85.1) <span class="tkey">(QPD-15927 <span class="team">Embedded Systems</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for ops:</b> these address real field failure modes (WiFi chips wedging offline, dongle OTA bricking, frozen Thread stats, rejected thermostat-schedule settings). They ride the CiC 4.14.0-beta.1 build and bundled Thread FW 2.14.0, so they reach the beta track first, not the general fleet, this wave.</div>
+      <div class="impact"><b>Impact for ops:</b> these address real field failure modes (WiFi chips wedging offline, dongle OTA bricking, frozen Thread stats, rejected thermostat-schedule settings). They ride the CiC 4.14.0 GA build and bundled Thread FW 2.14.0, so they reach the customer fleet as the rollout proceeds.</div>
     </div>
 
     <div class="theme-card tech-debt-group">
@@ -199,7 +199,7 @@
           <li>Re-enable WiFi background scanning and roaming after the WiFi firmware/driver bump, so a CiC moves to a stronger access point on multi-AP networks <span class="tkey">(QPD-15493 <span class="team">Embedded Systems</span>)</span></li>
           <li>Remove the unused <code>cic-heating-state-predictor</code> app from the image <span class="tkey">(QPD-15674 <span class="team">Embedded Systems</span>)</span></li>
         </ul>
-        <div class="impact"><b>Impact for ops:</b> further WiFi reliability hardening on the CiC 4.14.0-beta.1 build; no field action.</div>
+        <div class="impact"><b>Impact for ops:</b> further WiFi reliability hardening on the CiC 4.14.0 GA build; no field action.</div>
       </div>
 
       <div class="subcard">
@@ -208,7 +208,7 @@
         <ul>
           <li>Fix a ~4-minute MQTT timeout when the CiC switches network connections: destroy stale outbound sockets when the preferred interface changes, tighten the MQTT reconnect backoff to 1&ndash;30&nbsp;s, and start network-monitoring after NetworkManager finishes coming up <span class="tkey">(QPD-15734 <span class="team">Embedded Systems</span>)</span></li>
         </ul>
-        <div class="impact"><b>Impact for ops:</b> faster cloud reconnection after a CiC switches between Ethernet, WiFi and LTE; beta build only this wave.</div>
+        <div class="impact"><b>Impact for ops:</b> faster cloud reconnection after a CiC switches between Ethernet, WiFi and LTE; ships in the 4.14.0 GA build.</div>
       </div>
 
       <div class="subcard">
@@ -235,10 +235,10 @@
       <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11774" target="_blank">QPD-11774</a> &middot; Embedded Release Management <span class="epic">2 tickets</span></h3>
       <p class="epic-desc">Release plumbing for the embedded products.</p>
       <ul>
-        <li>Cut and advance the CiC 4.14.0 release through the pre-release track, now at <b>beta.1</b>; across the wave this bumped <code>cic-controller-manager</code> 3.19.0 &rarr; 3.19.1 (a settings-frame HIL-test fix) and, in beta.1, the bundled message spec 2.85.0 &rarr; 2.85.1 <span class="tkey">(QPD-15841 <span class="team">Embedded Systems</span>)</span></li>
+        <li>Cut and advance the CiC 4.14.0 release through the pre-release track (alpha &rarr; beta) to the general release <b>4.14.0</b> (same commit as beta.1); across the wave this bumped <code>cic-controller-manager</code> 3.19.0 &rarr; 3.19.1 (a settings-frame HIL-test fix) and, in beta.1, the bundled message spec 2.85.0 &rarr; 2.85.1 <span class="tkey">(QPD-15841 <span class="team">Embedded Systems</span>)</span></li>
         <li>Cut the quatt-dongle 2.14.0 release (bundled as Thread FW 2.14.0) <span class="tkey">(QPD-15753 <span class="team">Embedded Systems</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for ops:</b> release management only &mdash; no field behaviour change of its own. The beta.0&rarr;beta.1 step is a message-spec bump, not a runtime change.</div>
+      <div class="impact"><b>Impact for ops:</b> release management only &mdash; no field behaviour change of its own. The beta.1 &rarr; 4.14.0 GA step is a same-commit promotion, not a code change.</div>
     </div>
 
     <div class="theme-card">
@@ -274,7 +274,7 @@
       <ul>
         <li>Report the associated WiFi network(s) and signal strength into Redis, read from NetworkManager over D-Bus <span class="tkey">(QPD-3458 <span class="team">Embedded Systems</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for ops:</b> richer WiFi diagnostics for fleet monitoring; beta build only this wave.</div>
+      <div class="impact"><b>Impact for ops:</b> richer WiFi diagnostics for fleet monitoring; ships in the 4.14.0 GA build.</div>
     </div>
 
     <div class="theme-card">
@@ -353,16 +353,15 @@
       <tbody id="rows"></tbody>
     </table>
     <p class="footer-note">
-      Built from GitHub tag diffs (source of truth: CiC 4.13.0 &rarr; 4.14.0-beta.1 via <code>quatt-revisions.inc</code>;
+      Built from GitHub tag diffs (source of truth: CiC 4.13.0 &rarr; 4.14.0 via <code>quatt-revisions.inc</code>;
       component changelogs from each repo&rsquo;s tag-to-tag compare), cross-referenced with Jira for ticket type / priority.
       Bundled firmware moved Thread FW 2.13.0 &rarr; 2.14.0; embedded apps 1.36.0 &rarr; 1.37.0, message spec
       2.84.0 &rarr; 2.85.1, network-monitoring 1.4.0 &rarr; 1.5.0. Controller 6.14.0, HeatCharger FW 1.3.0,
       Chill control-board FW 2.0.0 and ODU FW 2.1 are unchanged. Paired backend <b>Cloud v2.47.0</b> (v2.46.0 &rarr; v2.47.0);
       no new App release this wave (app stays v1.62.0).
-      <b>beta.0 &rarr; beta.1 revision:</b> the sole new commit since beta.0 bumps <code>quatt-messagespec</code>
-      2.85.0 &rarr; 2.85.1 (cic-shared-objects) &mdash; a settings-schema fix allowing a null <code>thermostatSchedule</code>
-      (QPD-15927) plus an unkeyed move of the predictive-heating-enabled field from config to setting; spec/validation only,
-      no runtime change.
+      <b>beta.1 &rarr; 4.14.0 GA:</b> the <code>4.14.0</code> tag points at the same commit as <code>4.14.0-beta.1</code>
+      (<code>40be5ee</code>) &mdash; a same-commit promotion with no new commits and no new tickets. The beta.1 message-spec fix
+      (<code>quatt-messagespec</code> 2.85.0 &rarr; 2.85.1, null <code>thermostatSchedule</code>, QPD-15927) is part of this GA build.
       <b>Production enablement (no CiC commit):</b> Charge Cool is enabled fleet-wide via a Cloud config flag flip
       (QPD-15793); the underlying controller code shipped in CiC 4.11.0 (Controller 6.12.0).
       Use the <code>release-auditor</code> skill for commit-level traceability.
@@ -423,7 +422,7 @@ const T = [
  ["Cloud",15747,"Task","Medium","","Expose weather forecast publish time (lastPublishedAt) on the admin installation",7154],
  ["Cloud",15805,"Task","Medium","","HomeBattery support dashboard: show customer name under House Details",14390],
  ["Cloud",15802,"Bug","Medium","","Prevent Chill settings rejection for unset timestamps",0],
- // ---- CiC 4.14.0-beta.1 (yocto / embedded apps / network-monitoring) ----
+ // ---- CiC 4.14.0 (yocto / embedded apps / network-monitoring) ----
  ["CiC",15660,"Bug","High","","Bump SD8987 WiFi firmware (p69.3 -> p142.3) to self-recover from the CSA-during-reassociation chip wedge",11880],
  ["CiC",15733,"Bug","High","","cic-thread-network-manager: lock-order deadlock froze all FTD stats at connected=true (defer CoAP restarts)",11880],
  ["CiC",15765,"Task","Medium","In validation","Publish per-device CoAP restart counts (last1h/24h/lastAt) in thread_devices_stats",11880],
@@ -436,7 +435,7 @@ const T = [
  ["CiC",3458,"Task","Low","","Report associated WiFi network(s) + signal strength into Redis via NetworkManager D-Bus",164],
  ["CiC",14633,"Task","Medium","","Scope CVE scan to the prod image manifest; drop dev-only blanket accepts",7127],
  ["CiC",15122,"Story","Medium","","Virtual Quatt Phase 1: make the cic-cloud-proxy env-override hint parseable",15345],
- ["CiC",15841,"Task","Medium","In Progress","Create the CiC 4.14.0 release (pre-release track through beta.1: bump cic-controller-manager 3.19.0->3.19.1 and message spec 2.85.0->2.85.1)",11774],
+ ["CiC",15841,"Task","Medium","In Progress","Create the CiC 4.14.0 release (pre-release track alpha->beta to GA 4.14.0, same commit as beta.1: bump cic-controller-manager 3.19.0->3.19.1 and message spec 2.85.0->2.85.1)",11774],
  ["CiC",15518,"Bug","Medium","","A926 engine boiler-bus failsafe is dead code — remove the never-firing repeat-last-frame limb",0],
  ["CiC",13457,"Task","Medium","To Do","Build only the libraries when consumed via FetchContent (quattlibs)",0],
  // ---- Thread (quatt-dongle / Thread FW 2.14.0) ----

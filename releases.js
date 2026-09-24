@@ -35,10 +35,10 @@ window.RELEASES = [
   {
     date: "2026-09-16",
     title: "Quatt Ecosystem Release 16.09.2026",
-    badge: { cls: "beta", label: "beta" },
+    badge: { cls: "stable", label: "stable (GA)" },
     page: "releases/2026-09-16.html",
     chips: [
-      { cls: "cic",   label: "CiC 4.14.0-beta.1" },
+      { cls: "cic",   label: "CiC 4.14.0" },
       { cls: "cloud", label: "Cloud v2.47.0" },
       { cls: "app",   label: "App v1.62.0" },
       { cls: "fw",    label: "Controller 6.14.0" },
@@ -51,7 +51,7 @@ window.RELEASES = [
       { b: "36", t: "ticket entries" },
       { b: "Cloud v2.47.0", t: "paired backend (no new app)" },
       { b: "Charge Cool", t: "enabled fleet-wide (All-E + Chill)" },
-      { b: "beta.1", t: "4.14.0-beta.1 — beta-test track" }
+      { b: "stable", t: "GA — promoted from beta (same build)" }
     ]
   },
   {
