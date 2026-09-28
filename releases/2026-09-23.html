@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quatt Ecosystem Release 23.09.2026 — CiC 4.15.0-alpha.0</title>
+<title>Quatt Ecosystem Release 23.09.2026 — CiC 4.15.0-beta.0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,10 +25,10 @@
 <main class="wrap">
   <div class="crumb"><a href="../index.html">Releases</a> / 23.09.2026</div>
   <div class="page-head">
-    <div class="kicker">CiC diffed 4.14.0-beta.1 &rarr; 4.15.0-alpha.0 &middot; alpha</div>
+    <div class="kicker">CiC diffed 4.14.0-beta.1 &rarr; 4.15.0-beta.0 &middot; beta</div>
     <h1>Quatt Ecosystem Release <span class="dim">23.09.2026</span></h1>
     <div class="sub">
-      <span class="chip cic">CiC 4.15.0-alpha.0</span>
+      <span class="chip cic">CiC 4.15.0-beta.0</span>
       <span class="chip cloud">Cloud v2.48.0</span>
       <span class="chip app">App v1.62.0</span>
       <span class="chip fw">Controller 6.14.0</span>
@@ -42,10 +42,16 @@
   <div class="review-only"><div class="review-panel">
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview — hidden in production.</p>
-    <p class="none">New release notes — first published revision.</p>
-    <p class="sub"><b>Scope:</b> CiC <b>4.15.0-alpha.0</b> (alpha track, not the general fleet), diffed 4.14.0-beta.1 &rarr; 4.15.0-alpha.0. Paired backend <b>Cloud v2.48.0</b> (2026-09-23). No new App release — app stays <b>v1.62.0</b>. Bundled firmware: Chill control-board FW <b>2.0.0 &rarr; 2.0.1</b>; Controller 6.14.0, Thread FW 2.14.0, HeatCharger FW 1.3.0, ODU FW 2.1 unchanged. Embedded apps 1.37.0 &rarr; 1.37.1, message spec 2.85.1 &rarr; 2.85.2, network-monitoring 1.5.0 &rarr; 1.5.1, controller-manager 3.19.1 &rarr; 3.19.2. Headline date 2026-09-23 = the 4.15.0-alpha.0 tag commit's committer date (no GitHub Release published yet). <b>36 ticket rows / 35 unique.</b></p>
-    <p class="sub"><b>Phase:</b> alpha (tag suffix <code>-alpha.0</code> on the new 4.15.0 minor). The CiC firmware is on the alpha-test track, not the customer fleet; Cloud v2.48.0 is a normal production backend release.</p>
-    <p class="sub"><b>Customer tab (Tier 1):</b> the genuinely-new customer-perceivable item this wave is the <b>Chill control-board firmware fix in heating mode</b> (QPD-15886), added under "Bug fixes and maintenance" (EN + NL, generic wording, no versions). The WiFi-driver bullet is <b>not</b> repeated — it was already communicated in the CiC 4.14.0 wave. Predictive heating is enabled for the pilot cohort only, so it is not announced to customers.</p>
+    <p class="sub"><b>Promotion alpha &rarr; beta of the identical build.</b> This revision promotes the 4.15.0 wave from its published alpha entry (CiC 4.15.0-alpha.0) to beta (CiC 4.15.0-beta.0). The two tags point at the <b>same commit</b> (<code>0d006c7</code>) — GitHub reports the ranges as identical (0 changes) — so the CiC image, all bundled firmware and every paired product version are byte-for-byte the same as the alpha revision.</p>
+    <ul>
+      <li><b>Phase transition:</b> alpha &rarr; beta (tag suffix <code>-alpha.0</code> &rarr; <code>-beta.0</code> on the 4.15.0 minor). Badge promoted alpha &rarr; beta.</li>
+      <li><b>Paired-product version bumps:</b> none. Cloud stays <b>v2.48.0</b>, App stays <b>v1.62.0</b>; bundled firmware unchanged (Chill CB FW 2.0.1, Controller 6.14.0, Thread FW 2.14.0, HeatCharger FW 1.3.0, ODU FW 2.1; embedded apps 1.37.1, message spec 2.85.2, network-monitoring 1.5.1, controller-manager 3.19.2).</li>
+      <li><b>Newly-added tickets since the wave's previous tag (4.15.0-alpha.0):</b> none — the beta tag is the identical commit, so there are no new commits or QPD keys to fold in. The ticket table is unchanged at <b>36 rows / 35 unique</b>.</li>
+      <li><b>Reverted / removed:</b> nothing.</li>
+    </ul>
+    <p class="sub"><b>Enablement sweep (re-run for the beta):</b> no change since the alpha. Predictive heating (QPD-15828 / QPD-15847) remains enabled for the pilot cohort only; reactive avoid-gas-boiler (QPD-16006) stays on develop only; Charge Cool remains live fleet-wide (already communicated). No new fleet/config rollout landed between the alpha and beta tags.</p>
+    <p class="sub"><b>Scope:</b> CiC <b>4.15.0-beta.0</b> (beta-test track, not the general fleet), diffed 4.14.0-beta.1 &rarr; 4.15.0-beta.0. Paired backend <b>Cloud v2.48.0</b> (2026-09-23, the latest Cloud tag). Headline date 2026-09-23 = the 4.15.0-beta.0 tag commit's committer date (no GitHub Release published for the beta tag).</p>
+    <p class="sub"><b>Customer tab (Tier 1):</b> unchanged from the alpha revision. The Chill control-board firmware heating-mode fix (QPD-15886) stays under "Bug fixes and maintenance" (EN + NL, generic wording, no versions or phase words). The WiFi-driver bullet is still <b>not</b> repeated (already communicated in the CiC 4.14.0 wave), and predictive heating stays out of Tier 1 (pilot cohort only).</p>
   </div></div>
 
   <section class="timeline-wrap" id="release-timeline" hidden>
@@ -117,19 +123,21 @@
 
     <div class="callout-warn scope-banner">
       <p>
-        <span class="lead">Scope &mdash; CiC 4.15.0-alpha.0 (alpha track, not the general fleet)</span>
-        Diffed 4.14.0-beta.1 &rarr; 4.15.0-alpha.0. Paired backend <strong>Cloud v2.48.0</strong> (2026-09-23). No new App release
-        this wave &mdash; the app stays at <strong>v1.62.0</strong>. Bundled firmware moves Chill control-board FW
-        <strong>2.0.0 &rarr; 2.0.1</strong>; Controller 6.14.0, Thread FW 2.14.0, HeatCharger FW 1.3.0 and ODU FW 2.1 are
-        unchanged. Embedded apps <strong>1.37.0 &rarr; 1.37.1</strong>, message spec <strong>2.85.1 &rarr; 2.85.2</strong>,
-        network-monitoring <strong>1.5.0 &rarr; 1.5.1</strong>, controller-manager <strong>3.19.1 &rarr; 3.19.2</strong>.
-        Headline date 2026-09-23 = the 4.15.0-alpha.0 tag commit&rsquo;s committer date (no GitHub Release published yet).
+        <span class="lead">Scope &mdash; CiC 4.15.0-beta.0 (beta track, not the general fleet)</span>
+        Diffed 4.14.0-beta.1 &rarr; 4.15.0-beta.0. This beta tag is the <strong>same commit as 4.15.0-alpha.0</strong>
+        (identical build, 0 changes), so the image and every version below match the alpha revision. Paired backend
+        <strong>Cloud v2.48.0</strong> (2026-09-23). No new App release this wave &mdash; the app stays at <strong>v1.62.0</strong>.
+        Bundled firmware moves Chill control-board FW <strong>2.0.0 &rarr; 2.0.1</strong>; Controller 6.14.0, Thread FW 2.14.0,
+        HeatCharger FW 1.3.0 and ODU FW 2.1 are unchanged. Embedded apps <strong>1.37.0 &rarr; 1.37.1</strong>, message spec
+        <strong>2.85.1 &rarr; 2.85.2</strong>, network-monitoring <strong>1.5.0 &rarr; 1.5.1</strong>, controller-manager
+        <strong>3.19.1 &rarr; 3.19.2</strong>. Headline date 2026-09-23 = the 4.15.0-beta.0 tag commit&rsquo;s committer date
+        (no GitHub Release published for the beta tag).
       </p>
       <p>
-        <span class="lead">Wave phase &mdash; alpha (new 4.15.0 minor)</span>
-        The CiC 4.15.0 firmware is an alpha build on the alpha-test track; it is not on the general customer fleet. Its
-        firmware-side fixes therefore do not reach customers in this wave. Cloud v2.48.0 is a normal production backend
-        release and its changes are live fleet-wide.
+        <span class="lead">Wave phase &mdash; beta (new 4.15.0 minor)</span>
+        The CiC 4.15.0 firmware is a beta build on the beta-test track; it is not on the general customer fleet. Its
+        firmware-side fixes therefore do not reach the wider customer base in this wave. Cloud v2.48.0 is a normal production
+        backend release and its changes are live fleet-wide.
       </p>
       <p><span class="lead">Enablement sweep &mdash; what actually goes live this wave</span></p>
       <ul>
@@ -143,11 +151,11 @@
         <li><strong>Charge Cool remains live fleet-wide</strong> (enabled in the CiC 4.11.0 / 4.14.0 waves via
           <code>chillAllEChargeCoolEnabled</code>, QPD-15793). No change this wave; already communicated to customers.</li>
         <li><strong>Chill control-board FW 2.0.1</strong> (a heating-mode fix) is bundled in the CiC image and reaches whatever
-          runs the 4.15.0-alpha.0 build, i.e. the alpha track only this wave.</li>
+          runs the 4.15.0-beta.0 build, i.e. the beta track only this wave.</li>
         <li><strong>Thread FW stays 2.14.0</strong> (unchanged). quatt-dongle tagged 2.14.1 on 2026-09-20, but it is not
           bundled in this CiC image.</li>
       </ul>
-      <p><b>The alpha CiC firmware goes only to the alpha-test track &mdash; do not communicate its behaviour to the wider customer base or installers.</b></p>
+      <p><b>The beta CiC firmware goes only to the beta-test track &mdash; do not communicate its behaviour to the wider customer base or installers.</b></p>
     </div>
 
     <div class="theme-card">
@@ -178,7 +186,7 @@
 
     <div class="theme-card">
       <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11880" target="_blank">QPD-11880</a> &middot; Bug Fixing &amp; Fleet Diagnostics <span class="epic">4 tickets</span></h3>
-      <p class="epic-desc">The embedded team&rsquo;s rolling bug-fixing and fleet-diagnostics Epic. This wave: a factory-reset fix, a config-delivery fix, message-spec robustness, and OTA retry backoff &mdash; all riding the CiC 4.15.0-alpha.0 build.</p>
+      <p class="epic-desc">The embedded team&rsquo;s rolling bug-fixing and fleet-diagnostics Epic. This wave: a factory-reset fix, a config-delivery fix, message-spec robustness, and OTA retry backoff &mdash; all riding the CiC 4.15.0-beta.0 build.</p>
       <ul>
         <li><b>Factory reset fixed:</b> <code>quatt-factory-reset</code> used an invalid <code>systemctl stop --timeout</code> option, so it never actually stopped the owner services during a factory reset &mdash; corrected <span class="tkey">(QPD-15989 <span class="team">Embedded Systems</span>)</span></li>
         <li><b>Config delivery fixed:</b> nested config objects (e.g. the predictive-heating dual-rate model) were never written to their Redis key, so the controller never received them &mdash; fixed in controller-manager 3.19.2 <span class="tkey">(QPD-16011 <span class="team">Embedded Systems</span>)</span></li>
@@ -186,7 +194,7 @@
         <li><b>OTA retry backoff:</b> OTA update-cycle retries had no delay, so 20 cycles could burn in ~2 seconds and turn a transient &ldquo;not now&rdquo; into a permanent failure &mdash; the OTA library now backs off between retries (bundled via embedded apps 1.37.1) <span class="tkey">(QPD-15978 <span class="team">Embedded Systems</span>)</span></li>
         <li><b>Diagnostics (no ticket):</b> every Axiom log record is now stamped with the CiC version, so fleet logs are attributable to a firmware version</li>
       </ul>
-      <div class="impact"><b>Impact for ops:</b> these fix real field and diagnostic failure modes (factory reset not stopping services, config not reaching the controller, OTA updates failing instantly). They ride the CiC 4.15.0-alpha.0 build, so they reach the alpha track first, not the general fleet, this wave.</div>
+      <div class="impact"><b>Impact for ops:</b> these fix real field and diagnostic failure modes (factory reset not stopping services, config not reaching the controller, OTA updates failing instantly). They ride the CiC 4.15.0-beta.0 build, so they reach the beta track first, not the general fleet, this wave.</div>
     </div>
 
     <div class="theme-card">
@@ -196,7 +204,7 @@
         <li><b>Chill control-board firmware 2.0.1:</b> fixes a heating-mode bug found by the manufacturer (Amitime); bundled in the CiC image <span class="tkey">(QPD-15886 <span class="team">Embedded Systems</span>)</span></li>
         <li><b>Chill flow test recovery:</b> the commissioning Chill flow test now recovers from a temporary flow fault instead of leaving the installer stuck <span class="tkey">(QPD-15850 <span class="team">Cloud / Backend</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for installers / CS:</b> the Chill flow test no longer dead-ends on a temporary flow fault. The Chill control-board firmware heating-mode fix is customer-perceivable for Chill owners (see the Customer tab), but rides the CiC image and reaches the alpha track first this wave.</div>
+      <div class="impact"><b>Impact for installers / CS:</b> the Chill flow test no longer dead-ends on a temporary flow fault. The Chill control-board firmware heating-mode fix is customer-perceivable for Chill owners (see the Customer tab), but rides the CiC image and reaches the beta track first this wave.</div>
     </div>
 
     <div class="theme-card">
@@ -205,7 +213,7 @@
       <ul>
         <li>Keep <code>mender-updated</code> alive during a routing change while an update is running, completing the fix for the ~4-minute MQTT timeout when the CiC switches network connections. The main network-switch reconnection fix shipped in the previous wave (CiC 4.14.0-beta.1); this adds the update-path robustness <span class="tkey">(QPD-15734 <span class="team">Embedded Systems</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for ops:</b> an over-the-air update is no longer interrupted when the CiC switches network interface mid-update; alpha build only this wave.</div>
+      <div class="impact"><b>Impact for ops:</b> an over-the-air update is no longer interrupted when the CiC switches network interface mid-update; beta build only this wave.</div>
     </div>
 
     <div class="theme-card">
@@ -264,7 +272,8 @@
       <tbody id="rows"></tbody>
     </table>
     <p class="footer-note">
-      Built from GitHub tag diffs (source of truth: CiC 4.14.0-beta.1 &rarr; 4.15.0-alpha.0 via <code>quatt-revisions.inc</code>;
+      Built from GitHub tag diffs (source of truth: CiC 4.14.0-beta.1 &rarr; 4.15.0-beta.0 via <code>quatt-revisions.inc</code>;
+      4.15.0-beta.0 is the same commit as 4.15.0-alpha.0, so the content is identical to the alpha revision;
       component changelogs from each repo&rsquo;s tag-to-tag compare), cross-referenced with Jira for ticket type / priority / status.
       Bundled firmware: Chill CB FW 2.0.0 &rarr; 2.0.1; Controller 6.14.0, Thread FW 2.14.0, HeatCharger FW 1.3.0 and ODU FW 2.1
       unchanged. Embedded apps 1.37.0 &rarr; 1.37.1, message spec 2.85.1 &rarr; 2.85.2, network-monitoring 1.5.0 &rarr; 1.5.1,
@@ -316,7 +325,7 @@ document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () =>
 /* ---------- ticket data (generated by the /release-notes pipeline) ---------- */
 /* product, key, type, priority, status (if not Done), summary, epicKey */
 const T = [
- // ---- CiC (bundled in 4.15.0-alpha.0) ----
+ // ---- CiC (bundled in 4.15.0-beta.0) ----
  ["CiC",15886,"Task","High","","Chill control board firmware 2.0.1: fix a heating-mode bug found by the manufacturer (Amitime)",11795],
  ["CiC",15989,"Bug","Medium","","quatt-factory-reset: invalid `systemctl stop --timeout` meant owner services were never stopped during factory reset",11880],
  ["CiC",16011,"Bug","Medium","","controller-manager 3.19.2: nested config objects (e.g. predictiveHeatingDualRateModel) were never written to their Redis key",11880],
