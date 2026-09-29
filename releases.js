@@ -4,21 +4,21 @@
 
 window.SUMMARY = [
   { n: "13", l: "Release waves documented" },
-  { n: "36", l: "Tickets in latest wave" },
-  { n: "2",  l: "Products in latest wave" },
+  { n: "63", l: "Tickets in latest wave" },
+  { n: "3",  l: "Products in latest wave" },
   { n: "2",  l: "Open follow-ups flagged" }
 ];
 
 window.RELEASES = [
   {
-    date: "2026-09-23",
-    title: "Quatt Ecosystem Release 23.09.2026",
+    date: "2026-09-29",
+    title: "Quatt Ecosystem Release 29.09.2026",
     badge: { cls: "beta", label: "beta" },
-    page: "releases/2026-09-23.html",
+    page: "releases/2026-09-29.html",
     chips: [
-      { cls: "cic",   label: "CiC 4.15.0-beta.0" },
+      { cls: "cic",   label: "CiC 4.15.0-beta.1" },
       { cls: "cloud", label: "Cloud v2.48.0" },
-      { cls: "app",   label: "App v1.62.0" },
+      { cls: "app",   label: "App v1.63.0" },
       { cls: "fw",    label: "Controller 6.14.0" },
       { cls: "fw",    label: "Thread FW 2.14.0" },
       { cls: "fw",    label: "HeatCharger FW 1.3.0" },
@@ -26,10 +26,10 @@ window.RELEASES = [
       { cls: "fw",    label: "ODU FW 2.1" }
     ],
     stats: [
-      { b: "36", t: "ticket entries" },
-      { b: "Cloud v2.48.0", t: "paired backend (no new app)" },
+      { b: "63", t: "ticket entries" },
+      { b: "App v1.63.0 + Cloud v2.48.0", t: "paired app / backend" },
       { b: "Predictive heating", t: "pilot cohort only (not fleet)" },
-      { b: "beta.0", t: "4.15.0-beta.0 — same build as alpha.0" }
+      { b: "beta.1", t: "cic-mender-tools LTE download block" }
     ]
   },
   {
