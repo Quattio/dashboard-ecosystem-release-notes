@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quatt Ecosystem Release 29.09.2026 — CiC 4.15.0-beta.1</title>
+<title>Quatt Ecosystem Release 29.09.2026 — CiC 4.15.0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,10 +25,10 @@
 <main class="wrap">
   <div class="crumb"><a href="../index.html">Releases</a> / 29.09.2026</div>
   <div class="page-head">
-    <div class="kicker">CiC diffed 4.14.0-beta.1 &rarr; 4.15.0-beta.1 &middot; beta</div>
+    <div class="kicker">CiC diffed 4.14.0 &rarr; 4.15.0 &middot; stable (GA)</div>
     <h1>Quatt Ecosystem Release <span class="dim">29.09.2026</span></h1>
     <div class="sub">
-      <span class="chip cic">CiC 4.15.0-beta.1</span>
+      <span class="chip cic">CiC 4.15.0</span>
       <span class="chip cloud">Cloud v2.48.0</span>
       <span class="chip app">App v1.63.0</span>
       <span class="chip fw">Controller 6.14.0</span>
@@ -42,12 +42,13 @@
   <div class="review-only"><div class="review-panel">
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview — hidden in production.</p>
-    <p class="sub"><b>Promotion beta.0 &rarr; beta.1, plus a newly-paired app release.</b> This revision updates the 4.15.0 wave from its published entry (CiC 4.15.0-beta.0) to <b>CiC 4.15.0-beta.1</b>. The CiC image gains one commit on top of beta.0 (a cic-mender-tools bump), and the mobile-app release <b>App v1.63.0</b> (published 2026-09-25) has since landed inside the wave&rsquo;s alpha&rarr;beta window and is now folded in.</p>
+    <p class="sub"><b>GA promotion of the 4.15.0 wave.</b> This revision promotes the wave from its currently-published entry on <code>main</code> (CiC 4.15.0-beta.0) to the general release <b>CiC 4.15.0</b>. The 4.15.0 tag points at the same commit as 4.15.0-beta.1, so the build is unchanged from the beta.1 revision reviewed in this PR; the badge moves to <b>stable (GA)</b> and the firmware now rolls out to the general fleet.</p>
     <ul>
-      <li><b>Phase transition:</b> beta.0 &rarr; beta.1 (tag suffix <code>-beta.0</code> &rarr; <code>-beta.1</code> on the 4.15.0 minor). Badge stays <b>beta</b>.</li>
-      <li><b>Headline date:</b> moved <b>2026-09-23 &rarr; 2026-09-29</b> — the 4.15.0-beta.1 GitHub Release&rsquo;s <code>published_at</code>. The page has been renamed <code>2026-09-23.html</code> &rarr; <code>2026-09-29.html</code> (one page per wave).</li>
-      <li><b>Paired-product version bumps:</b> <b>App v1.62.0 &rarr; v1.63.0</b> (new, 2026-09-25). Cloud stays <b>v2.48.0</b>. In the CiC image, <b>cic-mender-tools 1.2.1 &rarr; 1.2.2</b>; all bundled firmware unchanged from beta.0 (Chill CB FW 2.0.1, Controller 6.14.0, Thread FW 2.14.0, HeatCharger FW 1.3.0, ODU FW 2.1; embedded apps 1.37.1, message spec 2.85.2, network-monitoring 1.5.1, controller-manager 3.19.2).</li>
-      <li><b>Newly-added tickets since the wave&rsquo;s previous tag (4.15.0-beta.0):</b>
+      <li><b>Phase transition:</b> beta.0 (published on <code>main</code>) &rarr; <b>stable (GA)</b>. The target tag <code>4.15.0</code> carries no pre-release suffix on a new minor, so it is production-ready by definition. Badge <b>beta</b> &rarr; <b>stable (GA)</b>.</li>
+      <li><b>Headline date:</b> moved <b>2026-09-23 &rarr; 2026-09-29</b> — the <code>4.15.0</code> tag commit date (there is no published GitHub Release for the tag, so the date falls back to the tag commit, per the date rule). The page has been renamed <code>2026-09-23.html</code> &rarr; <code>2026-09-29.html</code> (one page per wave).</li>
+      <li><b>CiC image vs the published beta.0:</b> <b>cic-mender-tools 1.2.1 &rarr; 1.2.2</b> (block new Mender downloads over LTE). All bundled firmware unchanged from beta.0: Chill CB FW 2.0.1, Controller 6.14.0, Thread FW 2.14.0, HeatCharger FW 1.3.0, ODU FW 2.1; embedded apps 1.37.1, message spec 2.85.2, network-monitoring 1.5.1, controller-manager 3.19.2.</li>
+      <li><b>Paired-product version bumps:</b> <b>App v1.62.0 &rarr; v1.63.0</b> (2026-09-25). Cloud stays <b>v2.48.0</b>.</li>
+      <li><b>Newly-added tickets since the published beta.0 entry (36 &rarr; 63 engineering rows):</b>
         <ul>
           <li><b>App v1.63.0 (27 tickets):</b> the predictive-heating app UI — thermostat schedule screen and heating-options toggles, gated on <code>predictiveHeatingEnabled</code> (QPD-15714, 15818, 15819, 15830, 15831, 15855, 15861, 15862, 15871, 15928, 15942, 15948, 15954); WiFi-connect feedback rework and legacy-screen removal (QPD-15538, 15639, 15640); an installer &ldquo;update available&rdquo; banner (QPD-15796, 15798); a Dutch dongle-pairing title fix (QPD-15814); two homeowner-visible chart fixes (QPD-15844 legend overlap, QPD-15854 Android axis labels); the watchdog commissioning alert in-app (QPD-15974); Mijnbatterij battery-results sharing (QPD-15695); Virtual Quatt phase 1 QE tooling (QPD-15122); a tech-debt flag removal (QPD-15696); and an OpenAPI type regeneration (QPD-15952).</li>
           <li><b>CiC image (no QPD key):</b> cic-mender-tools 1.2.2 blocks starting <b>new</b> Mender OTA downloads while the CiC is on LTE (a download already started on WiFi still resumes), preventing multi-GB-per-day LTE data use from a repeatedly-failing deployment. This is a follow-up to the 4.15.0 network-monitoring change that keeps <code>mender-updated</code> running on LTE. Cut as cic-mender-tools PR #12 with no Jira ticket.</li>
@@ -55,10 +56,10 @@
       </li>
       <li><b>Reverted / removed:</b> nothing.</li>
     </ul>
-    <p class="sub"><b>Enablement sweep (re-run for beta.1):</b> predictive heating (QPD-15828 / QPD-15847) remains enabled for the <b>pilot cohort only</b>; the App v1.63.0 predictive-heating UI is gated on <code>predictiveHeatingEnabled</code>, so it is reachable only by pilot participants. Reactive avoid-gas-boiler (QPD-16006) stays on develop only. Charge Cool remains live fleet-wide (already communicated). No new fleet/config rollout landed between the beta.0 and beta.1 tags.</p>
-    <p class="sub"><b>Scope:</b> CiC <b>4.15.0-beta.1</b> (beta-test track, not the general fleet), diffed 4.14.0-beta.1 &rarr; 4.15.0-beta.1. Paired backend <b>Cloud v2.48.0</b> (2026-09-23) and app <b>v1.63.0</b> (2026-09-25).</p>
-    <p class="sub"><b>Customer tab (Tier 1):</b> two homeowner-visible app chart fixes added under &ldquo;Bug fixes and maintenance&rdquo; (energy-chart legend overlap, missing Android axis labels), EN + NL. The Chill heating-mode firmware fix (QPD-15886) stays. Predictive heating stays out of Tier 1 (pilot cohort only); Mijnbatterij sharing (QPD-15695) is held pending confirmation its remote-config flag is on in production (see open follow-ups). No versions or phase words in customer copy.</p>
-    <p class="sub"><b>Open follow-ups:</b> (1) confirm the Mijnbatterij battery-results sharing (QPD-15695) remote-config flag is enabled in production before it enters Tier 1. (2) App v1.63.0 (2026-09-25) is paired to this wave because it lands in the 4.15.0 alpha&rarr;beta window; confirm it is not intended for the next CiC wave.</p>
+    <p class="sub"><b>Enablement sweep (re-run for GA):</b> the single thing newly going live at GA is the <b>CiC 4.15.0 firmware itself, now rolling to the general fleet</b> (it was on the beta-test track in the beta.0/beta.1 revisions). Predictive heating (QPD-15828 / QPD-15847) remains enabled for the <b>pilot cohort only</b>; the App v1.63.0 predictive-heating UI is gated on <code>predictiveHeatingEnabled</code>, so it is reachable only by pilot participants. Reactive avoid-gas-boiler (QPD-16006) stays on develop only. Charge Cool remains live fleet-wide (already communicated). The CiC 4.15.0 Fix Version holds no additional enablement/rollout ticket beyond the shipped code above.</p>
+    <p class="sub"><b>Scope:</b> CiC <b>4.15.0</b> (general release, to the fleet), diffed 4.14.0 &rarr; 4.15.0. Paired backend <b>Cloud v2.48.0</b> (2026-09-23) and app <b>v1.63.0</b> (2026-09-25).</p>
+    <p class="sub"><b>Customer tab (Tier 1):</b> two homeowner-visible app chart fixes under &ldquo;Bug fixes and maintenance&rdquo; (energy-chart legend overlap, missing Android axis labels), EN + NL. The Chill heating-mode firmware fix (QPD-15886) stays. Predictive heating stays out of Tier 1 (pilot cohort only); Mijnbatterij sharing (QPD-15695) is held pending confirmation its remote-config flag is on in production (see open follow-ups). No versions or phase words in customer copy.</p>
+    <p class="sub"><b>Open follow-ups:</b> (1) confirm the Mijnbatterij battery-results sharing (QPD-15695) remote-config flag is enabled in production before it enters Tier 1. (2) App v1.63.0 (2026-09-25) is paired to this wave because it lands in the 4.15.0 window; confirm it is not intended for the next CiC wave.</p>
   </div></div>
 
   <section class="timeline-wrap" id="release-timeline" hidden>
@@ -132,19 +133,20 @@
 
     <div class="callout-warn scope-banner">
       <p>
-        <span class="lead">Scope &mdash; CiC 4.15.0-beta.1 (beta track, not the general fleet)</span>
-        Diffed 4.14.0-beta.1 &rarr; 4.15.0-beta.1. beta.1 adds one commit on top of beta.0: <strong>cic-mender-tools 1.2.1 &rarr; 1.2.2</strong>
+        <span class="lead">Scope &mdash; CiC 4.15.0 (general release &mdash; to the fleet)</span>
+        Diffed 4.14.0 &rarr; 4.15.0. The 4.15.0 image carries <strong>cic-mender-tools 1.2.2</strong>
         (block new Mender downloads over LTE). Paired backend <strong>Cloud v2.48.0</strong> (2026-09-23) and app
-        <strong>v1.63.0</strong> (2026-09-25, folded in this revision). Bundled firmware unchanged from beta.0: Chill control-board FW
+        <strong>v1.63.0</strong> (2026-09-25). Bundled firmware: Chill control-board FW
         <strong>2.0.1</strong>, Controller 6.14.0, Thread FW 2.14.0, HeatCharger FW 1.3.0, ODU FW 2.1. Embedded apps 1.37.1, message spec
-        2.85.2, network-monitoring 1.5.1, controller-manager 3.19.2. Headline date 2026-09-29 = the 4.15.0-beta.1 GitHub Release&rsquo;s
-        publication date.
+        2.85.2, network-monitoring 1.5.1, controller-manager 3.19.2. Headline date 2026-09-29 = the 4.15.0 tag commit date (the tag has no
+        published GitHub Release, so the date falls back to the tag commit).
       </p>
       <p>
-        <span class="lead">Wave phase &mdash; beta (new 4.15.0 minor)</span>
-        The CiC 4.15.0 firmware is a beta build on the beta-test track; it is not on the general customer fleet. Its firmware-side fixes
-        therefore do not reach the wider customer base in this wave. Cloud v2.48.0 and App v1.63.0 are normal production releases and their
-        changes are live for whoever runs them (app updates roll out through the app stores).
+        <span class="lead">Wave phase &mdash; stable (GA, new 4.15.0 minor)</span>
+        The target tag <strong>4.15.0</strong> carries no pre-release suffix, so it is a general release: production-ready and rolling out to
+        the customer fleet. Its firmware-side fixes now reach the wider customer base through the normal fleet roll-out. Cloud v2.48.0 and
+        App v1.63.0 are normal production releases and their changes are live for whoever runs them (app updates roll out through the app
+        stores).
       </p>
       <p><span class="lead">Enablement sweep &mdash; what actually goes live this wave</span></p>
       <ul>
@@ -160,14 +162,14 @@
         <li><strong>Charge Cool remains live fleet-wide</strong> (enabled in the CiC 4.11.0 / 4.14.0 waves via
           <code>chillAllEChargeCoolEnabled</code>, QPD-15793). No change this wave; already communicated to customers.</li>
         <li><strong>New Mender OTA downloads are blocked over LTE</strong> (cic-mender-tools 1.2.2). A CiC on LTE no longer starts a fresh
-          firmware download; one already running on WiFi still resumes. This rides the CiC 4.15.0-beta.1 build, i.e. the beta track this
-          wave.</li>
-        <li><strong>Chill control-board FW 2.0.1</strong> (a heating-mode fix) is bundled in the CiC image and reaches whatever runs the
-          4.15.0-beta.1 build, i.e. the beta track only this wave.</li>
+          firmware download; one already running on WiFi still resumes. This rides the CiC 4.15.0 GA build, so it reaches the general fleet
+          this wave.</li>
+        <li><strong>Chill control-board FW 2.0.1</strong> (a heating-mode fix) is bundled in the CiC image and reaches the fleet with the
+          4.15.0 GA build.</li>
         <li><strong>Thread FW stays 2.14.0</strong> (unchanged). quatt-dongle tagged 2.14.1 on 2026-09-20, but it is not bundled in this
           CiC image.</li>
       </ul>
-      <p><b>The beta CiC firmware goes only to the beta-test track &mdash; do not communicate its behaviour to the wider customer base or installers.</b></p>
+      <p><b>The CiC 4.15.0 firmware is a general release and rolls out to the fleet. The predictive-heating and reactive avoid-gas items above are the exception &mdash; they stay pilot / develop-only and must not be communicated to the wider customer base or installers yet.</b></p>
     </div>
 
     <div class="theme-card">
@@ -202,16 +204,16 @@
 
     <div class="theme-card">
       <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11880" target="_blank">QPD-11880</a> &middot; Bug Fixing &amp; Fleet Diagnostics <span class="epic">4 tickets</span></h3>
-      <p class="epic-desc">The embedded team&rsquo;s rolling bug-fixing and fleet-diagnostics Epic. This wave: a factory-reset fix, a config-delivery fix, message-spec robustness, OTA retry backoff, and (in beta.1) blocking new Mender downloads over LTE &mdash; all riding the CiC 4.15.0-beta.1 build.</p>
+      <p class="epic-desc">The embedded team&rsquo;s rolling bug-fixing and fleet-diagnostics Epic. This wave: a factory-reset fix, a config-delivery fix, message-spec robustness, OTA retry backoff, and blocking new Mender downloads over LTE &mdash; all riding the CiC 4.15.0 GA build.</p>
       <ul>
         <li><b>Factory reset fixed:</b> <code>quatt-factory-reset</code> used an invalid <code>systemctl stop --timeout</code> option, so it never actually stopped the owner services during a factory reset &mdash; corrected <span class="tkey">(QPD-15989 <span class="team">Embedded Systems</span>)</span></li>
         <li><b>Config delivery fixed:</b> nested config objects (e.g. the predictive-heating dual-rate model) were never written to their Redis key, so the controller never received them &mdash; fixed in controller-manager 3.19.2 <span class="tkey">(QPD-16011 <span class="team">Embedded Systems</span>)</span></li>
         <li><b>Message-spec robustness:</b> ensure new settings / configs are nullable, so the cloud can send an unset value without the whole payload being rejected (message spec 2.85.2) <span class="tkey">(QPD-15929 <span class="team">Embedded Systems</span>)</span></li>
         <li><b>OTA retry backoff:</b> OTA update-cycle retries had no delay, so 20 cycles could burn in ~2 seconds and turn a transient &ldquo;not now&rdquo; into a permanent failure &mdash; the OTA library now backs off between retries (bundled via embedded apps 1.37.1) <span class="tkey">(QPD-15978 <span class="team">Embedded Systems</span>)</span></li>
-        <li><b>Block new Mender downloads over LTE (beta.1, no ticket):</b> since 4.15.0 the CiC keeps <code>mender-updated</code> running on LTE when a WiFi profile is saved, so a repeatedly-failing deployment could restart new downloads over LTE (up to a few GB per CiC per day). cic-mender-tools 1.2.2 makes the download-enter check return &ldquo;retry&rdquo; unless Ethernet or WiFi is reachable; a download already started on WiFi still resumes over LTE <span class="tkey">(cic-mender-tools PR&nbsp;#12, no QPD key)</span></li>
+        <li><b>Block new Mender downloads over LTE (no ticket):</b> since 4.15.0 the CiC keeps <code>mender-updated</code> running on LTE when a WiFi profile is saved, so a repeatedly-failing deployment could restart new downloads over LTE (up to a few GB per CiC per day). cic-mender-tools 1.2.2 makes the download-enter check return &ldquo;retry&rdquo; unless Ethernet or WiFi is reachable; a download already started on WiFi still resumes over LTE <span class="tkey">(cic-mender-tools PR&nbsp;#12, no QPD key)</span></li>
         <li><b>Diagnostics (no ticket):</b> every Axiom log record is now stamped with the CiC version, so fleet logs are attributable to a firmware version</li>
       </ul>
-      <div class="impact"><b>Impact for ops:</b> these fix real field and diagnostic failure modes (factory reset not stopping services, config not reaching the controller, OTA updates failing instantly, and runaway LTE data use from repeated failed downloads). They ride the CiC 4.15.0-beta.1 build, so they reach the beta track first, not the general fleet, this wave.</div>
+      <div class="impact"><b>Impact for ops:</b> these fix real field and diagnostic failure modes (factory reset not stopping services, config not reaching the controller, OTA updates failing instantly, and runaway LTE data use from repeated failed downloads). They ride the CiC 4.15.0 GA build, so they roll out to the general fleet this wave.</div>
     </div>
 
     <div class="theme-card">
@@ -221,7 +223,7 @@
         <li><b>Chill control-board firmware 2.0.1:</b> fixes a heating-mode bug found by the manufacturer (Amitime); bundled in the CiC image <span class="tkey">(QPD-15886 <span class="team">Embedded Systems</span>)</span></li>
         <li><b>Chill flow test recovery:</b> the commissioning Chill flow test now recovers from a temporary flow fault instead of leaving the installer stuck <span class="tkey">(QPD-15850 <span class="team">Cloud / Backend</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for installers / CS:</b> the Chill flow test no longer dead-ends on a temporary flow fault. The Chill control-board firmware heating-mode fix is customer-perceivable for Chill owners (see the Customer tab), but rides the CiC image and reaches the beta track first this wave.</div>
+      <div class="impact"><b>Impact for installers / CS:</b> the Chill flow test no longer dead-ends on a temporary flow fault. The Chill control-board firmware heating-mode fix is customer-perceivable for Chill owners (see the Customer tab) and reaches the fleet with the CiC 4.15.0 GA image.</div>
     </div>
 
     <div class="theme-card">
@@ -247,9 +249,9 @@
       <h3><a href="https://quatt-team.atlassian.net/browse/QPD-149" target="_blank">QPD-149</a> &middot; Embedded Technical Debt <span class="epic">1 ticket</span></h3>
       <p class="epic-desc">The embedded technical-debt Epic.</p>
       <ul>
-        <li>Keep <code>mender-updated</code> alive during a routing change while an update is running, completing the fix for the ~4-minute MQTT timeout when the CiC switches network connections. The main network-switch reconnection fix shipped in the previous wave (CiC 4.14.0-beta.1); this adds the update-path robustness <span class="tkey">(QPD-15734 <span class="team">Embedded Systems</span>)</span></li>
+        <li>Keep <code>mender-updated</code> alive during a routing change while an update is running, completing the fix for the ~4-minute MQTT timeout when the CiC switches network connections. The main network-switch reconnection fix shipped in the previous wave (CiC 4.14.0); this adds the update-path robustness <span class="tkey">(QPD-15734 <span class="team">Embedded Systems</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for ops:</b> an over-the-air update is no longer interrupted when the CiC switches network interface mid-update; beta build only this wave.</div>
+      <div class="impact"><b>Impact for ops:</b> an over-the-air update is no longer interrupted when the CiC switches network interface mid-update; ships with the CiC 4.15.0 GA build this wave.</div>
     </div>
 
     <div class="theme-card">
@@ -329,13 +331,12 @@
       <tbody id="rows"></tbody>
     </table>
     <p class="footer-note">
-      Built from GitHub tag diffs (source of truth: CiC 4.14.0-beta.1 &rarr; 4.15.0-beta.1 via <code>quatt-revisions.inc</code>;
+      Built from GitHub tag diffs (source of truth: CiC 4.14.0 &rarr; 4.15.0 via <code>quatt-revisions.inc</code>;
       component changelogs from each repo&rsquo;s tag-to-tag compare), cross-referenced with Jira for ticket type / priority / status.
-      beta.1 adds one commit over beta.0: cic-mender-tools 1.2.1 &rarr; 1.2.2 (block new Mender downloads over LTE, cic-mender-tools
-      PR&nbsp;#12 &mdash; no QPD key, so it has no row here). Bundled firmware unchanged from beta.0: Chill CB FW 2.0.1; Controller 6.14.0,
+      The 4.15.0 image carries cic-mender-tools 1.2.2 (block new Mender downloads over LTE, cic-mender-tools
+      PR&nbsp;#12 &mdash; no QPD key, so it has no row here). Bundled firmware: Chill CB FW 2.0.1; Controller 6.14.0,
       Thread FW 2.14.0, HeatCharger FW 1.3.0 and ODU FW 2.1. Embedded apps 1.37.1, message spec 2.85.2, network-monitoring 1.5.1,
-      controller-manager 3.19.2. Paired backend <b>Cloud v2.48.0</b> (28 rows) and app <b>v1.63.0</b> (v1.62.0 &rarr; v1.63.0, 27 rows, folded
-      in this revision).
+      controller-manager 3.19.2. Paired backend <b>Cloud v2.48.0</b> (28 rows) and app <b>v1.63.0</b> (v1.62.0 &rarr; v1.63.0, 27 rows).
       <b>Grouping note:</b> the <b>Thread</b> product column is the <code>quatt-dongle</code> / Thread FW repo; <b>HeatCharger firmware</b>
       (<code>quatt-heatcharger-firmware</code>) and Chill control-board firmware rows are folded into <b>CiC</b>.
       <b>Cross-product duplicate:</b> QPD-15998 (thermostatSchedule message-spec schema) is listed under both <b>CiC</b> (bundled message
@@ -384,7 +385,7 @@ document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () =>
 /* ---------- ticket data (generated by the /release-notes pipeline) ---------- */
 /* product, key, type, priority, status (if not Done), summary, epicKey */
 const T = [
- // ---- CiC (bundled in 4.15.0-beta.1) ----
+ // ---- CiC (bundled in 4.15.0) ----
  ["CiC",15886,"Task","High","","Chill control board firmware 2.0.1: fix a heating-mode bug found by the manufacturer (Amitime)",11795],
  ["CiC",15989,"Bug","Medium","","quatt-factory-reset: invalid `systemctl stop --timeout` meant owner services were never stopped during factory reset",11880],
  ["CiC",16011,"Bug","Medium","","controller-manager 3.19.2: nested config objects (e.g. predictiveHeatingDualRateModel) were never written to their Redis key",11880],
@@ -422,7 +423,7 @@ const T = [
  ["Cloud",15998,"Task","Medium","","Remove the double nesting from the thermostatSchedule message spec schema",148],
  ["Cloud",15850,"Task","Urgent","","COMMISSIONING | Chill flow test failure doesn't allow the installer to recover",11795],
  ["Cloud",15878,"Bug","Medium","","HomeBattery findHouse: HubSpot deal association truncated at 10, blocks commissioning",15407],
- // ---- App v1.63.0 (paired app, folded in for beta.1) ----
+ // ---- App v1.63.0 (paired app) ----
  ["App",15714,"Task","Medium","","[MS1] Thermostat schedule screen (gated on predictiveHeatingEnabled)",148],
  ["App",15818,"Task","Medium","","Gate thermostat schedule entry on predictiveHeatingEnabled instead of showThermostatTemperatures",148],
  ["App",15819,"Task","Medium","","Thermostat schedule and heating options: copy sign-off (en/nl)",148],
