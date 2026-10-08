@@ -43,6 +43,7 @@
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview — hidden in production.</p>
     <p class="sub"><b>New wave — first published revision.</b> This is the first release-notes entry for the <b>4.16.0</b> wave, created for the <b>CiC 4.16.0-alpha.0</b> tag (published 2026-10-07). The dashboard carried no prior entry for this wave.</p>
+    <p class="sub"><b>Revision — reviewer feedback (PR #42, PanMan):</b> added the <b>reactive avoid-gas</b> feature (&ldquo;Don&rsquo;t use gas&rdquo; for Quatt Hybrid systems not on predictive heating / MPC) as a Tier 1 &ldquo;New functions&rdquo; bullet (EN + NL), and reclassified it from &ldquo;develop-only, do not communicate&rdquo; to customer-facing in Tier 2 (enablement sweep + MPC-epic callout). The feature ships in this wave as the controller-side QPD-15897 (Controller 6.15.1) plus the backend capability signal/guard QPD-15947. No other tier or the target wave changed; no engineering rows added or removed.</p>
     <ul>
       <li><b>Phase:</b> <b>alpha</b>. The target tag <code>4.16.0-alpha.0</code> carries an <code>-alpha</code> suffix, so the CiC firmware goes to the alpha-tester track, not the general fleet. Badge <b>alpha</b>.</li>
       <li><b>Headline date:</b> <b>2026-10-07</b> — the <code>4.16.0-alpha.0</code> GitHub Release <code>published_at</code> date.</li>
@@ -51,7 +52,7 @@
       <li><b>Newly-added QPD tickets this wave (54 engineering rows, 53 unique):</b>
         <ul>
           <li><b>CiC / embedded (Controller 6.15.1, apps 1.38.0, Thread FW 2.15.0, message spec 2.87.0):</b> predictive heating for all-electric systems and dual-tariff support (QPD-14792, QPD-15687, pilot only); an Urgent ODU protection fix on out-of-spec input voltage (QPD-15787); a shorted-supply-sensor rejection (QPD-16044); two Thread network-manager fixes (QPD-16062, QPD-16063); per-device 802.15.4 MAC counters for link diagnostics (QPD-15736, spanning apps + dongle + spec); an A926 OpenTherm crash-context capture (QPD-15890); a permanent-failure OTA fix for a bad image signature (QPD-15976); the device-side liveOverride schema (QPD-15822); the qinterface&rarr;cpp-apps IPC migration (QPD-13457); and QA/test-rig tooling (QPD-15547, QPD-15659, QPD-15664, QPD-13377, Virtual Quatt QPD-15122).</li>
-          <li><b>Cloud v2.49.0 (36 tickets):</b> the thermostat live-override and setpoint-source backend (QPD-15824, QPD-15848, QPD-16050/16051/16069/16083/16085/16087/16090/16096/16103/16111/16127, predictive-heating epic, gated on develop/min-build); predictive-heating model import tooling (QPD-15950) and avoid-gas exposure (QPD-15947, develop only); Chill heating commissioning backend (QPD-16021, QPD-16049); and a block of production-maintenance items (QPD-152) including boilerType data-integrity fixes (QPD-14144, QPD-15306, QPD-14147), HomeBattery import-limit and savings-rounding (QPD-16012, QPD-16070), log-noise demotions and a MySQL prepared-statement ceiling fix (QPD-16055).</li>
+          <li><b>Cloud v2.49.0 (36 tickets):</b> the thermostat live-override and setpoint-source backend (QPD-15824, QPD-15848, QPD-16050/16051/16069/16083/16085/16087/16090/16096/16103/16111/16127, predictive-heating epic, gated on develop/min-build); predictive-heating model import tooling (QPD-15950) and the reactive avoid-gas capability signal and write-path guard (QPD-15947, pairing the controller-side QPD-15897); Chill heating commissioning backend (QPD-16021, QPD-16049); and a block of production-maintenance items (QPD-152) including boilerType data-integrity fixes (QPD-14144, QPD-15306, QPD-14147), HomeBattery import-limit and savings-rounding (QPD-16012, QPD-16070), log-noise demotions and a MySQL prepared-statement ceiling fix (QPD-16055).</li>
         </ul>
       </li>
       <li><b>Reverted / removed:</b> QPD-16008 (block commissioning readiness when the CiC supervisory mode is unknown) was added and then reverted within Cloud v2.49.0 — listed in the engineering table with status <b>Reverted</b>. QPD-16011 (nested-config Redis write) shipped in the 4.15.0 wave; only a test update rode this wave, so it is <b>not</b> re-listed as a new fix.</li>
@@ -61,13 +62,13 @@
       <li><b>CiC 4.16.0-alpha.0 firmware goes to the alpha-tester track only</b>, not the general fleet. Everyday heating and comfort behaviour for the wider customer base is unchanged.</li>
       <li><b>Predictive heating (MPC)</b> gains all-electric support and dual (day/night) tariff handling in Controller 6.15.1, but stays <b>pilot-cohort only</b> — not fleet-wide.</li>
       <li><b>Thermostat live override (app &rarr; CiC)</b> backend lands in Cloud v2.49.0 but its gate is <b>opened on develop only</b> and behind a minimum CiC build; no new App ships the UI this wave.</li>
-      <li><b>Reactive avoid-gas-boiler</b> is exposed as a setting but <b>enabled on develop only</b> — not in production.</li>
+      <li><b>Avoid using gas (reactive control)</b> lands this wave for Quatt Hybrid systems not on predictive heating (MPC): the controller honours the “Don’t use gas” setting (QPD-15897), with the backend capability signal and guard (QPD-15947) alongside. <b>Customer-facing</b> — now covered in Tier 1 (per reviewer PanMan).</li>
       <li><b>Chill heating commissioning</b> backend/controller work lands, but the paired App support is not in this wave, so it is not functional end-to-end for installers yet.</li>
       <li><b>Charge Cool</b> remains live fleet-wide (enabled in an earlier wave via <code>chillAllEChargeCoolEnabled</code>, QPD-15793) — no change this wave, already communicated to customers.</li>
       <li><b>Cloud v2.49.0</b> is a normal production backend release and is live for everyone; its only customer-visible change is more accurate HomeBattery savings rounding (QPD-16070).</li>
     </ul>
     <p class="sub"><b>Scope:</b> CiC <b>4.16.0-alpha.0</b> (alpha-tester track, not the general fleet), diffed 4.15.0 &rarr; 4.16.0-alpha.0. Paired backend <b>Cloud v2.49.0</b> (2026-10-05); no new App (stays v1.63.0).</p>
-    <p class="sub"><b>Customer tab (Tier 1):</b> no new functions; heating and comfort unchanged; one neutral bug-fix line for the HomeBattery savings rounding (QPD-16070), EN + NL. Predictive heating, thermostat live override, reactive avoid-gas and Chill heating commissioning all stay out of Tier 1 (pilot / develop-only / installer-only). No versions or phase words in customer copy.</p>
+    <p class="sub"><b>Customer tab (Tier 1):</b> one new function &mdash; the &ldquo;Don&rsquo;t use gas&rdquo; setting for Quatt Hybrid systems not on predictive heating (QPD-15897 / QPD-15947), EN + NL; everyday heating and comfort otherwise unchanged (the setting is opt-in); one neutral bug-fix line for the HomeBattery savings rounding (QPD-16070). Predictive heating, thermostat live override and Chill heating commissioning stay out of Tier 1 (pilot / develop-only / installer-only). No versions or phase words in customer copy.</p>
     <p class="sub"><b>Open follow-ups:</b> (1) the HomeBattery savings-rounding fix (QPD-16070) is placed in Tier 1 as a minor homeowner-visible correctness fix — a reviewer may prefer to drop it as too granular. (2) Cloud v2.49.0 (2026-10-05) shipped about 50 minutes before the 4.15.0 GA tag; it is paired here with the 4.16.0 wave as the next undocumented backend — confirm it is not meant for the 4.15.0 GA entry.</p>
   </div></div>
 
@@ -95,6 +96,7 @@
       <div class="theme-card">
         <h3>New functions</h3>
         <ul>
+          <li>You can now choose to avoid using the gas boiler on Quatt Hybrid systems: switch on the &ldquo;Don&rsquo;t use gas&rdquo; setting to give the heat pump priority for heating. The gas boiler still steps in when it is needed for safety or when the heat pump cannot deliver enough heat on its own.</li>
         </ul>
       </div>
       <div class="theme-card">
@@ -116,6 +118,7 @@
       <div class="theme-card">
         <h3>Nieuwe functies</h3>
         <ul>
+          <li>Je kunt nu kiezen om de cv-ketel niet te gebruiken op Quatt Hybrid-systemen: zet de instelling &ldquo;Geen gas gebruiken&rdquo; aan om de warmtepomp voorrang te geven bij het verwarmen. De cv-ketel springt nog bij wanneer dat nodig is voor de veiligheid of wanneer de warmtepomp onvoldoende warmte kan leveren.</li>
         </ul>
       </div>
       <div class="theme-card">
@@ -163,14 +166,17 @@
         <li><strong>The thermostat live override (app &rarr; CiC) is develop-only.</strong> Cloud v2.49.0 lands the backend
           <span class="tkey">(QPD-16050 and siblings)</span> behind a minimum-CiC-build gate, but the gate is opened on
           <b>develop only</b> and no new App ships the UI this wave.</li>
-        <li><strong>Reactive avoid-gas-boiler is exposed as a setting</strong> <span class="tkey">(QPD-15947)</span> but enabled on
-          <b>develop only</b> &mdash; not in production.</li>
+        <li><strong>Avoid using gas (reactive control) lands this wave</strong> for Quatt Hybrid systems not on predictive heating
+          (MPC): the controller now honours the &ldquo;Don&rsquo;t use gas&rdquo; setting <span class="tkey">(QPD-15897)</span> &mdash;
+          prioritising the heat pump and avoiding the gas boiler, while still using the boiler for anti-freeze/safety, when the heat
+          pump has no capacity, and during commissioning. The backend capability signal and write-path guard
+          <span class="tkey">(QPD-15947)</span> ship alongside it. This is <b>customer-facing</b> &mdash; see the Customer tab.</li>
         <li><strong>Chill heating commissioning</strong> backend/controller work lands <span class="tkey">(QPD-16021, QPD-16049)</span>,
           but the paired App support is not in this wave, so it is not functional end-to-end for installers yet.</li>
         <li><strong>Charge Cool remains live fleet-wide</strong> (enabled in an earlier wave via <code>chillAllEChargeCoolEnabled</code>,
           QPD-15793). No change this wave; already communicated to customers.</li>
       </ul>
-      <p><b>The CiC 4.16.0-alpha.0 firmware goes only to alpha testers &mdash; do not communicate its device-side behaviour to the wider customer base or installers. The predictive-heating, thermostat-live-override, reactive-avoid-gas and Chill-heating-commissioning items above are pilot / develop-only / not-yet-end-to-end and must not be promised to customers or installers yet.</b></p>
+      <p><b>The CiC 4.16.0-alpha.0 firmware goes only to alpha testers &mdash; do not communicate its device-side behaviour to the wider customer base or installers. The predictive-heating, thermostat-live-override and Chill-heating-commissioning items above are pilot / develop-only / not-yet-end-to-end and must not be promised to customers or installers yet. (The reactive avoid-gas setting that also lands this wave <em>is</em> customer-facing &mdash; see the Customer tab.)</b></p>
     </div>
 
     <div class="theme-card">
@@ -182,8 +188,8 @@
         <li><b>Pilot enablement &amp; exposure (backend):</b> a script to bulk-import predictive-heating models and push them to their CiCs <span class="tkey">(QPD-15950 <span class="team">Cloud / Backend</span>)</span>; expose avoid-gas-boiler-use to non-predictive Hybrid CiCs above a minimum firmware build <span class="tkey">(QPD-15947 <span class="team">Cloud / Backend</span>)</span></li>
         <li><b>Message spec (2.87.0):</b> add the optional <code>liveOverride</code> field to the thermostat schedule schema &mdash; the device side of the app live override <span class="tkey">(QPD-15822 <span class="team">Cloud / Backend</span>)</span></li>
       </ul>
-      <div class="callout-warn"><b>Shipped but NOT live &mdash; do not communicate:</b> predictive heating stays <b>pilot-cohort only</b>; the thermostat live override and reactive avoid-gas-boiler are enabled on <b>develop only</b> (the live-override is also behind a minimum-CiC-build gate), and no new App ships their UI this wave. None of this is reachable by the general customer base.</div>
-      <div class="impact"><b>Impact for CS:</b> no customer action &mdash; none of this epic is live for the fleet. Pilot participants are unaffected by this wave beyond the backend plumbing above.</div>
+      <div class="callout-warn"><b>Shipped but NOT live &mdash; do not communicate:</b> predictive heating stays <b>pilot-cohort only</b>; the thermostat live override is enabled on <b>develop only</b> (also behind a minimum-CiC-build gate) with no new App UI this wave. Neither is reachable by the general customer base. The reactive avoid-gas setting (QPD-15897 / QPD-15947) that also lands this wave <b>is</b> customer-facing &mdash; see the Customer tab and the enablement sweep above.</div>
+      <div class="impact"><b>Impact for CS:</b> no customer action for the predictive-heating and thermostat-live-override work &mdash; those stay pilot / develop-only. The exception is the reactive avoid-gas setting (QPD-15897 / QPD-15947), which is customer-facing this wave (see the Customer tab): Quatt Hybrid customers not on predictive heating can opt in to prioritise the heat pump and avoid the gas boiler. Pilot participants are otherwise unaffected beyond the backend plumbing above.</div>
     </div>
 
     <div class="theme-card">
@@ -431,7 +437,7 @@ const T = [
  ["Cloud",16111,"Task","Medium","","Log CicOfflineError at warn so a refused offline override stops paging Sentry",148],
  ["Cloud",16127,"Task","Medium","","Allow room setpoints from 16 to 30 °C",148],
  ["Cloud",15848,"Bug","Urgent","","Thermostat schedule payload sent liveOverride, which the merged CIC schema forbade",148],
- ["Cloud",15947,"Task","Medium","","Expose avoid-gas-boiler-use to non-predictive Hybrid CiCs above a minimum firmware build (enabled on develop only)",148],
+ ["Cloud",15947,"Task","Medium","","Expose avoid-gas-boiler-use to non-predictive Hybrid CiCs above a minimum firmware build (backend half of the reactive avoid-gas feature; controller side QPD-15897)",148],
  ["Cloud",15950,"Task","Medium","","Script to bulk-import predictive heating models and push them to their CiCs",148],
  ["Cloud",16069,"Task","Medium","","Make the /me/cic setpoint-source e2e block deterministic (test)",148],
  ["Cloud",14144,"Bug","Medium","","New commissioning: the On/Off boiler choice was not written to installation.boilerType (config publish sent null)",152],
