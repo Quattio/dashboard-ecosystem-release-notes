@@ -4,19 +4,19 @@
 
 window.SUMMARY = [
   { n: "14", l: "Release waves documented" },
-  { n: "54", l: "Tickets in latest wave" },
+  { n: "56", l: "Tickets in latest wave" },
   { n: "2",  l: "Products in latest wave" },
   { n: "2",  l: "Open follow-ups flagged" }
 ];
 
 window.RELEASES = [
   {
-    date: "2026-10-07",
-    title: "Quatt Ecosystem Release 07.10.2026",
+    date: "2026-10-09",
+    title: "Quatt Ecosystem Release 09.10.2026",
     badge: { cls: "alpha", label: "alpha" },
-    page: "releases/2026-10-07.html",
+    page: "releases/2026-10-09.html",
     chips: [
-      { cls: "cic",   label: "CiC 4.16.0-alpha.0" },
+      { cls: "cic",   label: "CiC 4.16.0-alpha.1" },
       { cls: "cloud", label: "Cloud v2.49.0" },
       { cls: "app",   label: "App v1.63.0" },
       { cls: "fw",    label: "Controller 6.15.1" },
@@ -26,7 +26,7 @@ window.RELEASES = [
       { cls: "fw",    label: "ODU FW 2.1" }
     ],
     stats: [
-      { b: "54", t: "ticket entries" },
+      { b: "56", t: "ticket entries" },
       { b: "Cloud v2.49.0", t: "paired backend (no new app)" },
       { b: "Predictive heating + live override", t: "pilot / develop only (not fleet)" },
       { b: "alpha", t: "alpha-tester track (not the fleet)" }

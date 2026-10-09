@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quatt Ecosystem Release 07.10.2026</title>
+<title>Quatt Ecosystem Release 09.10.2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -23,12 +23,12 @@
 </header>
 
 <main class="wrap">
-  <div class="crumb"><a href="../index.html">Releases</a> / 07.10.2026</div>
+  <div class="crumb"><a href="../index.html">Releases</a> / 09.10.2026</div>
   <div class="page-head">
-    <div class="kicker">CiC diffed 4.15.0 &rarr; 4.16.0-alpha.0 &middot; alpha</div>
-    <h1>Quatt Ecosystem Release <span class="dim">07.10.2026</span></h1>
+    <div class="kicker">CiC diffed 4.15.0 &rarr; 4.16.0-alpha.1 &middot; alpha</div>
+    <h1>Quatt Ecosystem Release <span class="dim">09.10.2026</span></h1>
     <div class="sub">
-      <span class="chip cic">CiC 4.16.0-alpha.0</span>
+      <span class="chip cic">CiC 4.16.0-alpha.1</span>
       <span class="chip cloud">Cloud v2.49.0</span>
       <span class="chip app">App v1.63.0</span>
       <span class="chip fw">Controller 6.15.1</span>
@@ -42,16 +42,22 @@
   <div class="review-only"><div class="review-panel">
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview — hidden in production.</p>
-    <p class="sub"><b>New wave — first published revision.</b> This is the first release-notes entry for the <b>4.16.0</b> wave, created for the <b>CiC 4.16.0-alpha.0</b> tag (published 2026-10-07). The dashboard carried no prior entry for this wave.</p>
-    <p class="sub"><b>Revision — reviewer feedback (PR #42, PanMan):</b> added the <b>reactive avoid-gas</b> feature (&ldquo;Don&rsquo;t use gas&rdquo; for Quatt Hybrid systems not on predictive heating / MPC) as a Tier 1 &ldquo;New functions&rdquo; bullet (EN + NL), and reclassified it from &ldquo;develop-only, do not communicate&rdquo; to customer-facing in Tier 2 (enablement sweep + MPC-epic callout). The feature ships in this wave as the controller-side QPD-15897 (Controller 6.15.1) plus the backend capability signal/guard QPD-15947. No other tier or the target wave changed; no engineering rows added or removed.</p>
+    <p class="sub"><b>Promotion — alpha.0 &rarr; alpha.1.</b> This revision re-anchors the <b>4.16.0</b> wave from <b>CiC 4.16.0-alpha.0</b> (2026-10-07) to <b>CiC 4.16.0-alpha.1</b> (published 2026-10-09). Phase stays <b>alpha</b>; the headline date moves to <b>2026-10-09</b> (the alpha.1 publish date) and the page is renamed accordingly.</p>
+    <p class="sub"><b>Only component change alpha.0 &rarr; alpha.1:</b> embedded apps <b>1.38.0 &rarr; 1.39.0</b>. No Cloud, App, Thread FW, Controller or other firmware change. Newly-added tickets this revision (both commissioning / internal, neither customer-facing &mdash; Tier 2 / Tier 3 only):</p>
     <ul>
-      <li><b>Phase:</b> <b>alpha</b>. The target tag <code>4.16.0-alpha.0</code> carries an <code>-alpha</code> suffix, so the CiC firmware goes to the alpha-tester track, not the general fleet. Badge <b>alpha</b>.</li>
-      <li><b>Headline date:</b> <b>2026-10-07</b> — the <code>4.16.0-alpha.0</code> GitHub Release <code>published_at</code> date.</li>
-      <li><b>CiC image diff 4.15.0 &rarr; 4.16.0-alpha.0:</b> Controller <b>6.14.0 &rarr; 6.15.1</b>, Thread FW <b>2.14.0 &rarr; 2.15.0</b>, embedded apps <b>1.37.1 &rarr; 1.38.0</b>, message spec <b>2.85.2 &rarr; 2.87.0</b>, controller-manager <b>3.19.2 &rarr; 3.19.3</b>, Python test libs <b>0.17.0 &rarr; 0.18.0</b>. Unchanged: HeatCharger FW 1.3.0, Chill control-board FW 2.0.1, ODU FW 2.1, cic-mender-tools 1.2.2.</li>
+      <li><b>QPD-16138</b> &mdash; map the <code>heating_chill</code> commissioning mode (mode 24) on the CiC so the Chill heating test can run once a CiC build supports it (Chill Post-MVP epic QPD-11522). Installer/commissioning-only.</li>
+      <li><b>QPD-15677</b> &mdash; process Chill cybersecurity-certification review comments (document <code>0x5AA5</code> as a protocol unlock constant; CHILL | Security Certification epic QPD-8055). Internal security hardening.</li>
+    </ul>
+    <p class="sub">A non-ticketed CI change (accept <code>perf</code> as a commit type) also rode the embedded-apps bump. No tier, enablement or paired version otherwise changed; no rows removed or reverted.</p>
+    <p class="sub"><b>Carried forward from the prior revision (PR #42, reviewer PanMan):</b> the <b>reactive avoid-gas</b> feature (the &ldquo;Don&rsquo;t use gas&rdquo; setting for Quatt Hybrid systems not on predictive heating / MPC) remains a Tier 1 &ldquo;New functions&rdquo; bullet (EN + NL) and customer-facing in Tier 2 (enablement sweep + MPC-epic callout), per the earlier review. It ships as controller-side QPD-15897 (Controller 6.15.1) plus the backend capability signal/guard QPD-15947.</p>
+    <ul>
+      <li><b>Phase:</b> <b>alpha</b>. The target tag <code>4.16.0-alpha.1</code> carries an <code>-alpha</code> suffix, so the CiC firmware goes to the alpha-tester track, not the general fleet. Badge <b>alpha</b>.</li>
+      <li><b>Headline date:</b> <b>2026-10-09</b> — the <code>4.16.0-alpha.1</code> GitHub Release <code>published_at</code> date.</li>
+      <li><b>CiC image diff 4.15.0 &rarr; 4.16.0-alpha.1:</b> Controller <b>6.14.0 &rarr; 6.15.1</b>, Thread FW <b>2.14.0 &rarr; 2.15.0</b>, embedded apps <b>1.37.1 &rarr; 1.39.0</b>, message spec <b>2.85.2 &rarr; 2.87.0</b>, controller-manager <b>3.19.2 &rarr; 3.19.3</b>, Python test libs <b>0.17.0 &rarr; 0.18.0</b>. Unchanged: HeatCharger FW 1.3.0, Chill control-board FW 2.0.1, ODU FW 2.1, cic-mender-tools 1.2.2.</li>
       <li><b>Paired products:</b> backend <b>Cloud v2.49.0</b> (2026-10-05). <b>No new App</b> this wave — App stays <b>v1.63.0</b> (2026-09-25), already documented with the 4.15.0 wave.</li>
-      <li><b>Newly-added QPD tickets this wave (54 engineering rows, 53 unique):</b>
+      <li><b>Newly-added QPD tickets this wave (56 engineering rows, 55 unique):</b>
         <ul>
-          <li><b>CiC / embedded (Controller 6.15.1, apps 1.38.0, Thread FW 2.15.0, message spec 2.87.0):</b> predictive heating for all-electric systems and dual-tariff support (QPD-14792, QPD-15687, pilot only); an Urgent ODU protection fix on out-of-spec input voltage (QPD-15787); a shorted-supply-sensor rejection (QPD-16044); two Thread network-manager fixes (QPD-16062, QPD-16063); per-device 802.15.4 MAC counters for link diagnostics (QPD-15736, spanning apps + dongle + spec); an A926 OpenTherm crash-context capture (QPD-15890); a permanent-failure OTA fix for a bad image signature (QPD-15976); the device-side liveOverride schema (QPD-15822); the qinterface&rarr;cpp-apps IPC migration (QPD-13457); and QA/test-rig tooling (QPD-15547, QPD-15659, QPD-15664, QPD-13377, Virtual Quatt QPD-15122).</li>
+          <li><b>CiC / embedded (Controller 6.15.1, apps 1.39.0, Thread FW 2.15.0, message spec 2.87.0):</b> predictive heating for all-electric systems and dual-tariff support (QPD-14792, QPD-15687, pilot only); an Urgent ODU protection fix on out-of-spec input voltage (QPD-15787); a shorted-supply-sensor rejection (QPD-16044); two Thread network-manager fixes (QPD-16062, QPD-16063); per-device 802.15.4 MAC counters for link diagnostics (QPD-15736, spanning apps + dongle + spec); an A926 OpenTherm crash-context capture (QPD-15890); a permanent-failure OTA fix for a bad image signature (QPD-15976); the device-side liveOverride schema (QPD-15822); the qinterface&rarr;cpp-apps IPC migration (QPD-13457); the Chill heating-commissioning mode-24 mapping (QPD-16138) and a Chill cybersecurity-cert constant (QPD-15677), both added in embedded apps 1.39.0 for alpha.1; and QA/test-rig tooling (QPD-15547, QPD-15659, QPD-15664, QPD-13377, Virtual Quatt QPD-15122).</li>
           <li><b>Cloud v2.49.0 (36 tickets):</b> the thermostat live-override and setpoint-source backend (QPD-15824, QPD-15848, QPD-16050/16051/16069/16083/16085/16087/16090/16096/16103/16111/16127, predictive-heating epic, gated on develop/min-build); predictive-heating model import tooling (QPD-15950) and the reactive avoid-gas capability signal and write-path guard (QPD-15947, pairing the controller-side QPD-15897); Chill heating commissioning backend (QPD-16021, QPD-16049); and a block of production-maintenance items (QPD-152) including boilerType data-integrity fixes (QPD-14144, QPD-15306, QPD-14147), HomeBattery import-limit and savings-rounding (QPD-16012, QPD-16070), log-noise demotions and a MySQL prepared-statement ceiling fix (QPD-16055).</li>
         </ul>
       </li>
@@ -59,7 +65,7 @@
     </ul>
     <p class="sub"><b>Enablement sweep — what actually goes live this wave:</b></p>
     <ul>
-      <li><b>CiC 4.16.0-alpha.0 firmware goes to the alpha-tester track only</b>, not the general fleet. Everyday heating and comfort behaviour for the wider customer base is unchanged.</li>
+      <li><b>CiC 4.16.0-alpha.1 firmware goes to the alpha-tester track only</b>, not the general fleet. Everyday heating and comfort behaviour for the wider customer base is unchanged.</li>
       <li><b>Predictive heating (MPC)</b> gains all-electric support and dual (day/night) tariff handling in Controller 6.15.1, but stays <b>pilot-cohort only</b> — not fleet-wide.</li>
       <li><b>Thermostat live override (app &rarr; CiC)</b> backend lands in Cloud v2.49.0 but its gate is <b>opened on develop only</b> and behind a minimum CiC build; no new App ships the UI this wave.</li>
       <li><b>Avoid using gas (reactive control)</b> lands this wave for Quatt Hybrid systems not on predictive heating (MPC): the controller honours the “Don’t use gas” setting (QPD-15897), with the backend capability signal and guard (QPD-15947) alongside. <b>Customer-facing</b> — now covered in Tier 1 (per reviewer PanMan).</li>
@@ -67,7 +73,7 @@
       <li><b>Charge Cool</b> remains live fleet-wide (enabled in an earlier wave via <code>chillAllEChargeCoolEnabled</code>, QPD-15793) — no change this wave, already communicated to customers.</li>
       <li><b>Cloud v2.49.0</b> is a normal production backend release and is live for everyone; its only customer-visible change is more accurate HomeBattery savings rounding (QPD-16070).</li>
     </ul>
-    <p class="sub"><b>Scope:</b> CiC <b>4.16.0-alpha.0</b> (alpha-tester track, not the general fleet), diffed 4.15.0 &rarr; 4.16.0-alpha.0. Paired backend <b>Cloud v2.49.0</b> (2026-10-05); no new App (stays v1.63.0).</p>
+    <p class="sub"><b>Scope:</b> CiC <b>4.16.0-alpha.1</b> (alpha-tester track, not the general fleet), diffed 4.15.0 &rarr; 4.16.0-alpha.1. Paired backend <b>Cloud v2.49.0</b> (2026-10-05); no new App (stays v1.63.0).</p>
     <p class="sub"><b>Customer tab (Tier 1):</b> one new function &mdash; the &ldquo;Don&rsquo;t use gas&rdquo; setting for Quatt Hybrid systems not on predictive heating (QPD-15897 / QPD-15947), EN + NL; everyday heating and comfort otherwise unchanged (the setting is opt-in); one neutral bug-fix line for the HomeBattery savings rounding (QPD-16070). Predictive heating, thermostat live override and Chill heating commissioning stay out of Tier 1 (pilot / develop-only / installer-only). No versions or phase words in customer copy.</p>
     <p class="sub"><b>Open follow-ups:</b> (1) the HomeBattery savings-rounding fix (QPD-16070) is placed in Tier 1 as a minor homeowner-visible correctness fix — a reviewer may prefer to drop it as too granular. (2) Cloud v2.49.0 (2026-10-05) shipped about 50 minutes before the 4.15.0 GA tag; it is paired here with the 4.16.0 wave as the next undocumented backend — confirm it is not meant for the 4.15.0 GA entry.</p>
   </div></div>
@@ -143,22 +149,22 @@
 
     <div class="callout-warn scope-banner">
       <p>
-        <span class="lead">Scope &mdash; CiC 4.16.0-alpha.0 (alpha-tester track, not the general fleet)</span>
-        Diffed 4.15.0 &rarr; 4.16.0-alpha.0. Bundled firmware: Controller <strong>6.14.0 &rarr; 6.15.1</strong>,
-        Thread FW <strong>2.14.0 &rarr; 2.15.0</strong>; embedded apps <strong>1.37.1 &rarr; 1.38.0</strong>, message spec
+        <span class="lead">Scope &mdash; CiC 4.16.0-alpha.1 (alpha-tester track, not the general fleet)</span>
+        Diffed 4.15.0 &rarr; 4.16.0-alpha.1. Bundled firmware: Controller <strong>6.14.0 &rarr; 6.15.1</strong>,
+        Thread FW <strong>2.14.0 &rarr; 2.15.0</strong>; embedded apps <strong>1.37.1 &rarr; 1.39.0</strong>, message spec
         <strong>2.85.2 &rarr; 2.87.0</strong>, controller-manager <strong>3.19.2 &rarr; 3.19.3</strong>, Python test libs
         <strong>0.17.0 &rarr; 0.18.0</strong>. HeatCharger FW 1.3.0, Chill control-board FW 2.0.1, ODU FW 2.1 and
         cic-mender-tools 1.2.2 unchanged. Paired backend <strong>Cloud v2.49.0</strong> (2026-10-05); <strong>no new App</strong>
-        (stays v1.63.0, 2026-09-25). Headline date 2026-10-07 = the 4.16.0-alpha.0 GitHub Release publish date.
+        (stays v1.63.0, 2026-09-25). Headline date 2026-10-09 = the 4.16.0-alpha.1 GitHub Release publish date.
       </p>
       <p>
         <span class="lead">Wave phase &mdash; alpha</span>
-        <code>4.16.0-alpha.0</code> is a pre-release alpha: the CiC firmware goes to the alpha-tester track, not the wider customer
+        <code>4.16.0-alpha.1</code> is a pre-release alpha: the CiC firmware goes to the alpha-tester track, not the wider customer
         fleet. Cloud v2.49.0 is a normal production backend release and is live for everyone who runs it.
       </p>
       <p><span class="lead">Enablement sweep &mdash; what actually goes live this wave</span></p>
       <ul>
-        <li><strong>The CiC 4.16.0-alpha.0 firmware goes only to alpha testers</strong> &mdash; its device-side behaviour does not reach
+        <li><strong>The CiC 4.16.0-alpha.1 firmware goes only to alpha testers</strong> &mdash; its device-side behaviour does not reach
           the general customer base or installers this wave.</li>
         <li><strong>Predictive heating (MPC) stays pilot-cohort only.</strong> Controller 6.15.1 extends it to all-electric systems
           <span class="tkey">(QPD-14792)</span> and adds day/night dual-tariff handling <span class="tkey">(QPD-15687)</span>, but it is
@@ -171,12 +177,12 @@
           prioritising the heat pump and avoiding the gas boiler, while still using the boiler for anti-freeze/safety, when the heat
           pump has no capacity, and during commissioning. The backend capability signal and write-path guard
           <span class="tkey">(QPD-15947)</span> ship alongside it. This is <b>customer-facing</b> &mdash; see the Customer tab.</li>
-        <li><strong>Chill heating commissioning</strong> backend/controller work lands <span class="tkey">(QPD-16021, QPD-16049)</span>,
+        <li><strong>Chill heating commissioning</strong> backend/controller work lands <span class="tkey">(QPD-16021, QPD-16049, QPD-16138)</span>,
           but the paired App support is not in this wave, so it is not functional end-to-end for installers yet.</li>
         <li><strong>Charge Cool remains live fleet-wide</strong> (enabled in an earlier wave via <code>chillAllEChargeCoolEnabled</code>,
           QPD-15793). No change this wave; already communicated to customers.</li>
       </ul>
-      <p><b>The CiC 4.16.0-alpha.0 firmware goes only to alpha testers &mdash; do not communicate its device-side behaviour to the wider customer base or installers. The predictive-heating, thermostat-live-override and Chill-heating-commissioning items above are pilot / develop-only / not-yet-end-to-end and must not be promised to customers or installers yet. (The reactive avoid-gas setting that also lands this wave <em>is</em> customer-facing &mdash; see the Customer tab.)</b></p>
+      <p><b>The CiC 4.16.0-alpha.1 firmware goes only to alpha testers &mdash; do not communicate its device-side behaviour to the wider customer base or installers. The predictive-heating, thermostat-live-override and Chill-heating-commissioning items above are pilot / develop-only / not-yet-end-to-end and must not be promised to customers or installers yet. (The reactive avoid-gas setting that also lands this wave <em>is</em> customer-facing &mdash; see the Customer tab.)</b></p>
     </div>
 
     <div class="theme-card">
@@ -242,11 +248,12 @@
     </div>
 
     <div class="theme-card">
-      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11522" target="_blank">QPD-11522</a> &middot; CHILL | Post MVP Features <span class="epic">2 tickets</span></h3>
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11522" target="_blank">QPD-11522</a> &middot; CHILL | Post MVP Features <span class="epic">3 tickets</span></h3>
       <p class="epic-desc">Post-MVP Chill features. This wave lands the backend and controller groundwork for commissioning a Chill in heating mode.</p>
       <ul>
         <li>Run the Chill commissioning test in heating or cooling, with a recommended mode <span class="tkey">(QPD-16021 <span class="team">Cloud / Backend</span>)</span></li>
         <li>Implement Chill heating commissioning on the controller <span class="tkey">(QPD-16049 <span class="team">Systems Control</span>)</span></li>
+        <li>Map the <code>heating_chill</code> commissioning mode (mode 24) on the CiC so the Chill heating test can run once a CiC build supports it <span class="tkey">(QPD-16138 <span class="team">Cloud / Backend</span>)</span></li>
       </ul>
       <div class="impact"><b>Impact for installers:</b> groundwork only &mdash; Chill heating commissioning is not functional end-to-end for installers this wave, as the paired app support is not in it. Do not present it as available yet.</div>
     </div>
@@ -268,6 +275,15 @@
         <li>Push notifications no longer fail the whole batch for users with more than 500 device tokens (FCM multicasts are chunked at the 500-token limit) <span class="tkey">(QPD-15485 <span class="team">Cloud / Backend</span>)</span></li>
       </ul>
       <div class="impact"><b>Impact for CS:</b> users with very many registered devices now receive their push notifications reliably &mdash; no action needed.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-8055" target="_blank">QPD-8055</a> &middot; CHILL | Security Certification <span class="epic">1 ticket</span></h3>
+      <p class="epic-desc">Cybersecurity-certification work for the Chill. This wave processes review comments from the certification review.</p>
+      <ul>
+        <li>Process the Chill cybersecurity-certification review comments, including documenting <code>0x5AA5</code> as a protocol unlock constant <span class="tkey">(QPD-15677 <span class="team">Embedded Systems</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for ops:</b> internal security-certification hardening &mdash; no field impact.</div>
     </div>
 
     <div class="theme-card">
@@ -353,12 +369,12 @@
       <tbody id="rows"></tbody>
     </table>
     <p class="footer-note">
-      Built from GitHub tag diffs (source of truth: CiC 4.15.0 &rarr; 4.16.0-alpha.0 via <code>quatt-revisions.inc</code>; component
+      Built from GitHub tag diffs (source of truth: CiC 4.15.0 &rarr; 4.16.0-alpha.1 via <code>quatt-revisions.inc</code>; component
       changelogs from each repo&rsquo;s tag-to-tag compare), cross-referenced with Jira for ticket type / priority / parent epic.
-      Bundled firmware moved Controller 6.14.0 &rarr; 6.15.1 and Thread FW 2.14.0 &rarr; 2.15.0; embedded apps 1.37.1 &rarr; 1.38.0,
+      Bundled firmware moved Controller 6.14.0 &rarr; 6.15.1 and Thread FW 2.14.0 &rarr; 2.15.0; embedded apps 1.37.1 &rarr; 1.39.0,
       message spec 2.85.2 &rarr; 2.87.0, controller-manager 3.19.2 &rarr; 3.19.3, Python test libs 0.17.0 &rarr; 0.18.0. HeatCharger FW
       1.3.0, Chill control-board FW 2.0.1 and ODU FW 2.1 unchanged. Paired backend <b>Cloud v2.49.0</b> (v2.48.0 &rarr; v2.49.0), which
-      contributes 36 of the 54 rows; <b>no new App</b> (stays v1.63.0). <b>Product naming:</b> the <b>Thread</b> product is the
+      contributes 36 of the 56 rows; <b>no new App</b> (stays v1.63.0). <b>Product naming:</b> the <b>Thread</b> product is the
       <code>quatt-dongle</code> / Thread FW repo; HeatCharger firmware folds into <b>CiC</b> (unchanged this wave).
       <b>Cross-product duplicate:</b> QPD-15736 (per-device 802.15.4 MAC counters) is listed under both <b>CiC</b> (embedded apps +
       message spec) and <b>Thread</b> (dongle CoAP resource). <b>Reverted:</b> QPD-16008 was added and reverted within Cloud v2.49.0.
@@ -403,7 +419,7 @@ document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () =>
 /* ---------- ticket data (generated by the /release-notes pipeline) ---------- */
 /* product, key, type, priority, status (if not Done), summary, epicKey */
 const T = [
- // ---- CiC (bundled in 4.16.0-alpha.0) ----
+ // ---- CiC (bundled in 4.16.0-alpha.1) ----
  ["CiC",14792,"Task","High","","cic-controller 6.15.1: predictive heating for all-electric systems — use the CH backup heater as an MPC input instead of the boiler (pilot cohort only, not fleet)",148],
  ["CiC",15687,"Task","Medium","","cic-controller 6.15.1: synthesize a day/night electricity price trajectory so predictive heating can use a double (dual-rate) tariff",148],
  ["CiC",15822,"Task","Medium","","message spec 2.87.0: add the optional liveOverride field to the thermostat schedule schema (device side of the app live override)",148],
@@ -421,6 +437,8 @@ const T = [
  ["CiC",15664,"Bug","Medium","","Python test libs 0.18.0: force a backend swap when AWS IoT rejects CiC credentials so a stale cert no longer crash-loops cic-cloud-proxy",165],
  ["CiC",15659,"Task","Medium","","Python test libs 0.18.0: NCR hardware-coverage gap analysis; default the heat battery size to 200 L in the test fixtures",10387],
  ["CiC",16178,"Task","Medium","","cic-yocto-builder: create CiC release 4.16.0 (pin quatt-revisions.inc, bump Yocto external dependencies)",11774],
+ ["CiC",16138,"Task","Medium","","embedded apps 1.39.0: map the heating_chill commissioning mode (mode 24) on the CiC so the Chill heating test can run once a CiC build supports it (added in alpha.1)",11522],
+ ["CiC",15677,"Task","High","","embedded apps 1.39.0: process Chill cybersecurity-certification review comments (document 0x5AA5 as a protocol unlock constant) (added in alpha.1)",8055],
  // ---- Thread (quatt-dongle / Thread FW 2.15.0) ----
  ["Thread",15976,"Bug","Medium","","Thread FW 2.15.0: report a bad image signature as a permanent OTA failure so the CiC stops retrying a permanently bad image",11880],
  ["Thread",15736,"Task","Medium","","Thread FW 2.15.0: expose ten 802.15.4 MAC counters over a CoAP /thread/mac observe resource (dongle >= 2.15.0)",11880],
@@ -513,6 +531,7 @@ const EPICS = [
   [11522, "CHILL | Post MVP Features"],
   [12488, "Technical Debt and Continuous Improvement"],
   [11795, "CHILL | Field Test Stability Improvement"],
+  [8055,  "CHILL | Security Certification"],
   [15345, "Virtual Quatt (Project Aegis)"],
   [6532,  "Dongle | QA Automation rigs"],
   [165,   "QA automation via virtual rig"],
@@ -593,7 +612,7 @@ document.querySelectorAll('#panel-internal h3, #panel-internal h4').forEach(h =>
 
 /* ---------- Release timeline (live from /api/calendar, scoped to this version) ---------- */
 (function () {
-  const RELEASE_DATE = '2026-10-07';   // this page's headline date
+  const RELEASE_DATE = '2026-10-09';   // this page's headline date
   const RELEASE_VERSION = '4.16.0';    // milestones whose title contains this belong to this release's cycle
   const sec = document.getElementById('release-timeline');
   const list = document.getElementById('tl-list');
