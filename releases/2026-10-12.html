@@ -25,10 +25,10 @@
 <main class="wrap">
   <div class="crumb"><a href="../index.html">Releases</a> / 12.10.2026</div>
   <div class="page-head">
-    <div class="kicker">CiC diffed 4.15.0 &rarr; 4.16.0-beta.0 &middot; beta</div>
+    <div class="kicker">CiC diffed 4.15.0 &rarr; 4.16.0 &middot; stable (GA)</div>
     <h1>Quatt Ecosystem Release <span class="dim">12.10.2026</span></h1>
     <div class="sub">
-      <span class="chip cic">CiC 4.16.0-beta.0</span>
+      <span class="chip cic">CiC 4.16.0</span>
       <span class="chip cloud">Cloud v2.50.0</span>
       <span class="chip app">App v1.64.0</span>
       <span class="chip fw">Controller 6.15.1</span>
@@ -42,12 +42,12 @@
   <div class="review-only"><div class="review-panel">
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview — hidden in production.</p>
-    <p class="sub"><b>Promotion — alpha.2 &rarr; beta.0 (same commit).</b> This revision promotes the <b>4.16.0</b> wave from <b>CiC 4.16.0-alpha.2</b> to <b>CiC 4.16.0-beta.0</b>. The two tags point at the <b>identical commit</b> (<code>322ae4dc</code>) and <code>quatt-revisions.inc</code> is byte-identical, so there is <b>no change to the ticket content, tiers or the engineering table</b> — only the phase (alpha &rarr; <b>beta</b>), the badge, and the version label move. No 4.16.0 entry has reached production/<code>main</code> yet; this is the first 4.16.0 PR aimed at <code>main</code>.</p>
-    <p class="sub"><b>Phase &amp; date.</b> The target tag <code>4.16.0-beta.0</code> carries a <code>-beta</code> suffix, so the CiC firmware goes to the beta-test track, not the general fleet &mdash; badge <b>beta</b>. Headline date <b>2026-10-12</b> = the beta.0 tag commit's committer date (no GitHub Release is published for the beta.0 tag; it re-tags the alpha.2 commit).</p>
-    <p class="sub"><b>Scope (full wave):</b> diffed 4.15.0 &rarr; 4.16.0-beta.0. CiC image: Controller <b>6.14.0 &rarr; 6.15.1</b>, Thread FW <b>2.14.0 &rarr; 2.15.0</b>, embedded apps <b>1.37.1 &rarr; 1.39.0</b>, message spec <b>2.85.2 &rarr; 2.87.0</b>, controller-manager <b>3.19.2 &rarr; 3.19.3</b>, Python test libs <b>0.17.0 &rarr; 0.18.0</b>; HeatCharger FW 1.3.0, Chill control-board FW 2.0.1, ODU FW 2.1 unchanged. Paired backend <b>Cloud v2.49.0 + v2.50.0</b> (diffed from the last documented v2.48.0) and <b>App v1.64.0</b> (v1.63.0 &rarr; v1.64.0). <b>94 ticket rows / 93 unique.</b></p>
-    <p class="sub"><b>Tier 1 (customer, EN + NL):</b> <i>New functions</i> &mdash; the &ldquo;Don&rsquo;t use gas&rdquo; reactive avoid-gas setting (QPD-15897 controller + QPD-15947 Cloud gate, reachable at CiC 4.16.0) and HomeBattery renaming (QPD-16071). <i>Bug fixes</i> &mdash; a generic Wi-Fi recovery / connectivity line (QPD-16123) and HomeBattery savings rounding (QPD-16070). Everyday heating/comfort otherwise unchanged. No versions or phase words in customer copy.</p>
+    <p class="sub"><b>Promotion — beta.0 &rarr; 4.16.0 GA (same commit).</b> This revision promotes the <b>4.16.0</b> wave from <b>CiC 4.16.0-beta.0</b> to the general release <b>CiC 4.16.0</b>. The two tags point at the <b>identical commit</b> (<code>322ae4dc</code>) and the build is byte-identical, so there is <b>no change to the ticket content, tiers or the engineering table</b> &mdash; only the phase (<b>beta &rarr; stable / GA</b>), the badge, and the CiC version label move. <b>Delta vs the currently-published version</b> (the beta entry on <code>main</code>, PR&nbsp;#42): phase beta&nbsp;&rarr;&nbsp;stable; <b>no paired-product version bumps</b> (Cloud v2.49.0 + v2.50.0 and App v1.64.0 unchanged); <b>no newly-added tickets</b> (the GA tag re-tags the beta.0 commit, so the 4.15.0&nbsp;&rarr;&nbsp;4.16.0 diff is identical); <b>nothing reverted or removed</b> since the beta revision.</p>
+    <p class="sub"><b>Phase &amp; date.</b> The target tag <code>4.16.0</code> carries <b>no</b> pre-release suffix, so it is the production-ready general release &mdash; badge <b>stable (GA)</b>. It is production-ready by definition and may deploy to the fleet at any time; the GA call does not depend on whether a GitHub Release is published or whether fleet rollout has started. Headline date <b>2026-10-12</b> = the 4.16.0 tag commit's committer date (no GitHub Release is published for the 4.16.0 tag; it re-tags the beta.0 / alpha.2 commit).</p>
+    <p class="sub"><b>Scope (full wave):</b> diffed 4.15.0 &rarr; 4.16.0. CiC image: Controller <b>6.14.0 &rarr; 6.15.1</b>, Thread FW <b>2.14.0 &rarr; 2.15.0</b>, embedded apps <b>1.37.1 &rarr; 1.39.0</b>, message spec <b>2.85.2 &rarr; 2.87.0</b>, controller-manager <b>3.19.2 &rarr; 3.19.3</b>, Python test libs <b>0.17.0 &rarr; 0.18.0</b>; HeatCharger FW 1.3.0, Chill control-board FW 2.0.1, ODU FW 2.1 unchanged. Paired backend <b>Cloud v2.49.0 + v2.50.0</b> (diffed from the last documented v2.48.0) and <b>App v1.64.0</b> (v1.63.0 &rarr; v1.64.0). <b>94 ticket rows / 93 unique.</b></p>
+    <p class="sub"><b>Tier 1 (customer, EN + NL):</b> unchanged from the beta revision. <i>New functions</i> &mdash; the &ldquo;Don&rsquo;t use gas&rdquo; reactive avoid-gas setting (QPD-15897 controller + QPD-15947 Cloud gate, reachable at CiC 4.16.0) and HomeBattery renaming (QPD-16071). <i>Bug fixes</i> &mdash; a generic Wi-Fi recovery / connectivity line (QPD-16123) and HomeBattery savings rounding (QPD-16070). Everyday heating/comfort otherwise unchanged. No versions or phase words in customer copy. This page is the one-and-only 4.16.0 entry, so these first-time customer features stay in Tier 1 for the wave they ship live in.</p>
     <p class="sub"><b>Shipped but OUT of Tier 1 (gated / pilot / installer-only):</b> the thermostat live-override App UI (App v1.64.0, QPD-15826 + ~14 siblings) ships end-to-end but its production gate <code>minQuattBuildRequiredForThermostatLiveOverride</code> is <b>deliberately unreachable</b> (a placeholder &ldquo;4.16.0&rdquo; the config comment marks as not-yet-enabled until Control names a schema build carrying cic-shared-objects #300) &mdash; no customer can reach it, so Tier 2/Tier 3 only. Predictive heating (all-electric + dual-tariff, Controller 6.15.1) stays <b>pilot-cohort only</b>. Chill heating commissioning lands but its CiC floor was raised to <b>4.17.0</b> (QPD-16138), so it is not functional end-to-end for installers this wave. Charge Cool remains live fleet-wide (already communicated).</p>
-    <p class="sub"><b>Enablement sweep (production):</b> reactive avoid-gas gate moved to CiC 4.16.0 (QPD-15947), commissioning Redis shadow mode enabled on prod (QPD-16191), weather-forecast fetch job enabled on prod (QPD-16155). <b>Reverted (listed with status Reverted):</b> QPD-16008 (commissioning-readiness gate, within v2.49.0), QPD-16098 (CH min water temp 25&nbsp;&deg;C) and QPD-16186 (PH setpoint on Home card), both added in v2.49.0/v2.50.0 and reverted in v2.50.0.</p>
+    <p class="sub"><b>Enablement sweep (production):</b> as a GA, CiC 4.16.0 now rolls to the general fleet, so the reactive avoid-gas setting (gated at CiC 4.16.0, QPD-15947) becomes reachable fleet-wide as CiCs take the update &mdash; not only on the beta-test cohort. Also live: commissioning Redis shadow mode on prod (QPD-16191) and the weather-forecast fetch job on prod (QPD-16155). <b>Reverted (listed with status Reverted):</b> QPD-16008 (commissioning-readiness gate, within v2.49.0), QPD-16098 (CH min water temp 25&nbsp;&deg;C) and QPD-16186 (PH setpoint on Home card), both added in v2.49.0/v2.50.0 and reverted in v2.50.0.</p>
     <p class="sub"><b>Open follow-ups:</b> (1) the thermostat live-override App UI is a large, customer-visible-looking v1.64.0 feature held out of Tier 1 because its production gate is deliberately unreachable &mdash; confirm it should stay silent to customers until the gate opens. (2) The HomeBattery savings-rounding fix (QPD-16070) is kept in Tier 1 as a minor homeowner-visible correctness fix &mdash; a reviewer may prefer to drop it as too granular.</p>
   </div></div>
 
@@ -126,29 +126,30 @@
 
     <div class="callout-warn scope-banner">
       <p>
-        <span class="lead">Scope &mdash; CiC 4.16.0-beta.0 (beta-test track, not the general fleet)</span>
-        Diffed 4.15.0 &rarr; 4.16.0-beta.0. Bundled firmware: Controller <strong>6.14.0 &rarr; 6.15.1</strong>,
+        <span class="lead">Scope &mdash; CiC 4.16.0 (stable / general release)</span>
+        Diffed 4.15.0 &rarr; 4.16.0. Bundled firmware: Controller <strong>6.14.0 &rarr; 6.15.1</strong>,
         Thread FW <strong>2.14.0 &rarr; 2.15.0</strong>; embedded apps <strong>1.37.1 &rarr; 1.39.0</strong>, message spec
         <strong>2.85.2 &rarr; 2.87.0</strong>, controller-manager <strong>3.19.2 &rarr; 3.19.3</strong>, Python test libs
         <strong>0.17.0 &rarr; 0.18.0</strong>. HeatCharger FW 1.3.0, Chill control-board FW 2.0.1, ODU FW 2.1 and
         cic-mender-tools 1.2.2 unchanged. Paired backend <strong>Cloud v2.49.0 + v2.50.0</strong> (v2.50.0 on 2026-10-12) and
-        paired <strong>App v1.64.0</strong> (2026-10-12). Headline date 2026-10-12 = the 4.16.0-beta.0 tag commit's committer date
-        (the beta.0 tag re-tags the alpha.2 commit; no GitHub Release is published for it). The late addition to the wave was
-        one BSP WiFi-recovery fix (QPD-16123); component versions are unchanged across the 4.16.0 pre-releases.
+        paired <strong>App v1.64.0</strong> (2026-10-12). Headline date 2026-10-12 = the 4.16.0 tag commit's committer date
+        (the 4.16.0 tag re-tags the beta.0 / alpha.2 commit; no GitHub Release is published for it). The build is identical to
+        the 4.16.0 pre-releases; the only wave content past the earlier alphas was one BSP WiFi-recovery fix (QPD-16123).
       </p>
       <p>
-        <span class="lead">Wave phase &mdash; beta</span>
-        <code>4.16.0-beta.0</code> is a pre-release beta: the CiC firmware goes to the beta-test track, not the wider customer
-        fleet. Cloud v2.49.0/v2.50.0 and App v1.64.0 are normal production releases and are live for everyone who runs them.
+        <span class="lead">Wave phase &mdash; stable (GA)</span>
+        <code>4.16.0</code> carries no pre-release suffix: it is the production-ready general release and rolls to the general
+        customer fleet (deployment can start at any time). Cloud v2.49.0/v2.50.0 and App v1.64.0 are normal production releases
+        and are live for everyone who runs them.
       </p>
       <p><span class="lead">Enablement sweep &mdash; what actually goes live this wave</span></p>
       <ul>
-        <li><strong>The CiC 4.16.0-beta.0 firmware goes only to beta testers</strong> &mdash; its device-side behaviour does not reach
-          the general customer base or installers this wave.</li>
+        <li><strong>The CiC 4.16.0 firmware rolls to the general fleet</strong> &mdash; its device-side behaviour reaches the general
+          customer base as CiCs take the update, no longer only the beta-test cohort.</li>
         <li><strong>Avoid using gas (reactive control) is customer-facing this wave.</strong> The controller honours the
           &ldquo;Don&rsquo;t use gas&rdquo; setting for Quatt Hybrid systems not on predictive heating <span class="tkey">(QPD-15897)</span>;
-          Cloud v2.50.0 moves its production gate to <b>CiC 4.16.0</b> <span class="tkey">(QPD-15947)</span>, so it is reachable once a
-          CiC is on 4.16.0. It still uses the boiler for anti-freeze/safety, when the heat pump has no capacity, and during
+          Cloud v2.50.0 moves its production gate to <b>CiC 4.16.0</b> <span class="tkey">(QPD-15947)</span>, so it becomes reachable
+          fleet-wide as CiCs reach 4.16.0. It still uses the boiler for anti-freeze/safety, when the heat pump has no capacity, and during
           commissioning. See the Customer tab.</li>
         <li><strong>HomeBattery renaming is customer-facing this wave.</strong> App v1.64.0 lets a homeowner give their HomeBattery a
           custom name <span class="tkey">(QPD-16071)</span>. See the Customer tab.</li>
@@ -168,7 +169,7 @@
         <li><strong>Charge Cool remains live fleet-wide</strong> (enabled in an earlier wave via <code>chillAllEChargeCoolEnabled</code>,
           QPD-15793). No change this wave; already communicated to customers.</li>
       </ul>
-      <p><b>The CiC 4.16.0-beta.0 firmware goes only to beta testers &mdash; do not communicate its device-side behaviour to the wider customer base or installers. The thermostat-live-override, predictive-heating and Chill-heating-commissioning items above are gated-off / pilot / not-yet-end-to-end and must not be promised to customers or installers yet. (The reactive avoid-gas setting and HomeBattery renaming that land this wave <em>are</em> customer-facing &mdash; see the Customer tab.)</b></p>
+      <p><b>CiC 4.16.0 is the general release and rolls to the customer fleet. The thermostat-live-override, predictive-heating and Chill-heating-commissioning items above are gated-off / pilot / not-yet-end-to-end and must not be promised to customers or installers yet. (The reactive avoid-gas setting and HomeBattery renaming that land this wave <em>are</em> customer-facing &mdash; see the Customer tab.)</b></p>
     </div>
 
     <div class="theme-card">
@@ -221,7 +222,7 @@
         <li><b>OTA robustness:</b> report a bad image signature as a permanent failure so the CiC stops retrying a permanently bad image <span class="tkey">(QPD-15976 <span class="team">Embedded Systems</span>)</span></li>
         <li><b>Crash diagnostics:</b> capture the A926 OpenTherm engine crash context before the forced CiC reboot, so the reboot can be diagnosed <span class="tkey">(QPD-15890 <span class="team">Embedded Systems</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for installers / CS:</b> the WiFi-recovery fix improves connection reliability (customer-perceivable &mdash; see the Customer tab). The shorted-sensor fix prevents a commissioning from passing without a working supply sensor. The Thread, OTA and crash-context items are reliability and diagnostics work on the beta firmware &mdash; no field action while the build is on the beta track.</div>
+      <div class="impact"><b>Impact for installers / CS:</b> the WiFi-recovery fix improves connection reliability (customer-perceivable &mdash; see the Customer tab). The shorted-sensor fix prevents a commissioning from passing without a working supply sensor. The Thread, OTA and crash-context items are reliability and diagnostics work riding the CiC 4.16.0 firmware to the fleet &mdash; no field action needed.</div>
     </div>
 
     <div class="theme-card tech-debt-group">
@@ -245,7 +246,7 @@
           <li><b>ODU protection:</b> prevent the ODU from starting when the watchdog reports input voltage out of spec <span class="tkey">(QPD-15787 <span class="team">Systems Control</span>)</span></li>
           <li>Set up automatic formatting, linting and static analysis, with a pytest 9.1 bump (test tooling) <span class="tkey">(QPD-13377 <span class="team">Embedded Systems</span>)</span></li>
         </ul>
-        <div class="impact"><b>Impact for CS:</b> the ODU voltage-protection fix stops the outdoor unit starting under out-of-spec supply voltage &mdash; a protective change, riding the beta firmware. The tooling item is internal.</div>
+        <div class="impact"><b>Impact for CS:</b> the ODU voltage-protection fix stops the outdoor unit starting under out-of-spec supply voltage &mdash; a protective change, riding the CiC 4.16.0 firmware to the fleet. The tooling item is internal.</div>
       </div>
     </div>
 
@@ -370,11 +371,11 @@
       <tbody id="rows"></tbody>
     </table>
     <p class="footer-note">
-      Built from GitHub tag diffs (source of truth: CiC 4.15.0 &rarr; 4.16.0-beta.0 via <code>quatt-revisions.inc</code>; component
+      Built from GitHub tag diffs (source of truth: CiC 4.15.0 &rarr; 4.16.0 via <code>quatt-revisions.inc</code>; component
       changelogs from each repo&rsquo;s tag-to-tag compare), cross-referenced with Jira for ticket type / priority / parent epic.
       Bundled firmware moved Controller 6.14.0 &rarr; 6.15.1 and Thread FW 2.14.0 &rarr; 2.15.0; embedded apps 1.37.1 &rarr; 1.39.0,
       message spec 2.85.2 &rarr; 2.87.0, controller-manager 3.19.2 &rarr; 3.19.3, Python test libs 0.17.0 &rarr; 0.18.0. HeatCharger FW
-      1.3.0, Chill control-board FW 2.0.1 and ODU FW 2.1 unchanged. The beta.0 tag re-tags the same commit as alpha.2, so the CiC
+      1.3.0, Chill control-board FW 2.0.1 and ODU FW 2.1 unchanged. The 4.16.0 GA tag re-tags the same commit as beta.0/alpha.2, so the CiC
       image is identical; the late addition to the wave was one BSP WiFi-recovery fix (QPD-16123). Paired backend <b>Cloud v2.49.0 + v2.50.0</b>
       (v2.48.0 &rarr; v2.50.0), which contributes 49 of the 94 rows; paired <b>App v1.64.0</b> (v1.63.0 &rarr; v1.64.0), 23 rows.
       <b>Product naming:</b> the <b>Thread</b> product is the <code>quatt-dongle</code> / Thread FW repo; HeatCharger firmware folds into
@@ -422,11 +423,11 @@ document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () =>
 /* ---------- ticket data (generated by the /release-notes pipeline) ---------- */
 /* product, key, type, priority, status (if not Done), summary, epicKey */
 const T = [
- // ---- CiC (bundled in 4.16.0-beta.0) ----
+ // ---- CiC (bundled in 4.16.0) ----
  ["CiC",14792,"Task","High","","cic-controller 6.15.1: predictive heating for all-electric systems — use the CH backup heater as an MPC input instead of the boiler (pilot cohort only, not fleet)",148],
  ["CiC",15687,"Task","Medium","","cic-controller 6.15.1: synthesize a day/night electricity price trajectory so predictive heating can use a double (dual-rate) tariff",148],
  ["CiC",15822,"Task","Medium","","message spec 2.87.0: add the optional liveOverride field to the thermostat schedule schema (device side of the app live override)",148],
- ["CiC",16123,"Bug","High","","cic-yocto-builder 4.16.0-beta.0: WiFi driver treated 5 missed EAPOL handshakes as a firmware hang and the recovery power-cycle could wedge the CiC; power-cycle only on a real hang and unload the driver first (added late in the wave)",11880],
+ ["CiC",16123,"Bug","High","","cic-yocto-builder 4.16.0: WiFi driver treated 5 missed EAPOL handshakes as a firmware hang and the recovery power-cycle could wedge the CiC; power-cycle only on a real hang and unload the driver first (added late in the wave)",11880],
  ["CiC",15787,"Bug","Urgent","","cic-controller 6.15.1: prevent the ODU from starting when the watchdog reports input voltage out of spec",12488],
  ["CiC",13377,"Task","Low","","Python test libs 0.18.0: set up automatic formatting/linting/static analysis + pytest 9.1 bump (test tooling)",12488],
  ["CiC",16044,"Bug","High","","embedded apps 1.39.0: a shorted PT1000 supply sensor read as connected (~-0.5 °C); reject implausible codes and clear the stale supply temperature",11880],
