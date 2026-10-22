@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quatt Ecosystem Release 22.10.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css?v=3">
+<script src="../env-banner.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="logo"><span class="mark">Q</span> Quatt <span class="sys">Release notes</span></span>
+    <nav>
+      <a href="../index.html">Releases</a>
+      <button class="theme-toggle" onclick="toggleTheme()">Dark mode</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="crumb"><a href="../index.html">Releases</a> / 22.10.2026</div>
+  <div class="page-head">
+    <div class="kicker">CiC diffed 4.16.0 &rarr; 4.17.0-alpha.1 &middot; alpha</div>
+    <h1>Quatt Ecosystem Release <span class="dim">22.10.2026</span></h1>
+    <div class="sub">
+      <span class="chip cic">CiC 4.17.0-alpha.1</span>
+      <span class="chip fw">Controller 6.16.0</span>
+      <span class="chip fw">Thread FW 2.15.0</span>
+      <span class="chip fw">HeatCharger FW 1.3.0</span>
+      <span class="chip fw">Chill CB FW 2.0.1</span>
+      <span class="chip fw">ODU FW 2.2</span>
+    </div>
+  </div>
+
+  <div class="review-only"><div class="review-panel">
+    <h3>What changed in this revision</h3>
+    <p class="sub">Shown only on the staging preview &mdash; hidden in production.</p>
+    <p class="sub">This revision promotes the 4.17.0 wave page from the <b>4.17.0-alpha.0</b> draft (21.10.2026) to <b>4.17.0-alpha.1</b> (22.10.2026). Phase is unchanged (<b>alpha</b>). Delta since the previous revision:</p>
+    <ul>
+      <li><b>Target tag 4.17.0-alpha.0 &rarr; 4.17.0-alpha.1.</b> alpha.1 now has a published GitHub Release, so the headline date is its <code>published_at</code> (2026-10-22), not the tag commit&rsquo;s committer date.</li>
+      <li><b>ODU FW 2.1 &rarr; 2.2.</b> New ODU V2 (AMH6 STM8) firmware and EEPROM binaries from Amitime, validated (on the alpha track only).</li>
+      <li><b>Embedded apps 1.40.0 &rarr; 1.40.1</b>, adding two fixes: report a Thread OTA failure once and retry an exhausted OTA after a cooldown (two Chill radios were left stuck on Thread FW 2.14.0 after the 4.16.0 rollout), and start the service access point without waiting for the station to associate.</li>
+      <li><b>Jira is reachable again</b> (it was down for the alpha.0 draft). Parent-Epic grouping, owning-Team pills and Tier-3 priorities are now fetched from Jira instead of inferred, and the Epic header rows now link to Jira.</li>
+      <li><b>Two tickets added</b> that the alpha.0 draft missed: QPD-16140 (publish the A926 OpenTherm Smart Power handshake flags, from the Fix Version enablement sweep) and QPD-16301 (beta deploy now applies the fleet exclude list, keeping predictive-heating pilot CiCs in their Mender group).</li>
+      <li><b>Still CiC-only:</b> no new paired App, Cloud or Wireless Platform release pairs with this wave.</li>
+    </ul>
+    <p class="sub"><b>Scope:</b> CiC <b>4.17.0-alpha.1</b> (alpha track, not the general fleet), diffed 4.16.0 &rarr; 4.17.0-alpha.1. Bundled firmware moved Controller <b>6.15.1 &rarr; 6.16.0</b>; embedded apps 1.39.0 &rarr; 1.40.1, message spec 2.87.0 &rarr; 2.90.0, controller-manager 3.19.3 &rarr; 3.20.0, Python libs 0.18.0 &rarr; 0.18.1, ODU FW 2.1 &rarr; 2.2. Thread FW 2.15.0, HeatCharger FW 1.3.0 and Chill CB FW 2.0.1 are unchanged. <b>26 ticket rows / 16 unique QPD keys.</b></p>
+    <p class="sub"><b>Enablement sweep:</b> the CiC - V4.17.0 Fix Version plus every paired-product Fix Version were swept for enablement/rollout tickets with no commit in the tag diff. No new paired Cloud or App release pairs with this wave, so no production feature-flag flip or config rollout goes live for customers here. Predictive heating remains pilot-cohort only.</p>
+  </div></div>
+
+  <section class="timeline-wrap" id="release-timeline" hidden>
+    <h2>Release timeline</h2>
+    <p class="tl-sub">Live from the shared Quatt release calendar.</p>
+    <ol class="timeline" id="tl-list"></ol>
+  </section>
+
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-panel="customer">Customer</button>
+    <button class="tab" data-panel="internal">Internal (ops / CS)</button>
+    <button class="tab" data-panel="engineering">Engineering</button>
+  </div>
+
+  <!-- ============ TIER 1 ============ -->
+  <section class="tab-panel tier1 active" id="panel-customer">
+
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button class="fbtn lang-btn on" data-lang="en">English</button>
+      <button class="fbtn lang-btn" data-lang="nl">Nederlands</button>
+    </div>
+
+    <div class="lang-pane" id="tier1-en">
+      <div class="theme-card">
+        <h3>New functions</h3>
+        <ul></ul>
+      </div>
+      <div class="theme-card">
+        <h3>Heating performance and reliability</h3>
+        <ul>
+          <li>Everyday heating and comfort behaviour is unchanged in this release.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Bug fixes and maintenance</h3>
+        <ul>
+          <li>Improved the stability of the wireless connections inside your Quatt system, so components are less likely to briefly drop out and updates to connected products complete more reliably.</li>
+          <li>General reliability and maintenance improvements behind the scenes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lang-pane" id="tier1-nl" hidden>
+      <div class="theme-card">
+        <h3>Nieuwe functies</h3>
+        <ul></ul>
+      </div>
+      <div class="theme-card">
+        <h3>Verwarmingsprestaties en betrouwbaarheid</h3>
+        <ul>
+          <li>Het dagelijkse verwarmings- en comfortgedrag is ongewijzigd in deze release.</li>
+        </ul>
+      </div>
+      <div class="theme-card">
+        <h3>Foutoplossingen en onderhoud</h3>
+        <ul>
+          <li>Verbeterde stabiliteit van de draadloze verbindingen binnen je Quatt-systeem, zodat onderdelen minder snel kort wegvallen en updates van gekoppelde producten betrouwbaarder worden voltooid.</li>
+          <li>Algemene verbeteringen op het gebied van betrouwbaarheid en onderhoud achter de schermen.</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ TIER 2 ============ -->
+  <section class="tab-panel" id="panel-internal">
+
+    <div class="callout-warn scope-banner">
+      <p>
+        <span class="lead">Scope &mdash; CiC 4.17.0-alpha.1 (alpha track, not the general fleet)</span>
+        Diffed 4.16.0 &rarr; 4.17.0-alpha.1. Bundled firmware: Controller <strong>6.15.1 &rarr; 6.16.0</strong>,
+        embedded apps <strong>1.39.0 &rarr; 1.40.1</strong>, message spec <strong>2.87.0 &rarr; 2.90.0</strong>,
+        controller-manager <strong>3.19.3 &rarr; 3.20.0</strong>, Python libs <strong>0.18.0 &rarr; 0.18.1</strong>,
+        ODU FW <strong>2.1 &rarr; 2.2</strong>.
+        Thread FW 2.15.0, HeatCharger FW 1.3.0 and Chill control-board FW 2.0.1 are unchanged.
+        <strong>No new paired App or Cloud release</strong> shipped in the window (latest App v1.64.0 and Cloud v2.50.0 both
+        belong to the 4.16.0 wave). Headline date 2026-10-22 = the 4.17.0-alpha.1 GitHub Release publish date.
+      </p>
+      <p>
+        <span class="lead">Wave phase &mdash; alpha (second alpha of the 4.17.0 cycle)</span>
+        This is a CiC / embedded-only wave: the content is the controller, the embedded C++ apps, the message spec, the ODU V2
+        firmware and the on-device tooling. The CiC build goes to the alpha-tester track only.
+      </p>
+      <p><span class="lead">Enablement sweep &mdash; what actually goes live this wave</span></p>
+      <ul>
+        <li><strong>Nothing new goes live for customers.</strong> The CiC - V4.17.0 Fix Version and every paired-product Fix Version
+          were swept for enablement/rollout tickets with no commit in the diff; no new paired Cloud or App release accompanies this
+          wave, so there is no production feature-flag flip or config rollout tied to it.</li>
+        <li><strong>Predictive heating stays pilot-cohort only</strong> &mdash; the controller work below extends the model but does not
+          enable it for the fleet. QPD-16301 fixes a beta-deploy bug that had pulled the predictive-heating pilot CiCs out of their
+          Mender group.</li>
+      </ul>
+      <p><b>The alpha CiC firmware goes only to alpha testers &mdash; do not communicate its behaviour to the wider customer base or installers.</b></p>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-148" target="_blank">Predictive heating (MPC) &mdash; continued pilot development</a> <span class="epic">5 tickets</span></h3>
+      <p class="epic-desc">Model Predictive Control for central heating: cloud-trained house models that let the controller plan ahead. This wave extends the predictive-heating engine on the controller and in the message spec. It remains a pilot-cohort capability and does not change how any customer&rsquo;s system heats today.</p>
+      <ul>
+        <li>Predictive heating now uses an <b>external weather forecast</b> as a model input, with the forecast output added to the message spec <span class="tkey">(QPD-14948 <span class="team">Systems Control</span>)</span></li>
+        <li>Solve the condensed mixed-integer problem with the <b>DAQP</b> solver to reduce solve times <span class="tkey">(QPD-16248 <span class="team">Systems Control</span>)</span>; low-level split of the boiler / heat-pump thermal power <span class="tkey">(QPD-15946 <span class="team">Systems Control</span>)</span></li>
+        <li>Keep tracking the predictive-heating state while the MPC is off or the room temperature drops out <span class="tkey">(QPD-16182 <span class="team">Systems Control</span>)</span></li>
+        <li>The state estimator <b>resumes after a controller restart</b>, with the estimator schema persisted and extended in the message spec <span class="tkey">(QPD-16100 <span class="team">Systems Control</span>)</span></li>
+      </ul>
+      <div class="callout-warn"><b>Shipped but not live:</b> predictive heating is not enabled for the fleet. It stays limited to the pilot cohort and does not change how any customer&rsquo;s system heats today.</div>
+      <div class="impact"><b>Impact for CS:</b> no customer-visible change and no field action.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-14543" target="_blank">Service Tool and on-device service access point</a> <span class="epic">3 tickets</span></h3>
+      <p class="epic-desc">A new on-CiC field-service application ships for the first time in this alpha. <code>cic-service-tool</code> serves a web interface (EN/NL, credential login) that a technician reaches over a local service Wi-Fi access point managed by the new <code>cic-access-point</code> app. It is meant to streamline service, maintenance and new installations.</p>
+      <ul>
+        <li>New <b>cic-service-tool</b> and <b>cic-access-point</b> apps added to the image: web UI with a system overview, per-device pages (heat pump / All-E, Chill, HeatCharger, boiler, thermostat) with live values and history, a Wi-Fi page, a Thread topology page, and a safety-timed manual mode that pauses the controller and releases control when the session ends <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
+        <li>The service access point <b>CIC-&lt;id&gt;-service</b> is opened by a 5-second button long-press and closes automatically after 60 minutes; its state drives the CiC LED <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
+        <li>The service access point now <b>starts without waiting for the station to associate</b>, so it comes up reliably <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
+        <li>Message-spec fields added for <b>cic-service-tool</b> and <b>cic-access-tool</b> <span class="tkey">(QPD-15839 <span class="team">Embedded Systems</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for field service / installers:</b> a new local service interface exists on the CiC in this build, reached over a service Wi-Fi access point. It is new in this alpha and is for service and installation use, not a customer feature. Do not present it to customers.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-8214" target="_blank">ODU V2 and control robustness</a> <span class="epic">5 tickets</span></h3>
+      <p class="epic-desc">Controller robustness and ODU V2 handling: safer behaviour when components disconnect, corrected ODU V2 mapping, and the new ODU V2 firmware binaries validated on the alpha track.</p>
+      <ul>
+        <li>The controller <b>handles null signals when components disconnect</b>, instead of acting on missing values <span class="tkey">(QPD-15444 <span class="team">Systems Control</span>)</span></li>
+        <li>Update the <b>ODU V2 compressor frequency mapping</b> for AMH6, and report PCB firmware below 2.0 for a simulated ODU V2 <span class="tkey">(QPD-16159 <span class="team">Systems Control</span>)</span></li>
+        <li>Update the <b>ODU V2 (AMH6 STM8) firmware and EEPROM binaries to 2.2</b> &mdash; new binaries from Amitime, validated. On the alpha track only; it reaches the field by OTA in a later wave <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
+        <li>Adjust the <b>central-heating maximum water-temperature range</b> and keep the pump running at the limit (control-tuning change; no customer-perceivable comfort change claimed) <span class="tkey">(<span class="team">Systems Control</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for ops:</b> internal robustness, ODU V2 test correctness, and a new ODU V2 firmware binary under alpha validation. No field action; the water-temperature range change is control tuning, not a customer-visible setting.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-11880" target="_blank">Connectivity &mdash; Thread / CoAP</a> <span class="epic">2 tickets</span></h3>
+      <p class="epic-desc">Reliability of the CiC-to-dongle Thread mesh. Stale service advertisements could keep the CiC retrying against sessions that no longer exist, and a double-reported OTA failure could leave a radio stuck on an older firmware.</p>
+      <ul>
+        <li><b>Ignore expired SRP services and keep the CoAP restart backoff</b>, so the CiC stops exhausting retries against dead sessions and avoids connection storms <span class="tkey">(QPD-16298 <span class="team">Embedded Systems</span>)</span></li>
+        <li><b>Report a Thread OTA failure once and retry an exhausted OTA after a cooldown.</b> A double-reported lost-link failure had burned both retries at once, which left two Chill radios stuck on Thread FW 2.14.0 after the 4.16.0 rollout <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for CS:</b> fewer rare connection drop-outs between the CiC and its wireless accessories, and stuck firmware updates on connected radios now recover on their own. This is the fix summarised generically on the Customer tab.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3>Telemetry and message specification <span class="epic">7 tickets</span></h3>
+      <p class="epic-desc">Telemetry plumbing and message-spec maintenance: cleaner cloud payloads, a stats-publishing fallback fix, OpenTherm Smart Power flags that were hidden from userspace, and stricter enum typing. These tickets sit under several Jira epics (Chill temperature and humidity modelling, ZipIt telemetry, and CiC improvements).</p>
+      <ul>
+        <li>Publish the <b>device dew-point pair</b> <span class="tkey">(QPD-14757 <span class="team">Systems Control</span>)</span></li>
+        <li>When gzip fails, publish the <b>uncompressed stats to cicStats, not cicZipStats</b> (whose rule only parses gzip), so stats are not lost on a compression failure <span class="tkey">(QPD-16254 <span class="team">no team set</span>)</span></li>
+        <li>Publish the <b>A926 OpenTherm Smart Power handshake flags</b> (OT_FT_SMART_POWER_IMPLEMENTED and OT_FT_MEMBERID_OF_MASTER) that the OpenTherm engine previously hid from userspace <span class="tkey">(QPD-16140 <span class="team">Embedded Systems</span>)</span></li>
+        <li>Make <b>commissioning mode and heat-pump test level proper enumerations</b>; generate every custom cloud-data-type enum member <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
+        <li>Restore <b>debug logging for the modem IMSI</b>; stop sending unused telemetry fields to the cloud (~53 fields, about a 9% cut in cloud-sent fields) <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for ops:</b> leaner and more robust telemetry. Modem-IMSI debug logging is available again; a forced-gzip-failure case no longer drops stats; the OpenTherm Smart Power flags are now visible in telemetry. The trimmed fields stay on the CiC and in historic data; only new cloud transmission stops.</div>
+    </div>
+
+    <div class="theme-card">
+      <h3>Persistence, deploy and test infrastructure <span class="epic">4 tickets</span></h3>
+      <p class="epic-desc">Robustness of how on-device configuration and message-spec data are persisted, a fleet-deploy fix, and a test-harness fix. These tickets have no single parent epic.</p>
+      <ul>
+        <li>The controller-manager <b>persists message-spec JSON keys to their own file</b> <span class="tkey">(QPD-16161 <span class="team">Embedded Systems</span>)</span>, and the message spec <b>validates where persisted rows live</b> <span class="tkey">(QPD-16198 <span class="team">Embedded Systems</span>)</span></li>
+        <li>The <b>beta deploy now applies the fleet exclude list</b>, so predictive-heating pilot CiCs are no longer pulled out of their Mender group by a beta rollout <span class="tkey">(QPD-16301 <span class="team">Embedded Systems</span>)</span></li>
+        <li>Test harness: keep <code>ssh_cmd</code> output that arrives with or after the exit status <span class="tkey">(QPD-16288 <span class="team">Embedded Systems</span>)</span></li>
+      </ul>
+      <div class="impact"><b>Impact for ops:</b> safer on-device persistence, a corrected beta-deploy exclude list for the predictive-heating pilot, and test robustness. No customer field action.</div>
+    </div>
+  </section>
+
+  <!-- ============ TIER 3 ============ -->
+  <section class="tab-panel" id="panel-engineering">
+    <div class="filters">
+      <span class="fgroup" id="f-product">
+        <span class="flabel">Product</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="CiC">CiC</button>
+      </span>
+      <span class="fgroup" id="f-type">
+        <span class="flabel">Type</span>
+        <button class="fbtn on" data-v="*">All</button>
+        <button class="fbtn" data-v="Task">Tasks</button>
+        <button class="fbtn" data-v="Bug">Bugs</button>
+      </span>
+      <input class="search" id="f-q" type="search" placeholder="Search summary or QPD key…">
+    </div>
+    <div class="count" id="count"></div>
+    <table class="tickets">
+      <thead><tr>
+        <th class="sortable" data-col="key">Key</th>
+        <th class="sortable" data-col="product">Product</th>
+        <th class="sortable" data-col="type">Type</th>
+        <th class="sortable" data-col="priority">Priority</th>
+        <th class="sortable" data-col="summary">Summary</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p class="footer-note">
+      Built from GitHub tag diffs (source of truth: CiC 4.16.0 &rarr; 4.17.0-alpha.1 via <code>quatt-revisions.inc</code>; component
+      changelogs from each repo&rsquo;s tag-to-tag compare), with ticket metadata (Epic, owning Team, priority) from Jira. Bundled
+      firmware moved Controller 6.15.1 &rarr; 6.16.0; embedded apps 1.39.0 &rarr; 1.40.1, message spec 2.87.0 &rarr; 2.90.0,
+      controller-manager 3.19.3 &rarr; 3.20.0, Python libs 0.18.0 &rarr; 0.18.1, ODU FW 2.1 &rarr; 2.2.
+      Thread FW 2.15.0, HeatCharger FW 1.3.0 and Chill CB FW 2.0.1 are unchanged. <b>No new paired App or Cloud release</b>
+      shipped in the window, so every row is <b>CiC</b>. Rows without a QPD key (the Service Tool core, the service-AP start fix,
+      the CH water-temperature range, the ODU FW 2.2 binary, enum typing, modem-IMSI logging, unused-field trimming) are shown with a
+      &ldquo;&mdash;&rdquo; key. <b>QPD-16159</b> appears twice (the compressor-frequency mapping and the simulated PCB-firmware report are
+      distinct commits). Use the <code>release-auditor</code> skill for commit-level traceability.
+    </p>
+  </section>
+
+</main>
+
+<script>
+/* ---------- theme ---------- */
+function toggleTheme() {
+  const r = document.documentElement;
+  const cur = r.getAttribute('data-theme') || 'dark';   // console is dark by default
+  const next = cur === 'dark' ? 'light' : 'dark';
+  r.setAttribute('data-theme', next);
+  localStorage.setItem('qrn-theme', next);
+}
+const saved = localStorage.getItem('qrn-theme');
+if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+/* ---------- Tier 1 language toggle (EN/NL) ---------- */
+function setLang(lang) {
+  document.getElementById('tier1-en').hidden = lang !== 'en';
+  document.getElementById('tier1-nl').hidden = lang !== 'nl';
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('on', b.dataset.lang === lang));
+  localStorage.setItem('qrn-tier1-lang', lang);
+}
+document.querySelectorAll('.lang-btn').forEach(b =>
+  b.addEventListener('click', () => setLang(b.dataset.lang)));
+setLang(localStorage.getItem('qrn-tier1-lang') || 'en');
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === t));
+  document.querySelectorAll('.tab-panel').forEach(p =>
+    p.classList.toggle('active', p.id === 'panel-' + t.dataset.panel));
+}));
+
+/* ---------- ticket data (generated by the /release-notes pipeline) ----------
+   Row shape: [product, key, type, priority, status, summary, themeIndex]
+   key === null -> a commit with no QPD key (rendered with a "—" key cell). */
+const T = [
+ // Predictive heating (MPC) — pilot (theme 0)
+ ["CiC",14948,"Task","High","","cic-controller + message spec: predictive heating uses an external weather forecast (model input + forecast output)",0],
+ ["CiC",16248,"Task","Medium","","cic-controller: predictive heating solves the condensed MIQP with the DAQP solver",0],
+ ["CiC",15946,"Task","Low","","cic-controller: predictive heating low-level boiler / heat-pump thermal power split",0],
+ ["CiC",16182,"Task","Medium","","cic-controller: keep tracking the predictive heating state while the MPC is off or the room temperature drops out",0],
+ ["CiC",16100,"Task","Medium","","cic-controller + message spec: predictive heating estimator resumes its state after a restart (persist/extend estimator schema)",0],
+ // Service Tool & on-device access point (theme 1)
+ ["CiC",null,"Task","—","","cic-service-tool + cic-access-point: new on-CiC service tool with a web UI over a service Wi-Fi access point (service, maintenance, new installations)",1],
+ ["CiC",15839,"Task","Medium","","message spec: add cic-service-tool and cic-access-tool related fields",1],
+ ["CiC",null,"Bug","—","","cic-access-point: start the service AP without waiting for the station to associate",1],
+ // ODU V2 & control robustness (theme 2)
+ ["CiC",15444,"Task","High","","cic-controller: handle null signals when components disconnect",2],
+ ["CiC",16159,"Task","Medium","","cic-controller: update ODU V2 (AMH6) compressor frequency mapping",2],
+ ["CiC",16159,"Bug","Medium","","cic-controller: report PCB firmware below 2.0 for simulated ODU V2",2],
+ ["CiC",null,"Bug","—","","cic-controller: update CH maximum water-temperature range and keep the pump on at the limit",2],
+ ["CiC",null,"Task","—","","ODU V2 (AMH6 STM8): update firmware and EEPROM binaries to 2.2 (new Amitime binaries, validated; alpha track)",2],
+ // Connectivity — Thread / CoAP (theme 3)
+ ["CiC",16298,"Bug","High","","cic-thread-network-manager: ignore expired SRP services and keep the CoAP restart backoff",3],
+ ["CiC",null,"Bug","—","","cic-thread-network-manager: report Thread OTA failure once and retry exhausted OTA after a cooldown (Chill radios stuck on 2.14.0 after 4.16.0)",3],
+ // Telemetry & message specification (theme 4)
+ ["CiC",14757,"Task","Medium","","message spec: publish the device dew point pair",4],
+ ["CiC",16254,"Bug","Medium","","cic-cloud-proxy: publish uncompressed stats to cicStats, not cicZipStats, when gzip fails",4],
+ ["CiC",16140,"Bug","Low","","cic-opentherm: publish the A926 OpenTherm Smart Power handshake flags (OT_FT_SMART_POWER_IMPLEMENTED / OT_FT_MEMBERID_OF_MASTER)",4],
+ ["CiC",null,"Task","—","","message spec: make commissioning mode and heat pump test level proper enumerations",4],
+ ["CiC",null,"Bug","—","","cic-cloud-metrics: generate every custom cloud data type enum member",4],
+ ["CiC",null,"Bug","—","","message spec: restore debugLogging for system.modemImsi",4],
+ ["CiC",null,"Task","—","","message spec: stop sending unused telemetry fields to the cloud (debugLogging=FALSE, ~53 fields)",4],
+ // Persistence, deploy & test infrastructure (theme 5)
+ ["CiC",16161,"Task","Medium","","cic-controller-manager: persist message spec JSON keys to their own file",5],
+ ["CiC",16198,"Task","Medium","","message spec: validate the filesystemLocation of persisted rows",5],
+ ["CiC",16301,"Bug","Medium","","cic-yocto-builder: apply the fleet exclude list to the beta deploy (keep predictive-heating pilot CiCs in their Mender group)",5],
+ ["CiC",16288,"Task","Medium","","quatt-pylibs: keep ssh_cmd output that arrives with or after the exit status",5]
+];
+
+/* Parent Epics (from Jira). u === null -> several epics or no single parent epic,
+   so the group header is a plain title with no link. */
+const EPICS = [
+  { t: "Predictive heating (MPC) — pilot", u: "https://quatt-team.atlassian.net/browse/QPD-148" },
+  { t: "Service Tool &amp; on-device service access point", u: "https://quatt-team.atlassian.net/browse/QPD-14543" },
+  { t: "ODU V2 &amp; control robustness", u: "https://quatt-team.atlassian.net/browse/QPD-8214" },
+  { t: "Connectivity — Thread / CoAP", u: "https://quatt-team.atlassian.net/browse/QPD-11880" },
+  { t: "Telemetry &amp; message specification", u: null },
+  { t: "Persistence, deploy &amp; test infrastructure", u: null }
+];
+
+/* ---------- filters & sorting ---------- */
+const state = { product: '*', type: '*', q: '', sortCol: null, sortDir: 1 };
+const PRIO_RANK = { 'Urgent': 4, 'High': 3, 'Medium': 2, 'Low': 1 };
+const COL_IDX = { product: 0, key: 1, type: 2, priority: 3, summary: 5 };
+
+document.querySelectorAll('th.sortable').forEach(th => th.addEventListener('click', () => {
+  const col = th.dataset.col;
+  if (state.sortCol === col) {
+    state.sortDir = -state.sortDir;          // second click: reverse
+  } else {
+    state.sortCol = col;
+    state.sortDir = col === 'priority' ? -1 : 1;
+  }
+  document.querySelectorAll('th.sortable').forEach(x => {
+    x.classList.toggle('sorted', x === th);
+    x.dataset.arrow = x === th ? (state.sortDir === 1 ? '▲' : '▼') : '';
+  });
+  render();
+}));
+
+function cmp(a, b) {
+  const col = state.sortCol, i = COL_IDX[col];
+  let va = a[i], vb = b[i];
+  if (col === 'priority') { va = PRIO_RANK[va] || 0; vb = PRIO_RANK[vb] || 0; }
+  if (col === 'key') { va = a[1] === null ? Infinity : a[1]; vb = b[1] === null ? Infinity : b[1]; }
+  if (va < vb) return -1 * state.sortDir;
+  if (va > vb) return  1 * state.sortDir;
+  return 0;
+}
+function bindGroup(id, key) {
+  document.querySelectorAll('#' + id + ' .fbtn').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('#' + id + ' .fbtn').forEach(x => x.classList.toggle('on', x === b));
+    state[key] = b.dataset.v;
+    render();
+  }));
+}
+bindGroup('f-product', 'product');
+bindGroup('f-type', 'type');
+document.getElementById('f-q').addEventListener('input', e => { state.q = e.target.value.toLowerCase(); render(); });
+
+function rowHTML([p, k, ty, pr, st, d], epicCls) {
+  const prBadge = pr === 'Urgent' ? '<span class="badge urgent">Urgent</span>'
+                : pr === 'High' ? '<span class="badge high">High</span>'
+                : '<span style="color:var(--text-muted);font-size:12px">' + pr + '</span>';
+  const stBadge = st ? ' <span class="badge open">' + st + '</span>' : '';
+  const cls = p === 'CiC' ? 'cic' : p === 'Cloud' ? 'cloud' : p === 'App' ? 'app' : 'fw';
+  const trClass = epicCls ? ' class="tk ' + epicCls + '"' : '';
+  const keyCell = k === null
+    ? '<td class="key"><span style="color:var(--text-muted)">—</span></td>'
+    : '<td class="key"><a href="https://quatt-team.atlassian.net/browse/QPD-' + k + '" target="_blank">QPD-' + k + '</a></td>';
+  return '<tr' + trClass + '>' +
+    keyCell +
+    '<td><span class="chip ' + cls + '">' + p + '</span></td>' +
+    '<td><span class="badge ' + ty.toLowerCase() + '">' + ty + '</span></td>' +
+    '<td>' + prBadge + '</td>' +
+    '<td>' + d + stBadge + '</td></tr>';
+}
+
+function render() {
+  let rows = T.filter(([p, k, ty, pr, st, d]) =>
+    (state.product === '*' || p === state.product) &&
+    (state.type === '*' || ty === state.type) &&
+    (!state.q || d.toLowerCase().includes(state.q) || (k !== null && ('qpd-' + k).includes(state.q)))
+  );
+  document.getElementById('count').textContent =
+    rows.length + ' of ' + T.length + ' ticket entries (16 unique QPD keys; rows without a key are shown with “—”)';
+
+  let html;
+  if (state.sortCol) {
+    // A column sort flattens the table and clears the epic grouping (no rails).
+    html = rows.slice().sort(cmp).map(r => rowHTML(r, null)).join('');
+  } else {
+    // Default view: group by Jira parent epic. Each group cycles epic-c0..4.
+    html = EPICS.map((ep, gi) => {
+      const grp = rows.filter(r => r[6] === gi);
+      if (!grp.length) return '';
+      const c = 'epic-c' + (gi % 5);
+      const title = ep.u ? '<a href="' + ep.u + '" target="_blank">' + ep.t + '</a>' : ep.t;
+      const header = '<tr class="epic-row ' + c + '"><td colspan="5">' +
+        title +
+        '<span class="ecount">' + grp.length + ' ticket' + (grp.length === 1 ? '' : 's') + '</span></td></tr>';
+      return header + grp.map(r => rowHTML(r, c)).join('');
+    }).join('');
+  }
+  document.getElementById('rows').innerHTML = html;
+}
+render();
+
+/* ---------- Internal tab: colour-code the per-ticket Team bubbles ---------- */
+(function () {
+  const map = {
+    'App': 'team-app', 'Cloud / Backend': 'team-cloud', 'Embedded Systems': 'team-embedded',
+    'Systems Control': 'team-control', 'SW&I': 'team-swi', 'no team set': 'team-none'
+  };
+  document.querySelectorAll('#panel-internal .team').forEach(el => {
+    const c = map[el.textContent.trim()];
+    if (c) el.classList.add(c);
+  });
+})();
+
+/* ---------- Release timeline (live from /api/calendar, scoped to this version) ----------
+   Shows ONLY milestones whose title contains this release's version (… | CiC 4.17.0).
+   No date-window fallback: a shared calendar interleaves many releases' milestones, so
+   date proximity cannot distinguish them — when nothing is tagged for 4.17.0 the section
+   stays hidden. */
+(function () {
+  const RELEASE_DATE = '2026-10-22';   // this page's headline date
+  const RELEASE_VERSION = '4.17.0';    // milestones whose title contains this belong to this release's cycle
+  const sec = document.getElementById('release-timeline');
+  const list = document.getElementById('tl-list');
+  const sub = document.querySelector('#release-timeline .tl-sub');
+  if (!sec || !list) return;
+
+  const DAY = 86400000;
+  const esc = s => (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const toDate = iso => new Date((iso || '').length === 10 ? iso + 'T00:00:00Z' : iso);
+  const optMD = { day: 'numeric', month: 'short', timeZone: 'UTC' };
+  const optMDY = { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' };
+
+  function span(ev) {
+    const s = toDate(ev.start);
+    if (ev.end) {
+      const e = toDate(ev.end);
+      const days = Math.max(1, Math.round((e - s) / DAY));
+      const last = ev.allDay ? new Date(e - DAY) : e;   // inclusive last day for all-day
+      return { days, startD: s, lastD: last, single: days <= 1 };
+    }
+    return { days: 1, startD: s, lastD: s, single: true };
+  }
+  const rangeText = sp => sp.single
+    ? sp.startD.toLocaleDateString('en-GB', optMDY)
+    : sp.startD.toLocaleDateString('en-GB', optMD) + ' – ' + sp.lastD.toLocaleDateString('en-GB', optMDY);
+
+  fetch('/api/calendar', { credentials: 'include' })
+    .then(r => (r.ok ? r.json() : null))
+    .then(data => {
+      if (!data || !data.ok || !Array.isArray(data.events)) return;   // stay hidden
+      const evs = data.events.filter(ev => (ev.title || '').includes(RELEASE_VERSION));
+      if (!evs.length) return;   // nothing tagged for this version → stay hidden (no date-window fallback)
+
+      list.innerHTML = evs.map(ev => {
+        const sp = span(ev);
+        const title = (ev.title || 'Untitled').replace(/\s*\|\s*CiC\b.*$/i, '').trim();
+        return '<li class="tl-item">' +
+          '<div class="tl-date">' + esc(rangeText(sp)) + '</div>' +
+          '<div class="tl-title">' + esc(title) + '</div>' +
+          '</li>';
+      }).join('');
+      if (sub) sub.textContent = 'CiC ' + RELEASE_VERSION + ' · live from the shared release calendar';
+      sec.hidden = false;   // only reveal once we actually have events
+    })
+    .catch(() => {});       // endpoint missing / network error → section stays hidden
+})();
+</script>
+
+</body>
+</html>
