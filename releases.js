@@ -3,13 +3,33 @@
    Newest release first. */
 
 window.SUMMARY = [
-  { n: "14", l: "Release waves documented" },
-  { n: "94", l: "Tickets in latest wave" },
-  { n: "3",  l: "Products in latest wave" },
+  { n: "15", l: "Release waves documented" },
+  { n: "26", l: "Tickets in latest wave" },
+  { n: "1",  l: "Products in latest wave" },
   { n: "2",  l: "Open follow-ups flagged" }
 ];
 
 window.RELEASES = [
+  {
+    date: "2026-10-22",
+    title: "Quatt Ecosystem Release 22.10.2026",
+    badge: { cls: "beta", label: "beta" },
+    page: "releases/2026-10-22.html",
+    chips: [
+      { cls: "cic", label: "CiC 4.17.0-beta.0" },
+      { cls: "fw",  label: "Controller 6.16.0" },
+      { cls: "fw",  label: "Thread FW 2.15.0" },
+      { cls: "fw",  label: "HeatCharger FW 1.3.0" },
+      { cls: "fw",  label: "Chill CB FW 2.0.1" },
+      { cls: "fw",  label: "ODU FW 2.2" }
+    ],
+    stats: [
+      { b: "26", t: "ticket entries" },
+      { b: "CiC-only", t: "no new app / backend" },
+      { b: "Service Tool + predictive heating", t: "flagship embedded work" },
+      { b: "beta", t: "beta-tester track" }
+    ]
+  },
   {
     date: "2026-10-12",
     title: "Quatt Ecosystem Release 12.10.2026",
