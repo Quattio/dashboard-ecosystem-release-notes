@@ -13,10 +13,10 @@ window.RELEASES = [
   {
     date: "2026-10-22",
     title: "Quatt Ecosystem Release 22.10.2026",
-    badge: { cls: "alpha", label: "alpha" },
+    badge: { cls: "beta", label: "beta" },
     page: "releases/2026-10-22.html",
     chips: [
-      { cls: "cic", label: "CiC 4.17.0-alpha.1" },
+      { cls: "cic", label: "CiC 4.17.0-beta.0" },
       { cls: "fw",  label: "Controller 6.16.0" },
       { cls: "fw",  label: "Thread FW 2.15.0" },
       { cls: "fw",  label: "HeatCharger FW 1.3.0" },
@@ -27,7 +27,7 @@ window.RELEASES = [
       { b: "26", t: "ticket entries" },
       { b: "CiC-only", t: "no new app / backend" },
       { b: "Service Tool + predictive heating", t: "flagship embedded work" },
-      { b: "alpha", t: "alpha-tester track" }
+      { b: "beta", t: "beta-tester track" }
     ]
   },
   {

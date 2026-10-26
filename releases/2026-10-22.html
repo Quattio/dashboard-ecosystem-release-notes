@@ -25,10 +25,10 @@
 <main class="wrap">
   <div class="crumb"><a href="../index.html">Releases</a> / 22.10.2026</div>
   <div class="page-head">
-    <div class="kicker">CiC diffed 4.16.0 &rarr; 4.17.0-alpha.1 &middot; alpha</div>
+    <div class="kicker">CiC diffed 4.16.0 &rarr; 4.17.0-beta.0 &middot; beta</div>
     <h1>Quatt Ecosystem Release <span class="dim">22.10.2026</span></h1>
     <div class="sub">
-      <span class="chip cic">CiC 4.17.0-alpha.1</span>
+      <span class="chip cic">CiC 4.17.0-beta.0</span>
       <span class="chip fw">Controller 6.16.0</span>
       <span class="chip fw">Thread FW 2.15.0</span>
       <span class="chip fw">HeatCharger FW 1.3.0</span>
@@ -40,17 +40,16 @@
   <div class="review-only"><div class="review-panel">
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview &mdash; hidden in production.</p>
-    <p class="sub">This revision promotes the 4.17.0 wave page from the <b>4.17.0-alpha.0</b> draft (21.10.2026) to <b>4.17.0-alpha.1</b> (22.10.2026). Phase is unchanged (<b>alpha</b>). Delta since the previous revision:</p>
+    <p class="sub">This revision promotes the 4.17.0 wave from the <b>4.17.0-alpha.1</b> build (22.10.2026) to the first beta, <b>4.17.0-beta.0</b>. The beta tag points at the <b>same commit</b> as 4.17.0-alpha.1 (<code>e0fa6a0</code>), so the firmware content is identical &mdash; only the release phase changes (alpha &rarr; beta). Delta since the previous revision:</p>
     <ul>
-      <li><b>Target tag 4.17.0-alpha.0 &rarr; 4.17.0-alpha.1.</b> alpha.1 now has a published GitHub Release, so the headline date is its <code>published_at</code> (2026-10-22), not the tag commit&rsquo;s committer date.</li>
-      <li><b>ODU FW 2.1 &rarr; 2.2.</b> New ODU V2 (AMH6 STM8) firmware and EEPROM binaries from Amitime, validated (on the alpha track only).</li>
-      <li><b>Embedded apps 1.40.0 &rarr; 1.40.1</b>, adding two fixes: report a Thread OTA failure once and retry an exhausted OTA after a cooldown (two Chill radios were left stuck on Thread FW 2.14.0 after the 4.16.0 rollout), and start the service access point without waiting for the station to associate.</li>
-      <li><b>Jira is reachable again</b> (it was down for the alpha.0 draft). Parent-Epic grouping, owning-Team pills and Tier-3 priorities are now fetched from Jira instead of inferred, and the Epic header rows now link to Jira.</li>
-      <li><b>Two tickets added</b> that the alpha.0 draft missed: QPD-16140 (publish the A926 OpenTherm Smart Power handshake flags, from the Fix Version enablement sweep) and QPD-16301 (beta deploy now applies the fleet exclude list, keeping predictive-heating pilot CiCs in their Mender group).</li>
-      <li><b>Still CiC-only:</b> no new paired App, Cloud or Wireless Platform release pairs with this wave.</li>
+      <li><b>Phase alpha &rarr; beta.</b> The wave badge is promoted to beta and the CiC build moves from the alpha-tester track to the beta-tester track. It is still not on the general customer fleet.</li>
+      <li><b>No content delta.</b> 4.17.0-beta.0 and 4.17.0-alpha.1 are the same commit, so no tickets, firmware versions or tier content changed since the alpha.1 revision. The 26 ticket rows / 16 unique QPD keys and all bundled-firmware versions are carried forward unchanged.</li>
+      <li><b>Headline date stays 2026-10-22.</b> 4.17.0-beta.0 has no separate GitHub Release, so the date falls back to the tag commit&rsquo;s committer date (2026-10-22) &mdash; the same commit as alpha.1, so the page filename and date are unchanged.</li>
+      <li><b>First production publication.</b> Wave 4.17.0 has not yet reached <code>main</code>/production (the alpha PR is still open); when this PR merges, this is its first published revision.</li>
+      <li><b>Still CiC-only:</b> no new paired App, Cloud or Wireless Platform release pairs with this wave (latest App v1.64.0 and Cloud v2.50.0 belong to the 4.16.0 wave).</li>
     </ul>
-    <p class="sub"><b>Scope:</b> CiC <b>4.17.0-alpha.1</b> (alpha track, not the general fleet), diffed 4.16.0 &rarr; 4.17.0-alpha.1. Bundled firmware moved Controller <b>6.15.1 &rarr; 6.16.0</b>; embedded apps 1.39.0 &rarr; 1.40.1, message spec 2.87.0 &rarr; 2.90.0, controller-manager 3.19.3 &rarr; 3.20.0, Python libs 0.18.0 &rarr; 0.18.1, ODU FW 2.1 &rarr; 2.2. Thread FW 2.15.0, HeatCharger FW 1.3.0 and Chill CB FW 2.0.1 are unchanged. <b>26 ticket rows / 16 unique QPD keys.</b></p>
-    <p class="sub"><b>Enablement sweep:</b> the CiC - V4.17.0 Fix Version plus every paired-product Fix Version were swept for enablement/rollout tickets with no commit in the tag diff. No new paired Cloud or App release pairs with this wave, so no production feature-flag flip or config rollout goes live for customers here. Predictive heating remains pilot-cohort only.</p>
+    <p class="sub"><b>Scope:</b> CiC <b>4.17.0-beta.0</b> (beta track, not the general fleet), diffed 4.16.0 &rarr; 4.17.0-beta.0. Bundled firmware moved Controller <b>6.15.1 &rarr; 6.16.0</b>; embedded apps 1.39.0 &rarr; 1.40.1, message spec 2.87.0 &rarr; 2.90.0, controller-manager 3.19.3 &rarr; 3.20.0, Python libs 0.18.0 &rarr; 0.18.1, ODU FW 2.1 &rarr; 2.2. Thread FW 2.15.0, HeatCharger FW 1.3.0 and Chill CB FW 2.0.1 are unchanged. <b>26 ticket rows / 16 unique QPD keys.</b></p>
+    <p class="sub"><b>Enablement sweep (re-run for beta):</b> the CiC - V4.17.0 Fix Version plus every paired-product Fix Version were swept again for enablement/rollout tickets with no commit in the tag diff. No new paired Cloud or App release pairs with this wave, so no production feature-flag flip or config rollout goes live for customers here. Predictive heating remains pilot-cohort only.</p>
   </div></div>
 
   <section class="timeline-wrap" id="release-timeline" hidden>
@@ -120,19 +119,19 @@
 
     <div class="callout-warn scope-banner">
       <p>
-        <span class="lead">Scope &mdash; CiC 4.17.0-alpha.1 (alpha track, not the general fleet)</span>
-        Diffed 4.16.0 &rarr; 4.17.0-alpha.1. Bundled firmware: Controller <strong>6.15.1 &rarr; 6.16.0</strong>,
+        <span class="lead">Scope &mdash; CiC 4.17.0-beta.0 (beta track, not the general fleet)</span>
+        Diffed 4.16.0 &rarr; 4.17.0-beta.0. Bundled firmware: Controller <strong>6.15.1 &rarr; 6.16.0</strong>,
         embedded apps <strong>1.39.0 &rarr; 1.40.1</strong>, message spec <strong>2.87.0 &rarr; 2.90.0</strong>,
         controller-manager <strong>3.19.3 &rarr; 3.20.0</strong>, Python libs <strong>0.18.0 &rarr; 0.18.1</strong>,
         ODU FW <strong>2.1 &rarr; 2.2</strong>.
         Thread FW 2.15.0, HeatCharger FW 1.3.0 and Chill control-board FW 2.0.1 are unchanged.
         <strong>No new paired App or Cloud release</strong> shipped in the window (latest App v1.64.0 and Cloud v2.50.0 both
-        belong to the 4.16.0 wave). Headline date 2026-10-22 = the 4.17.0-alpha.1 GitHub Release publish date.
+        belong to the 4.16.0 wave). Headline date 2026-10-22 = the 4.17.0-beta.0 tag commit date; beta.0 has no separate GitHub Release and points at the same commit as 4.17.0-alpha.1.
       </p>
       <p>
-        <span class="lead">Wave phase &mdash; alpha (second alpha of the 4.17.0 cycle)</span>
+        <span class="lead">Wave phase &mdash; beta (first beta of the 4.17.0 cycle)</span>
         This is a CiC / embedded-only wave: the content is the controller, the embedded C++ apps, the message spec, the ODU V2
-        firmware and the on-device tooling. The CiC build goes to the alpha-tester track only.
+        firmware and the on-device tooling. The CiC build goes to the beta-tester track only, not the general fleet.
       </p>
       <p><span class="lead">Enablement sweep &mdash; what actually goes live this wave</span></p>
       <ul>
@@ -143,7 +142,7 @@
           enable it for the fleet. QPD-16301 fixes a beta-deploy bug that had pulled the predictive-heating pilot CiCs out of their
           Mender group.</li>
       </ul>
-      <p><b>The alpha CiC firmware goes only to alpha testers &mdash; do not communicate its behaviour to the wider customer base or installers.</b></p>
+      <p><b>The beta CiC firmware goes only to beta testers &mdash; do not communicate its behaviour to the wider customer base or installers.</b></p>
     </div>
 
     <div class="theme-card">
@@ -161,26 +160,26 @@
 
     <div class="theme-card">
       <h3><a href="https://quatt-team.atlassian.net/browse/QPD-14543" target="_blank">Service Tool and on-device service access point</a> <span class="epic">3 tickets</span></h3>
-      <p class="epic-desc">A new on-CiC field-service application ships for the first time in this alpha. <code>cic-service-tool</code> serves a web interface (EN/NL, credential login) that a technician reaches over a local service Wi-Fi access point managed by the new <code>cic-access-point</code> app. It is meant to streamline service, maintenance and new installations.</p>
+      <p class="epic-desc">A new on-CiC field-service application ships in the 4.17.0 wave. <code>cic-service-tool</code> serves a web interface (EN/NL, credential login) that a technician reaches over a local service Wi-Fi access point managed by the new <code>cic-access-point</code> app. It is meant to streamline service, maintenance and new installations.</p>
       <ul>
         <li>New <b>cic-service-tool</b> and <b>cic-access-point</b> apps added to the image: web UI with a system overview, per-device pages (heat pump / All-E, Chill, HeatCharger, boiler, thermostat) with live values and history, a Wi-Fi page, a Thread topology page, and a safety-timed manual mode that pauses the controller and releases control when the session ends <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
         <li>The service access point <b>CIC-&lt;id&gt;-service</b> is opened by a 5-second button long-press and closes automatically after 60 minutes; its state drives the CiC LED <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
         <li>The service access point now <b>starts without waiting for the station to associate</b>, so it comes up reliably <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
         <li>Message-spec fields added for <b>cic-service-tool</b> and <b>cic-access-tool</b> <span class="tkey">(QPD-15839 <span class="team">Embedded Systems</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for field service / installers:</b> a new local service interface exists on the CiC in this build, reached over a service Wi-Fi access point. It is new in this alpha and is for service and installation use, not a customer feature. Do not present it to customers.</div>
+      <div class="impact"><b>Impact for field service / installers:</b> a new local service interface exists on the CiC in this build, reached over a service Wi-Fi access point. It is new in this wave and is for service and installation use, not a customer feature. Do not present it to customers.</div>
     </div>
 
     <div class="theme-card">
       <h3><a href="https://quatt-team.atlassian.net/browse/QPD-8214" target="_blank">ODU V2 and control robustness</a> <span class="epic">5 tickets</span></h3>
-      <p class="epic-desc">Controller robustness and ODU V2 handling: safer behaviour when components disconnect, corrected ODU V2 mapping, and the new ODU V2 firmware binaries validated on the alpha track.</p>
+      <p class="epic-desc">Controller robustness and ODU V2 handling: safer behaviour when components disconnect, corrected ODU V2 mapping, and the new ODU V2 firmware binaries validated on the pre-release track.</p>
       <ul>
         <li>The controller <b>handles null signals when components disconnect</b>, instead of acting on missing values <span class="tkey">(QPD-15444 <span class="team">Systems Control</span>)</span></li>
         <li>Update the <b>ODU V2 compressor frequency mapping</b> for AMH6, and report PCB firmware below 2.0 for a simulated ODU V2 <span class="tkey">(QPD-16159 <span class="team">Systems Control</span>)</span></li>
-        <li>Update the <b>ODU V2 (AMH6 STM8) firmware and EEPROM binaries to 2.2</b> &mdash; new binaries from Amitime, validated. On the alpha track only; it reaches the field by OTA in a later wave <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
+        <li>Update the <b>ODU V2 (AMH6 STM8) firmware and EEPROM binaries to 2.2</b> &mdash; new binaries from Amitime, validated. On the pre-release track only; it reaches the field by OTA in a later wave <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
         <li>Adjust the <b>central-heating maximum water-temperature range</b> and keep the pump running at the limit (control-tuning change; no customer-perceivable comfort change claimed) <span class="tkey">(<span class="team">Systems Control</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for ops:</b> internal robustness, ODU V2 test correctness, and a new ODU V2 firmware binary under alpha validation. No field action; the water-temperature range change is control tuning, not a customer-visible setting.</div>
+      <div class="impact"><b>Impact for ops:</b> internal robustness, ODU V2 test correctness, and a new ODU V2 firmware binary under pre-release validation. No field action; the water-temperature range change is control tuning, not a customer-visible setting.</div>
     </div>
 
     <div class="theme-card">
@@ -246,7 +245,7 @@
       <tbody id="rows"></tbody>
     </table>
     <p class="footer-note">
-      Built from GitHub tag diffs (source of truth: CiC 4.16.0 &rarr; 4.17.0-alpha.1 via <code>quatt-revisions.inc</code>; component
+      Built from GitHub tag diffs (source of truth: CiC 4.16.0 &rarr; 4.17.0-beta.0 via <code>quatt-revisions.inc</code>; component
       changelogs from each repo&rsquo;s tag-to-tag compare), with ticket metadata (Epic, owning Team, priority) from Jira. Bundled
       firmware moved Controller 6.15.1 &rarr; 6.16.0; embedded apps 1.39.0 &rarr; 1.40.1, message spec 2.87.0 &rarr; 2.90.0,
       controller-manager 3.19.3 &rarr; 3.20.0, Python libs 0.18.0 &rarr; 0.18.1, ODU FW 2.1 &rarr; 2.2.
@@ -310,7 +309,7 @@ const T = [
  ["CiC",16159,"Task","Medium","","cic-controller: update ODU V2 (AMH6) compressor frequency mapping",2],
  ["CiC",16159,"Bug","Medium","","cic-controller: report PCB firmware below 2.0 for simulated ODU V2",2],
  ["CiC",null,"Bug","—","","cic-controller: update CH maximum water-temperature range and keep the pump on at the limit",2],
- ["CiC",null,"Task","—","","ODU V2 (AMH6 STM8): update firmware and EEPROM binaries to 2.2 (new Amitime binaries, validated; alpha track)",2],
+ ["CiC",null,"Task","—","","ODU V2 (AMH6 STM8): update firmware and EEPROM binaries to 2.2 (new Amitime binaries, validated; pre-release track)",2],
  // Connectivity — Thread / CoAP (theme 3)
  ["CiC",16298,"Bug","High","","cic-thread-network-manager: ignore expired SRP services and keep the CoAP restart backoff",3],
  ["CiC",null,"Bug","—","","cic-thread-network-manager: report Thread OTA failure once and retry exhausted OTA after a cooldown (Chill radios stuck on 2.14.0 after 4.16.0)",3],
