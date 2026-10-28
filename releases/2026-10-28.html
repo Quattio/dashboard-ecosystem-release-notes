@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quatt Ecosystem Release 22.10.2026</title>
+<title>Quatt Ecosystem Release 28.10.2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -23,13 +23,13 @@
 </header>
 
 <main class="wrap">
-  <div class="crumb"><a href="../index.html">Releases</a> / 22.10.2026</div>
+  <div class="crumb"><a href="../index.html">Releases</a> / 28.10.2026</div>
   <div class="page-head">
-    <div class="kicker">CiC diffed 4.16.0 &rarr; 4.17.0-beta.0 &middot; beta</div>
-    <h1>Quatt Ecosystem Release <span class="dim">22.10.2026</span></h1>
+    <div class="kicker">CiC diffed 4.16.0 &rarr; 4.17.0-beta.1 &middot; beta</div>
+    <h1>Quatt Ecosystem Release <span class="dim">28.10.2026</span></h1>
     <div class="sub">
-      <span class="chip cic">CiC 4.17.0-beta.0</span>
-      <span class="chip fw">Controller 6.16.0</span>
+      <span class="chip cic">CiC 4.17.0-beta.1</span>
+      <span class="chip fw">Controller 6.16.1</span>
       <span class="chip fw">Thread FW 2.15.0</span>
       <span class="chip fw">HeatCharger FW 1.3.0</span>
       <span class="chip fw">Chill CB FW 2.0.1</span>
@@ -40,17 +40,18 @@
   <div class="review-only"><div class="review-panel">
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview &mdash; hidden in production.</p>
-    <p class="sub">This revision promotes the 4.17.0 wave from the <b>4.17.0-alpha.1</b> build (22.10.2026) to the first beta, <b>4.17.0-beta.0</b>. The beta tag points at the <b>same commit</b> as 4.17.0-alpha.1 (<code>e0fa6a0</code>), so the firmware content is identical &mdash; only the release phase changes (alpha &rarr; beta). Delta since the previous revision:</p>
+    <p class="sub">This revision promotes the 4.17.0 wave from the first beta, <b>4.17.0-beta.0</b> (published 22.10.2026), to the second beta, <b>4.17.0-beta.1</b> (28.10.2026). The phase stays <b>beta</b>; this is a firmware delta within the same beta cycle, not a phase change. Delta since the previously published revision (4.17.0-beta.0 on <code>main</code>):</p>
     <ul>
-      <li><b>Phase alpha &rarr; beta.</b> The wave badge is promoted to beta and the CiC build moves from the alpha-tester track to the beta-tester track. It is still not on the general customer fleet.</li>
-      <li><b>No firmware or ticket delta.</b> 4.17.0-beta.0 and 4.17.0-alpha.1 are the same commit, so no tickets or firmware versions changed since the alpha.1 revision. The 26 ticket rows / 16 unique QPD keys and all bundled-firmware versions are carried forward unchanged.</li>
-      <li><b>Customer-tier copy revised (editorial, no firmware change).</b> At reviewer request the Customer tab (EN + NL) was reworked: the wireless-stability bullet was shortened; the generic &ldquo;improvements behind the scenes&rdquo; and &ldquo;everyday heating and comfort unchanged&rdquo; placeholders were replaced with specific homeowner-visible improvements (updated compressor settings on newer outdoor units, heating continues while a component is briefly offline, the central-heating pump keeps circulating at the maximum water temperature while demand remains, settings stored more reliably, telemetry reaching Quatt more reliably); and a &ldquo;No new functions&rdquo; placeholder was added under New functions. This is a wording change only &mdash; the shipped firmware and ticket set are unchanged from alpha.1.</li>
-      <li><b>Headline date stays 2026-10-22.</b> 4.17.0-beta.0 has no separate GitHub Release, so the date falls back to the tag commit&rsquo;s committer date (2026-10-22) &mdash; the same commit as alpha.1, so the page filename and date are unchanged.</li>
-      <li><b>First production publication.</b> Wave 4.17.0 has not yet reached <code>main</code>/production (the alpha PR is still open); when this PR merges, this is its first published revision.</li>
+      <li><b>CiC build 4.17.0-beta.0 &rarr; 4.17.0-beta.1.</b> The beta build advances by six days of fixes. Still the beta-tester track, not the general customer fleet.</li>
+      <li><b>Controller 6.16.0 &rarr; 6.16.1 (QPD-16437).</b> Fix so the customer &ldquo;Don&rsquo;t use gas&rdquo; (boiler-free / avoid-gas) setting also works on systems with a water-temperature thermostat, where it previously had no effect (from NCR-4992). The avoid-gas feature itself was already communicated to customers in the 4.16.0 wave, so Tier 1 carries only a bug-fix bullet, not a repeat feature announcement.</li>
+      <li><b>Embedded apps 1.40.1 &rarr; 1.40.2 (QPD-15999, Service Tool security iteration).</b> Two commits harden the new on-CiC service access point: service-AP clients no longer reach the customer LAN or the internet (only the CiC itself: DHCP, DNS for <code>cic</code>, and the service tool on port 80), and the service-tool Wi-Fi page now requires login. Installer/service surface only, kept out of Tier 1.</li>
+      <li><b>Ticket set 26 &rarr; 28 rows (16 &rarr; 18 unique QPD keys).</b> The two rows above are new; everything else carries forward unchanged.</li>
+      <li><b>Other bundled firmware unchanged.</b> Thread FW 2.15.0, HeatCharger FW 1.3.0, Chill CB FW 2.0.1 and ODU FW 2.2 are identical to beta.0.</li>
+      <li><b>Headline date 2026-10-22 &rarr; 2026-10-28.</b> 4.17.0-beta.1 has its own GitHub Release (published 28.10.2026), so the page is renamed from <code>2026-10-22.html</code> to <code>2026-10-28.html</code> &mdash; one page per wave.</li>
       <li><b>Still CiC-only:</b> no new paired App, Cloud or Wireless Platform release pairs with this wave (latest App v1.64.0 and Cloud v2.50.0 belong to the 4.16.0 wave).</li>
     </ul>
-    <p class="sub"><b>Scope:</b> CiC <b>4.17.0-beta.0</b> (beta track, not the general fleet), diffed 4.16.0 &rarr; 4.17.0-beta.0. Bundled firmware moved Controller <b>6.15.1 &rarr; 6.16.0</b>; embedded apps 1.39.0 &rarr; 1.40.1, message spec 2.87.0 &rarr; 2.90.0, controller-manager 3.19.3 &rarr; 3.20.0, Python libs 0.18.0 &rarr; 0.18.1, ODU FW 2.1 &rarr; 2.2. Thread FW 2.15.0, HeatCharger FW 1.3.0 and Chill CB FW 2.0.1 are unchanged. <b>26 ticket rows / 16 unique QPD keys.</b></p>
-    <p class="sub"><b>Enablement sweep (re-run for beta):</b> the CiC - V4.17.0 Fix Version plus every paired-product Fix Version were swept again for enablement/rollout tickets with no commit in the tag diff. No new paired Cloud or App release pairs with this wave, so no production feature-flag flip or config rollout goes live for customers here. Predictive heating remains pilot-cohort only.</p>
+    <p class="sub"><b>Scope:</b> CiC <b>4.17.0-beta.1</b> (beta track, not the general fleet), diffed 4.16.0 &rarr; 4.17.0-beta.1. Bundled firmware moved Controller <b>6.15.1 &rarr; 6.16.1</b>; embedded apps 1.39.0 &rarr; 1.40.2, message spec 2.87.0 &rarr; 2.90.0, controller-manager 3.19.3 &rarr; 3.20.0, Python libs 0.18.0 &rarr; 0.18.1, ODU FW 2.1 &rarr; 2.2. Thread FW 2.15.0, HeatCharger FW 1.3.0 and Chill CB FW 2.0.1 are unchanged. <b>28 ticket rows / 18 unique QPD keys.</b></p>
+    <p class="sub"><b>Enablement sweep (re-run for beta.1):</b> the CiC - V4.17.0 Fix Version plus every paired-product Fix Version were swept again for enablement/rollout tickets with no commit in the tag diff. No new paired Cloud or App release pairs with this wave, so no production feature-flag flip or config rollout goes live for customers here. Predictive heating remains pilot-cohort only.</p>
   </div></div>
 
   <section class="timeline-wrap" id="release-timeline" hidden>
@@ -91,6 +92,7 @@
       <div class="theme-card">
         <h3>Bug fixes and maintenance</h3>
         <ul>
+          <li>The &ldquo;Don&rsquo;t use gas&rdquo; setting now works correctly on more thermostat types.</li>
           <li>Improved the stability of the wireless connections inside your Quatt system.</li>
           <li>Settings on the CiC are stored more reliably.</li>
           <li>Telemetry data reaches Quatt more reliably.</li>
@@ -116,6 +118,7 @@
       <div class="theme-card">
         <h3>Foutoplossingen en onderhoud</h3>
         <ul>
+          <li>De instelling &ldquo;Geen gas gebruiken&rdquo; werkt nu correct op meer soorten thermostaten.</li>
           <li>Verbeterde stabiliteit van de draadloze verbindingen binnen je Quatt-systeem.</li>
           <li>Instellingen op de CiC worden betrouwbaarder opgeslagen.</li>
           <li>Telemetriegegevens komen betrouwbaarder bij Quatt aan.</li>
@@ -130,17 +133,17 @@
 
     <div class="callout-warn scope-banner">
       <p>
-        <span class="lead">Scope &mdash; CiC 4.17.0-beta.0 (beta track, not the general fleet)</span>
-        Diffed 4.16.0 &rarr; 4.17.0-beta.0. Bundled firmware: Controller <strong>6.15.1 &rarr; 6.16.0</strong>,
-        embedded apps <strong>1.39.0 &rarr; 1.40.1</strong>, message spec <strong>2.87.0 &rarr; 2.90.0</strong>,
+        <span class="lead">Scope &mdash; CiC 4.17.0-beta.1 (beta track, not the general fleet)</span>
+        Diffed 4.16.0 &rarr; 4.17.0-beta.1. Bundled firmware: Controller <strong>6.15.1 &rarr; 6.16.1</strong>,
+        embedded apps <strong>1.39.0 &rarr; 1.40.2</strong>, message spec <strong>2.87.0 &rarr; 2.90.0</strong>,
         controller-manager <strong>3.19.3 &rarr; 3.20.0</strong>, Python libs <strong>0.18.0 &rarr; 0.18.1</strong>,
         ODU FW <strong>2.1 &rarr; 2.2</strong>.
         Thread FW 2.15.0, HeatCharger FW 1.3.0 and Chill control-board FW 2.0.1 are unchanged.
         <strong>No new paired App or Cloud release</strong> shipped in the window (latest App v1.64.0 and Cloud v2.50.0 both
-        belong to the 4.16.0 wave). Headline date 2026-10-22 = the 4.17.0-beta.0 tag commit date; beta.0 has no separate GitHub Release and points at the same commit as 4.17.0-alpha.1.
+        belong to the 4.16.0 wave). Headline date 2026-10-28 = the 4.17.0-beta.1 GitHub Release publication date. The second beta adds two fixes over beta.0: QPD-16437 (Controller 6.16.1) and QPD-15999 (embedded apps 1.40.2).
       </p>
       <p>
-        <span class="lead">Wave phase &mdash; beta (first beta of the 4.17.0 cycle)</span>
+        <span class="lead">Wave phase &mdash; beta (second beta of the 4.17.0 cycle)</span>
         This is a CiC / embedded-only wave: the content is the controller, the embedded C++ apps, the message spec, the ODU V2
         firmware and the on-device tooling. The CiC build goes to the beta-tester track only, not the general fleet.
       </p>
@@ -170,27 +173,29 @@
     </div>
 
     <div class="theme-card">
-      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-14543" target="_blank">Service Tool and on-device service access point</a> <span class="epic">3 tickets</span></h3>
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-14543" target="_blank">Service Tool and on-device service access point</a> <span class="epic">4 tickets</span></h3>
       <p class="epic-desc">A new on-CiC field-service application ships in the 4.17.0 wave. <code>cic-service-tool</code> serves a web interface (EN/NL, credential login) that a technician reaches over a local service Wi-Fi access point managed by the new <code>cic-access-point</code> app. It is meant to streamline service, maintenance and new installations.</p>
       <ul>
         <li>New <b>cic-service-tool</b> and <b>cic-access-point</b> apps added to the image: web UI with a system overview, per-device pages (heat pump / All-E, Chill, HeatCharger, boiler, thermostat) with live values and history, a Wi-Fi page, a Thread topology page, and a safety-timed manual mode that pauses the controller and releases control when the session ends <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
         <li>The service access point <b>CIC-&lt;id&gt;-service</b> is opened by a 5-second button long-press and closes automatically after 60 minutes; its state drives the CiC LED <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
         <li>The service access point now <b>starts without waiting for the station to associate</b>, so it comes up reliably <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
+        <li><b>Service-tool security iteration (new in beta.1):</b> service-AP clients can no longer reach the customer LAN or the internet &mdash; only the CiC itself (DHCP, DNS for <code>cic</code> and the service tool on port 80) &mdash; and the service-tool Wi-Fi page now requires login <span class="tkey">(QPD-15999 <span class="team">Embedded Systems</span>)</span></li>
         <li>Message-spec fields added for <b>cic-service-tool</b> and <b>cic-access-tool</b> <span class="tkey">(QPD-15839 <span class="team">Embedded Systems</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for field service / installers:</b> a new local service interface exists on the CiC in this build, reached over a service Wi-Fi access point. It is new in this wave and is for service and installation use, not a customer feature. Do not present it to customers.</div>
+      <div class="impact"><b>Impact for field service / installers:</b> a new local service interface exists on the CiC in this build, reached over a service Wi-Fi access point. The beta.1 security iteration locks the access point down (no customer-network or internet bridging, login on the Wi-Fi page). It is for service and installation use, not a customer feature. Do not present it to customers.</div>
     </div>
 
     <div class="theme-card">
-      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-8214" target="_blank">ODU V2 and control robustness</a> <span class="epic">5 tickets</span></h3>
-      <p class="epic-desc">Controller robustness and ODU V2 handling: safer behaviour when components disconnect, corrected ODU V2 mapping, and the new ODU V2 firmware binaries validated on the pre-release track.</p>
+      <h3><a href="https://quatt-team.atlassian.net/browse/QPD-8214" target="_blank">ODU V2 and control robustness</a> <span class="epic">6 tickets</span></h3>
+      <p class="epic-desc">Controller robustness and ODU V2 handling: safer behaviour when components disconnect, corrected ODU V2 mapping, the new ODU V2 firmware binaries validated on the pre-release track, and a beta.1 fix to the customer avoid-gas (boiler-free) setting.</p>
       <ul>
+        <li><b>Boiler-free (&ldquo;Don&rsquo;t use gas&rdquo;) now works on water-temperature thermostats (new in beta.1).</b> The already-released avoid-gas setting had no effect on systems with a water-temperature-based thermostat (NCR-4992); the controller now honours it for those thermostat types too <span class="tkey">(QPD-16437 <span class="team">Systems Control</span>)</span></li>
         <li>The controller <b>handles null signals when components disconnect</b>, instead of acting on missing values <span class="tkey">(QPD-15444 <span class="team">Systems Control</span>)</span></li>
         <li>Update the <b>ODU V2 compressor frequency mapping</b> for AMH6, and report PCB firmware below 2.0 for a simulated ODU V2 <span class="tkey">(QPD-16159 <span class="team">Systems Control</span>)</span></li>
         <li>Update the <b>ODU V2 (AMH6 STM8) firmware and EEPROM binaries to 2.2</b> &mdash; new binaries from Amitime, validated. On the pre-release track only; it reaches the field by OTA in a later wave <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
         <li>Adjust the <b>central-heating maximum water-temperature range</b> and keep the pump running at the limit (control-tuning change; no customer-perceivable comfort change claimed) <span class="tkey">(<span class="team">Systems Control</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for ops:</b> internal robustness, ODU V2 test correctness, and a new ODU V2 firmware binary under pre-release validation. No field action; the water-temperature range change is control tuning, not a customer-visible setting.</div>
+      <div class="impact"><b>Impact for CS / ops:</b> internal robustness, ODU V2 test correctness, and a new ODU V2 firmware binary under pre-release validation. The avoid-gas fix (QPD-16437) is customer-perceivable &mdash; customers on a water-temperature thermostat who switched on &ldquo;Don&rsquo;t use gas&rdquo; but saw no effect will have it honoured once this wave reaches them; it is summarised as a bug fix on the Customer tab. The water-temperature range change is control tuning, not a customer-visible setting. No field action.</div>
     </div>
 
     <div class="theme-card">
@@ -256,13 +261,15 @@
       <tbody id="rows"></tbody>
     </table>
     <p class="footer-note">
-      Built from GitHub tag diffs (source of truth: CiC 4.16.0 &rarr; 4.17.0-beta.0 via <code>quatt-revisions.inc</code>; component
+      Built from GitHub tag diffs (source of truth: CiC 4.16.0 &rarr; 4.17.0-beta.1 via <code>quatt-revisions.inc</code>; component
       changelogs from each repo&rsquo;s tag-to-tag compare), with ticket metadata (Epic, owning Team, priority) from Jira. Bundled
-      firmware moved Controller 6.15.1 &rarr; 6.16.0; embedded apps 1.39.0 &rarr; 1.40.1, message spec 2.87.0 &rarr; 2.90.0,
+      firmware moved Controller 6.15.1 &rarr; 6.16.1; embedded apps 1.39.0 &rarr; 1.40.2, message spec 2.87.0 &rarr; 2.90.0,
       controller-manager 3.19.3 &rarr; 3.20.0, Python libs 0.18.0 &rarr; 0.18.1, ODU FW 2.1 &rarr; 2.2.
       Thread FW 2.15.0, HeatCharger FW 1.3.0 and Chill CB FW 2.0.1 are unchanged. <b>No new paired App or Cloud release</b>
-      shipped in the window, so every row is <b>CiC</b>. Rows without a QPD key (the Service Tool core, the service-AP start fix,
-      the CH water-temperature range, the ODU FW 2.2 binary, enum typing, modem-IMSI logging, unused-field trimming) are shown with a
+      shipped in the window, so every row is <b>CiC</b>. The second beta adds two rows over beta.0: QPD-16437 (Controller 6.16.1,
+      boiler-free fix) and QPD-15999 (embedded apps 1.40.2, Service Tool security). Rows without a QPD key (the Service Tool core,
+      the service-AP start fix, the CH water-temperature range, the ODU FW 2.2 binary, enum typing, modem-IMSI logging,
+      unused-field trimming) are shown with a
       &ldquo;&mdash;&rdquo; key. <b>QPD-16159</b> appears twice (the compressor-frequency mapping and the simulated PCB-firmware report are
       distinct commits). Use the <code>release-auditor</code> skill for commit-level traceability.
     </p>
@@ -315,7 +322,9 @@ const T = [
  ["CiC",null,"Task","—","","cic-service-tool + cic-access-point: new on-CiC service tool with a web UI over a service Wi-Fi access point (service, maintenance, new installations)",1],
  ["CiC",15839,"Task","Medium","","message spec: add cic-service-tool and cic-access-tool related fields",1],
  ["CiC",null,"Bug","—","","cic-access-point: start the service AP without waiting for the station to associate",1],
+ ["CiC",15999,"Task","Medium","","cic-service-tool + cic-access-point: security iteration — service-AP clients reach the CiC only (no customer LAN / internet bridge), service-tool Wi-Fi page requires login",1],
  // ODU V2 & control robustness (theme 2)
+ ["CiC",16437,"Bug","Medium","","cic-controller: boiler-free (avoid-gas) setting now works on water-temperature thermostats (NCR-4992)",2],
  ["CiC",15444,"Task","High","","cic-controller: handle null signals when components disconnect",2],
  ["CiC",16159,"Task","Medium","","cic-controller: update ODU V2 (AMH6) compressor frequency mapping",2],
  ["CiC",16159,"Bug","Medium","","cic-controller: report PCB firmware below 2.0 for simulated ODU V2",2],
@@ -415,7 +424,7 @@ function render() {
     (!state.q || d.toLowerCase().includes(state.q) || (k !== null && ('qpd-' + k).includes(state.q)))
   );
   document.getElementById('count').textContent =
-    rows.length + ' of ' + T.length + ' ticket entries (16 unique QPD keys; rows without a key are shown with “—”)';
+    rows.length + ' of ' + T.length + ' ticket entries (18 unique QPD keys; rows without a key are shown with “—”)';
 
   let html;
   if (state.sortCol) {
@@ -456,7 +465,7 @@ render();
    date proximity cannot distinguish them — when nothing is tagged for 4.17.0 the section
    stays hidden. */
 (function () {
-  const RELEASE_DATE = '2026-10-22';   // this page's headline date
+  const RELEASE_DATE = '2026-10-28';   // this page's headline date
   const RELEASE_VERSION = '4.17.0';    // milestones whose title contains this belong to this release's cycle
   const sec = document.getElementById('release-timeline');
   const list = document.getElementById('tl-list');
