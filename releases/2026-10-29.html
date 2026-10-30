@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quatt Ecosystem Release 28.10.2026</title>
+<title>Quatt Ecosystem Release 29.10.2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -23,12 +23,12 @@
 </header>
 
 <main class="wrap">
-  <div class="crumb"><a href="../index.html">Releases</a> / 28.10.2026</div>
+  <div class="crumb"><a href="../index.html">Releases</a> / 29.10.2026</div>
   <div class="page-head">
-    <div class="kicker">CiC diffed 4.16.0 &rarr; 4.17.0-beta.1 &middot; beta</div>
-    <h1>Quatt Ecosystem Release <span class="dim">28.10.2026</span></h1>
+    <div class="kicker">CiC diffed 4.16.0 &rarr; 4.17.0-beta.2 &middot; beta</div>
+    <h1>Quatt Ecosystem Release <span class="dim">29.10.2026</span></h1>
     <div class="sub">
-      <span class="chip cic">CiC 4.17.0-beta.1</span>
+      <span class="chip cic">CiC 4.17.0-beta.2</span>
       <span class="chip fw">Controller 6.16.1</span>
       <span class="chip fw">Thread FW 2.15.0</span>
       <span class="chip fw">HeatCharger FW 1.3.0</span>
@@ -40,18 +40,17 @@
   <div class="review-only"><div class="review-panel">
     <h3>What changed in this revision</h3>
     <p class="sub">Shown only on the staging preview &mdash; hidden in production.</p>
-    <p class="sub">This revision promotes the 4.17.0 wave from the first beta, <b>4.17.0-beta.0</b> (published 22.10.2026), to the second beta, <b>4.17.0-beta.1</b> (28.10.2026). The phase stays <b>beta</b>; this is a firmware delta within the same beta cycle, not a phase change. Delta since the previously published revision (4.17.0-beta.0 on <code>main</code>):</p>
+    <p class="sub">This revision promotes the 4.17.0 wave from the second beta, <b>4.17.0-beta.1</b> (published 28.10.2026), to the third beta, <b>4.17.0-beta.2</b> (29.10.2026). The phase stays <b>beta</b>; this is a small firmware delta within the same beta cycle, not a phase change. Delta since the previously published revision (4.17.0-beta.1 on <code>main</code>):</p>
     <ul>
-      <li><b>CiC build 4.17.0-beta.0 &rarr; 4.17.0-beta.1.</b> The beta build advances by six days of fixes. Still the beta-tester track, not the general customer fleet.</li>
-      <li><b>Controller 6.16.0 &rarr; 6.16.1 (QPD-16437).</b> Fix so the customer &ldquo;Don&rsquo;t use gas&rdquo; (boiler-free / avoid-gas) setting also works on systems with a water-temperature thermostat, where it previously had no effect (from NCR-4992). The avoid-gas feature itself was already communicated to customers in the 4.16.0 wave, so Tier 1 carries only a bug-fix bullet, not a repeat feature announcement.</li>
-      <li><b>Embedded apps 1.40.1 &rarr; 1.40.2 (QPD-15999, Service Tool security iteration).</b> Two commits harden the new on-CiC service access point: service-AP clients no longer reach the customer LAN or the internet (only the CiC itself: DHCP, DNS for <code>cic</code>, and the service tool on port 80), and the service-tool Wi-Fi page now requires login. Installer/service surface only, kept out of Tier 1.</li>
-      <li><b>Ticket set 26 &rarr; 28 rows (16 &rarr; 18 unique QPD keys).</b> The two rows above are new; everything else carries forward unchanged.</li>
-      <li><b>Other bundled firmware unchanged.</b> Thread FW 2.15.0, HeatCharger FW 1.3.0, Chill CB FW 2.0.1 and ODU FW 2.2 are identical to beta.0.</li>
-      <li><b>Headline date 2026-10-22 &rarr; 2026-10-28.</b> 4.17.0-beta.1 has its own GitHub Release (published 28.10.2026), so the page is renamed from <code>2026-10-22.html</code> to <code>2026-10-28.html</code> &mdash; one page per wave.</li>
+      <li><b>CiC build 4.17.0-beta.1 &rarr; 4.17.0-beta.2.</b> A single embedded-apps bump over beta.1. Still the beta-tester track, not the general customer fleet.</li>
+      <li><b>Embedded apps 1.40.2 &rarr; 1.40.3 (QPD-16535).</b> One commit: the ODU updater now reads and publishes the EEPROM CRC of <i>every</i> ODU. V1 / V1.5 ODUs (AMM4 STM8) never reported it before, because the CiC ships no EEPROM artifact for them and the updater skipped the read. The CRC is read every 30&nbsp;s (as it already was for V2) and nothing is written to the ODU. This is fleet-diagnostics telemetry, not a customer-facing change; the Jira ticket title names a separate V1 bottom-plate investigation whose behavioural work did <i>not</i> ship this wave, so only the telemetry commit is described here.</li>
+      <li><b>Ticket set 28 &rarr; 29 rows (18 &rarr; 19 unique QPD keys).</b> The one row above is new; everything else carries forward unchanged from beta.1.</li>
+      <li><b>All bundled firmware unchanged.</b> Controller 6.16.1, Thread FW 2.15.0, HeatCharger FW 1.3.0, Chill CB FW 2.0.1 and ODU FW 2.2 are identical to beta.1.</li>
+      <li><b>Headline date 2026-10-28 &rarr; 2026-10-29.</b> 4.17.0-beta.2 has no published GitHub Release yet, so the headline date falls back to the tag commit&rsquo;s committer date (29.10.2026); the page is renamed from <code>2026-10-28.html</code> to <code>2026-10-29.html</code> &mdash; one page per wave.</li>
       <li><b>Still CiC-only:</b> no new paired App, Cloud or Wireless Platform release pairs with this wave (latest App v1.64.0 and Cloud v2.50.0 belong to the 4.16.0 wave).</li>
     </ul>
-    <p class="sub"><b>Scope:</b> CiC <b>4.17.0-beta.1</b> (beta track, not the general fleet), diffed 4.16.0 &rarr; 4.17.0-beta.1. Bundled firmware moved Controller <b>6.15.1 &rarr; 6.16.1</b>; embedded apps 1.39.0 &rarr; 1.40.2, message spec 2.87.0 &rarr; 2.90.0, controller-manager 3.19.3 &rarr; 3.20.0, Python libs 0.18.0 &rarr; 0.18.1, ODU FW 2.1 &rarr; 2.2. Thread FW 2.15.0, HeatCharger FW 1.3.0 and Chill CB FW 2.0.1 are unchanged. <b>28 ticket rows / 18 unique QPD keys.</b></p>
-    <p class="sub"><b>Enablement sweep (re-run for beta.1):</b> the CiC - V4.17.0 Fix Version plus every paired-product Fix Version were swept again for enablement/rollout tickets with no commit in the tag diff. No new paired Cloud or App release pairs with this wave, so no production feature-flag flip or config rollout goes live for customers here. Predictive heating remains pilot-cohort only.</p>
+    <p class="sub"><b>Scope:</b> CiC <b>4.17.0-beta.2</b> (beta track, not the general fleet), diffed 4.16.0 &rarr; 4.17.0-beta.2. Bundled firmware moved Controller <b>6.15.1 &rarr; 6.16.1</b>; embedded apps 1.39.0 &rarr; 1.40.3, message spec 2.87.0 &rarr; 2.90.0, controller-manager 3.19.3 &rarr; 3.20.0, Python libs 0.18.0 &rarr; 0.18.1, ODU FW 2.1 &rarr; 2.2. Thread FW 2.15.0, HeatCharger FW 1.3.0 and Chill CB FW 2.0.1 are unchanged. <b>29 ticket rows / 19 unique QPD keys.</b></p>
+    <p class="sub"><b>Enablement sweep (re-run for beta.2):</b> the CiC - V4.17.0 Fix Version plus every paired-product Fix Version were swept again for enablement/rollout tickets with no commit in the tag diff. No new paired Cloud or App release pairs with this wave, so no production feature-flag flip or config rollout goes live for customers here. Predictive heating remains pilot-cohort only.</p>
   </div></div>
 
   <section class="timeline-wrap" id="release-timeline" hidden>
@@ -133,17 +132,17 @@
 
     <div class="callout-warn scope-banner">
       <p>
-        <span class="lead">Scope &mdash; CiC 4.17.0-beta.1 (beta track, not the general fleet)</span>
-        Diffed 4.16.0 &rarr; 4.17.0-beta.1. Bundled firmware: Controller <strong>6.15.1 &rarr; 6.16.1</strong>,
-        embedded apps <strong>1.39.0 &rarr; 1.40.2</strong>, message spec <strong>2.87.0 &rarr; 2.90.0</strong>,
+        <span class="lead">Scope &mdash; CiC 4.17.0-beta.2 (beta track, not the general fleet)</span>
+        Diffed 4.16.0 &rarr; 4.17.0-beta.2. Bundled firmware: Controller <strong>6.15.1 &rarr; 6.16.1</strong>,
+        embedded apps <strong>1.39.0 &rarr; 1.40.3</strong>, message spec <strong>2.87.0 &rarr; 2.90.0</strong>,
         controller-manager <strong>3.19.3 &rarr; 3.20.0</strong>, Python libs <strong>0.18.0 &rarr; 0.18.1</strong>,
         ODU FW <strong>2.1 &rarr; 2.2</strong>.
         Thread FW 2.15.0, HeatCharger FW 1.3.0 and Chill control-board FW 2.0.1 are unchanged.
         <strong>No new paired App or Cloud release</strong> shipped in the window (latest App v1.64.0 and Cloud v2.50.0 both
-        belong to the 4.16.0 wave). Headline date 2026-10-28 = the 4.17.0-beta.1 GitHub Release publication date. The second beta adds two fixes over beta.0: QPD-16437 (Controller 6.16.1) and QPD-15999 (embedded apps 1.40.2).
+        belong to the 4.16.0 wave). 4.17.0-beta.2 has no published GitHub Release yet, so the headline date 2026-10-29 is the tag commit&rsquo;s committer date. The third beta adds one embedded-apps fix over beta.1: QPD-16535 (embedded apps 1.40.3, publish the EEPROM CRC of every ODU).
       </p>
       <p>
-        <span class="lead">Wave phase &mdash; beta (second beta of the 4.17.0 cycle)</span>
+        <span class="lead">Wave phase &mdash; beta (third beta of the 4.17.0 cycle)</span>
         This is a CiC / embedded-only wave: the content is the controller, the embedded C++ apps, the message spec, the ODU V2
         firmware and the on-device tooling. The CiC build goes to the beta-tester track only, not the general fleet.
       </p>
@@ -209,16 +208,17 @@
     </div>
 
     <div class="theme-card">
-      <h3>Telemetry and message specification <span class="epic">7 tickets</span></h3>
-      <p class="epic-desc">Telemetry plumbing and message-spec maintenance: cleaner cloud payloads, a stats-publishing fallback fix, OpenTherm Smart Power flags that were hidden from userspace, and stricter enum typing. These tickets sit under several Jira epics (Chill temperature and humidity modelling, ZipIt telemetry, and CiC improvements).</p>
+      <h3>Telemetry and message specification <span class="epic">8 tickets</span></h3>
+      <p class="epic-desc">Telemetry plumbing, fleet diagnostics and message-spec maintenance: cleaner cloud payloads, a stats-publishing fallback fix, OpenTherm Smart Power flags that were hidden from userspace, stricter enum typing, and ODU EEPROM-CRC diagnostics. These tickets sit under several Jira epics (Chill temperature and humidity modelling, ZipIt telemetry, Bug Fixing &amp; Fleet Diagnostics, and CiC improvements).</p>
       <ul>
+        <li><b>Publish the EEPROM CRC of every ODU (new in beta.2).</b> V1 / V1.5 ODUs (AMM4 STM8) never reported their EEPROM CRC, because the CiC ships no EEPROM artifact for them and the updater skipped the read; it now reads and publishes the CRC for every ODU, re-read every 30&nbsp;s as it already was for V2, and writes nothing to the ODU. Fleet-diagnostics telemetry only &mdash; no customer-facing behaviour change (the ticket&rsquo;s V1 bottom-plate investigation is separate and did not ship this wave) <span class="tkey">(QPD-16535 <span class="team">Embedded Systems</span>)</span></li>
         <li>Publish the <b>device dew-point pair</b> <span class="tkey">(QPD-14757 <span class="team">Systems Control</span>)</span></li>
         <li>When gzip fails, publish the <b>uncompressed stats to cicStats, not cicZipStats</b> (whose rule only parses gzip), so stats are not lost on a compression failure <span class="tkey">(QPD-16254 <span class="team">no team set</span>)</span></li>
         <li>Publish the <b>A926 OpenTherm Smart Power handshake flags</b> (OT_FT_SMART_POWER_IMPLEMENTED and OT_FT_MEMBERID_OF_MASTER) that the OpenTherm engine previously hid from userspace <span class="tkey">(QPD-16140 <span class="team">Embedded Systems</span>)</span></li>
         <li>Make <b>commissioning mode and heat-pump test level proper enumerations</b>; generate every custom cloud-data-type enum member <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
         <li>Restore <b>debug logging for the modem IMSI</b>; stop sending unused telemetry fields to the cloud (~53 fields, about a 9% cut in cloud-sent fields) <span class="tkey">(<span class="team">Embedded Systems</span>)</span></li>
       </ul>
-      <div class="impact"><b>Impact for ops:</b> leaner and more robust telemetry. Modem-IMSI debug logging is available again; a forced-gzip-failure case no longer drops stats; the OpenTherm Smart Power flags are now visible in telemetry. The trimmed fields stay on the CiC and in historic data; only new cloud transmission stops.</div>
+      <div class="impact"><b>Impact for ops:</b> leaner and more robust telemetry, plus one new diagnostics signal. The EEPROM CRC of every ODU (V1/V1.5 included) now reaches the fleet-diagnostics telemetry, which helps identify ODUs by EEPROM content in the field; it reads nothing back to the ODU and changes no customer behaviour. Modem-IMSI debug logging is available again; a forced-gzip-failure case no longer drops stats; the OpenTherm Smart Power flags are now visible in telemetry. The trimmed fields stay on the CiC and in historic data; only new cloud transmission stops.</div>
     </div>
 
     <div class="theme-card">
@@ -261,17 +261,18 @@
       <tbody id="rows"></tbody>
     </table>
     <p class="footer-note">
-      Built from GitHub tag diffs (source of truth: CiC 4.16.0 &rarr; 4.17.0-beta.1 via <code>quatt-revisions.inc</code>; component
+      Built from GitHub tag diffs (source of truth: CiC 4.16.0 &rarr; 4.17.0-beta.2 via <code>quatt-revisions.inc</code>; component
       changelogs from each repo&rsquo;s tag-to-tag compare), with ticket metadata (Epic, owning Team, priority) from Jira. Bundled
-      firmware moved Controller 6.15.1 &rarr; 6.16.1; embedded apps 1.39.0 &rarr; 1.40.2, message spec 2.87.0 &rarr; 2.90.0,
+      firmware moved Controller 6.15.1 &rarr; 6.16.1; embedded apps 1.39.0 &rarr; 1.40.3, message spec 2.87.0 &rarr; 2.90.0,
       controller-manager 3.19.3 &rarr; 3.20.0, Python libs 0.18.0 &rarr; 0.18.1, ODU FW 2.1 &rarr; 2.2.
       Thread FW 2.15.0, HeatCharger FW 1.3.0 and Chill CB FW 2.0.1 are unchanged. <b>No new paired App or Cloud release</b>
-      shipped in the window, so every row is <b>CiC</b>. The second beta adds two rows over beta.0: QPD-16437 (Controller 6.16.1,
-      boiler-free fix) and QPD-15999 (embedded apps 1.40.2, Service Tool security). Rows without a QPD key (the Service Tool core,
+      shipped in the window, so every row is <b>CiC</b>. The third beta adds one row over beta.1: QPD-16535 (embedded apps 1.40.3,
+      publish the EEPROM CRC of every ODU). Rows without a QPD key (the Service Tool core,
       the service-AP start fix, the CH water-temperature range, the ODU FW 2.2 binary, enum typing, modem-IMSI logging,
       unused-field trimming) are shown with a
       &ldquo;&mdash;&rdquo; key. <b>QPD-16159</b> appears twice (the compressor-frequency mapping and the simulated PCB-firmware report are
-      distinct commits). Use the <code>release-auditor</code> skill for commit-level traceability.
+      distinct commits). The <b>QPD-16535</b> row is described by the telemetry commit that shipped, not by the ticket&rsquo;s separate
+      V1 bottom-plate investigation. Use the <code>release-auditor</code> skill for commit-level traceability.
     </p>
   </section>
 
@@ -334,6 +335,7 @@ const T = [
  ["CiC",16298,"Bug","High","","cic-thread-network-manager: ignore expired SRP services and keep the CoAP restart backoff",3],
  ["CiC",null,"Bug","—","","cic-thread-network-manager: report Thread OTA failure once and retry exhausted OTA after a cooldown (Chill radios stuck on 2.14.0 after 4.16.0)",3],
  // Telemetry & message specification (theme 4)
+ ["CiC",16535,"Bug","Medium","","quatt-embedded-cpp-apps: publish the EEPROM CRC of every ODU, including V1/V1.5 (AMM4 STM8) which never reported it — fleet diagnostics telemetry, read every 30 s, nothing written to the ODU (parent epic: Bug Fixing &amp; Fleet Diagnostics, QPD-11880)",4],
  ["CiC",14757,"Task","Medium","","message spec: publish the device dew point pair",4],
  ["CiC",16254,"Bug","Medium","","cic-cloud-proxy: publish uncompressed stats to cicStats, not cicZipStats, when gzip fails",4],
  ["CiC",16140,"Bug","Low","","cic-opentherm: publish the A926 OpenTherm Smart Power handshake flags (OT_FT_SMART_POWER_IMPLEMENTED / OT_FT_MEMBERID_OF_MASTER)",4],
@@ -424,7 +426,7 @@ function render() {
     (!state.q || d.toLowerCase().includes(state.q) || (k !== null && ('qpd-' + k).includes(state.q)))
   );
   document.getElementById('count').textContent =
-    rows.length + ' of ' + T.length + ' ticket entries (18 unique QPD keys; rows without a key are shown with “—”)';
+    rows.length + ' of ' + T.length + ' ticket entries (19 unique QPD keys; rows without a key are shown with “—”)';
 
   let html;
   if (state.sortCol) {
@@ -465,7 +467,7 @@ render();
    date proximity cannot distinguish them — when nothing is tagged for 4.17.0 the section
    stays hidden. */
 (function () {
-  const RELEASE_DATE = '2026-10-28';   // this page's headline date
+  const RELEASE_DATE = '2026-10-29';   // this page's headline date
   const RELEASE_VERSION = '4.17.0';    // milestones whose title contains this belong to this release's cycle
   const sec = document.getElementById('release-timeline');
   const list = document.getElementById('tl-list');
