@@ -3,13 +3,35 @@
    Newest release first. */
 
 window.SUMMARY = [
-  { n: "15", l: "Release waves documented" },
-  { n: "29", l: "Tickets in latest wave" },
-  { n: "1",  l: "Products in latest wave" },
-  { n: "1",  l: "Open follow-ups flagged" }
+  { n: "16", l: "Release waves documented" },
+  { n: "92", l: "Tickets in latest wave" },
+  { n: "3",  l: "Products in latest wave" },
+  { n: "4",  l: "Open follow-ups flagged" }
 ];
 
 window.RELEASES = [
+  {
+    date: "2026-11-05",
+    title: "Quatt Ecosystem Release 05.11.2026",
+    badge: { cls: "alpha", label: "alpha" },
+    page: "releases/2026-11-05.html",
+    chips: [
+      { cls: "cic",   label: "CiC 4.18.0-alpha.0" },
+      { cls: "cloud", label: "Cloud v2.51.0" },
+      { cls: "app",   label: "App v1.65.0" },
+      { cls: "fw",    label: "Controller 6.16.1" },
+      { cls: "fw",    label: "Thread FW 2.15.0" },
+      { cls: "fw",    label: "HeatCharger FW 1.3.0" },
+      { cls: "fw",    label: "Chill CB FW 2.0.1" },
+      { cls: "fw",    label: "ODU FW 2.2" }
+    ],
+    stats: [
+      { b: "92", t: "ticket entries" },
+      { b: "App v1.65.0 + Cloud v2.51.0", t: "paired app / backend (customer-live)" },
+      { b: "CiC-only firmware", t: "no firmware bumps; apps + message spec only" },
+      { b: "alpha", t: "CiC 4.18.0 on the alpha-tester track" }
+    ]
+  },
   {
     date: "2026-10-29",
     title: "Quatt Ecosystem Release 29.10.2026",
